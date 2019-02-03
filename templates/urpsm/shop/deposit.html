@@ -1,0 +1,191 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} {% load i18n staticfiles thumbnail%} {% block title %} {% trans 'make a deposit'|capfirst %} {% endblock %} {% block heading %} Shop {% endblock %} {% block subheading %} {% trans 'make a deposit'|capfirst %}{% endblock %} {% block breadcrumb %}
+<li><a href="{% url 'shop' %}" title="{% trans 'deposit'|capfirst %}">{% trans 'deposit'|capfirst %}</a></li>
+<li class="active">{% trans 'deposit'|capfirst %}</li>
+{% endblock %} {% block content %}
+<script>
+    function hidepaypal(){
+    $('.helpText').hide();
+    $('#paypalpaymentform').hide();
+    $('#otherpayment').show();
+    }
+    function show(action){
+    hidepaypal();
+    $(action).show();
+    }
+
+
+    function showpaypal(){
+    $('.helpText').hide();
+    $('#paypalpaymentform').show();
+    $('#otherpayment').hide();
+    }
+
+
+
+
+</script>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-title"><i class="fa fa-paypal text-blue"></i> &nbsp;{% trans 'deposit'|capfirst %}
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="col-md-6">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group" style="float:left;">
+                                <input type="radio" name="method" onclick="showpaypal();" value="paypal" checked>Paypal
+                                <input type="radio" name="method" onclick="show('#westernText');" value="WESTERNUNION">Western
+                                Union
+                                <input type="radio" name="method" onclick="show('#moneygramText');" value="MONEYGRAM">Money Gram
+                                <input type="radio" name="method" onclick="show('#wafacashText');" value="WAFACASH">Wafacash
+                                <input type="radio" name="method" onclick="show('#bankText');" value="BANK">Bank/Wire
+                                <input type="radio" name="method" onclick="show('#bitcoinText');" value="BITCOIN">Bitcoin
+                                <div class="col-md-12">
+                                    <div style="display:none;" id="otherpayment">
+                                        <label for="amount"> Amount</label>
+                                        <input type="number" name="amount" class="form-control" value="" min="20" max=""
+                                               step="" required="required" title="Amount">
+                                        <br>
+                                        <input class="btn btn-block btn-primary" type="submit" value="Deposit">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="bitcoinText" class="helpText" style="display:none">
+                            {{ bitcoinHtml }}
+                        </div>
+                        <div id="westernText" class="helpText" style="display:none">
+                           {{ westernHtml }}
+                            <!--
+                            <img src="https://www.imeisource.com/images/gallery/western_money.png">
+                            <br>
+                            <h4>
+                                Here is explaination of how to pay us via Western Union.
+                                <br><br>
+                                1. Place amount how much would you like to deposit.<br>
+                                2. Click 'Deposit' button.<br>
+                                3. Select 'Western Union' payment method to create invoice.<br>
+                                4. Will created an invoice & will available our western money transfer address.<br>
+                                5. Submit details after send money.<br>
+                                6. If your payment information is correct, we will add fund in your account.<br>
+                                7. You will receive a confirmation email shortly when fund added.<br><br>
+
+                            </h4>
+                            -->
+
+                        </div>
+                        <div id="moneygramText" class="helpText" style="display:none">
+                            {{ moneygramHtml }}
+                            <!--<img src="https://www.imeisource.com/images/gallery/moneygram.png">
+                            <br>
+                            <h4>
+                                Here is explaination of how to pay us via MoneyGram.
+                                <br><br>
+                                1. Click 'Deposit' button.<br>
+                                2. Place amount how much would you like to deposit.<br>
+                                3. Select 'MoneyGram' payment method to create invoice.<br>
+                                4. Will created an invoice & will available our moneygram address.<br>
+                                5. Submit details after send money.<br>
+                                6. If your payment information is correct, we will add fund in your account.<br>
+                                7. You will receive a confirmation email shortly when fund added.<br>
+
+                            </h4>
+                            -->
+
+                        </div>
+                        <div id="wafacashText" class="helpText" style="display:none">
+                            {{ wafacashHtml }}
+                            <!--
+                            <img src="http://logos-vector.com/images/logo/xxl/1/3/7/137523/Wafacash_97a70_450x450.png"
+                                 width="128px">
+                            <br>
+                            <h4>
+                                Here is explaination of how to pay us via Wafacash.
+                                <br><br>
+
+                                1. Place amount how much would you like to deposit.<br>
+                                2. Select 'Bank Transfer' payment method to create invoice.<br>
+                                3. Click 'Deposit' button.<br>
+                                4. Will created an invoice & will available our wafacash address.<br>
+                                5. Submit details after send money.<br>
+                                6. If your payment information is correct, we will add fund in your account.<br>
+                                7. You will receive a confirmation email shortly when fund added.<br>
+
+                            </h4>
+                            -->
+
+                        </div>
+                        <div id="bankText" class="helpText" style="display:none">
+                            {{ bankHtml }}
+                            <!--
+                            <img src="https://www.imeisource.com/images/gallery/banktransfer.png" width="128px">
+                            <h4>
+                            We accept Bank / Wire Transfer from any country (Worldwide Bank/Wire Transfer)<br>
+                            We also accept China Bank Payment (From China Bank to China Bank)<br>
+<br><br>
+                            Here is explaination of how to pay us via Bank/Wire Transfer.
+<br><br>
+                            1. Click 'Add Fund' button.<br>
+                            2. Place amount how much would you like to deposit.<br>
+                            3. Select 'Bank Transferr' payment method to create invoice.<br>
+                            4. Will created an invoice & will available our Bank transfer address.<br>
+                            5. Submit details after send money.<br>
+                            6. If your payment information is correct, we will add fund in your account.<br>
+                            7. You will receive a confirmation<br>
+                           </h4>
+                           -->
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="box-body" id="paypalpaymentform">
+                    <div class="col-md-6">
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" accept-charset="utf-8">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="amount"> {% trans 'amount'|capfirst %}</label>
+                                    <input type="number" name="amount" class="form-control" value="" min="20" max=""
+                                           step="" required="required" title="{% trans 'amount'|capfirst %}">
+                                </div>
+                                {{ form }}
+                            </div>
+                            <div class="col-md-12">
+                                <input class="btn btn-block btn-primary" type="submit"
+                                       value="{% trans 'deposit'|capfirst %}"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6" style="margin-top:-9%;">
+                        <div class="row">
+                            {{ paypalHtml }}
+                            <!--
+                            <img src="http://www.uidownload.com/files/18/929/117/finance-logo-method-online-payment-paypal-icon.png"
+                                 width="128px">
+                            <h4>
+                                Here is explaination of how to pay us via PayPal.
+                                <br><br>
+                                1. Click 'Add Fund' button.<br>
+                                2. Place amount how much would you like to deposit.<br>
+                                3. Select 'PayPal' payment method to create invoice.<br>
+                                4. Click 'Pay Now' button.<br>
+                                5. It will redirect to paypal for payment process.<br>
+                                6. Your account will be refiled auto, after sent payment.<br>
+                                7. You will receive a confirmation email shortly.<br>
+                            </h4>
+                            -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

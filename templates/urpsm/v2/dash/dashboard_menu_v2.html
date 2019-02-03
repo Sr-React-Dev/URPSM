@@ -1,0 +1,85 @@
+{% if request.user.profile.shop or request.user.profile.server%}
+    {% load i18n %}
+    <div class="grey-container shortcut-wrapper">
+        {%comment%}
+                <a href="#" class="shortcut-link">
+                    <span class="shortcut-icon">
+                        <i class="fa fa-envelope-o"></i>
+                      {% if message_count %}
+                        <span class="shortcut-alert">
+                            {{message_count}}
+                        </span> 
+                      {% endif %}
+                    </span>
+                    <span class="text">{% trans 'messages'|capfirst %}</span>
+                </a>
+              {%endcomment%}
+        {% if request.user.profile.shop %}
+            <a href="{% url 'client-create' %}" class="shortcut-link">
+
+                    <span class="shortcut-icon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                <span class="text">{% trans 'new clients'|capfirst %}</span>
+            </a>
+        {% endif %}
+        <a href="{% url 'notifications-hub' %}" class="shortcut-link">
+                    <span class="shortcut-icon">
+                        <i class="fa fa-bell"></i>
+                        <span class="shortcut-alert notif-alert" style="display: none"></span> 
+                    </span>
+            <span class="text">{% trans 'notifications'|capfirst %}</span>
+        </a>
+        {% if request.user.profile.shop %}
+            <div class="dropdown">
+                <a href="#" class="shortcut-link">
+                        <span class="shortcut-icon">
+                            <i class="fa fa-unlock"></i></span>
+                    <span class="text">{% trans 'unlocking'|capfirst %}</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'unlocking' %}">{% trans 'place an order'|capfirst %}</a>
+                    <a href="{% url 'orders' %}">{% trans 'orders list'|capfirst %}</a>
+                </div>
+            </div>
+        {% endif %}
+        <div class="dropdown">
+            <a href="#" class="shortcut-link">
+                        <span class="shortcut-icon">
+                            <i class="fa fa-cog"></i></span>
+                <span class="text">{% trans 'settings'|capfirst %}</span>
+            </a>
+            <div class="dropdown-content">
+                {%if user.profile.shop%}
+                    <a href="{% url 'shop-edit' %}">{% trans 'shop'|capfirst %}</a>
+                    <a href="{% url 'deposit' %}">{% trans 'deposit'|capfirst %}</a>
+
+                {% endif %}
+                {% if user.profile.server %}
+                    <a href="{% url 'server-edit' %}">{% trans 'server'|capfirst %}</a>
+                    <a href="{% url 'server-add-credits' %}">{% trans 'Add credits' %}</a>
+                {% endif %}
+                <a href="{% url 'two_factor:profile' %}">{% trans 'manage two factor authentication'|capfirst %}</a>
+                <a href="{% url 'password_change' %}">{% trans 'change password'|capfirst %}</a>
+            </div>
+        </div>
+        <a href="#" class="shortcut-link">
+                    <span class="shortcut-icon">
+                        <i class="fa fa-dollar"></i>
+                        <span class="shortcut-alert wallet-m">
+                            {% if request.user.profile.shop%}
+                                {{request.user.profile.shop.balance}}
+                            {% elif request.user.profile.server%}
+                                {{request.user.profile.server.credit}}
+                            {%endif%} $
+                        </span> 
+                    </span>
+            {% if request.user.profile.server %}
+                <span class="text">{% trans 'credit left'|capfirst %}</span>
+            {% elif request.user.profile.shop %}
+                <span class="text">{% trans 'wallet'|capfirst %}</span>
+            {% endif %}
+        </a>
+    </div>
+{% endif%}
+            

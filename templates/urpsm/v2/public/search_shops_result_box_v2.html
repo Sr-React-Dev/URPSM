@@ -1,0 +1,50 @@
+{% load reviewing_tags text_tags static%}
+{% load el_pagination_tags %}
+{% load i18n %}
+{% load localize from l10n %}
+{#% load humanize %#}
+{% lazy_paginate 12 shops %}
+{%for shop in shops %}
+    <div class="col-sm-6 col-md-3 team">
+        <article class="box">
+            <figure class="listo-phone">
+                {% with 'icons/shop/default.png' as placeholder %}
+                    <a href="#"><img class="radius-50" src="{{shop.logo.crop.120x120|default:placeholder}}"></a>
+                    {% with 'v2/images/%s.png'|concatenate:shop.level as level_badge %}
+                    <p class="immog-level"><img src="{% static level_badge %}" alt="level" /></p>
+                    {%endwith%}
+                {%endwith%}
+            </figure>
+            <div class="details">
+                <h4 class="box-title margned">{{shop.name}}<small><i class="soap-icon-departure"></i> {{shop.city.name}} {{shop.country.name}}</small></h4>
+                <div class="feedback">
+                    <div data-placement="bottom" data-toggle="tooltip" class="five-stars-container" title="{{shop.average_rating|floatformat }} {% trans 'stars' %}"><span style="width: {% localize off %}{{shop.average_rating|multiply:20 }}%;{% endlocalize %}" class="five-stars"></span></div>
+                    <span class="review">{{shop.review_shop.count}} {% trans 'reviews' %}</span>
+                </div>
+                <p class="description desc-trancate">{{shop.description|truncatechars:30|striptags}}</p>
+                <div class="action">
+                    <a class="button hmr btn-small" href="#">{% trans 'SEE MORE' %}</a>
+                    <a class="button btn-small khedr popup-map" href="#" data-box="{{shop.location}}">{% trans 'VIEW ON MAP' %}</a>
+                </div>
+            </div>
+            <figcaption>
+                <ul class="overlay-statics">
+                    <li class="cc1">
+                        <i class="soap-icon-settings-1"></i> {% trans 'Unlocked phones' %} <span>{{ shop.get_unlocked_phones_count }}</span>
+                    </li>
+                    <li class="cc2">
+                        <i class="fa fa-bug"></i> {% trans 'Unrepaired Phones' %} <span>{{ shop.get_non_repaired_phones_count }}</span>
+                    </li>
+                    <li class="cc3">
+                        <i class="soap-icon-insurance"></i> {% trans 'Repaired Phones ' %} <span>{{ shop.get_repaired_phones_count}}</span>
+                    </li>
+                    <li class="cc4">
+                        <i class="soap-icon-conference"></i> {% trans 'Satisfied Clients' %} <span>{{ shop.get_satisfied_clients_count }}</span>
+                    </li>
+                </ul>
+            </figcaption>
+        </article>
+    </div>
+{%endfor%}
+{% show_more "Load more shops" "Wait please&hellip;" %}
+                                    

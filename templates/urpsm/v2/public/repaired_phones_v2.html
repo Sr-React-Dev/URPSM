@@ -1,0 +1,47 @@
+{%extends 'urpsm/v2/public/base_v3.html' %}
+	{% load static from staticfiles %}
+    {%load el_pagination_tags %}
+	{% load i18n %}
+	{% block extraheadjs %}
+	{% endblock extraheadjs %}
+	{% block main_page %}
+
+    <div class="page-title-container urpsm-h">
+        <div class="container">
+            <ul class="breadcrumbs pull-right">
+                <li class="impo"><a href="#">{% trans ' HOME' %}</a></li>
+                <li class="active impo">{% trans 'Repaired Phones' %}</li>
+            </ul>
+        </div>
+    </div>
+
+    <section id="content" class="padd-t-0">
+        <div class="container">
+            <div id="main">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h1 class="borderdb">{% trans 'Popular repaired Phones' %}</h1>
+
+                            <div class="secondslid">
+                                <div class="phones-small-details booking-details urpsm-home paddsec row">
+                            {% include page_template %} 
+                        </div></div>
+                         </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+	{% endblock main_page %}
+	{% block js %}
+    <script type="text/javascript" src="{% static 'v2/el-pagination/js/el-pagination.js' %}"></script>
+    <script type="text/javascript">
+            try{
+            $.endlessPaginate();
+          }catch(e){}
+            // (jQuery).endlessPaginate();
+    </script>
+    {% endblock js %}

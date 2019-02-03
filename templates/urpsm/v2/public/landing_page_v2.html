@@ -1,0 +1,200 @@
+{%extends 'urpsm/v2/public/base_v3.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block keywords %}unlock phone,mobile phones unlocked,mobile repair shop,unlock server,terms conditions,terms and conditions,terms and conditions of use,privacy policy{% endblock %}
+{% block metatitle %}Professional Mobile Phone Repair & Unlock Server Services | URPSM{% endblock %}
+{% block description %}Looking for professional unlocking server services in Marrakesh? URPSM is a big network of professionals in repairing and unlocking phones by box and server URPSM.{% endblock %}
+
+{% block main_page %}
+    <div class="page-title-container urpsm-h">
+        <div class="container">
+            <ul class="breadcrumbs pull-right">
+                <li class="impo"><a href="#">{% trans 'HOME' %}</a></li>
+                <li class="active impo">{% trans 'Shop Detailed' %}</li>
+            </ul>
+        </div>
+    </div>
+    <section id="content">
+        <div class="offers urpsm-desc-section">
+            <div class="container">
+                <h1 class="text-center">{% trans 'Did you know?' %}</h1>
+                <p class="col-xs-12 col-sm-9 center-block no-float text-center">{% trans 'urpsm is a big network of professionals in repairing and unlocking phones by box and server urpsm make this community strong and efficient ; we help shop to get more client and to be listed in map of it contry and city ; we give you rating by your clients this will create your business name in your city ; we have also rating by the world this help server owner to gurantee their position by the world'|capfirst %}</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 margin-b10">
+                    <div class="video-marg">
+                        <div class="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="page">
+                        <div class="post-content">
+                            <div class="blog-infinite">
+                                <div class="post bblock">
+                                    <div class="post-content-wrapper">
+                                        <div class="details">
+                                            <h2 class="box-title align-c and-marg"><a href="#">{% trans 'You Have a Shop ?' %}</a></h2>
+                                            <div class="excerpt-container">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="pricing-table white box b--30">
+                                            <ul class="circle features">
+                                                <li>{% trans 'start get more clients' %}</li>
+                                                <li>{% trans 'increase your upcoming revenue' %}</li>
+                                                <li>{% trans 'create your business name online' %}</li>
+                                                <li>{% trans 'give your client a better professional service' %}</li>
+                                                <li>{% trans 'print ticket to your clients with QR code' %}</li>
+                                                <li>{% trans 'your client can follow their phone status online' %}</li>
+                                            </ul>
+                                            <button  onclick="window.location='{% url 'create_account' %}?business=shop'" class="btn-medium uppercase full-width">{% trans 'Sign Up Now' %}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="page">
+                        <div class="post-content">
+                            <div class="blog-infinite">
+                                <div class="post bblock">
+                                    <div class="post-content-wrapper">
+                                        <div class="details">
+                                            <h2 class="box-title align-c and-marg"><a href="#">{% trans 'You Have a Server ?' %}</a></h2>
+                                            <div class="excerpt-container">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="pricing-table white box b--30">
+                                            <ul class="circle features">
+                                                <li>{% trans 'Owner of a DHRU or NAKSH api, this is your paradise' %}</li>
+                                                <li>{% trans 'get clients from all the world' %}</li>
+                                                <li>{% trans 'very simple system totally ready to use' %}</li>
+                                                <li>{% trans 'get rated by shops across the world' %}</li>
+                                                <li>{% trans 'check prices of other server and try to give best one to your clients' %}</li>
+                                            </ul>
+                                            <button  onclick="window.location='{% url 'create_account' %}?business=shop'" class="btn-medium uppercase full-width">{% trans 'Sign Up Now' %}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <article class="image-box style11 box">
+                        <figure>
+                            <a href="#"><img src='{% static "v2/images/3.jpg" %}'></a>
+                            <figcaption>
+                                <h2 class="caption-title">{% trans 'Text' %}</h2>
+                                <span class="fourty-space">{% trans 'small description' %}</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <article class="image-box style11 box">
+                        <figure>
+                            <a href="#"><img src='{% static "v2/images/2.jpg" %}'></a>
+                            <figcaption>
+                                <h2 class="caption-title">{% trans 'Text' %}</h2>
+                                <span class="fourty-space">{% trans 'small description' %}</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <div class="container description sat-desc">
+            <div class="row">
+                <div class="col-xs-6 col-sm-3">
+                    <div class="icon-box style8 ">
+                        <div class="ico-services set-ico-1"></div>
+                        <h4 class="box-title">{% trans '105,000+ Satisfied Client' %}</h4>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="icon-box style8">
+                        <div class="ico-services set-ico-2"></div>
+                        <h4 class="box-title">{% trans 'Low price &amp; Top Savings' %}</h4>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="icon-box style8">
+                        <div class="ico-services set-ico-3"></div>
+                        <h4 class="box-title">{% trans 'Reviewed by Real costumers' %}</h4>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="icon-box style8">
+                        <div class="ico-services set-ico-4"></div>
+                        <h4 class="box-title">{% trans 'Great support' %}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+            <div class="container shortcode marg-testemonials">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="testimonial style1 box">
+                            <ul class="slides ">
+                                <li>
+                                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <div class="author clearfix">
+                                        <a href="#"><img src="{{ MEDIA_URL}}icons/default_store.png" alt="" width="74" height="74" /></a>
+                                        <h5 class="name">Shop Name<small>shop owner</small></h5>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <div class="author clearfix">
+                                        <a href="#"><img src="{{ MEDIA_URL}}icons/default_store.png" alt="" width="74" height="74" /></a>
+                                        <h5 class="name">Shop Name<small>server owner</small></h5>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <div class="author clearfix">
+                                        <a href="#"><img src="{{ MEDIA_URL}}icons/default_store.png" alt="" width="74" height="74" /></a>
+                                        <h5 class="name">Shop Name<small>shop owner</small></h5>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+
+    </section>
+{% endblock main_page %}
+{% block js %}
+    <script type="text/javascript" src="{% static 'v2/js/slidea.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/compaa.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/components/flexslider/jquery.flexslider-min.js' %}"></script>
+{% endblock js %}

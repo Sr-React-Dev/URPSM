@@ -1,0 +1,152 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load i18n staticfiles%}
+{% block title %} {% trans 'add new user'|capfirst %} {% endblock %}
+{% block heading %} {% trans 'user'|capfirst %} {% endblock %}
+{% block subheading %} {% trans 'adding new user'|capfirst %}{% endblock %}
+{% block breadcrumb %}
+<li><a href="{% url 'users' %}" title="users">{% trans 'users'|capfirst %}</a></li>
+<li class="active">{% trans 'add'|capfirst %}</li>
+{% endblock %}
+{% block content %}
+<section class="content">
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">{% trans 'new user'|capfirst %}</h3>
+    </div>
+
+    <form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="box-body">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    
+            <div class="form-group">
+                <label for="{{ form.username.label }}"> {%  trans form.username.label|capfirst %}</label>
+                    {{ form.username }}
+                            {% if form.username.errors %}
+                                {{ form.username.errors }}
+                            {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.first_name.label }}"> {% trans form.first_name.label|capfirst %}</label>
+                    {{ form.first_name }}
+                            {% if form.first_name.errors %}
+                                {{ form.first_name.errors }}
+                            {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.last_name.label }}"> {% trans form.last_name.label|capfirst %}</label>
+                    {{ form.last_name }}
+                            {% if form.last_name.errors %}
+                                {{ form.last_name.errors }}
+                            {% endif %}
+                </div>
+                </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.email.label }}"> {% trans form.email.label|capfirst %}</label>
+                    {{ form.email }}
+                            {% if form.email.errors %}
+                                {{ form.email.errors }}
+                            {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.password1.label }}"> {% trans form.password1.label|capfirst %}</label>
+                    {{ form.password1 }}
+                            {% if form.password1.errors %}
+                                {{ form.password1.errors }}
+                            {% endif %}
+                </div>
+                </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.password2.label }}"> {% trans form.password2.label|capfirst %}</label>
+                    {{ form.password2 }}
+                            {% if form.password2.errors %}
+                                {{ form.password2.errors }}
+                            {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.groups.label }}"> {% trans form.groups.label|capfirst %}</label>
+                    {{ form.groups }}
+                            {% if form.groups.errors %}
+                                {{ form.groups.errors }}
+                            {% endif %}
+                </div>            
+                </div>            
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.phone.label }}"> {% trans form.phone.label|capfirst %}</label>
+                    <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                    {{ form.phone }}</div>
+                    {% if form.phone.errors %}
+                        {{ form.phone.errors }}
+                    {% endif %}
+                </div>
+            </div>
+            </div>
+            <div id="techText" class="infoText" style="display:none;">
+                <h4>technician</h4><br>
+1 - can manage clients<br>
+2 - he can use credit to unlock<br>
+3 - he can't add employees<br>
+4 - he can add components<br>
+5 - he can't edit shop info<br>
+6 - he can see ticket status only no action<br>
+7 - he can see shop invoice<br>
+
+            </div>
+            <div id="adminText" class="infoText" style="display:none;">
+                <h4>Admin:</h4><br>
+                No restricitons, can do everything.
+
+            </div>
+            <div id="workerText" class="infoText" style="display:none;">
+<h4>worker:</h4><br>
+1 - can manage clients<br>
+2 - he can't use credit to unlock ( he can only see the orders status)<br>
+3 - he can't add employees<br>
+4 - he can add components<br>
+5 - he can't edit shop info<br>
+6 - he can see ticket status only no action<br>
+7 - he can see shop invoice<br>
+
+            </div>
+    </div>
+
+    <div class="box-footer">
+<input class="btn btn-primary" type="submit" value="{% trans 'save'|capfirst %}" />
+    </div>
+    </form>
+</div>
+</section>
+{% endblock %}
+{% block extrajs %}
+<script>
+    $('#id_groups').on('change',function(){
+    var a=$('#id_groups').val();
+    if(a==='1'){
+    $('.infoText').hide();
+    $('#adminText').show();
+    }
+    else if(a==='2'){
+    $('.infoText').hide();
+    $('#techText').show();
+
+    }
+    else if(a==='3'){
+    $('.infoText').hide();
+    $('#workerText').show();
+    }
+                                      });
+</script>
+{% endblock %}

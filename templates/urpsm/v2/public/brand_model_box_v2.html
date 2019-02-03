@@ -1,0 +1,51 @@
+                                {% load reviewing_tags %}
+                                {% load el_pagination_tags %}
+                                {% load thumbnail %}
+                                {% load i18n %}
+                                {% load localize from l10n %}
+                                {#% load humanize %#}
+                                {% lazy_paginate 9 models %}
+                                {%for model in models%}
+                                <div class="col-sms-6 col-sm-6 col-md-3">
+                                    <article class="box">
+                                        <figure>
+                                            <a title="{{model.name}}" href="{% url 'model' brand.slug model.slug%}"><img alt="{{model.name}}" src="{{model.picture|thumbnail_url:'advert'|default:'default.png'}}"></a>
+                                        </figure>
+                                        <div class="details">
+                                            <h4 class="box-title phone-name-d">{{model.name}}</h4>
+                                            <div class="amenities padd-bottom-info-phone">
+                                                <ul class="social-icons style2 clearfix statics">
+
+                                                    <li class="users-satisfaction">
+                                                        <a title="Repaired 456" href="javascript:void(0)" data-toggle="tooltip" class="statics-phone">
+                                                            <img src="{{ MEDIA_URL}}icons/small/repaired.png">
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="users-satisfaction">
+                                                        <a title="Unlocked 456" href="javascript:void(0)" data-toggle="tooltip" class="statics-phone">
+                                                            <img src="{{ MEDIA_URL}}icons/small/unlocked.png">
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="users-satisfaction">
+                                                        <a title="Flashed 456" href="javascript:void(0)" data-toggle="tooltip" class="statics-phone">
+                                                            <img src="{{ MEDIA_URL}}icons/small/flashed.png">
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                            <div class="action">
+                                                <a class="button btn-small sea-blue full-width" href="https://www.urpsm.com{% url 'model' brand.slug model.slug%}">{% trans 'view details'|capfirst %}</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                
+                                
+                                {%endfor%}
+                                {% show_more "Load more models" "Wait please&hellip;" %}
+
+                                </div>
+                                </ul>

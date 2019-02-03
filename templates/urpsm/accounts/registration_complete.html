@@ -1,0 +1,15 @@
+{% extends 'urpsm/v2/auth_v2.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Account activation" %}{% endblock %}
+
+{% block content %}
+<div class="login-box-msg">
+    {% trans 'Account activation' %}
+</div>
+<p>{% blocktrans %}Your account has been activated successfully.{% endblocktrans %}</p>
+{% endblock %}
+
+{% block content-related %}
+        <a href="{% url 'login' %}">{% trans "Sign in!" %}</a>
+{% endblock %}

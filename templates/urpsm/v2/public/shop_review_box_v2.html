@@ -1,0 +1,64 @@
+                                {% load reviewing_tags %}
+                                {% load el_pagination_tags %}
+                                {% load i18n %}
+                                {% load localize from l10n %}
+                                {#% load humanize %#}
+                                {% lazy_paginate 2 reviews %}
+                                <ul class="comment-list travelo-box review-padd-0">
+                                    <div id="reviews-ajax">
+                                {%for review in reviews %}
+                                {% if  forloop.counter|divisibleby:2 %}
+                                <li class="comment depth-1 review-doo last-id-val" id="review">
+                                {%else%}
+                                <li class="comment depth-1 review-daa last-id-val" id="review">
+                                {%endif%}
+                                <div class="the-comment {% ifequal review.language 'ar' %} thecommentrevar {%endifequal%}">
+                                    <div class="avatar {% ifequal review.language 'ar' %} avatarrevar {%endifequal%}">
+                                        <img src="https://urpsm-assets.s3.amazonaws.com/media/default.png" width="72" height="72">
+                                    </div>
+                                    <div class="comment-box">
+                                        <div class="comment-author">
+                                             <div class="revrev {% ifequal review.language 'ar' %} revrevar {%endifequal%}"><div class="five-stars-container pull-right" data-placement="bottom" data-toggle="tooltip" title="" data-original-title="{{review.rating|floatformat }} {% trans 'stars' %}">
+                                                <div class="five-stars" style="width: {% localize off %}{{review.rating|multiply:20}}%;{% endlocalize %}"></div>
+                                            </div></div>
+                                            <h4 class="box-title"><a href="#" class="boldy">{{review.user__username}}</a><small>{{review.creation_date}}</small></h4>
+                                        </div>
+                                        <div class="comment-text '+fontarab+'">
+                                            <p>{{review.content}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                    {%if review.comments %}
+                                    <li>
+                                     <ul class="children"> 
+                                    {% for comment in review.comments %}
+                                        <li class="comment depth-2">
+                                            <div class="the-comment">
+                                                {%comment%}
+                                                <div class="avatar-shop ">
+                                                    <img src="" width="50" height="50" alt="">
+                                                </div>
+                                                {%endcomment%}
+                                                <div class="comment-box">
+                                                    <div class="comment-author">
+                                                      <div class="review-includes 'thing'">
+                                                         <div class="five-stars-container pull-right" data-placement="bottom" data-toggle="tooltip" title="" data-original-title="{{comment.rating|floatformat }} {% trans 'stars' %}">
+                                                        <div class="five-stars" style="width: {{comment.rating|multiply:20}}%;"></div>
+                                                       </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="comment-text replay-review 'thing'">
+                                                        <p>{{comment.content}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {%endfor%}
+                                     </ul>
+                                    </li>
+                                    {%endif%}
+                                
+                                {%endfor%}
+                                </div>
+                                </ul>
+                                {% show_more "Load more reviews" "Wait please&hellip;" %}

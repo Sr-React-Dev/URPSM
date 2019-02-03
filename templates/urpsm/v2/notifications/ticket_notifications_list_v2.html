@@ -1,0 +1,172 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load static from staticfiles %}{% load i18n%}
+{% block title %} {% trans 'notifications'|capfirst %} {% endblock %}
+{% block heading %} {% trans 'notifications'|capfirst %} {% endblock %}
+{% block content %}
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{% trans 'tickets notifications'|capfirst %}</h3>
+               <a type="button" href="{%url 'notifications-hub' %}" class="btn btn-primary {{PULL_DIRECTION}}">Back to notifications</a>
+            </div>
+            <div class="box-body table-responsive">
+              <table class="table table-hover table-bordered">
+                  <tbody><tr>
+                    <th>{% trans 'ticket id'|capfirst %}</th>
+                    <th>{% trans 'server'|capfirst %}</th>
+                    <th>{% trans 'reason'|capfirst %}</th>
+                    <th>{% trans 'message'|capfirst %}</th>
+                    <th>{% trans 'date'|capfirst %}</th>
+                    <th>{% trans 'read'|capfirst %}</th>
+                  </tr>
+                  {% for notification in notifications %}
+                  <tr   {% if notification.is_read %} c-readed {% else %} c-not {% endif %}>
+                    <td data-toggle="modal" data-target="#modal-{{notification.pk}}">{% trans 'ticket'|capfirst %} #{{notification.ticket.pk}}</td>
+                    <td>{{notification.server}}</td>
+                    {% if request.user.profile.shop%}
+                    <td><span class="label red-light-background">{{notification.ticket.server_reason}}</span></td>
+                    {% elif request.user.profile.server %}
+                    <td><span class="label red-light-background">{{notification.ticket.shop_reason}}</span></td>
+                    {%endif%}
+                    <td data-toggle="modal" data-target="#modal-{{notification.pk}}">{{notification}}</td>
+                    <td>{{notification.ticket.created_at}}</td>
+                     <td onclick="markread('{{notification.id}}')" class="{% if notification.is_read %}ico-readed{% else %}ico-unreaded{% endif %}">
+                       <span class="fa fa-envelope{% if this %}-open{% endif %}-o"></span>
+                    </td>
+                    <div class="modal fade" id="modal-{{notification.pk}}" tabindex="-1" role="dialog" aria-labelledby="modal-{{notification.pk}}Label">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <!-- Custom Tabs -->
+                                <div class="nav-tabs-custom">
+                                  <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#tab_1-{{notification.pk}}" data-toggle="tab">{% trans 'ticket info'|capfirst %}</a></li>
+                                    <li><a href="#tab_2-{{notification.pk}}" data-toggle="tab">{% trans 'my reason'|capfirst %}</a></li>
+                                    <li><a href="#tab_3-{{notification.pk}}" data-toggle="tab">{% trans 'server reason'|capfirst %}</a></li>
+                                    <li><a href="#tab_4-{{notification.pk}}" data-toggle="tab">{% trans 'my comments'|capfirst %}</a></li>
+                                    <li><a href="#tab_5-{{notification.pk}}" data-toggle="tab">{% trans 'server comments'|capfirst %}</a></li>
+                                    <li><a href="#tab_6-{{notification.pk}}" data-toggle="tab">{% trans 'my response'|capfirst %}</a></li>
+                                    <li><a href="#tab_7-{{notification.pk}}" data-toggle="tab">{% trans 'server response'|capfirst %}</a></li>
+                                    <li class="pull-right"><a data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></a></li>
+                                  </ul>
+                                  <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_1-{{notification.pk}}">
+
+                                  <dl class="dl-horizontal">
+                                    <dt>{% trans 'tiket id'|capfirst %}: </dt>
+                                    <dd>{{notification.ticket.ref}}</dd>
+                                    <dt>{% trans 'date'|capfirst %}: </dt>
+                                    <dd>{{notification.date}}</dd>
+                                    <dt>{% trans 'status'|capfirst %}: </dt>
+                                    <dd><span class="label red-light-background">Closed</span></dd>
+                                    <dt>{% trans 'admin decision'|capfirst %}: </dt>
+                                    <dd>
+                                    {{notification.ticket.admin_response}}
+                                    </dd>
+                                  </dl>
+
+
+
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_2-{{notification.pk}}">
+                                      {% trans 'my reason'|capfirst %} :
+                                      <p class="text-muted well well-sm no-shadow marg-10-0">
+                                        {{notification.ticket.shop_reason}}
+                                      </p>
+                                    </div>
+                                    <div class="tab-pane" id="tab_3-{{notification.pk}}">
+                                      {% trans 'server reason'|capfirst %} :
+                                      <p class="text-muted well well-sm no-shadow marg-10-0">
+                                        {{notification.ticket.server_reason}}
+                                      </p>
+                                    </div>
+                                    <div class="tab-pane" id="tab_4-{{notification.pk}}">
+                                      {% trans 'my comment'|capfirst %} :
+                                      <p class="text-muted well well-sm no-shadow marg-10-0">
+                                        {{notification.ticket.shop_comments}}
+                                      </p>
+                                    </div>
+                                    <div class="tab-pane" id="tab_5-{{notification.pk}}">
+                                      {% trans 'server comment'|capfirst %} :
+                                      <p class="text-muted well well-sm no-shadow marg-10-0">
+                                        {{notification.ticket.server_comments}}
+                                      </p>
+                                    </div>
+                                    <div class="tab-pane" id="tab_6-{{notification.pk}}">
+                                      {% trans 'my response'|capfirst %}
+                                      <p class="text-muted well well-sm no-shadow marg-10-0">
+                                        {{notification.ticket.shop_response}}
+                                      </p>
+                                    </div>
+                                    <div class="tab-pane" id="tab_7-{{notification.pk}}">
+                                      {% trans 'server response'|capfirst %} :
+                                      <p class="text-muted well well-sm no-shadow marg-10-0">
+                                        {{notification.ticket.server_response}}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <!-- /.tab-content -->
+                                </div>
+                                <!-- nav-tabs-custom -->
+                              </div>
+                            </div>
+                            <div class="modal-footer padd-5">
+                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{% trans 'close'|capfirst %}</button>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </tr>
+                  {%endfor%}
+                </tbody>
+              </table>
+            </div>
+            {% if is_paginated%}
+            <div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+              {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">«</a></li>
+              {% endif %}
+              {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">»</a></li>
+              {% endif %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+    </div>
+</section>
+{%endblock%}
+
+
+{% block extrajs %}
+<script>
+function markread(id){
+
+$.post('{% url 'markread' %}',
+    {
+        notif_id: id
+    },
+    function(data, status){
+
+    $('#unread-'+id).removeClass('ico-unreaded').addClass('ico-readed');
+
+    });
+
+}
+</script>
+
+{% endblock %}

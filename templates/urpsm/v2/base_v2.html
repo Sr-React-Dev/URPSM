@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>{%block title%}URPSM{%endblock title%}</title>
+    <meta charset="utf-8">
+        {% load reviewing_tags %}
+    {% if request %}
+    {{ request.path|url_to_meta }}
+    {% else %}
+    <meta name="title" content="{%block metatitle%}URPSM{%endblock metatitle%}" >
+    <meta name="keywords" content="{%block keywords%}URPSM{%endblock keywords%}" >
+    <meta name="description" content="{%block description%}URPSM{%endblock description%}">
+    <meta name="author" content="{%block author%}URPSM{%endblock author%}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% endif %}
+    <!-- Start Imports-->
+    {% load static from staticfiles %}
+    {% load i18n languages_tags %}
+    <!--END Imports-->
+    <!-- Bootstrap -->
+    {%comment%}
+    <link rel="stylesheet" href="{% static 'v2/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'v2/css/font-awesome.min.css' %}">
+
+    <!--Urpsm Desktop backage style-->
+    <link id="main-style" rel="stylesheet" href="{% static 'v2/css/style.css' %}">
+    <!-- Urpsm Desktop backage style -->
+    <link rel="stylesheet" href="{% static 'v2/css/responsive.css' %}">
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    {%endcomment%}
+    <link rel="stylesheet" href="{% static 'v2/css/all.min.css' %}">
+
+    {% block extracss %}{% endblock extracss %}
+    {% block extraheadjs %}{% endblock extraheadjs %}
+
+
+</head>
+<body>
+    
+    <div id="page-wrapper urpsm-w">
+        <header id="header" class="navbar-static-top style7 urpsm-desktop">
+            <div class="container">
+                <div class="topnav">
+                    <ul class="quick-menu pull-right clearfix font-arab">
+                        <li><a href="http://blog.urpsm.com">Blog</a></li>
+                        {% if user.is_authenticated %}
+                        {% if user.profile.shop%}
+                        <li><a href="{% url 'dash' %}">{% trans "ACCOUNT" %}</a></li>
+                        {% elif user.profile.server%}
+                        <li><a href="{% url 'server-dash' %}">{% trans "ACCOUNT" %}</a></li>
+                        {% endif %}
+                        {%else%}
+                        <li><a href="{% url 'login' %}">{% trans "LOGIN"%}</a></li>
+                        <li><a href="{% url 'create_account' %}">{% trans "SIGNUP" %}</a></li>
+                        {% endif %}
+                        <li class="ribbon">
+                            {% languages_dropdown_desktop request.path %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#urpsm-on-mobile" data-toggle="collapse" class="mobile-menu-toggle">
+                {% trans "Mobile Menu Toggle" %}
+            </a>
+            
+            <!--start test look on desktop-->
+            <div class="main-navigation">
+                <div class="container">
+                    <h1 class="logo navbar-brand">
+                        <a href="{% url 'home' %}" title="urpsm">
+                            <img src="{% static 'v2/images/logo.png' %}" alt="urpsm" />
+                        </a>
+                    </h1>
+                    
+                    <ul class="social-icons style2 clearfix pull-right visible-lg">
+                        <li class="twitter"><a title="twitter" href="#" data-toggle="tooltip"><i class="soap-icon-twitter"></i></a></li>
+                        <li class="facebook"><a title="facebook" href="#" data-toggle="tooltip"><i class="soap-icon-facebook"></i></a></li>
+                        <li class="linkedin"><a title="linkedin" href="#" data-toggle="tooltip"><i class="soap-icon-linkedin"></i></a></li>
+                        <li class="vimeo"><a title="vimeo" href="#" data-toggle="tooltip"><i class="soap-icon-vimeo"></i></a></li>
+                    </ul>
+                    <nav id="main-menu" role="navigation">
+                        <ul class="menu menu-big">
+                            <li>
+                                <a href="{% url 'home' %}">{% trans 'home'|capfirst %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'levels' %}">{% trans 'Features'|capfirst %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'services' %}">{% trans 'Services'|capfirst %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'about-us' %}">{% trans 'About'|capfirst %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'contact-us' %}">{% trans 'Contact'|capfirst %}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!--end test look on desktop-->
+
+            <!--start test look on mobile-->
+            <nav id="urpsm-on-mobile" class="mobile-menu collapse">
+                <ul id="mobile-primary-menu" class="menu">                  
+                    <li>
+                        <a href="{% url 'home' %}">{% trans 'Home' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'home' %}">{% trans 'Features' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'home' %}">{% trans 'Services' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about-us' %}">{% trans 'About' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'home' %}">{% trans 'Contact' %}</a>
+                    </li>
+                </ul>
+                
+                <ul class="mobile-topnav container">
+                    <li class="ribbon language menu-color-skin">
+                        {% languages_dropdown_mobile request.path %}
+                    </li>
+                                            <li><a href="http://blog.urpsm.com">Blog</a></li>
+                        {% if not user.is_authenticated %}
+                        <li><a href="{% url 'login' %}">{% trans 'LOGIN' %}</a></li>
+                        <li><a href="{% url 'create_account' %}">{% trans 'SIGNUP' %}</a></li>
+                        {% endif %}
+                </ul>        
+            </nav>
+            <!--start test look on mobile-->
+        </header>
+
+        {% block main_page %}
+        {% endblock main_page %}
+        <footer id="footer" class="foottr">
+            <div class="footer-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 about-urpsm">
+                            <h2>{% trans 'About Urpsm' %}</h2>
+                            <p class="ddurpsm">{% trans 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.' %} </p>
+                            <br />
+                            <ul class="social-icons clearfix">
+                                <li class="twitter"><a title="twitter" href="#" data-toggle="tooltip"><i class="soap-icon-twitter"></i></a></li>
+                                <li class="googleplus"><a title="googleplus" href="#" data-toggle="tooltip"><i class="soap-icon-googleplus"></i></a></li>
+                                <li class="facebook"><a title="facebook" href="#" data-toggle="tooltip"><i class="soap-icon-facebook"></i></a></li>
+                                <li class="linkedin"><a title="linkedin" href="#" data-toggle="tooltip"><i class="soap-icon-linkedin"></i></a></li>
+                                <li class="vimeo"><a title="vimeo" href="#" data-toggle="tooltip"><i class="soap-icon-vimeo"></i></a></li>
+                                <li class="dribble"><a title="dribble" href="#" data-toggle="tooltip"><i class="soap-icon-dribble"></i></a></li>
+                                <li class="flickr"><a title="flickr" href="#" data-toggle="tooltip"><i class="soap-icon-flickr"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 mail-urpsm">
+                            <h2>{% trans 'Mailing List' %}</h2>
+                            <p class="ddurpsm">{% trans 'Sign up for our mailing list to get latest updates and offers.' %}</p>
+                            <br />
+                            <div class="icon-check urpsm-slam">
+                                <input type="text" class="input-text full-width" placeholder="your email">
+                            </div>
+                            <br />
+                            <span class="ddurpsm">{% trans 'We respect your privacy' %}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom colored-e">
+                <div class="container">
+                    <div class="copyright pull-right">
+                        <p>&copy; {% now 'Y' %} URPSM</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    {%comment%}
+    <script type="text/javascript" src="{% static 'v2/js/jquery-1.11.1.min.js' %}"></script>
+    <!-- Javascript -->
+    <script type="text/javascript" src="{% static 'v2/js/jquery.noconflict.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/modernizr.2.7.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/jquery-migrate-1.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/jquery.placeholder.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/jquery-ui.1.10.4.min.js' %}"></script>
+    <!-- Twitter Bootstrap -->
+    <script type="text/javascript" src="{% static 'v2/js/bootstrap.js' %}"></script>
+
+    <!-- parallax -->
+    <script type="text/javascript" src="{% static 'v2/js/jquery.stellar.min.js' %}"></script>
+    
+    <!-- waypoint -->
+    <script type="text/javascript" src="{% static 'v2/js/waypoints.min.js' %}"></script>
+
+    <!-- load page Javascript -->
+    <script type="text/javascript" src="{% static 'v2/js/theme-scripts.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/scripts.js' %}"></script>
+    <!-- Google Map Api -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAFOSq9WKc3IoU4u_A_jBUL-8ERIw6C1Cg&language=fr"></script>
+    {%endcomment%}
+    <script type="text/javascript" src="{% static 'v2/js/slidea.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/compaa.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key={{GOOGLE_MAP_KEY}}&language=fr"></script>
+    <script type="text/javascript" src="{% static 'v2/js/gmap3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/gmap3.infobox.js' %}"></script>
+
+    {% comment %}
+   <!-- fixed navbar -->
+    <script type="text/javascript" src="{% static 'v2/js/navbarfix2.js' %}"></script>
+
+
+
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'v2/js/jquery.flexisel.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/home3sliders.js' %}"></script>
+    <!-- Google Map Api -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAFOSq9WKc3IoU4u_A_jBUL-8ERIw6C1Cg&language=fr"></script>
+    <script type="text/javascript" src="{% static 'v2/js/gmap3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/gmap3.infobox.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/all.min.js' %}"></script>
+    {% endcomment%}
+
+  {% block js %}
+  {% endblock js %}
+<script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
+</body>
+{% include 'session_security/all.html' %}
+</html>
+

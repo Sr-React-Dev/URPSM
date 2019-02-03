@@ -1,0 +1,342 @@
+{% extends "urpsm/v2/dash/base_dashboard_v2.html" %}
+{% load static from staticfiles %}{% load i18n%}
+{% load order_extras %}
+
+{% block title %} {% trans 'Dashboard'|capfirst %} {% endblock %}
+{% block heading %} {% trans 'Dashboard'|capfirst %} {% endblock %}
+{% block content %}
+
+<section class="content">
+    <div class="row">
+      <h1 class="onwan"><span class="shortcut-icon"></span>{% trans 'my server activities'|capfirst  %}</h1>
+        <div class="col-sm-6 col-md-15">
+            <div class="panel-stat33 bg-color1">
+                <h2 class="m-top-none" id="userCount">{{ shop_orders_count }}</h2>
+                <h5>{% trans 'shop orders'|capfirst %}</h5>
+                <i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">{{ new_shop_orders_count }}  {% trans 'new shop orders'|capfirst  %}</span>
+                <div class="stat-icon">
+                    <i class="fa fa-building fa-3x"></i>
+                </div>
+            </div>
+        </div><!-- /.col -->
+        <div class="col-sm-6 col-md-15">
+            <div class="panel-stat33 steelblue-light-background">
+                <h2 class="m-top-none" id="visitorCount">{{completed_orders_count}}</h2>
+                <h5>{% trans 'completed'|capfirst %}</h5>
+                <i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">{{today_completed_orders_count}} {% trans 'orders completed today'|capfirst %}</span>
+                <div class="stat-icon">
+                    <i class="fa fa-check fa-3x"></i>
+                </div>
+            </div>
+        </div><!-- /.col -->
+        {%comment%}
+        <div class="col-sm-6 col-md-15">
+            <div class="panel-stat33 bg-color2">
+                <h2 class="m-top-none"><span id="serverloadCount">{{ components_count }}</span></h2>
+                <h5>{% trans 'components'|capfirst %}</h5>
+                <i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">{{ new_components_count }} {% trans 'new components'|capfirst  %}</span>
+                <div class="stat-icon">
+                    <i class="fa fa-mobile fa-3x"></i>
+                </div>
+            </div>
+        </div><!-- /.col -->
+        {%endcomment%}
+        <div class="col-sm-6 col-md-15">
+            <div class="panel-stat33 bg-color3">
+                <h2 class="m-top-none" id="orderCount">{{ revenues }}<sup class="font-19">$</sup></h2>
+                <h5>{% trans 'total revenues'|capfirst %}</h5>
+                {%comment%}
+                <span class=""> {{current_month_revenues}} <sup class="font-13">$</sup> {% trans 'current month revenues'|capfirst  %}</span>
+                {%endcomment%}
+                <div class="stat-icon">
+                    <i class="fa fa-dollar fa-3x"></i>
+                </div>
+            </div>
+        </div><!-- /.col -->
+        <div class="col-sm-6 col-md-15">
+            <div class="panel-stat33 bg-color4">
+                <h2 class="m-top-none" id="visitorCount">{{ upcoming_revenues }}<sup class="font-19">$</sup></h2>
+                <h5>{% trans 'upcoming revenues'|capfirst %}</h5>
+                <i class="fa fa-close fa-lg"></i><span class="m-left-xs">&nbsp;{{ not_paid }}&nbsp;{% trans 'not paid yet'|capfirst  %}</span>
+                <div class="stat-icon">
+                    <i class="fa fa-dollar fa-3x"></i>
+                </div>
+            </div>
+        </div><!-- /.col -->
+        <div class="col-sm-6 col-md-15">
+            <div class="panel-stat33 bg-color5">
+                <h2 class="m-top-none" id="visitorCount">{{ current_month_revenues }}<sup class="font-19">$</sup></h2>
+                <h5>{% trans 'current month revenues'|capfirst %}</h5>
+                <!-- <i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">lorem text</span> -->
+                <div class="stat-icon">
+                    <i class="fa fa-dollar fa-3x"></i>
+                </div>
+            </div>
+        </div><!-- /.col -->
+    </div>
+    <div class="row"> 
+      <div class="col-sm-6 col-md-15">
+          <div class="panel-stat33 cadetblue-background">
+              <h2 class="m-top-none" id="visitorCount">{{cancelled_orders_count}}</h2>
+              <h5>{% trans 'canceled'|capfirst %}</h5>
+              <i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">{{today_cancelled_orders_count}} {% trans 'orders cancelled today'|capfirst %}</span>
+              <div class="stat-icon">
+                  <i class="fa fa-close fa-3x"></i>
+              </div>
+          </div>
+      </div><!-- /.col --> 
+      <div class="col-sm-6 col-md-15">
+          <div class="panel-stat33 darkgreen-light-background">
+              <h2 class="m-top-none" id="visitorCount">{{raised_tickets_count}}</h2>
+              <h5>{% trans 'raised tickets'|capfirst %}</h5>
+              <i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">{{today_raised_tickets_count}} {% trans 'tickets raised today'|capfirst %}</span>
+              <div class="stat-icon">
+                  <i class="fa fa-ticket fa-3x"></i>
+              </div>
+          </div>
+      </div><!-- /.col -->
+      {%comment%}
+      <div class="col-sm-6 col-md-15">
+          <div class="panel-stat33 bg-428db9">
+              <h2 class="m-top-none" id="visitorCount">{{total_revenues}}<sup class="font-19">$</sup></h2>
+              <h5>{% trans 'revenues'|capfirst %}</h5>
+              <i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">0 {% trans 'today'|capfirst %}</span>
+              <div class="stat-icon">
+                  <i class="fa fa-dollar fa-3x"></i>
+              </div>
+          </div>
+      </div><!-- /.col -->
+      <div class="col-sm-6 col-md-15">
+          <div class="panel-stat33 bg-17a9ff">
+              <h2 class="m-top-none" id="visitorCount">{{upcoming_revenues}}</h2>
+              <h5>{% trans 'upcoming revenues'|capfirst %}</h5>
+              <i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">0 {% trans 'today'|capfirst %}</span>
+              <div class="stat-icon">
+                  <i class="fa fa-user fa-3x"></i>
+              </div>
+          </div>
+      </div><!-- /.col -->
+      {%endcomment%}
+    </div>
+                  
+      {%comment%}
+         <div class="row">
+          <div class="col-md-12">
+              <div class="box box-primary">
+              <div class="box-header with-border">
+                <i class="fa fa-bar-chart-o"></i>
+
+                <h3 class="box-title">{% trans 'LAST THIRTY DAY STATS' %}</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="box-body">
+                <div id="line-chart"></div>
+              </div>
+              <div class="spansdata cent-padd10-0">
+                <span class="label bg-color1"> {% trans  'shop orders'|capfirst %}</span>
+                <span class="label bg-color3"> {% trans  'total revenues'|capfirst %}</span>
+                <span class="label bg-color4"> {% trans  'upcoming revenues'|capfirst %}</span>
+                <span class="label bg-color5"> {% trans  'current revenues'|capfirst %}</span>
+                <span class="label steelblue-light-background"> {% trans  'completed'|capfirst %}</span>
+                <span class="label darkcyan-light-background"> {% trans  'canceled'|capfirst %}</span>
+                <span class="label darkgreen-light-background"> {% trans  'raised tickets'|capfirst %}</span>
+              </div>
+              <!-- /.box-body-->
+              </div>
+          </div>
+        {%endcomment%}
+        {%comment%}
+         <div class="col-md-4">
+          <div class="box box-danger">
+              <div class="box-header with-border">
+                <h3 class="box-title">{% trans 'Brands' %}</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+                <div class="box-body" style="height: 320px;overflow: auto;">
+                  <div class="row">
+                    {% for brand in brands%}
+                    <div class="col-md-12 padd00">
+                      <div class="phoneN" style="background: {{brand.color}};">{{brand.name}}</div>
+                      <div class="progress xs" style="height:24px !important;">
+                        <div class="progress-bar progress-bar-green" style="width: {{brand.value}}%;background: {{brand.color}};"><span>{{brand.value}}</span></div>
+                      </div>
+                    </div>
+                    {%endfor%}
+                  </div>
+                </div>
+            </div>
+         </div>
+      {%endcomment%}
+    <div class="row">
+      <div class="col-md-12">
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Brands</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="spansdata spanserver cent-padd10-0">
+                {% for network in networks %}
+                <span class="label" style="background: {{network.0}};"> {{network.1}}</span>
+                {%endfor%}
+              </div>
+              <div id="chart_div"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+      </div>
+    </div>
+  <div class="row">
+  <div class="col-md-12">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">{% trans 'last 30 days orders'|capfirst %}</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table class="table table-bordered">
+          <tbody><tr>
+            <th>{% trans 'shop name'|capfirst %}</th>
+            <th>{% trans 'network'|capfirst %}</th>
+            <th>{% trans 'service'|capfirst %}</th>
+            <th>{% trans 'imei'|capfirst %}'</th>
+            <th>{% trans 'status'|capfirst %}</th>
+            <th>{% trans 'price'|capfirst %}</th>
+            <th>{% trans 'review'|capfirst %}</th>
+          </tr>
+          {%for order in orders%}
+          <tr>
+            <td>{{order.shop.name}}</td>
+            <td>{{order.endpoint.network}}</td>
+            <td>{{order.service}}</td>
+            <td>{{order.imei}}</td>
+            <td><span style="background-color:{{ order.status|status_color }};padding:6px;border-radius:3px;color:white;">{{order.status}}</span></td>
+            <td>{{order.amount}} $</td>
+            <td><span class="badge bg-blue">{{ order|get_order_rating }}</span></td>
+          </tr>
+          {%endfor%}
+          
+        </tbody></table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer clearfix">
+            {% if is_paginated %}
+              <ul class="pagination pagination-sm no-margin pull-right">
+                {% if page_obj.has_previous %}
+              <li>
+                <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.previous_page_number }}" title="{% trans 'Previous' %}">{% trans 'previous'|capfirst %}</a>
+                  </li>
+                  {% endif %}
+                  <li>
+                      <span class="current">{% trans 'Page' %} {{ page_obj.number }} {% trans 'of' %} {{ page_obj.paginator.num_pages }}</span>
+                  </li>
+                  {% if page_obj.has_next %}
+                  <li>
+                      <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.next_page_number }}" title="{% trans 'Next' %}">{% trans 'next'|capfirst %}</a>
+                  </li>
+                  {% endif %}
+              </ul>
+              {% endif %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+{%comment%}
+<div class="row">
+    <div class="col-md-8">
+        <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">{% trans 'Latest Orders' %}</h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+              </div>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                    <tr>
+                      <th>Ref</th>
+                      <!-- <th>Imei</th> -->
+                      <th class="width-40">{% trans 'Amount' %}</th>
+                      <th class="width-40">{% trans 'Paid' %}</th>
+                      <th>Paid to</th>
+                      <!-- <th>Delivery Date</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for order in latest_shop_orders %}
+                        <tr>
+                          <td><a href="{#% url 'client-ticket' order.id %#}">{{ order.ref}}</a></td>
+                          <!-- <td>{#{ order.imei}#}</td> -->
+                          <td class="text-center"><div class="label label-primary">${{ order.amount }}</div></td>
+                          <td class="text-center">{% if order.paid %} <i class="fa fa-circle text-green"></i> {% else %} <i class="fa fa-circle text-red"></i> {% endif %}</td>
+                          <td>{{ order.paid_for }}</td>
+                          <!-- <td>{#{ order.delivered_at }#}</td> -->
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div><!-- /.table-responsive -->
+            </div><!-- /.box-body -->
+            {#%comment%#}
+            <div class="box-footer clearfix">
+              <a href="{% url 'client-create' %}" class="btn btn-sm btn-warning pull-left">{% trans 'New Client' %}</a>
+              <a href="{% url 'clients' %}" class="btn btn-sm  btn-info pull-right">{% trans 'All Clients' %}</a>
+            </div><!-- /.box-footer -->
+            {#%endcomment%#}
+        </div>
+    </div>s
+</div>
+{%endcomment%}
+</section>
+{% endblock %}
+
+{% block extrastyle %}
+{% endblock %}
+{% block extrajs %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+      google.charts.load('current', {packages: ['corechart', 'bar']});
+      google.charts.setOnLoadCallback(drawBasic);
+      function drawBasic() {
+        var data = google.visualization.arrayToDataTable([
+              ['Mobiles brands', 'Number of orders', { role: 'style' }, { role: 'tooltip' } ],
+              {%for bar_data in chart_data %}
+              {{bar_data}}{% if not forloop.last %},{% endif %}
+              {%endfor%}
+
+              
+           ]);
+        var options = {
+                legend: { position: 'none' },
+                chartArea: {
+                  left: '2%',
+                  top: '2%',
+                  bottom: '5%',
+                  width: '98%'
+                }
+              };
+           var chart = new google.visualization.ColumnChart(
+             document.getElementById('chart_div'));
+
+           chart.draw(data, options);
+       }
+
+  </script> 
+{% endblock %}

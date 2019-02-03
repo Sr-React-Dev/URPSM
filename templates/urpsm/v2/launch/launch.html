@@ -1,0 +1,267 @@
+<!DOCTYPE html>{% load static from staticfiles%}
+<html lang="zxx" class="no-js">
+<head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>URPSM.COM is coming back soon</title>
+        <link href="{% static 'v2/soon/css/bootstrap.min.css' %}" rel="stylesheet"/>
+        <link href="{% static 'v2/soon/css/animate.changethewords.css' %}" rel="stylesheet"/>
+        <link href="{% static 'v2/soon/css/font-awesome.min.css' %}" rel="stylesheet"/>
+        <link href="{% static 'v2/soon/css/bars.css' %}" rel="stylesheet"/>
+        <link href="{% static 'v2/soon/css/simplyCountdown.theme.default.css' %}" rel="stylesheet"/>
+        <link href="{% static 'v2/soon/css/animate.css' %}" rel="stylesheet"/>
+        <link href="{% static 'v2/soon/css/style.css' %}" rel="stylesheet"/>
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:600,700" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        <style>
+        .result{color:white;font-weight: bold}
+        #result{font-weight: bold}
+        </style>
+    </head>
+    <body>
+       <!-- loader -->
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+        </div>
+
+      <!-- Start of particles banner -->
+      <section id="particles-js" class="home-banner particle-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 banner-text-wrap">
+                        <div class="content">
+                            <div class="logo">
+                                <img src="{% static 'v2/soon/images/logo.png' %}" alt="logo">
+                            </div>
+
+                            <div class="home-text-wrapper">
+                                <h2 id="changethewords">
+                                  <span data-id="1">We are under Construction</span>
+                                  <span data-id="2">Subscribe to be notified</span>
+                                  <span data-id="3">URPSM Thanks you !</span>
+                                </h2>
+                            </div>
+
+                            <!-- Start of subcripion form -->
+                            <div class="subscription-form-wrapper">
+                                <p class="result"></p>
+                                <form class="subscription-form form-wrapper input-group" id="notif_form" autocomplete="off" method='post' onsubmit="return false;">
+                                    <input type="email" class="form-control" name="email"  id="notif_email" placeholder="Subscribe Email To Get Notified">
+                                    <input type="hidden" id="notif_username" name="username" value="user" >
+                                    <button type="submit" id="submit" class="form-submit">Submit</button>
+                                    <div class="ajax-loader" id='notif_spinner' style="display:none;">
+                                        <img class="contact_spinner" src="{% static 'v2/soon/images/spinner.gif' %}" alt="">
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- End of subcription form -->
+
+                            <div class="social-icon">
+                                <ul>
+                                  <li><a href="#." class="icon fb"><i class="fa fa-facebook"></i></a></li>
+                                  <li><a href="#." class="icon tw"><i class="fa fa-twitter"></i></a></li>
+                                  <li><a href="#." class="icon in"><i class="fa fa-linkedin"></i></a></li>
+                                  <li><a href="#." class="icon gp"><i class="fa fa-google"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Start of countdoown div -->
+            <div class="simply-countdown simply-countdown-one"></div>
+            <!-- End of countdown div -->
+        </section>
+        <!-- End of home banner -->
+
+        <!-- Start of contact section -->
+        <section class="section contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                    <p id="result"></p>
+                </div>
+                <div class="row">
+                    <form action="" method= "post" id="contact_form" autocomplete="off" onsubmit="return false;">
+                        <div id="mail-status"></div>
+                        <div class="col-md-6 col-sm-12">
+                            <span class="input input--nao">
+                                <input id="username" name="username" class="input__field input__field--nao" type="text" />
+                                <label class="input__label input__label--nao">
+                                    <span class="input__label-content input__label-content--nao">Username</span>
+                                </label>
+                                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                                    <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <span class="input input--nao">
+                                <input id="email" name="email" class="input__field input__field--nao" type="text" />
+                                <label class="input__label input__label--nao">
+                                    <span class="input__label-content input__label-content--nao">Email</span>
+                                </label>
+                                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                                    <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12">
+                            <span class="input input--nao message">
+                                <input class="input__field input__field--nao" type="text" id="message" name="message" />
+                                <label class="input__label input__label--nao">
+                                    <span class="input__label-content input__label-content--nao">Message</span>
+                                </label>
+                                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                                    <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <input type="submit"  class="submit" value="Submit">
+                        <div class="ajax-loader" id='contact_spinner' style="display:none;">
+                            <img class="contact_spinner" src="{% static 'v2/soon/images/spinner.gif' %}" alt="">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- End of contact section -->
+
+        <!-- start of contact info section -->
+        <section class="contact-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="contact-content-wrapper">
+                            <div class="contact-icon">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h2 class="location-title">Our Location</h2>
+                                <span>N°12, Imm Al Asbahani 2, Avenue Hassan II, Marrakech.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-content-wrapper">
+                            <div class="contact-icon">
+                               <i class="fa fa-phone" aria-hidden="true"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h2 class="call-title">Call Us</h2>
+                                <span>+1628-400-0061</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-content-wrapper">
+                            <div class="contact-icon">
+                               <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h2 class="mail-title">Email Us</h2>
+                                <span>contact@urpsm.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End of contact info section -->
+
+        <!-- start of map wrapper section -->
+        <section class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1698.5804622592786!2d-8.018778341980479!3d31.629443995333446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDM3JzQ2LjAiTiA4wrAwMScwMy43Ilc!5e0!3m2!1sen!2s!4v1474950202881" ></iframe>
+        </section>
+        <!-- End of map wrapper section -->
+        <!-- start of footer bootom section -->
+        <section class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>Copyright © 2016 All Rights Reserved.</div>
+                        <div class="social-icon">
+                            <ul>
+                              <li><a href="#." class="icon fb"><i class="fa fa-facebook"></i></a></li>
+                              <li><a href="#." class="icon tw"><i class="fa fa-twitter"></i></a></li>
+                              <li><a href="#." class="icon in"><i class="fa fa-linkedin"></i></a></li>
+                              <li><a href="#." class="icon gp"><i class="fa fa-google"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+        <!-- End of fooer bootom section -->
+
+        <!-- Jquery Include -->
+        <script src="{% static 'v2/soon/js/jquery-1.9.1.min.js' %}"></script>
+        <script src="{% static 'v2/soon/js/bootstrap.min.js' %}"></script> <!-- Core Bootstrap -->
+        {%comment%}
+        <script src="{% static 'v2/soon/js/jquery.ajaxchimp.js' %}"></script><!-- Mailchimp -->
+        {%endcomment%}
+        <script src="{% static 'v2/soon/js/classie.js' %}"></script><!-- Classie js -->
+        <script src="{% static 'v2/soon/js/jquery.changethewords.js' %}"></script><!-- Change words -->
+        <script src="{% static 'v2/soon/js/bars.js' %}"></script><!-- Bars -->
+        <script src="{% static 'v2/soon/js/simplyCountdown.js' %}"></script><!-- Jquery countdown -->
+        <script src="{% static 'v2/soon/js/scrollreveal.min.js' %}"></script><!-- scroll reveal-->
+        <script src="{% static 'v2/soon/js/jquery.validate.min.js' %}"></script><!-- Jquery validate -->
+        <script src="{% static 'v2/soon/js/jquery.backstretch.js' %}"></script>
+        <script src="{% static 'v2/soon/js/jquery-ui.js' %}"></script><!-- Jquery ui -->
+        <script src="{% static 'v2/soon/js/particles.js' %}"></script><!-- particles-->
+        <script src="{% static 'v2/soon/js/app.js' %}"></script><!-- particles-->
+        <script src="{% static 'v2/soon/js/letItSnow.js' %}"></script><!-- snow js-->
+        <script src="{% static 'v2/soon/js/ytplayer.js' %}"></script><!-- youtube player -->
+        <script src="{% static 'v2/soon/js/main.js' %}"></script>
+        <!-- Custom script -->
+        <script type="text/javascript">
+        var URL = '/en/launch/soon/';
+        $('#notif_form').submit(function(e){
+            $('.result').text('');
+            $('#notif_spinner').show();
+            e.preventDefault();
+            var data = {'email':$('#notif_email').val(),'notify_him':true,'csrfmiddlewaretoken':'{{csrf_token}}'};
+            $.ajax({
+                url:URL,
+                data:data,
+                type:'post', 
+                success: function(s){
+                        $('.result').text(s);
+                    },
+                error: function(e){
+                        $('.result').text(e);
+                    }
+                }
+            ).done(function(e){$('#notif_spinner').hide();});
+        });
+        $('#contact_form').submit(function(e){
+            $('#result').text('');
+            $('#contact_spinner').show();
+            e.preventDefault();
+            var data = {'username':$('#username').val(),'email':$('#email').val(),'message':$('#message').val(),'csrfmiddlewaretoken':'{{csrf_token}}'};
+            $.ajax({
+                url:URL,
+                data:data,
+                type:'post', 
+                success: function(s){
+                        $('#result').text(s);
+                    },
+                error: function(e){
+                        $('#result').text(e);
+
+                    }
+                }
+            ).done(function(d){$('#contact_spinner').hide();});
+        });
+        </script>
+ 
+         
+    </body>
+
+</html>

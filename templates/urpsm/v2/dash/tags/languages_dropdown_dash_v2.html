@@ -1,0 +1,22 @@
+      {%load static from staticfiles%}
+      <li class="dropdown drop-lang">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="{% static current %}">
+        </a>
+        <ul class="dropdown-menu">
+                {% for language in languages %}
+          <li><a href="{{language.1}}" title="{{ language.0|title }}" class="lang-c">
+            <img src='{% static language.3 %}'> {{ language.0|capfirst }}</a>
+          </li>
+                  {% endfor %}
+        </ul>
+      </li>
+      {%comment%}
+      {% load i18n %}
+              <a>{{ current }}</a>
+                            <ul class="menu mini">                                
+                <li><a href="{{language.1}}" title="{{ language.0|title }}" {%if '/ar/' in language.1 %} class="font-arab" {%endif%}>{{ language.0|title }}</a></li>
+                            </ul>
+      {%endcomment%}
+
+

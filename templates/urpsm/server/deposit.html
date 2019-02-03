@@ -1,0 +1,22 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} {% load i18n staticfiles thumbnail%} {% block title %} {% trans 'make a deposit'|capfirst %} {% endblock %} {% block heading %} {% trans 'server'|capfirst %} {% endblock %} {% block subheading %} Make a deposit{% endblock %} {% block breadcrumb %}
+<li><a href="{% url 'server' %}" title="{% trans 'deposit'|capfirst %}">{% trans 'server'|capfirst %}</a></li>
+<li class="active">{% trans 'deposit'|capfirst %}</li>
+{% endblock %} {% block content %}
+<div class="box">
+    <div class="box-header">
+        <div class="box-title"><i class="fa fa-paypal text-blue"></i> &nbsp;{% trans 'deposit'|capfirst %}</div>
+    </div>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" accept-charset="utf-8">
+        <div class="box-body">
+            <div class="form-group">
+                <label for="amount"> {% trans 'amount'|capfirst %}</label>
+                <input type="number" name="amount" class="form-control" value="" min="20" max="" step="" required="required" title="{% trans 'amount'|capfirst %}">
+            </div>
+            {{ form }}
+        </div>
+        <div class="box-footer">
+            <input class="btn btn-primary" type="submit" value="{% trans 'deposit' %}" />
+        </div>
+    </form>
+</div>
+{% endblock %}

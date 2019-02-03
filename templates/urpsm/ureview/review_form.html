@@ -1,0 +1,46 @@
+{% extends 'urpsm/v2/base_manager_v2.html' %}{%load i18n%}
+{% block title %} {% trans 'Reviews your purchase' %} {% endblock %}
+{% block heading %} {% trans 'Unlocking server' %} {% endblock %}
+{% block subheading %} {% trans 'Please leave a review' %}{% endblock %}
+{% block breadcrumb %}
+<li><a href="{% url 'servers' %}" title="Sever">{% trans 'Server' %}</a></li>
+<li class="active">{% trans 'Reviews' %}</li>
+{% endblock %}
+{% block content %}
+<div class="box">
+    <div class="box-header">
+        <div class="box-title"> {% trans 'Review your' %}</div>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="{% if next %}?next={{ next }}{% endif %}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+        <div class="box-body">
+            {% csrf_token %}
+             <div class="form-group">
+                <label for="{{ form.rating.label }}"> {{ form.rating.label }}</label>
+                {{ form.rating }}
+                {% if form.rating.errors %}
+                    {{ form.rating.errors }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.content.label }}"> {{ form.content.label }}</label>
+                {{ form.content }}
+                {% if form.content.errors %}
+                    {{ form.content.errors }}
+                {% endif %}
+            </div>
+
+        	<input class="btn btn-primary" type="submit" />
+
+        </div>
+
+        
+        </form>
+{%endblock%}
+

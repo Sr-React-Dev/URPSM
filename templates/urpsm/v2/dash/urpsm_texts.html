@@ -1,0 +1,62 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_list admin_urls suit_list suit_tags %}
+{% load url from suit_compat %}
+ {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'Edit Site'|capfirst %} {% endblock %} {% block heading %} {% trans 'Edit Site'|capfirst %} {% endblock %} {% block breadcrumb %}
+<li class="active">{% trans 'Edit Site'|capfirst %}</li>
+{% endblock %}
+{% block extrahead %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://urpsm-assets.s3.amazonaws.com/default-kindeditor.css">
+<script src="https://urpsm-assets.s3.amazonaws.com/kindeditor-all-min.js"></script>
+<script>
+    KindEditor.ready(function(K) {
+        window.editor = K.create('#editor_id');
+    });
+
+    function editT(b){
+    a = $('#deposit-'+b).val();
+    a = atob(a);
+    window.editor.html(a);
+    $('#savebtn').off();
+    $('#savebtn').on('click',function(){
+        $('#deposit-'+b).val(btoa(window.editor.html().replace(/(\r\n|\n|\r)/gm,"")));
+    });
+
+
+    }
+</script>
+{% endblock %}
+{% block content %}
+<section class="content">
+    <div class="row" style="margin-left:0 !important;">
+        <h1 class="onwan"><span class="shortcut-icon"></span>{% trans 'Edit Site'|capfirst %}</h1>
+        <h2>Deposit texts</h2>
+        <form id='dform' method="post">
+        <ul class="inline">
+        {% for text in texts %}
+            <li>
+                <button type="button" class="btn btn-primary" onclick=editT("{{text.id}}");>{{text.title}}</button>
+                <input id="deposit-{{text.id}}" type="hidden" name="{{text.id}}" value="{{text.value}}" />
+
+            </li>
+        {% endfor %}
+        </ul>
+<br>
+
+
+
+
+        </form>
+<textarea id="editor_id" name="content" cols="100" rows="8"></textarea><br>
+    <button id="savebtn" type="button" class="btn btn-info">Save</button>
+
+        <hr>
+        <button onclick="$('#dform').submit();" type="button" class="btn btn-danger">Submit all changes</button>
+
+    </div>
+</section>
+{% endblock %}
+{% block extrajs %}
+
+{% endblock %}

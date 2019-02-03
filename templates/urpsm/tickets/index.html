@@ -1,0 +1,137 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'tickets list'|capfirst %}  {% endblock %} {% block heading %} {% trans 'tickets'|capfirst %} {% endblock %} {% block breadcrumb %}
+<li class="active">{% trans 'tickets'|capfirst %}</li>
+{% endblock %} {% block content %}
+
+    <div class="row">
+
+        <div class="col-md-4 col-xs-12">
+            <form class="form-inline" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control input-sm" placeholder="{% trans 'search by imei'|capfirst %}" name="q">
+                    <div class="input-group-btn">
+                        <button class="btn btn-success btn-flat btn-sm" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <br>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">{% trans 'tickets list'|capfirst %}</h3>
+        <div class="box-tools">
+            <a href="{% url 'unlocking' %}" class="btn btn-primary btn-flat btn-sm pull-right"><i class="fa fa-plus-circle"></i> &nbsp;{% trans 'place an order'|capfirst %}</a>
+        </div>
+    </div>
+    <div class="box-body table-responsive">
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>{% trans 'id'|capfirst %}</th>
+                    <th>{% trans 'network'|capfirst %}</th>
+                    <th>{% trans 'service'|capfirst %}</th>
+                    <th>{% trans 'imei'|capfirst %}</th>
+                    <th>{% trans 'amount'|capfirst %}</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>
+                        <a class="order" href='{% url "order-detail" order.id %}' data-toggle="modal" data-target="#order_modal">{{ order.ref }}</a>
+                    </td>
+                    <td>{{ order.endpoint }}</td>
+                    <td>{{ order.get_service }}</td>
+                    <td> {{ order.imei }}</td>
+                    <td><div class="label label-primary">${{ order.amount }}</div></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+        {% if is_paginated %}
+        <ul class="pagination pagination-sm no-margin pull-right">
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.previous_page_number }}" title="{% trans 'Previous' %}">{% trans 'Previous' %}</a>
+            </li>
+            {% endif %}
+            <li>
+                <span class="current">{% trans 'Page' %} {{ page_obj.number }} {% trans 'of' %} {{ page_obj.paginator.num_pages }}</span>
+            </li>
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.next_page_number }}" title="{% trans 'Next' %}">{% trans 'Next' %}</a>
+            </li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <!-- Modal -->
+        <div class="modal fade" id="order_modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">{% trans 'order checking'|capfirst %}</h4>
+                    </div>
+                    <div class="modal-body"><div class="te"><img src="{% static "img/prettyPhoto/dark_rounded/loader.gif" %}" alt=""></div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'close'|capfirst %}</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" charset="utf-8">
+
+    (function($){
+
+        $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+
+        $('#order_modal').on('click', "#cancel-order-btn", function(e){
+
+            var orderId = $(this).data('id');
+            if(orderId == ""){
+                alert("Invalid Order Id");
+                return false;
+            }
+            $.ajax({
+                url: '/orders/cancel-order/',
+                type: 'GET',
+                dataType: 'json',
+                data: {id: orderId},
+                success: function(data){
+                    if(data['error']){
+                        alert(data['error_message']);
+                        return false;
+                    }
+                    else{
+                        alert("successfully Cancelled");
+                        location.reload();
+                    }
+                }
+            })
+        });
+
+    })(jQuery)
+</script>
+{% endblock %}

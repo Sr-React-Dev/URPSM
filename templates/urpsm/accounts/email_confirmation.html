@@ -1,0 +1,9 @@
+{% extends 'urpsm/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "email verification"|capfirst %}{% endblock %}
+
+{% block content %}
+<h2>{% trans 'confirm your new email'|capfirst %}</h2>
+<p>{% blocktrans %}Your email has been changed successfully.{% endblocktrans %}</p>
+{% endblock %}

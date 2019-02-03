@@ -1,0 +1,1258 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_list admin_urls suit_list suit_tags %}
+{% load url from suit_compat %}
+ {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'orders list'|capfirst %} {% endblock %} {% block heading %} {% trans 'orders'|capfirst %} {% endblock %} {% block breadcrumb %}
+<li class="active">{% trans 'orders'|capfirst %}</li>
+{% endblock %}
+{% block extrahead %}
+<style>
+h3,
+h4,
+h5 {
+    font-family: 'Source Sans Pro', sans-serif
+}
+a {
+    color: #3c8dbc
+}
+a:hover,
+a:active,
+a:focus {
+    outline: none;
+    text-decoration: none;
+    color: #72afd2
+}
+.form-control {
+    border-radius: 0 !important;
+    box-shadow: none;
+    border-color: #d2d6de
+}
+.form-control:focus {
+    border-color: #3c8dbc !important;
+    box-shadow: none
+}
+.form-control::-moz-placeholder {
+    color: #bbb;
+    opacity: 1
+}
+.form-control:-ms-input-placeholder {
+    color: #bbb
+}
+.form-control::-webkit-input-placeholder {
+    color: #bbb
+}
+.form-control:not(select) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none
+}
+.box {
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1)
+}
+.box.box-primary {
+    border-top-color: #3c8dbc
+}
+.box.box-success {
+    border-top-color: #00a65a
+}
+.box-header:before,
+.box-body:before,
+.box-footer:before,
+.box-header:after,
+.box-body:after,
+.box-footer:after {
+    content: " ";
+    display: table
+}
+.box-header:after,
+.box-body:after,
+.box-footer:after {
+    clear: both
+}
+.box-header {
+    color: #444;
+    display: block;
+    padding: 10px;
+    position: relative
+}
+.box-header.with-border {
+    border-bottom: 1px solid #f4f4f4
+}
+.box-header .box-title {
+    display: inline-block;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1
+}
+.box-header>.box-tools {
+    position: absolute;
+    right: 10px;
+    top: 5px
+}
+.box-body {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 10px
+}
+.box-footer {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top: 1px solid #f4f4f4;
+    padding: 10px;
+    background-color: #fff
+}
+.timeline {
+    position: relative;
+    margin: 0 0 30px 0;
+    padding: 0;
+    list-style: none
+}
+.timeline>li {
+    position: relative;
+    margin-bottom: 5px
+}
+.timeline>li:after {
+    clear: both
+}
+.timeline>li>.timeline-item {
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    margin-top: 0px;
+    background: #fff;
+    color: #444;
+    padding: 0;
+    position: relative
+}
+.timeline>li>.timeline-item>.time {
+    color: #999;
+    float: right;
+    padding: 10px;
+    font-size: 12px
+}
+.timeline>li>.timeline-item>.timeline-header {
+    margin: 0;
+    color: #555;
+    border-bottom: 1px solid #dddddd;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.1
+}
+.timeline>li>.timeline-item>.timeline-header>a {
+    font-weight: 600
+}
+.timeline>li>.timeline-item>.timeline-body {
+    padding: 10px
+}
+.btn {
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid transparent
+}
+.btn:active {
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125)
+}
+.btn:focus {
+    outline: none
+}
+.btn-default {
+    background-color: #f4f4f4;
+    color: #444;
+    border-color: #ddd
+}
+.btn-default:hover,
+.btn-default:active {
+    background-color: #e7e7e7 !important
+}
+.btn-primary {
+    background-color: #3c8dbc;
+    border-color: #367fa9
+}
+.btn-primary:hover,
+.btn-primary:active {
+    background-color: #367fa9
+}
+.btn-success {
+    background-color: #00a65a;
+    border-color: #008d4c
+}
+.btn-success:hover,
+.btn-success:active {
+    background-color: #008d4c
+}
+.btn-danger {
+    background-color: #dd4b39;
+    border-color: #d73925
+}
+.btn-danger:hover,
+.btn-danger:active {
+    background-color: #d73925
+}
+.btn-app {
+    border-radius: 3px;
+    position: relative;
+    padding: 15px 5px;
+    margin: 0 0 10px 10px;
+    min-width: 80px;
+    height: 60px;
+    text-align: center;
+    color: #666;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    font-size: 12px
+}
+.btn-app>.fa {
+    font-size: 20px;
+    display: block
+}
+.btn-app:hover {
+    background: #f4f4f4;
+    color: #444;
+    border-color: #aaa
+}
+.btn-app:active,
+.btn-app:focus {
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125)
+}
+.alert {
+    border-radius: 3px
+}
+.alert h4 {
+    font-weight: 600
+}
+.alert .icon {
+    margin-right: 10px
+}
+.alert .close {
+    color: #000;
+    opacity: .2;
+    filter: alpha(opacity=20)
+}
+.alert .close:hover {
+    opacity: .5;
+    filter: alpha(opacity=50)
+}
+.alert-success {
+    border-color: #008d4c
+}
+.alert-danger {
+    border-color: #d73925
+}
+.nav>li>a:hover,
+.nav>li>a:active,
+.nav>li>a:focus {
+    color: #444;
+    background: #f7f7f7
+}
+.nav-tabs-custom {
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 3px
+}
+.nav-tabs-custom>.nav-tabs {
+    margin: 0;
+    border-bottom-color: #f4f4f4;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px
+}
+.nav-tabs-custom>.nav-tabs>li {
+    border-top: 3px solid transparent;
+    margin-bottom: -2px;
+    margin-right: 5px
+}
+.nav-tabs-custom>.nav-tabs>li>a {
+    color: #444;
+    border-radius: 0 !important
+}
+.nav-tabs-custom>.nav-tabs>li>a,
+.nav-tabs-custom>.nav-tabs>li>a:hover {
+    background: transparent;
+    margin: 0
+}
+.nav-tabs-custom>.nav-tabs>li>a:hover {
+    color: #999
+}
+.nav-tabs-custom>.nav-tabs>li:not(.active)>a:hover,
+.nav-tabs-custom>.nav-tabs>li:not(.active)>a:focus,
+.nav-tabs-custom>.nav-tabs>li:not(.active)>a:active {
+    border-color: transparent
+}
+.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #3c8dbc
+}
+.nav-tabs-custom>.nav-tabs>li.active>a,
+.nav-tabs-custom>.nav-tabs>li.active:hover>a {
+    background-color: #fff;
+    color: #444
+}
+.nav-tabs-custom>.nav-tabs>li.active>a {
+    border-top-color: transparent;
+    border-left-color: #f4f4f4;
+    border-right-color: #f4f4f4
+}
+.nav-tabs-custom>.nav-tabs>li:first-of-type {
+    margin-left: 0
+}
+.nav-tabs-custom>.nav-tabs>li:first-of-type.active>a {
+    border-left-color: transparent
+}
+.nav-tabs-custom>.tab-content {
+    background: #fff;
+    padding: 10px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px
+}
+.mailbox-read-info {
+    border-bottom: 1px solid #f4f4f4;
+    padding: 10px
+}
+.mailbox-read-info h3 {
+    font-size: 20px;
+    margin: 0
+}
+.mailbox-read-info h5 {
+    margin: 0;
+    padding: 5px 0 0 0
+}
+.mailbox-read-time {
+    color: #999;
+    font-size: 13px
+}
+.mailbox-attachments li {
+    float: left;
+    width: 200px;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    margin-right: 10px
+}
+.mailbox-attachment-name {
+    font-weight: bold;
+    color: #666
+}
+.mailbox-attachment-icon,
+.mailbox-attachment-info,
+.mailbox-attachment-size {
+    display: block
+}
+.mailbox-attachment-info {
+    padding: 10px;
+    background: #f4f4f4
+}
+.mailbox-attachment-size {
+    color: #999;
+    font-size: 12px
+}
+.mailbox-attachment-icon {
+    text-align: center;
+    font-size: 65px;
+    color: #666;
+    padding: 20px 10px
+}
+.description-block {
+    display: block;
+    margin: 10px 0;
+    text-align: center
+}
+.description-block>.description-header {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    font-size: 16px
+}
+.description-block>.description-text {
+    text-transform: uppercase
+}
+.alert-success,
+.alert-danger {
+    color: #fff !important
+}
+.alert-danger {
+    background-color: #dd4b39 !important
+}
+.alert-success {
+    background-color: #00a65a !important
+}
+.mailbox-attachments {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+
+.u-action-steps{
+    height: 50px !important;
+    background: rgb(168, 207, 230);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+.action-steps-relative{
+    display: inline-block;
+    margin-bottom: 40px;
+}
+
+
+textarea{
+  resize: vertical;
+}
+
+
+#breadcrumb {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin: 5px;
+}
+#breadcrumb .icon {
+  font-size: 14px;
+}
+#breadcrumb li {
+  float: left;
+}
+#breadcrumb li a {
+  color: #FFF;
+  display: block;
+  background: #2980b9;
+  text-decoration: none;
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px 0 5px;
+  text-align: center;
+  margin-right: 23px;
+}
+#breadcrumb li:nth-child(even) a {
+  /*background-color: #2980b9;*/
+}
+#breadcrumb li:nth-child(even) a:before {
+  border-color: #2980b9;
+  border-left-color: transparent;
+}
+#breadcrumb li:nth-child(even) a:after {
+  border-left-color: #2980b9;
+}
+#breadcrumb li:first-child a {
+    background: #3498db;
+  padding-left: 15px;
+  -moz-border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px 0 0 4px;
+}
+#breadcrumb li:first-child a:before {
+  border: none;
+}
+#breadcrumb li:first-child a:after {
+   border-left-color: #3498db;
+}
+#breadcrumb li:last-child a {
+  padding-right: 15px;
+  -moz-border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 0;
+  border-radius: 0 4px 4px 0;
+}
+#breadcrumb li:last-child a:after {
+  border: none;
+}
+#breadcrumb li a:before, #breadcrumb li a:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  border: 0 solid #2980b9;
+  border-width: 20px 10px;
+  width: 0;
+  height: 0;
+}
+#breadcrumb li a:before {
+  left: -20px;
+  border-left-color: transparent;
+}
+#breadcrumb li a:after {
+  left: 100%;
+  border-color: transparent;
+  border-left-color: #2980b9;
+}
+#breadcrumb li a:hover {
+  background-color: #1abc9c;
+}
+#breadcrumb li a:hover:before {
+  border-color: #1abc9c;
+  border-left-color: transparent;
+}
+#breadcrumb li a:hover:after {
+  border-left-color: #1abc9c;
+}
+#breadcrumb li a:active {
+  background-color: #16a085;
+}
+#breadcrumb li a:active:before {
+  border-color: #16a085;
+  border-left-color: transparent;
+}
+#breadcrumb li a:active:after {
+  border-left-color: #16a085;
+}
+
+.box-body hr{
+    margin:0 !important;
+}
+
+.shop-user-img {
+    margin: 0 auto;
+    width: 100px;
+    padding: 3px;
+    border: 3px solid #d2d6de;
+    border-radius: 10%;
+}
+
+.list-group-unbordered>.list-group-item {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.list-group-item{
+    padding: 5px !important;
+    border:0;
+}
+.Snew{
+    margin-bottom: 5px !important;
+}
+
+.btn-app {
+    background: #f4f4f4;
+    width: 92%;
+height: auto;
+    color: #444;
+    border-color: #aaa;
+}
+
+.btn-app>.fa {
+    font-size: 30px !important;
+    display: block;
+}
+@media screen and (min-width: 992px) {
+    #contentbar{
+        position: relative;
+        width: 90%;
+    }
+    #sidebarfixed{
+        position: fixed;
+        right: 0;
+        width: 22%;
+    }
+}
+.list-group-unbordered{
+    margin-bottom: 0 !important;
+}
+
+.sif .description-header{
+    font-weight: 700 !important;
+    font-size: 14px !important;
+}
+.shadcol{
+    background: #b4cddc !important;
+}
+.shadcol a{
+    font-weight: 600 !important;
+    font-family: sans-serif !important;
+}
+.shadcol a:hover{
+    color: black !important;
+}
+
+.timeline-inverse>li>.timeline-item {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.seperateurpsm{
+    height: 20px;
+    background: #ecf0f5;
+    margin: 0 -10px 10px;
+    border-right: 0;
+    border-left: 0;
+}
+
+.message-order{
+    margin-bottom: 10px;
+}
+
+.uploadedfiles .mailbox-attachment-icon{
+    background: white !important;
+}
+.uploadedfiles .mailbox-attachment-info{
+    background: #d3dae4 !important;
+}
+
+.border-add-new{
+    border-right: 1px solid #e49d8d;
+    border-bottom: 1px solid #e49d8d;
+    border-left: 1px solid #e49d8d;
+    border-color: #e49d8d !important;
+}
+
+.border-add-new .box-header{
+    background: #fce6e1;
+}
+
+.final-stat{
+    height: 80px !important;
+}
+
+.btn-app-final{
+    width: 100%;
+    margin: 0;
+    border: none;
+}
+
+.btn-app-final:hover{
+    width: 100%;
+    margin: 0;
+    border: none;
+}
+
+
+
+
+
+
+#collorsuccess{
+  border-color: #bdddbb !important;
+}
+
+#collorsuccess .box-header{
+  background: #d7f7d5;
+}
+
+#collordanger{
+  border-color: #f3b4b4 !important;
+}
+
+#collordanger .box-header{
+  background: #ffd3d3;
+}
+
+
+
+.Uploadbtn {
+position: relative;
+    overflow: hidden;
+    padding: 4px 20px;
+    color: #2d2b2b;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    margin: 0 5px;
+    float: left;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+.Uploadbtn .input-upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  height:100%;
+  width:100%;
+}
+
+.it-alert{
+  font-weight: 100;
+    font-style: italic;
+    font-size: 17px;
+    margin-left: 10px;
+}
+.margneed{
+  margin: 5px 15px;
+}
+
+
+.divbreak{
+  display: inline-block;
+}
+@media (max-width: 495px) {
+  .divbreak{
+    display: block !important;
+  }
+  #breadcrumb li a{
+    line-height: 1.1;
+    padding-top: 5px;
+  }
+}
+
+
+
+
+
+
+
+.mailbox-attachments li{
+  width: 100% !important;
+  margin-right: inherit !important;
+}
+
+.mailbox-attachment-name{
+  display: flex;
+}
+
+
+
+
+
+/*shop*/
+.img-circle {
+    border-radius: 50%;
+}
+
+.box-footer {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top: 1px solid #f4f4f4;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.img-circle {
+   border-radius: 50%;
+   height: 90px;
+   width: 90px;
+}
+
+
+  .nav-tabs-custom>.nav-tabs>li.active>a, .nav-tabs-custom>.nav-tabs>li.active:hover>a{
+    background: #deecf9;
+  }
+  .nav-tabs-custom>.nav-tabs>li.active>a {
+    background: #deecf9;
+  }
+
+.img-circle{
+    width: 65px;
+    height: 65px;
+}
+
+
+</style>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+{% endblock %}
+{% block content %}
+
+ <div class="row-fluid">
+  <!-- Content Header (Page header) -->
+<!--
+<div class="callout callout-info lead">
+    <h4>Reminder!</h4>
+    <p>To use this main header instead of the regular one, you must add the <code>layout-top-nav</code> class to the body tag.</p>
+  </div>
+-->
+
+  <div class="action-steps-relative"></div>
+
+  <!-- Main content -->
+  <section class="content">
+
+        {% if successmsg %}
+        <div class="alert alert-success alert-dismissible margneed">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <h4>
+            <i class="icon fa fa-check"></i>
+              Alert Title! <span class="it-alert">when success !! This alert is dismissable.</span>
+          </h4>
+        </div>
+          {% endif %}
+        {% if errormsg %}
+        <div class="alert alert-danger alert-dismissible margneed">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <h4>
+            <i class="icon fa fa-check"></i>
+              Alert Title! <span class="it-alert">when failure !! This alert is dismissable.</span>
+          </h4>
+        </div>
+          {% endif %}
+
+
+
+
+
+
+        <div class="col-md-11" id="contentbar">
+
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs shadcol">
+              <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Order Status</a></li>
+              <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Conversation</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_1">
+                <p>Choose the right way to solve your issue :</p>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                        <div class="box box-success border-add-new" id="collorsuccess">
+                        <div class="box-header with-border">
+                          <h3 class="box-title">Completed</h3>
+
+                          <div class="box-tools pull-right">
+                            <input type="radio" name="optionsRadios" id="optionsRadios1">
+                          </div>
+                          <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                          - need support to find solution<br>
+                          - the seller don't answer
+                        </div>
+                        <!-- /.box-body -->
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="box box-success border-add-new" id="collordanger">
+                        <div class="box-header with-border">
+                          <h3 class="box-title">Cancelled</h3>
+
+                          <div class="box-tools pull-right">
+                            <input type="radio" name="optionsRadios" id="optionsRadios3">
+                          </div>
+                          <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                          - the seller choose to refund<br>
+                          - the issue comme from seller
+                        </div>
+                        <!-- /.box-body -->
+                      </div>
+                    </div>
+                  </div>
+
+              <div class="box-footer">
+                <div class="btn-group pull-right">
+                  <button type="button" class="btn btn-sm btn-danger">Cancel</button>
+                  <button type="button" class="btn btn-sm btn-success procceed" data-toggle="modal" data-target="#myModal">Proceed</button>
+                </div>
+              </div>
+
+
+              <div class="seperateurpsm"></div>
+
+              <div class="mailbox-read-info message-order">
+                  <h3>{% trans 'order'|capfirst %} <b>{{ ticket.server_order.ref }} </b></h3>
+                  <h5>
+                            <span class="mailbox-read-time pull-right">
+                                <div class="timeline-footer">
+                                    <a class="btn btn-primary btn-xs">{{ ticket.server_order.status }}</a>
+                                </div>
+                            </span>
+                        </h5>
+              </div>
+
+                <ul class="timeline timeline-inverse" style="margin-bottom:0;">
+                        {% if ticket.shop_comments %}
+                        <li>
+                            <div class="timeline-item">
+                                <span class="time"><i class="fa fa-clock-o"></i> {{ ticket.shop_comments_time }}</span>
+
+                                <h3 class="timeline-header"><a href="#">{{ ticket.server_order.shop.name|title }}</a></h3>
+
+                                <div class="timeline-body">
+                                    {{ ticket.shop_comments }}
+                                </div>
+
+                                <ul class="uploadedfiles mailbox-attachments clearfix" style="padding: 10px;">
+                                    <div class="row" style="margin: 0;">
+                                    {% for shop_file in ticket.shop_files.all %}
+                                        <div class="col-md-4 col-sm-6" style="padding:0px 3px;">
+                                            <li>
+                                                <span class="mailbox-attachment-icon"><i class="fa
+                                                    {% if shop_file.file_extension_name == 'pdf' %}
+                                                        fa-file-pdf-o
+                                                    {% elif shop_file.file_extension_name == 'txt' %}
+                                                        fa fa-file-text-o
+                                                    {% elif shop_file.file_extension_name == 'xls' %}
+                                                        fa fa-file-excel-o
+                                                    {% elif shop_file.file_extension_name == 'doc' or shop_file.file_extension_name == 'docx' %}
+                                                        fa-file-word-o
+                                                    {% elif shop_file.file_extension_name == 'jpg' or shop_file.file_extension_name == 'jpeg' or shop_file.file_extension_name == 'png' %}
+                                                        fa-file-image-o
+                                                    {% else %}
+                                                        fa fa-file-o
+                                                    {% endif %}
+
+                                                      "></i>
+                                                </span>
+                                                <div class="mailbox-attachment-info">
+                                                    <a target="_blank" href="{{ shop_file.uploaded_file.url }}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
+                                                        {{ shop_file.actual_file_name }}</a>
+                                            <span class="mailbox-attachment-size">
+                                              1,245 KB
+                                              <a href="{{ shop_file.uploaded_file.url }}" class="btn btn-default btn-xs pull-right"><i
+                                                      class="fa fa-cloud-download"></i></a>
+                                            </span>
+                                                </div>
+                                            </li>
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                </ul>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if ticket.server_comments %}
+                        <li>
+                            <div class="timeline-item">
+                                <span class="time"><i class="fa fa-clock-o"></i> {{ ticket.server_comments_time }}</span>
+
+                                <h3 class="timeline-header"><a href="#">{{ ticket.server_order.server.name|title }}</a></h3>
+
+                                <div class="timeline-body">
+                                    {{ ticket.server_comments }}
+                                </div>
+
+                                <ul class="uploadedfiles mailbox-attachments clearfix" style="padding: 10px;">
+                                    <div class="row" style="margin: 0;">
+                                        {% for server_file in ticket.server_files.all %}
+                                            <div class="col-md-4 col-sm-6" style="padding:0px 3px;">
+                                                <li>
+                                                    <span class="mailbox-attachment-icon">
+                                                        <i class="fa
+                                                            {% if server_file.file_extension_name == 'pdf' %}
+                                                                fa-file-pdf-o
+                                                            {% elif server_file.file_extension_name == 'txt' %}
+                                                                fa fa-file-text-o
+                                                            {% elif server_file.file_extension_name == 'xls' %}
+                                                                fa fa-file-excel-o
+                                                            {% elif server_file.file_extension_name == 'doc' or server_file.file_extension_name == 'docx' %}
+                                                                fa-file-word-o
+                                                            {% elif server_file.file_extension_name == 'jpg' or server_file.file_extension_name == 'jpeg' or server_file.file_extension_name == 'png' %}
+                                                                fa-file-image-o
+                                                            {% else %}
+                                                                fa fa-file-o
+                                                            {% endif %}">
+                                                        </i>
+                                                    </span>
+                                                    <div class="mailbox-attachment-info">
+                                                        <a target="_blank" href="{{ server_file.uploaded_file.url }}" class="mailbox-attachment-name"><i
+                                                                class="fa fa-paperclip"></i>
+                                                            {{ server_file.actual_file_name }}
+                                                        </a>
+                                                        <span class="mailbox-attachment-size">
+                                                          1,245 KB
+                                                          <a href="{{ server_file.uploaded_file.url }}"
+                                                             class="btn btn-default btn-xs pull-right"><i
+                                                                  class="fa fa-cloud-download"></i></a>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </ul>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+
+             </div>
+              <!-- /.tab-pane -->
+               <div class="tab-pane" id="tab_2">
+                    <div class="seperateurpsm final-stat">
+                        <a class="btn btn-app btn-app-final">
+                            <i class="fa fa-comments"></i> {% trans 'start conversation'|capfirst %}
+                        </a>
+                    </div>
+
+                    <ul class="timeline timeline-inverse" style="margin-bottom:0;" id="chat-section">
+                        {% for message in ticket_messages %}
+                            <li>
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fa fa-clock-o"></i> {{ message.created_at|date:'N d Y, h:i A' }}</span>
+
+                                    <h3 class="timeline-header"><a href="#"> {% if message.sender.first_name %} {{ message.sender.first_name|title }} {% else %} N.A. {% endif %}</a></h3>
+
+                                    <div class="timeline-body">
+                                        {% if message.message_text %}
+                                            {{ message.message_text }}
+                                        {% endif %}
+                                        {% if message.files %}
+                                            {% for message_file in message.message_files.all %}
+                                                {% if message_file.uploaded_file %}
+                                                    <a target="_blank" href="{{ message_file.uploaded_file.url }}"> {{ message_file.uploaded_file.actual_file_name }}</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                    <ul>
+                        <div class="box-footer" style="padding-bottom: 0;">
+                            <form id="fileUploadForm" method="post" enctype="multipart/form-data" action="{% url 'create_message' ticket.id %}">
+                                {% csrf_token %}
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label>{% trans 'send your message'|capfirst %}</label>
+                                    <textarea id="message-text" name="message" class="form-control" rows="3"
+                                              placeholder="Enter message " required></textarea>
+
+                                    <div class="pull-right" style="margin: 10px 0;">
+                                        <div class="Uploadbtn">
+                                            <input type="file" class="input-upload" id="message-file"
+                                                   name="messageFile"/><span>{% trans 'upload'|capfirst %}</span>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-default " id="message-reply-btn">{% trans 'reply'|capfirst %}</button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </ul>
+                </div> <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+
+        </div>
+
+
+
+
+      <!-- /.row -->
+
+
+  </section>
+  <!-- /.content -->
+
+
+</div>
+
+<div class="modal modal-success successstyle fade" id="myModal1" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <form method="POST" action="{% url 'ticket_detail' ticket.id %}">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">{% trans 'Close order'|capfirst %}</h4>
+                </div>
+                <div class="modal-body">
+                    <label style="color:black">{% trans 'Close order'|capfirst %}</label>
+
+                    <p style="color:black">{% trans 'Mark order as completed both side agree to close the order the issue is fixed , please Note you cant get back if you confirm'|capfirst %}</p>
+
+                    <div class="form-group has-success">
+                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {% trans 'write us reason why '|capfirst %}</label>
+                        <textarea required type="text" class="form-control" id="inputError" placeholder="{% trans 'enter ...'|capfirst %} "
+                                  name="reason"
+                                  rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding: 5px 10px;">
+                    <div class="checkbox pull-left" style="margin: 5px 10px 0 0;">
+                        <label><input type="checkbox" required>{% trans 'i confirm !'|capfirst %}</label>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-sm">{% trans 'complete this order'|capfirst %}</button>
+                    <input type="hidden" name="response" value="COMPLETED"/>
+                    <input type="hidden" name="action" value="ticket_response"/>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </form>
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<!-- Modal 2-->
+
+<div class="modal modal-danger warningstyle fade" id="myModal2" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <form method="POST" action="{% url 'ticket_detail' ticket.id %}">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">{% trans 'lorem title here2'|capfirst %}</h4>
+                </div>
+                <div class="modal-body">
+                    <label style="color:black">{% trans 'small title'|capfirst %}</label>
+
+                    <p style="color:black">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                    <div class="form-group has-warning">
+                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {% trans 'write us
+                            reason why !'|capfirst %}</label>
+                        <textarea required type="text" class="form-control" id="inputError" placeholder="{% trans 'enter ...'|capfirst %}"
+                                  name="reason"
+                                  rows="3"></textarea>
+
+                        <div class="form-group" style="margin-top:5px;">
+                            <select class="form-control" required name="admin_support_reason">
+                                <option>option 1</option>
+                                <option>option 2</option>
+                                <option>option 3</option>
+                                <option>option 4</option>
+                                <option>option 5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding: 5px 10px;">
+                    <div class="checkbox pull-left" style="margin: 5px 10px 0 0;">
+                        <label><input type="checkbox" required>{% trans 'i confirm !'|capfirst %}</label>
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-sm">{% trans 'request admin support'|capfirst %}</button>
+                    <input type="hidden" name="response" value="ADMIN_SUPPORT"/>
+                    <input type="hidden" name="action" value="ticket_response"/>
+                </div>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<!-- Modal 3-->
+
+<div class="modal modal-danger dangerstyle fade" id="myModal3" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <form method="POST" action="{% url 'ticket_detail' ticket.id %}">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">{% trans 'CANCELLING ORDER'|capfirst %}</h4>
+                </div>
+                <div class="modal-body">
+                    <label style="color:black">{% trans 'close and refund shop'|capfirst %}</label>
+
+                    <p style="color:black">{% trans 'you choose to cancel this order and refund the shop for it'|capfirst %}</p>
+
+                    <div class="form-group has-error">
+                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {% trans 'write us
+                            reason why !'|capfirst %}</label>
+                        <textarea required type="text" class="form-control" id="inputError" placeholder="{% trans 'enter ...'|capfirst %}" name="reason" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding: 5px 10px;">
+                    <div class="checkbox pull-left" style="margin: 5px 10px 0 0;">
+                        <label><input type="checkbox" required>{% trans 'i confirm !'|capfirst %}</label>
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-sm">{% trans 'cancel this order'|capfirst %}</button>
+                    <input type="hidden" name="response" value="CANCELLED"/>
+                    <input type="hidden" name="action" value="ticket_response"/>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </form>
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function () {
+
+
+
+    $(".procceed").click(function () {
+        if ($('#optionsRadios1').is(':checked')) {
+            $(".procceed").attr("data-target", "#myModal1");
+        }
+
+        if ($('#optionsRadios2').is(':checked')) {
+            $(".procceed").attr("data-target", "#myModal2");
+        }
+
+        if ($('#optionsRadios3').is(':checked')) {
+            $(".procceed").attr("data-target", "#myModal3");
+        }
+    });
+
+
+    $("#message-reply-btn").click(function (e) {
+        console.log("check");
+        /*$("#message-reply-btn").attr('disabled', true);*/
+        var form_data = new FormData();
+        var file_data = $('#message-file').prop('files')[0];
+        form_data.append('message_file', file_data);
+        form_data.append('message', $("#message-text").val());
+        console.log(form_data);
+        $.ajax({
+            type: 'POST',
+            url: '{% url "create_message" ticket.id %}',
+            async: true,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            data: form_data,
+            success: function (jsonData) {
+                console.log(jsonData);
+                if (jsonData.error) {
+                    alert(jsonData.error_message);
+//                    $("#message-reply-btn").attr('disabled', false);
+                }
+                else {
+                var chat_box = '<li><div class="timeline-item"> <span class="time"><i class="fa fa-clock-o"></i> '+ jsonData.created_at +'</span> ' +
+                '<h3 class="timeline-header"><a href="#">'+jsonData.sender_name+'</a></h3> ' +
+                '<div class="timeline-body">';
+                if(jsonData.message_text){
+                   chat_box += jsonData.message_text;
+                }
+                if(jsonData.file_url){
+                    chat_box += '<a target="_blank" href="' + jsonData.file_url + '"> ' + jsonData.file_name + '</a>';
+                }
+                chat_box += '</div></div></li>';
+                console.log(chat_box);
+                $("#chat-section ").append(chat_box);
+                $("#message-text").val("");
+                }
+            }
+        });
+        e.preventDefault();
+    });
+});
+</script>
+{% endblock %}
+

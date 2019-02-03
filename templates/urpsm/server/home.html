@@ -1,0 +1,104 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load thumbnail %}
+{%load static from staticfiles%}
+{% block extrastyle %}
+	<style>
+#custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 23px;
+}	    	
+	</style>  
+    <link rel="stylesheet" type="text/css" href="{% static '/static/css/plugins/select2/select2.min.css' %}">  
+{% endblock extrastyle %}
+{% block title %} {{ request.user.profile.server.city }} - {% trans 'servers list'|capfirst %} {% endblock %}
+{% block breadcrumb %}
+<li class="active">Servers</li>
+{% endblock %}
+
+
+{% block content %}
+	<div class="row">
+        <div class="col-md-12">
+                    <form action="{% url 'search-servers' %}" method="get">
+                        <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" name="q" class="form-control input-lg" placeholder="{% trans 'search servers ...'|capfirst %}" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info btn-lg" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Multiple</label>
+                            <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                              <option>Alabama</option>
+                              <option>Alaska</option>
+                              <option>California</option>
+                              <option>Delaware</option>
+                              <option>Tennessee</option>
+                              <option>Texas</option>
+                              <option>Washington</option>
+                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Select a State" style="width: 518px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                          </div>
+                          <!-- /.form-group -->
+              
+                        </div>
+                    </form>
+        </div>
+	</div>
+<br>
+<div class="row">
+        {% for server in servers %}
+	   <div class="col-md-2">
+			<div class="box box-solid">
+				<div class="box-header with-border">
+					<h3 class="box-title"><a href="{% url 'server-detail' server.slug %}">{{ server.name }}</a></h3>
+				</div>
+				<div class="box-body no-padding" style="height: 113px;">
+					<img style="height: 113px;" class="img-responsive" src="{{ server.logo|thumbnail_url:'large' }}" alt="{{ server.name }}">
+				</div>
+				<div class="box-footer no">
+					<ul class="nav nav-pills nav-stacked">
+						<li><i class="fa fa-th"></i>
+						<span class="pull-right text-black"><span class="badge">{{ server.components }}</span></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+	   </div>
+        {% endfor %}
+</div>
+{% endblock %}
+{% block extrajs %}
+<script type="text/javascript" src="{% static '/static/js/plugins/select2/select2.full.min.js' %}"></script>
+{% endblock %}

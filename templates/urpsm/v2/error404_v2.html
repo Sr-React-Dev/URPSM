@@ -1,0 +1,67 @@
+<!DOCTYPE html>{%load static from staticfiles%}{%load i18n%}
+<!--[if IE 8]>          <html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>          <html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->  <html> <!--<![endif]-->
+<head>
+    <!-- Page Title -->
+    <title>URPSM | Error 404</title>
+    
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Theme Styles -->
+    <link rel="stylesheet" href="{%  static 'v2/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{%  static 'v2/css/font-awesome.min.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{%  static 'v2/css/animate.min.css' %}">
+    
+    <!-- Main Style -->
+    <link id="main-style" rel="stylesheet" href="{%  static 'v2/css/style.css' %}">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{%  static 'v2/css/custom.css' %}">
+
+    <!-- Updated Styles -->
+    <link rel="stylesheet" href="{%  static 'v2/css/updates.css' %}">
+    
+    <!-- Responsive Styles -->
+    <link rel="stylesheet" href="{%  static 'v2/css/responsive.css' %}">
+    
+    <!-- CSS for IE -->
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" type="text/css" href="{%  static 'v2/css/ie.css' %}" />
+    <![endif]-->
+    
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script type='text/javascript' src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="post-404page style2 body-blank">
+    <div id="page-wrapper" class="wrapper-blank">
+        <section id="content">
+            <div class="container">
+                <div id="main">
+                    <h1 class="logo">
+                        <a href="#" title="">
+                            <img src="{% static 'v2/images/logo2.png' %}" class="logo404i"/>
+                        </a>
+                    </h1>
+                    <div class="error-message"><strong>{% trans 'error 404'|capfirst %}:</strong> <p>{% trans 'page not found'|capfirst %}</p></div>
+                    <div class="error-message-404" style="line-height: 0 !important;"></div>
+                    <a href="{{ request.META.HTTP_REFERER }}" class="button go-back"><i class="soap-icon-longarrow-left circle"></i>{% trans 'go back to home'|capfirst %}</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="text/javascript" src="{% static 'v2/js/bootstrap.js' %}"></script>
+{% include 'session_security/all.html' %}
+
+</body>
+</html>
+

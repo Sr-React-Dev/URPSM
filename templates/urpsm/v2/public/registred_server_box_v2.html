@@ -1,0 +1,46 @@
+                                    {% load reviewing_tags %}
+                                    {% load el_pagination_tags %}
+                                    {% load i18n %}
+                                    {% load localize from l10n %}
+                                    {#% load humanize %#}
+                                    {% lazy_paginate 9 servers %}
+                                    {%for server in servers %}
+                                    
+                                    <div class="col-sm-6 col-md-3 team">
+                                        <article class="box">
+                                            <figure class="listo-phone">
+                                                <a href="#"><img src="{{ MEDIA_URL}}/{{server.logo}}"></a>
+                                            </figure>
+                                            <div class="details">
+                                                <h4 class="box-title margned">{{server.name}}<small><i class="soap-icon-departure"></i> {{server.city.name}} {{server.country.name}}</small></h4>
+                                                <div class="feedback">
+                                                    <div data-placement="bottom" data-toggle="tooltip" class="five-stars-container" title="{{server.average_rating|floatformat }} {% trans 'stars' %}"><span style="width: {% localize off %}{{server.average_rating|multiply:20 }}%;{% endlocalize %}" class="five-stars"></span></div>
+                                                    <span class="review">{{server.review_server.count}} {% trans 'reviews' %}</span>
+                                                </div>
+                                                <p class="description desc-trancate">{{server.description|striptags}} </p>
+                                                <div class="action">
+                                                    <a class="button hmr btn-small" href="#">{% trans 'SEE MORE' %}</a>
+                                                    <a class="button btn-small khedr popup-map" href="#" data-box="{{server.location}}">{% trans 'VIEW ON MAP' %}</a>
+                                                </div>
+                                            </div>
+                                            <figcaption>
+                                                <ul class="overlay-statics">
+                                                    <li class="cc1">
+                                                        <i class="soap-icon-settings-1"></i> {% trans 'Unlocked phones' %} <span>{{ server.get_unlocked_phones_count }}</span>
+                                                    </li>
+                                                    <li class="cc2">
+                                                        <i class="fa fa-bug"></i> {% trans 'Unrepaired Phones' %} <span>{{ server.get_non_repaired_phones_count }}</span>
+                                                    </li>
+                                                    <li class="cc3">
+                                                        <i class="soap-icon-insurance"></i> {% trans 'Repaired Phones ' %} <span>{{ server.get_repaired_phones_count}}</span>
+                                                    </li>
+                                                    <li class="cc4">
+                                                        <i class="soap-icon-conference"></i> {% trans 'Satisfied Clients' %} <span>{{ server.get_satisfied_clients_count }}</span>
+                                                    </li>
+                                                </ul>
+                                            </figcaption>
+                                        </article>
+                                    </div>
+                                    {%endfor%}
+                                    {% show_more "Load more servers" "Wait please&hellip;" %}
+                                    

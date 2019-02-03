@@ -1,0 +1,80 @@
+{% extends 'admin/change_form.html' %}
+{% load i18n admin_urls%}
+
+{% block object-tools-items %}
+    {{block.super}}
+    <li>
+        <a href="{% url 'admin:notifications_notification_changelist' %}?server={{original.pk}}" class="historylink">{% trans 'notifications'|capfirst %}</a>
+    </li>
+{%endblock%}
+
+{% block submit_buttons_bottom %}
+    {{ block.super }}
+    <!-- {#%if not original.processed%#} -->
+    <div class="submit-row extra">
+    	<hr>
+       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">{% trans 'send notification'|capfirst %}</button>
+       <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{% trans 'notification to'|capfirst %}&nbsp;{{original.name}}</h4>
+              </div>
+              <div class="modal-body">
+                <select name="notification_type" id='notification_type'>
+                    <option value="A">Admin type</option>
+                    <option value="B">Admin type</option>
+                    <option value="C">Admin type</option>
+                    <option value="D">Admin type</option>
+                </select>
+                <textarea name="notification" id="notification" class="form-control" row="7"></textarea>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="send_notif" class="btn btn-primary pull-right">{% trans 'send'|capfirst %}</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{% trans 'close'|capfirst %}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var notification = $('#notification');
+        var notification_type = $('#notification_type');
+        var send    = $('#send_notif');
+    	
+    	send.on('click', function(e){
+            e.preventDefault();
+    		if (notification.val().length > 30){
+    			$.ajax({
+    				url:'{% url "send-notification" %}',
+    				type:'POST',
+    				data:{'notification':notification.val(), 'server':{{original.pk}}, 'notification_type':notification_type.val() ,'csrfmiddlewaretoken':'{{csrf_token}}'},
+    				success: function(e){
+    					if (e.status){
+    						$('#myModal').modal('hide').data( 'bs.modal', null );
+    						alert('Notification has been sent');
+    						
+    					}else{
+    						console.log(e);
+    						alert('error');
+    					}
+    				},
+    				error: function(e){
+    					alert('Error, retry again')
+    				}
+    			});
+    		}else{
+    			alert('Your notification text is less than 30 characters long!!')
+    		}
+    	});
+    });
+    </script>
+  
+
+{% endblock %}

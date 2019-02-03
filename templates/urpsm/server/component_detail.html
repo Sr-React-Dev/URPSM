@@ -1,0 +1,147 @@
+{% extends "urpsm/base.html" %} {% load thumbnail i18n %} 
+{% block extrastyle %}
+	<style>
+#custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 23px;
+}	    	
+	</style>    
+{% endblock extrastyle %}
+{% block title %} {{ request.user.profile.server.city }} - {% trans 'servers list'|capfirst %} {% endblock %} {% block breadcrumb %}
+<li><a href="{% url 'servers' %}">{% trans 'servers'|capfirst %}</a></li>
+<li><a href="{% url 'server-detail' component.server.slug %}">{{ component.server.name }}</a></li>
+<li class="active">{{ component.title }}</li>
+{% endblock %} {% block content %}
+	<div class="row">
+        <div class="col-md-12">
+                    <form action="{% url 'search' %}" method="get">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" name="q" class="form-control input-lg" placeholder="{% trans 'search components ...'|capfirst %}" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+                    </form>
+        </div>
+	</div>
+	<br>
+<div class="row">
+	<div class="col-md-4">
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">{{ component.title }}</h3>
+				<p>
+					{{ component.brand }} | {{ component.model }} | {{ component.type }}
+				</p>
+			</div>
+			<div class="box-body no-padding">
+				<img class="img-responsive" src="{{ component.image|thumbnail_url:"large" }}" alt="">
+				<div class="text" style="margin: 8px">
+					{{ component.description|safe }}
+				</div>
+			</div>
+			<div class="box-footer">
+				<span class="pull-right"><span class="label label-info">{{ component.get_currency_display }}{{ component.price }}</span></span>
+			</div>
+		</div>
+	</div>
+
+    <div class="col-md-4">
+        <div class="box box-solid">
+            <div class="box-body no-padding">
+                <div id="location" class="no-padding" style="height:300px; width:100%"></div>
+            </div>
+        </div>
+    </div>
+
+    {% if component.server != request.user.profile.server and component.server.server_email != request.user.email%}    
+        <div class="col-md-4">
+        	<form action="" method="POST">
+    	    	<div class="box">
+    	    		<div class="box-header with-border">
+    	    			<h3 class="box-title">{% trans 'contact'|capfirst %}</h3>
+    	    		</div>
+                        {% csrf_token %}
+    	    		<div class="box-body">
+    	    			{{ form.as_p }}
+    	    		</div>
+    	    		<div class="box-footer">
+    	    			<button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fa fa-send"></i></button>
+    	    		</div>
+    	    	</div>
+        	</form>
+        </div>
+    {% endif %}
+
+
+</div>
+
+{% endblock %}
+
+{% block extrajs %}
+<script src="//maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script>
+jQuery(document).ready(function($) {
+    var map;
+    var coords = "{{ component.server.location }}";
+    if (coords) {
+        coords = coords.split(',');
+        map = new google.maps.Map(document.getElementById('location'), {
+            center: {
+                lat: parseFloat(coords[0]),
+                lng: parseFloat(coords[1])
+            },
+            zoom: 13
+        });
+
+        var marker = new google.maps.Marker({
+            position: {
+                lat: parseFloat(coords[0]),
+                lng: parseFloat(coords[1])
+            },
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+            content: "<img src={{component.server.logo|thumbnail_url:'small'}}>&nbsp;&nbsp;{{ component.server.address }}"
+        })
+
+        infowindow.open(map, marker);
+
+        marker.setMap(map);
+
+    }
+
+});
+</script>
+{% endblock %}

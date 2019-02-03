@@ -1,0 +1,64 @@
+{%extends 'urpsm/v2/public/base_v3.html' %}
+	{% load static from staticfiles %}
+    
+    {% load reviewing_tags %}
+	{% load i18n %}
+    {% load localize from l10n %}
+	{% block extraheadjs %}
+	{% endblock extraheadjs %}
+	{% block main_page %}
+	 <div class="page-title-container urpsm-h">
+            <div class="container">
+                <ul class="breadcrumbs pull-right">
+                    <li class="impo"><a href="#">{% trans ' HOME' %}</a></li>
+                    <li class="active impo">{% trans 'Contact us' %}</li>
+                </ul>
+            </div>
+        </div>
+        
+        <section id="content" class="white-bg">
+            <div class="container">
+                <div id="main">
+                    <div class="col-md-9 no-float no-padding center-block">
+                    <div class="intro text-center block">
+                       <h2>{% trans 'Thank you' %}</h2>
+                       <p>{% trans 'And email has been sent to your email address' %}</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="icon-box style10 phone">
+                            <i class="soap-icon-phone"></i>
+                            <small>We are on 24/7</small>
+                            <h4 class="box-title">+1628-400-0061</h4>
+                            <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="icon-box style10 email">
+                            <i class="soap-icon-message"></i>
+                            <small>Send us email on</small>
+                            <h4 class="box-title">Help@Urpsm.com</h4>
+                            <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="icon-box style10 address">
+                            <i class="soap-icon-address"></i>
+                            <small>Where are at</small>
+                            <h4 class="box-title">Marakech revenue 5 Bab doukala</h4>
+                            <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+	{% endblock main_page %}
+	{% block js %}
+    {% endblock js %}

@@ -1,0 +1,30 @@
+{% load i18n %}
+{#% load humanize %#}
+
+						<li>
+		                <!-- inner menu: contains the actual data -->
+			                <div class="slimScrollDiv">
+			                	<ul class="menu">
+									{% for notification in notifications %}
+										<li>
+						                    <a href="#">
+						                      <i class="fa fa-users text-aqua"></i> {% autoescape off %}{{ notification }}{% endautoescape %}
+						                    </a>
+						                </li>
+										{% empty %}
+										<li>
+						                    <a href="#">
+						                      <i class="fa fa-users text-aqua"></i>{% trans "You've got no new notifications" %}
+						                    </a>
+						                 </li>
+									{%endfor%}
+								</ul>
+							</div>
+						</li>
+						
+
+							
+
+
+			
+              

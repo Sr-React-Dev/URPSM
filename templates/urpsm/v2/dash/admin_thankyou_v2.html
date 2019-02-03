@@ -1,0 +1,11 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load static from staticfiles %}{% load i18n%}
+{% block title %} {% trans 'contact admin'|capfirst %} {% endblock %}
+{% block heading %} {% trans 'contact admin'|capfirst %} {% endblock %}
+{% block content %}
+<div class="row" style="margin:10px 0;">
+  <h1 class="onwan" style="text-align: left;margin-left: 15px;">{% trans 'thank you'|capfirst %}</h1>
+</div>
+<script type="text/javascript">setTimeout(function(){ window.location.href ="{% url 'contact-admin' %}" }, 3000);</script>
+{% endblock content %}
+

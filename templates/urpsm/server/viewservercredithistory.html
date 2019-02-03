@@ -1,0 +1,64 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} {% load i18n staticfiles thumbnail%} {% block title %} {% trans 'Server credit history'|capfirst %} {% endblock %} {% block heading %} {% trans 'server'|capfirst %} {% endblock %} {% block subheading %} Add server credits{% endblock %} {% block breadcrumb %}
+<li><a href="{% url 'server' %}" title="{% trans 'History'|capfirst %}">{% trans 'server'|capfirst %}</a></li>
+<li class="active">{% trans 'Credit History'|capfirst %}</li>
+{% endblock %} {% block content %}
+
+<section class="content">
+
+<div class="row">
+
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{% trans 'Server credit history'|capfirst %}</h3>
+
+            </div>
+            <div class="box-body table-responsive">
+              <table class="table table-hover table-bordered">
+                <tbody><tr>
+                  <th>{% trans 'Id'|capfirst %}</th>
+                  <th>{% trans 'Amount'|capfirst %}</th>
+                  <th>{% trans 'Type'|capfirst %}</th>
+                  <th>{% trans 'Credit'|capfirst %}</th>
+                  <th>{% trans 'Created'|capfirst %}</th>
+                  <th>{% trans 'Description'|capfirst %}</th>
+                </tr>
+                {% for transcation in transcations%}
+                <tr>
+                  <td>{{transcation.id}}</td>
+                  <td>{{transcation.amount}}</td>
+                  <td><span class="label {% if transcation.payment_type == 'DEBIT' %}green{%else%}red{% endif %}-light-background">{{transcation.payment_type}}</span></td>
+                  <td>{{transcation.balance}}</td>
+                  <td>{{transcation.created_at}}</td>
+                  <td>{{transcation.description}}</td>
+
+                </tr>
+                {%endfor%}
+
+              </tbody></table>
+            </div>
+            {% if is_paginated %}
+            <div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+              {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">«</a></li>
+              {% endif %}
+              {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">»</a></li>
+              {% endif %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+          <!-- /.box -->
+      </div>
+      </div>
+  </section>
+{%endblock%}

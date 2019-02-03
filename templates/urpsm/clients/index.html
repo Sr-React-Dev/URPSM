@@ -1,0 +1,241 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'clients'|capfirst %} {% trans 'list'|capfirst %} {% endblock %} {% block heading %} {% trans 'clients'|capfirst %} {% endblock %} {% block breadcrumb %}
+<li class="active">{% trans 'clients'|capfirst %}</li>
+{% endblock %} 
+{% block extrastyle%} 
+{% endblock %}
+{% block content %}
+<section class="content">
+    <div class="row">
+        <div class="col-md-8 col-xs-12">
+            <form class="form-inline" role="filter" method="get">{% csrf_token %}
+                <div class="form-group">
+                    <label class="sr-only" for="{{filter_form.status.label}}">{{ filter_form.status.label }}</label>
+                    {{ filter_form.status }} {% if filter_form.status.errors %} {{ filter_form.status.errors }} {% endif %}
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="{{filter_form.todo.label}}">{{ filter_form.todo.label }}</label>
+                    {{ filter_form.todo }} {% if filter_form.todo.errors %} {{ filter_form.todo.errors }} {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="{{filter_form.paid.label}}">{{ filter_form.paid.label }}</label>
+                    {{ filter_form.paid }} {% if filter_form.paid.errors %} {{ filter_form.paid.errors }} {% endif %}
+                </div>
+                <button class="btn btn-primary btn-flat btn-sm" type="submit"><i class="fa fa-filter"></i></button>
+            </form>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+            <form class="form-inline pull-right" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control input-sm" placeholder="{% trans 'search by ref'|capfirst %}" name="q">
+                    <div class="input-group-btn">
+                        <button class="btn btn-success btn-flat btn-sm" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <br>
+
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Clients list</h3>
+        <div class="box-tools">
+            <a href="{% url 'client-create' %}" class="btn btn-primary btn-flat btn-sm pull-right"><i class="fa fa-plus-circle"></i> &nbsp;{% trans 'add client'|capfirst %}</a>
+        </div>
+    </div>
+    <div class="box-body table-responsive">
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>{% trans 'ref'|capfirst %}</th>
+                    <th>{% trans 'model'|capfirst %}</th>
+                    <th>{% trans 'status'|capfirst %}</th>
+                    <th>{% trans 'todo'|capfirst %}</th>
+                    <th class="width-40">{% trans 'paid'|capfirst %}</th>
+                    <th class="width-40">{% trans 'amount'|capfirst %}</th>
+                    <th>{% trans 'delivery date'|capfirst %}</th>
+                    <th>{% trans 'paid to'|capfirst %}</th>
+                    <th>{% trans 'created'|capfirst %}</th>
+                    <th colspan="2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td>
+                        <a class="client" href="#" data-toggle="modal" data-target="#{{ client.ref }}">{{ client.ref }}</a>
+                        <div class="modal fade" id="{{ client.ref }}" tabindex="-1" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">{% trans 'client ref'|capfirst %} : {{ client.ref }}</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <dl class="dl-horizontal">
+                                            <dt>{% trans 'brand'|capfirst %}</dt>
+                                            <dd>{{ client.brand }}</dd>
+                                            <dt>{% trans 'model'|capfirst %}</dt>
+                                            <dd>{{ client.model }}</dd>
+                                            <dt>{% trans 'serial'|capfirst %}</dt>
+                                            <dd>{{ client.serial }}</dd>
+                                            <dt>{% trans 'imei'|capfirst %}</dt>
+                                            <dd>{{ client.imei }}</dd>
+                                            <dt>{% trans 'phone number'|capfirst %}</dt>
+                                            <dd>{{ client.phone_number }}</dd>
+                                            <dt>{% trans 'email'|capfirst %}</dt>
+                                            <dd>{{ client.email }}</dd>
+                                            <dt>{% trans 'delivered at'|capfirst %}</dt>
+                                            <dd>{{ client.delivery_time }}</dd>
+                                            <dt>{% trans 'status'|capfirst %}</dt>
+                                            <dd>{{ client.get_status_display }}</dd>
+                                            <dd>{{ client.status_description }}</dd>
+                                            <dt>{% trans 'todo'|capfirst %}</dt>
+                                            <dd>{{ client.get_todo_display }}</dd>
+                                            <dd>{{ client.todo_description }}</dd>
+                                            <dt>{% trans 'total'|capfirst %}</dt>
+                                            <dd>
+                                                <div class="label label-info">${{ client.total }}</div>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{% trans 'close'|capfirst %}</button>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                    </td>
+                    <td><a class="model" href="{% if client.model.picture %}{{ client.model.picture.url }}{% endif %}">{{ client.model|truncatechars:13 }}</a></td>
+                    <td>{{ client.get_status_display }}</td>
+                    <td>{{ client.get_todo_display }}</td>
+                    <td class="text-center">{% if client.paid %} <i class="fa fa-circle text-green"></i> {% else %} <i class="fa fa-circle text-red"></i> {% endif %}</td>
+                    <td class="text-center">
+                        <div class="label label-primary">${{ client.total }}</div>
+                    </td>
+                    <td> {{ client.delivery_time|default_if_none:client.delivered_at|date:"M d, Y" }}</td>
+                    <td> {{ client.paid_for }}</td>
+                    <td> {{ client.created|date:"M d, Y" }}</td>
+                    <td colspan="2">
+                        <div class="tools font-16">
+                            <a title="Update client" href="{% url 'client-update' client.id %}"><i class="fa fa-edit text-green"></i></a> &nbsp;
+                            <a title="Print ticket" href="{% url 'client-ticket' client.id %}"><i class="fa fa-print text-black"></i></a> &nbsp; {% if request.user|has_group:'Administrator' %}
+                            <a title="Delete" onclick="return confirm('{% trans 'Are you sure you want to delete this client?'|capfirst %}')" href="{% url 'client-delete' client.id %}"><i class="fa fa-trash-o text-red"></i></a> {% endif %} {% if not client.paid %}
+                            <!-- <a title="Mark as paid" onclick="return confirm('Are you sure this client paid?')" href="{#% url 'client-paid' client.id %#}"><i class="fa fa-money text-green"></i></a>  -->
+                            <a title="Mark as paid" class="paidornot" onclick="$.notify({ title: '{% trans 'Are you sure this client is paid?'|capfirst %}',button: 'Confirm'}, {   style: 'paidornot', autoHide: false, clickToHide: true});window['client']={{client.pk}}" ><i class="fa fa-money text-green"></i></a> 
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+        {% if is_paginated %}
+        <ul class="pagination pagination-sm no-margin pull-right">
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.previous_page_number }}" title="{% trans 'Previous' %}">{% trans 'Previous' %}</a>
+            </li>
+            {% endif %}
+            <li>
+                <span class="current">{% trans 'Page' %} {{ page_obj.number }} {% trans 'of' %} {{ page_obj.paginator.num_pages }}</span>
+            </li>
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.next_page_number }}" title="{% trans 'Next' %}">{% trans 'Next' %}</a>
+            </li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+</div>
+</section>
+{% endblock %} {% block extrajs %}
+<script src="{% static "js/jquery.imgpreview.js" %}" type="text/javascript"></script>
+<script src="{% static 'v2/js/notify.min.js' %}" type="text/javascript"></script>
+<script>
+jQuery(document).ready(function($) {
+    $('a.model').imgPreview({
+
+
+        imgCSS: {
+            // Limit preview size:
+            height: 128
+        },
+        // When container is shown:
+        onShow: function(link) {
+            // Animate link:
+            $(link).stop().animate({
+                opacity: 0.4
+            });
+            // Reset image:
+            $('img', this).stop().css({
+                opacity: 0
+            });
+        },
+        // When image has loaded:
+        onLoad: function() {
+            // Animate image
+            $(this).animate({
+                opacity: 1
+            }, 300);
+        },
+        // When container hides: 
+        onHide: function(link) {
+            // Animate link:
+            $(link).stop().animate({
+                opacity: 1
+            });
+        }
+
+
+    });
+    //notifyjs
+    //add a new style 'paidornot'
+        $.notify.addStyle('paidornot', {
+          html: 
+            "<div>" +
+              "<div class='clearfix'>" +
+                "<div class='title' data-notify-html='title'/>" +
+                // "<h5></h5>"+
+                "<div class='buttons'>" +
+                  "<button class='no'>Cancel</button>" +
+                  "<button class='yes' data-notify-text='button'></button>" +
+                  "<input class='value' type='hidden' data-notify-text='client' />" +
+                "</div>" +
+              "</div>" +
+            "</div>"
+        });
+
+        //listen for click events from this style
+        $(document).on('click', '.notifyjs-paidornot-base .no', function(e) {
+          //programmatically trigger propogating hide event
+          console.log(e);
+          $(this).trigger('notify-hide');
+        });
+        $(document).on('click', '.notifyjs-paidornot-base .yes', function(e) {
+          //hide notification
+          $.ajax({
+            url: '{% url "client-paid-ajax" %}',
+            type: 'GET',
+            data: {'csrfmiddlewaretoken':'{{csrf_token}}', 'pk':window['client']},
+            success: function(e){
+                $(this).trigger('notify-hide'); 
+                window.location.reload();
+            }
+          }).done(function(){
+            });
+        });
+
+});
+</script>
+{% endblock %}

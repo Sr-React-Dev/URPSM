@@ -1,0 +1,87 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} {% load i18n staticfiles thumbnail%} {% block title %} {% trans 'Invoice'|capfirst %} {% endblock %} {% block heading %} {% trans 'shop'|capfirst %} {% endblock %} {% block subheading %} View Invoice{% endblock %} {% block breadcrumb %}
+<li class="active">{% trans 'Invoices'|capfirst %}</li>
+{% endblock %} {% block content %}
+
+<section class="content">
+{% if success_msg %}
+<div class="alert alert-success">
+    {{ success_msg }}
+</div>
+{% endif %}
+    {% if info_msg %}
+    <div class="alert alert-info">
+    {{ info_msg}}
+        </div>
+    {% endif %}
+<ul class="timeline timeline-inverse">
+<li>
+    <div class="timeline-item">
+        <span class="time"><i class="fa fa-clock-o"></i>{{ invoice.created }}</span>
+
+        <h2 class="timeline-header"><a href="#">Invoice {{ invoice.id }}  for amount <strong> {{ invoice.amount }}</strong> </a></h2>
+
+
+        <ul class="uploadedfiles mailbox-attachments clearfix" style="padding: 10px;">
+            <div class="row" style="margin: 0;">
+                {% for shop_file in invoice.files_shop.all %}
+                <div class="col-md-4 col-sm-6" style="padding:0px 3px;">
+                    <li>
+                                                    <span class="mailbox-attachment-icon">
+                                                        <i class="fa
+                                                            {% if shop_file.file_extension_name == 'pdf' %}
+                                                                fa-file-pdf-o
+                                                            {% elif shop_file.file_extension_name == 'txt' %}
+                                                                fa fa-file-text-o
+                                                            {% elif shop_file.file_extension_name == 'xls' %}
+                                                                fa fa-file-excel-o
+                                                            {% elif shop_file.file_extension_name == 'doc' or shop_file.file_extension_name == 'docx' %}
+                                                                fa-file-word-o
+                                                            {% elif shop_file.file_extension_name == 'jpg' or shop_file.file_extension_name == 'jpeg' or shop_file.file_extension_name == 'png' %}
+                                                                fa-file-image-o
+                                                            {% else %}
+                                                                fa fa-file-o
+                                                            {% endif %}">
+                                                        </i>
+                                                    </span>
+                        <div class="mailbox-attachment-info">
+                            <a target="_blank" href="{{ shop_file.uploaded_file.url }}"
+                               class="mailbox-attachment-name"><i
+                                    class="fa fa-paperclip"></i>
+                                {{ shop_file.actual_file_name }}
+                            </a>
+                        </div>
+                    </li>
+                </div>
+                {% endfor %}
+            </div>
+        </ul>
+    </div>
+</li>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if request.user.profile.shop %}
+    <div class="box-footer" style="padding-bottom: 0;">
+        <div class="form-group" style="margin-bottom:0;">
+            <label>{% trans 'please upload you proof files !'|capfirst %}</label>
+            <input type="file" name="shop_files" id="filer_input" multiple="multiple">
+            <br>
+            <label for="seccode">Security Code</label>
+            <input type="text" id="seccode" name="seccode" class="form-control" style="width:128px;">
+            <input type="hidden" name="action" value="shop_proof_upload"/>
+        </div>
+    </div>
+
+    </ul>
+    <div class="box-footer">
+        <div class="btn-group pull-right">
+            <button type="submit" class="btn btn-sm btn-success ">{% trans 'submit your proof'|capfirst %}</button>
+        </div>
+    </div>
+</form>
+{%endif%}
+
+</div>
+</ul>
+</section>
+
+{% endblock %}

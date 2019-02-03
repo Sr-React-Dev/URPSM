@@ -1,0 +1,154 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load i18n %} 
+{% load networks_tag %} 
+{% load static from staticfiles %}
+{% block title %}{% trans "API Networks" %}{% endblock %}
+{% block heading %} {% trans 'API'|capfirst %} {% endblock %}
+{% block subheading %} {% trans 'Provide an API Networks'|capfirst %}{% endblock %}
+{% block breadcrumb %}
+<li>
+    <a href="{% url 'endpoints' %}" title="clients">{% trans 'endpoints'|capfirst %}</a>
+</li>
+<li class="active">{% trans 'add'|capfirst %}</li>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">{% trans 'choose your provider API networks and services'|capfirst %}</h3>
+    </div>
+    <div class="box-body" >	
+		<form id="netform" action="" method="post">{% csrf_token %}
+		<div class="row">
+			    <div class="col-sm-5">
+			        <!-- <select name="from" id="id_networks" class="form-control" size="8" multiple="multiple">
+			            <id_networks label="Swedish Cars">
+			                <option value="volvo">Volvo</option>
+			                <option value="saab">Saab</option>
+			            </id_networks>
+			            <id_networks label="German Cars">
+			                <option value="mercedes">Mercedes</option>
+			                <option value="audi">Audi</option>
+			            </id_networks>
+			            <option value="1">C++</option>
+			        </select> -->
+			        {{form.networks}}
+			    </div>
+			    
+			    <div class="col-sm-2">
+			    	<button type="button" id="id_networks_undo" class="btn btn-info btn-block">{% trans 'undo'|capfirst %}</button>
+			        <button type="button" id="id_networks_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+			        <button type="button" id="id_networks_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+			        <button type="button" id="id_networks_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+			        <button type="button" id="id_networks_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+			        <button type="button" id="id_networks_redo" class="btn btn-warning btn-block">{% trans 'redo'|capfirst %}</button>
+			    </div>
+			    
+		        {{form.raw}}
+			    <div class="col-sm-5">
+			        <!-- <select name="to" id="id_networks_to" class="form-control" size="11" multiple="multiple">
+			            
+			        </select> -->
+			        {{form.networks_to}}
+			    </div>
+			</div>
+			<div class="pull-right">
+				<input id="submit" class="btn btn-primary" type="submit" value="{% trans 'save'|capfirst %}" onclick="return false">
+			</div>
+		</form>
+		
+		
+    </div>
+</div>
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">{% trans 'list of your working services'|capfirst %}</h3>
+    </div>
+    <div class="box-body networks table-responsive">
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>{% trans 'network'|capfirst %}</th>
+                    <th>{% trans 'service'|capfirst %}</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</section>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $("#id_networks").multiselect();
+
+    $networks = [{% get_netowrks_and_services %}];
+    $user_networks = [{% get_user_netowrks_and_services %}];
+    for (var network in $user_networks[0]){
+        console.log(network, $user_networks[0][network]);
+        $service = '<tr><td>'+network+'</td><td>'+$user_networks[0][network]+'</td></tr>';
+        $(".networks tbody").append($service);
+    }
+
+    function get_network(id, name){
+    	console.log(id, name);
+    	
+    	for (var network_name in $networks[0]){
+    		var services = $networks[0][network_name];
+    		for (var service_item in services){
+    			service_obj = $networks[0][network_name][service_item]
+    			for(var service_id in service_obj){
+    				service_name = service_obj[service_id]
+	    			console.log(service_id, service_name);
+	    			if (name == service_name && id==service_id){
+	    				console.log('Bingo!!')
+	    			    return network_name;
+	   				}
+       			}
+    		}
+    	}
+    }
+    	
+    
+    $("#submit").click(function(e){
+    	e.preventDefault();
+    	$("#id_networks_to option").prop("selected", "selected");
+    	var foo = {}; 
+    	$('#id_networks_to :selected').each(function(i, selected){ 
+    		network = get_network($(selected).val() ,$(selected).text());
+    		// console.log(network);
+  			foo[i] = { 'endpoint': '{{form.instance.pk}}', 'network': network, 'id' : $(selected).val() , 'service': $(selected).text() }; 
+		});
+    	try{
+    		console.log(foo);
+    		console.log(JSON.stringify(foo));
+    		console.log($.param(foo));
+    	}catch(e){}
+    	
+    	var url = "{% url 'endpoint-services' %}";
+    	$.ajax({
+    		url: url,
+    		data: {data:JSON.stringify(foo)},
+    		// contentType: 'application/json',
+    		dataType:'json',
+    		type:'post',
+    		success: function(response){
+    			if (response.status){
+    				alert('{% trans "your networks have been successfully saved !!"|capfirst %}');
+    			}else{
+    				alert('{% trans "Your networks have not been saved. Please try again."|capfirst %}');
+
+    			}
+    		},
+    	});
+
+    	
+    });
+});
+</script>
+{% endblock %}
+{% block extrajs%}
+<script type="text/javascript" src="{% static 'v2/js/multiselect.min.js' %}"></script>
+{% endblock extrajs%}

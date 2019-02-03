@@ -1,0 +1,96 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_list admin_urls suit_list suit_tags %}
+{% load url from suit_compat %}
+ {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'Edit Site'|capfirst %} {% endblock %} {% block heading %} {% trans 'Edit Site'|capfirst %} {% endblock %} {% block breadcrumb %}
+<li class="active">{% trans 'Edit Site'|capfirst %}</li>
+{% endblock %}
+{% block extrahead %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".searchselect").select2();
+});
+
+</script>
+
+
+<script>
+
+    $('.searchselect').on('change',function(){editT(this.value);});
+
+    function editT(b){
+    a = $('#deposit-'+b).val();
+
+    if(a !=""){
+    a = atob(a);
+    var obj = JSON.parse(a).tags;
+    for(var j=0;j<obj.length;j++){
+        $('.hinput[name='+obj[j].name+']')[0].value=obj[j].content;
+    }
+    }
+    $('#savebtn').off();
+
+    $('#savebtn').on('click',function(){
+        var text = '{ "tags" : [';
+        var tgs = $('.hinput');
+        for(var i=0;i<tgs.length;i++){
+        text += '{ "name":"'+tgs[i].name+'","content":"'+tgs[i].value+'"}';
+        if(i!=tgs.length-1){
+        text += ',';
+        }
+        }
+        text += ']}';
+
+        $('#deposit-'+b).val(btoa(text.replace(/(\r\n|\n|\r)/gm,"")));
+        $('#dform').submit();
+
+
+    }); 
+    }
+</script>
+{% endblock %}
+{% block content %}
+<section class="content">
+    <div class="row" style="margin-left:0 !important;">
+        <h1 class="onwan"><span class="shortcut-icon"></span>{% trans 'Seo Panel'|capfirst %}</h1>
+        <h2>Edit meta tags</h2>
+        <form id='dform' method="post">
+            {% csrf_token %}
+            <select class="searchselect" onchange="editT(this.value);" name="url">
+                <option>---SELECT URL---</option>
+        {% for url in urls %}
+                <option value="{{url.id}}">{{url.key}} - {{url.title}}</option>
+        {% endfor %}
+                </select>
+        {% for url in urls %}
+                <input id="deposit-{{url.id}}" type="hidden" name="{{url.id}}" value="{{url.value}}" />
+        {% endfor %}
+
+
+
+        </form>
+        <h4>
+            <div class="box-body table-responsive">
+  <label>Title</label>
+  <input type="text" class="form-control hinput" name="title">
+  <label>Author</label>
+  <input type="text" class="form-control hinput" name="author">
+  <label>Keywords</label>
+    <textarea rows="8" class="form-control hinput" name="keywords"></textarea>
+  <label>Description</label>
+  <textarea rows="6"  class="hinput" name="description">  </textarea>
+        </div>
+    <button id="savebtn" type="button" class="btn btn-info">Save</button>
+
+        <hr>
+</section>
+{% endblock %}
+{% block extrajs %}
+
+{% endblock %}

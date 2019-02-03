@@ -1,0 +1,110 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load static from staticfiles %}{% load i18n%}
+{% block title %} {% trans 'contact admin'|capfirst %} {% endblock %}
+{% block heading %} {% trans 'contact admin'|capfirst %} {% endblock %}
+{% block content %}
+<div class="row" style="margin:10px 0;">
+    <div slass="col-xs-12" style="margin-left:10px;margin-right:10px">
+      <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">{% trans 'contact admin'|capfirst %} </h3>
+          </div>
+
+          <div class="box-body">
+            <form role="form" method="post" action="{% url 'contact-admin' %}">
+                {% csrf_token %}
+            <div class="col-md-12">
+            	<div class="col-md-4">
+	                <div class="form-group">
+	                    <label>Subject</label>
+		                <input class="form-control" id="id_subject" name="subject" placeholder="subject" type="text">
+
+	                </div>
+
+	                <div class="form-group">
+	                   <label>Type</label>
+		                <select class="form-control" id="id_type" name="type" placeholder="type">
+<option value="" selected="selected">--</option>
+<option value="ADMINISTRATIVE">ADMINISTRATIVE</option>
+<option value="TECHNICAL">TECHNICAL</option>
+<option value="FINANCIAL">FINANCIAL</option>
+</select>
+
+	                </div>
+	            </div>
+
+            	<div class="col-md-8">
+		             <div class="form-group">
+		                <label>Message</label>
+                            <textarea class="form-control" cols="40" id="id_message" name="message" placeholder="Write message here" rows="6"></textarea>
+
+		              </div>
+		        </div>
+            </div>
+          </div>
+          <div class="box-footer">
+            <input  type="submit" class="btn btn-primary pull-right" value="{% trans 'send'|capfirst %}"/>
+          </div>
+         </form>
+      </div>
+    </div>
+
+    <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{% trans 'previous admin messages'|capfirst %}</h3>
+            </div>
+            <div class="box-body table-responsive">
+              <table class="table table-hover table-bordered">
+                <tbody><tr>
+                  <th>{% trans 'subject'|capfirst %}</th>
+                  <th>{% trans 'type'|capfirst %}</th>
+                  <th>{% trans 'message'|capfirst %}</th>
+                  <th>{% trans 'status'|capfirst %}</th>
+                  <th>{% trans 'date'|capfirst %}</th>
+                </tr>
+                {% for message in messages%}
+                <tr>
+
+                    <td><a href="{% url 'message-thread' message.id %}">{{message.subject}}</a></td>
+                  <td><span class="label" style="background: #fc8675;">{{message.type}}</span></td>
+                  <td>{{message.first_message.message}}</td>
+                    <td><span class="label" style="background: #fc8675;">{{message.status}}</span></td>
+                  <td>{{message.created_at}}</td>
+                </tr>
+                <!-- ****************** modal ********************-->
+				<!-- ****************** end modal ********************-->
+                {%endfor%}
+           
+
+              </tbody></table>
+            </div>
+            <div class="box-footer clearfix">
+              {% if is_paginated %}
+              <ul class="pagination pagination-sm no-margin pull-right">
+                {% if page_obj.has_previous %}
+              <li>
+                <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.previous_page_number }}" title="{% trans 'Previous' %}">{% trans 'previous'|capfirst %}</a>
+                  </li>
+                  {% endif %}
+                  <li>
+                      <span class="current">{% trans 'Page' %} {{ page_obj.number }} {% trans 'of' %} {{ page_obj.paginator.num_pages }}</span>
+                  </li>
+                  {% if page_obj.has_next %}
+                  <li>
+                      <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.next_page_number }}" title="{% trans 'Next' %}">{% trans 'next'|capfirst %}</a>
+                  </li>
+                  {% endif %}
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+          <!-- /.box -->
+    </div>
+</div>
+
+
+
+<!-- ****************** end model ********************-->
+{% endblock content %}
+

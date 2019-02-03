@@ -1,0 +1,120 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load static from staticfiles %}{% load i18n%}
+{% block title %} {% trans 'shop position'|capfirst %} {% endblock %}
+{% block heading %} {% trans 'shop position'|capfirst %} {% endblock %}
+{% block content %}
+
+<section class="content">
+  <div class="row">
+    <h1 class="onwan"><span class="shortcut-icon"></span>{% trans 'my shop ranking'|capfirst %}</h1>
+    <!-- /.col -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="info-box blue-light-background font-white">
+        <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-number font-3em">{{ city_rank }}</span>
+          <span class="progress-description">
+            {% trans 'ranking by city'|capfirst %}
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="info-box red-light-background font-white">
+        <span class="info-box-icon"><i class="fa fa-thumbs-up"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-number font-3em">{{ country_rank }}</span>
+          <span class="progress-description">
+            {% trans 'ranking by country'|capfirst %}
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="info-box green-light-background font-white">
+        <span class="info-box-icon"><i class="fa fa-trophy"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-number font-3em">{{ world_rank }}</span>
+          <span class="progress-description">
+            {% trans 'ranking in the world'|capfirst %}
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">{% trans 'first shop in my city'|capfirst %}</h3>
+        </div>
+        <div class="box-body">
+          <ul class="products-list product-list-in-box">
+            <li class="item col-md-9 r-border-b">
+              <div class="product-img">
+                <img src="{{shop.logo.crop.36x36}}" alt="Product Image">
+              </div>
+              <div class="product-info">
+                <a href="javascript:void(0)" class="product-title">{{shop.name}}</a>
+                <span class="product-description">
+                  <b>{% trans 'last review'|capfirst %} :</b> {{reviews.last.content}}
+                </span>
+              </div>
+            </li>
+            <li class="col-md-3 c-count-data">
+              <span>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" data-original-title="{% trans 'unlocked'|capfirst %} : {{ shop.get_unlocked_phones_count }}" >
+                    <i class="fa fa-unlock font-20px"></i></button>
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" data-original-title="{% trans 'repaired'|capfirst %} : {{ shop.get_repaired_phones_count}}">
+                    <i class="fa fa-wrench font-20px"></i></button>
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" data-original-title="{% trans 'unrepaired'|capfirst %} : {{ shop.get_non_repaired_phones_count }}">
+                    <i class="fa fa-warning font-20px"></i></button>
+                </div>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">{% trans "my shop's clients reviews"|capfirst %}</h3>
+        </div>  
+        <div class="box-body">
+            <!-- Message. Default to the left -->
+            {%include page_template %}
+            <!-- /.direct-chat-msg --> 
+        </div>
+      </div>
+    </div>
+  </div>    
+</section>
+
+{% endblock %}
+
+{% block extrajs %}
+{%comment%}
+<script type="text/javascript" src="{% static 'v2/el-pagination/js/el-pagination.js' %}"></script>
+    <script type="text/javascript">
+          try{
+            $.endlessPaginate();
+          }catch(e){}
+    </script>
+{%endcomment%}
+{% endblock %}

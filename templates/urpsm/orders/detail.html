@@ -1,0 +1,41 @@
+{% load i18n %}
+{% load order_extras %}
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">{% trans 'reference'|capfirst %} #{{ref}}</h4>
+
+        </div>
+        <div class="modal-body">
+            <div class="te">
+                {% if not error %}
+                <dl class="dl-horizontal">
+                    <dt>{% trans 'service' %}</dt>
+                    <dd>{{ order.get_service }}</dd>
+                    <dt>{% trans 'imei'|capfirst %}</dt>
+                    <dd>{{ order.imei }}</dd><br>
+                    <dt>{% trans 'status'|capfirst %}</dt>
+                    <dd><span style="background-color:{{orderstatus|status_color}};padding:6px;border-radius:3px;color:white;">{{ orderstatus }}</span></dd><br>
+                    {% if code %}
+                    <dt>{% trans 'code'|capfirst %}</dt>
+                    <dd>{{ code }}</dd>
+                    {% endif %}
+                </dl>
+                {% else %}
+                <div class="alert alert-info">
+                    <strong>{% trans 'connection to the server'|capfirst %}</strong> {% trans 'error establishing API server connection'|capfirst %}.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'close'|capfirst %}</button>
+            {% if cancellation_allowed %}
+            <button id="cancel-order-btn" type="button" class="btn btn-default"><a href="{% url 'cancel-order' order.id %}">{% trans 'cancel order'|capfirst %}</a>
+            </button>
+            {% endif %}
+        </div>
+    </div>
+</div>

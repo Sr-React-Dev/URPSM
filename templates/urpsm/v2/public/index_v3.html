@@ -1,0 +1,546 @@
+{%extends 'urpsm/v2/public/base_v3.html' %}
+<!-- Start Imports-->
+{% load static from staticfiles %} {% load i18n %} {% load localize from l10n %} {% load thumbnail %} {% load location_tags %} {% load reviewing_tags text_tags %}
+<!--END Imports-->
+{% block keywords %}cell phone repair,phone repair,cell phone repair near me,phone screen repair,cracked screen repair,mobile repair,mobile phone repairs,cell phone screen repair,phone repair shop,pattern lock,imei unlock,unlock device,cell phone repair,iphone
+repair,phone screen repair,cell phone screen repair,cheap iphone repair,android device manager,phone screen repair near me{% endblock %} {% block metatitle %}Mobile Phones Repairing Shop |URPSM{% endblock %} {% block description %}Mobile Repair URPSM
+Marrakesh offers complete unlocked smartphone/tab repair solutions such as screen damage, fixing battery issues, Hardware defects Etc. Book Now! {% endblock %} {% block main_page%}
+<div class="page-title-container urpsm-h"></div>
+<!-- menu bar !-->
+<div class="world-map-section" id="fullmaphome"></div>
+<!--map of shops-->
+
+<div class="search-box-wrapper style2 newstyle2">
+    <!--Search fields-->
+    <div class="search-box container">
+        <div class="search-tab-content">
+            <div class="tab-pane fade active in" id="hotels-tab">
+                <form action="" method="post">
+                    <div class="row">
+                        <div class="form-group col-sm-8 col-md-8 float-desktop-left">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="selector listing-margin-search-right">
+                                        <select id="country-select"><option value="-1">{% trans 'select country'|capfirst %}</option></select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="selector listing-margin-search-right">
+                                        <select id="city-select"><option value="-1">{% trans 'select city'|capfirst %}</option></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4 col-md-4 float-desktop-right">
+                            <div class="row">
+                                <div>
+                                    <button type="submit" class="full-width btn-search" id="btn-search">{% trans 'search'|title %}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="content" class="padd-t-0">
+    <div class="flippers">
+        <div class='col-sm-6 col-md-3'>
+            <div class="card-container">
+                <div class="card">
+                    <div class="front">
+                        <img src="{{ MEDIA_URL}}icons/store_w.png">
+                        <span>{% trans 'registred shops'|capfirst %}</span>
+                    </div>
+                    <div class="back">
+                        <span>{% trans 'do you have a mobile repairing shop? SIGN UP to grow your business and increase your income from here'|capfirst %}<a href='{% url "create_account" %}'>&nbsp;{% trans 'create account'|capfirst %}</a></span></div>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-6 col-md-3'>
+            <div class="card-container">
+                <div class="card">
+                    <div class="front">
+                        <img src="{{ MEDIA_URL}}icons/map_w.png">
+                        <span>{% trans 'need to repair your phone?'|capfirst %}</span>
+                    </div>
+                    <div class="back">
+                        <span> {% trans 'find a shop to repair your mobile phone using our system of ranking'|capfirst %} <a href='#'></a></span></div>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-6 col-md-3'>
+            <div class="card-container">
+                <div class="card">
+                    <div class="front">
+                        <img src="{{ MEDIA_URL}}icons/server_w.png">
+                        <span>{% trans 'registred servers'|capfirst %}</span>
+                    </div>
+                    <div class="back">
+                        <span>{% trans 'Are you an unlocking server owner? SIGN UP to get more customers for your API' %} <a href="{% url 'create_account' %}">&nbsp;{% trans 'create account'|capfirst %}</a></span></div>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-6 col-md-3'>
+            <div class="card-container">
+                <div class="card">
+                    <div class="front">
+                        <img src="{{ MEDIA_URL}}icons/unlock_w.png">
+                        <span>{% trans 'unlocked phones'|capfirst %}</span>
+                    </div>
+                    <div class="back">
+                        <span>{% trans 'Many shops have used URPSM to unlock their customers mobile phones!! Why not you too?' %} <a href='#'>Link</a></span></div>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-6 col-md-3'>
+            <div class="card-container">
+                <div class="cardi">
+                    <div class="backi">
+                        <div class="icon-box style3 counters-box">
+                            <div class="numbers">
+                                <span class="display-counter">{{registred_shops}}</span>
+                                <i class="soap-icon-recommend"></i>
+                            </div>
+                            <div class="description">{% trans 'registred shops'|capfirst %}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-6 col-md-3'>
+            <div class="card-container">
+                <div class="cardi">
+                    <div class="backi">
+                        <div class="icon-box style3 counters-box">
+                            <div class="numbers">
+                                <span class="display-counter">{{repaired_phones}}</span>
+                                <i class="soap-icon-insurance"></i>
+                            </div>
+                            <div class="description">{% trans 'repaired phones'|capfirst %}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-6 col-md-3'>
+            <div class="card-container">
+                <div class="cardi">
+                    <div class="backi">
+                        <div class="icon-box style3 counters-box">
+                            <div class="numbers">
+                                <span class="display-counter">{{registred_servers}}</span>
+                                <i class="soap-icon-settings"></i>
+                            </div>
+                            <div class="description">{% trans 'registred servers'|capfirst %}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='col-sm-6 col-md-3'>
+            <div class="card-container">
+                <div class="cardi">
+                    <div class="backi">
+                        <div class="icon-box style3 counters-box">
+                            <div class="numbers">
+                                <span class="display-counter">{{unlocked_phones}}</span>
+                                <i class="soap-icon-settings-1"></i>
+                            </div>
+                            <div class="description">{% trans 'unlocked phones'|capfirst %}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="main">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <h1 class="borderdb">{% trans 'Best Reviewed Shops' %}</h1>
+                        <div class="image-box hotel shoplisting listing-style1 row">
+                            {% for shop in best_reviewed_shops%}
+                            <div class="col-sm-6 col-md-3 shopst">
+                                <article class="box newbbox">
+                                    <figure class="listo-phone">
+                                        {% with 'icons/shop/default.png' as placeholder %}
+                                        <a href="{% url 'shop-detail-public' shop.pk shop.slug %}"><img class="radius-50" src="{{shop.logo.crop.120x120|default:placeholder}}"></a>
+                                        {% with 'v2/images/%s.png'|concatenate:shop.level as level_badge %}
+                                        <p class="immog-level"><img src="{% static level_badge %}" alt="level" /></p>
+                                        {%endwith%} {%endwith%}
+                                    </figure>
+                                    <div class="details">
+                                        <h4 class="box-title margned">{{shop.name}}<small><i class="soap-icon-departure"></i> {{shop.city}}</small></h4>
+
+                                        <div class="statics-tooltip pull-right">
+                                            <ul>
+                                                <li class="statics-icons nbs-flexisel-item">
+                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-original-title="{% trans 'Satisfied Clients' %} {{ shop.get_satisfied_clients_count }}">
+                                                        <span class="set-1"></span>
+                                                    </a>
+                                                </li>
+                                                <li class="statics-icons nbs-flexisel-item">
+                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-original-title="{% trans 'Unlocked phones' %} {{ shop.get_unlocked_phones_count }}">
+                                                        <span class="set-2"></span>
+                                                    </a>
+                                                </li>
+                                                <li class="statics-icons nbs-flexisel-item">
+                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-original-title="{% trans 'Repaired Phones ' %} {{ shop.get_repaired_phones_count}}">
+                                                        <span class="set-4"></span>
+                                                    </a>
+                                                </li>
+                                                <li class="statics-icons nbs-flexisel-item">
+                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-original-title="{% trans 'Unrepaired Phones' %} {{ shop.get_non_repaired_phones_count }}">
+                                                        <span class="set-3"></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="feedback">
+                                            <div data-placement="bottom" data-toggle="tooltip" class="five-stars-container" title="{% if not shop.average_rating %}0{%endif%}{{shop.average_rating|floatformat }} {% trans 'stars' %}"><span style="width: {%localize off%} {{shop.average_rating|multiply:20 }}%;{%endlocalize%}" class="five-stars"></span></div>
+                                            <span class="review">{{shop.review_shop.count}} {% trans 'reviews' %}</span>
+                                        </div>
+                                        <div class="action">
+                                            <a class="button hmr btn-small" href="{% url 'shop-detail-public' shop.pk shop.slug %}">{% trans 'SEE MORE' %}</a>
+                                            <a class="button btn-small khedr popup-map" href="javascript:void(0)" data-box="{{shop.location}}">{% trans 'VIEW ON MAP' %}</a>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            {% endfor %}
+                            <a href="{%url 'popular-shops' %}" class="uppercase full-width button btn-large l-m">
+                                    {% trans 'List More Shops' %}
+                                </a>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <h1 class="borderdb">{% trans 'Popular repaired Phones' %}</h1>
+                        <div class="secondslid">
+                            <div class="phones-small-details booking-details urpsm-home paddsec row">
+                                {%for model in popular_repaired_phones%}
+                                <div class='col-sm-6 col-md-3 padcol'>
+                                    <article class="image-box cruise listing-style1 valpadd">
+                                        <h4>{{model.brand.name}}</h4>
+                                        <figure class="clearfix">
+                                            {% with 'default.png' as placeholder %}
+                                            <a href="{% url 'model' model.brand.slug model.slug %}" class="model-image">
+                                                <img class="middle-item radius-50" alt="{{model.name}}" src="{{model.picture.crop.120x120|default:placeholder}}">
+                                            </a>
+                                            {%endwith%}
+                                            <div class="infos-urpsm-phone">
+                                                <div class="box-title">
+                                                    <div class="height-26">{{model.name}}</div>
+                                                    <div class="statics-tooltip2 newtoolpos">
+                                                        <li class="statics-icons">
+                                                            <a title="{% trans 'Satisfied Clients' %} {{model.satisfied_clients_count}}" href="javascript:void(0)" data-toggle="tooltip">
+                                                                <i class="set-1-small"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="statics-icons">
+                                                            <a title="{% trans 'Unlocked phones' %} {{ model.unlocked_items }}" href="javascript:void(0)" data-toggle="tooltip">
+                                                                <i class="set-2-small"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="statics-icons">
+                                                            <a title="{% trans 'Repaired Phones ' %} {{ model.repaired_items }}" href="javascript:void(0)" data-toggle="tooltip">
+                                                                <i class="set-4-small"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="statics-icons">
+                                                            <a title="{% trans 'Unrepaired Phones' %} {{ model.repairing_request|subtract:model.repaired_items }}" href="javascript:void(0)" data-toggle="tooltip">
+                                                                <i class="set-3-small"></i>
+                                                            </a>
+                                                        </li>
+                                                    </div>
+                                                    <a href="{% url 'model' model.brand.slug model.slug %}" class="button btn-small sea-blue full-width">View</a> {%comment%}
+                                                    <a href="https://www.urpsm.com{% url 'model' model.brand.slug model.slug %}" class="button btn-small sea-blue full-width">{% trans 'View details' %}</a> {%endcomment%}
+                                                </div>
+                                            </div>
+                                        </figure>
+                                    </article>
+                                </div>
+                                {%endfor%}
+                                <a href="{% url 'popular-phones' %}" class="uppercase full-width button btn-large l-m">
+                                        {% trans 'List More Phones' %}
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <h1 class="borderdb">{% trans 'Popular Servers' %}</h1>
+                        <div class="thirdslid image-box style9 row">
+                            {% for shop in popular_server %}
+                            <div class='col-sm-4 col-md-2 col-xs-6 popshops'>
+                                <article class="box nbok">
+                                    {% static 'v2/images/75-75.png' as dez %}
+                                    <figure>
+                                        <a href="javascript:void(0)" title="" class="immoga"><img src="{{shop.logo.crop.120x120|default_if_none:dez}}" alt="" width="120" height="120" class="immog" /> {% with 'v2/images/%s.png'|concatenate:shop.level as level_badge %}
+                                            <p class="immog-level"><img src="{% static level_badge %}" alt="level" /></p>
+                                            {%endwith%}
+                                        </a>
+                                    </figure>
+                                    <div class="details">
+                                        <h4 class="box-title">{{shop.name}}</h4>
+                                        <div class="review-score">
+                                            <div class="five-stars-container">
+                                                <div style="width: {%localize off%} {% if not shop.average_rating %}0{% endif%}{{shop.average_rating|multiply:20 }}%;{%endlocalize%}" class="five-stars"></div>
+                                            </div>
+                                        </div>
+
+                                        <a href="javascript:void(0)" class="button urpsm-button-seemore">{% trans 'View' %}</a>
+                                    </div>
+                                </article>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main_page%} {% block js %}
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDfAwtL4h52jMA93AuQaB90HASh01iV1Zw&language=fr"></script>
+<script type="text/javascript" src="{% static 'v2/js/gmap3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'v2/js/gmap3.infobox.js' %}"></script>
+<!-- this javascript can be added to an external file ! just for demo -->
+<script type="text/javascript">
+    (jQuery)('#btn-search').prop('disabled', true);
+    {% if lat %}
+        var lat = {{lat}};
+    {% else %}
+        var lat = 0;
+    {% endif %}
+    {%if lon %}
+        var lon = {{lon}};
+    {% else %}
+        var lon = 0;
+    {% endif %}
+    var marker_values;
+    (jQuery)('document').ready(function() {
+        // global  lat,lon;
+
+        function getLocation() {
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            };
+
+            function error(err) {
+                console.log(err);
+            };
+
+            function success(pos) {
+                var crd = pos.coords;
+                lat = parseFloat(crd.latitude);
+                lon = parseFloat(crd.longitude);
+                get_near_shops([lat, lon]);
+            };
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error, options);
+
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+                // return [31.6210978,-8.1033062];
+            }
+        }
+        var markerHtml = '<div class="marker-holder"><div class="image-box borderdd"><figure class="middle-block"><img src="{0}" alt="" class="middle-item"></figure><div class="details"><h4 class="title shop-t">{1}</h4><div class="table-wrapper"><i class="soap-icon-departure newcolor"></i>{2}</div></div></div></div>';
+
+        function _image(path) {
+            path = 'https://urpsm-assets.s3.amazonaws.com/media/' + path;
+            var image = {
+                url: path,
+                scaledSize: new google.maps.Size(50, 50),
+                optimized: false
+            };
+            return image
+        }
+
+
+        function format_markup(logo, name, address, city, country) {
+            return '<div class="marker-holder"><div class="image-box borderdd"><figure class="middle-block"><img src="https://urpsm-assets.s3.amazonaws.com/media/' + logo + '" alt="" class="middle-item"></figure><div class="details"><h4 class="title shop-t">' + name + '</h4><div class="table-wrapper"><i class="soap-icon-departure newcolor"></i>' + address + ', ' + city + ', ' + country + '</div></div></div></div>';
+        }
+
+        function get_near_shops(point) {
+            var result = [];
+            var locationString = "";
+            var locationArray = [];
+
+            (jQuery).ajax({
+                url: "{% url 'near-shops'  %}",
+                data: 'latLng=' + point[0] + ',' + point[1],
+                success: function(response) {
+                    // console.log(response);
+                    (jQuery).each(response, function(_) {
+                            shop = response[_];
+                            logo = shop['logo'];
+                            locationString = shop['location'];
+                            if (locationString) {
+                                locationArray = locationString.split(",");
+                            } else {
+                                locationArray = [];
+                            }
+                            result.push({
+                                "address": shop['address'],
+                                "latLng": locationArray,
+                                "data": format_markup(shop['logo'], shop["name"], shop["address"], shop['city__name'], shop['country__name']),
+                                'options': {
+                                    icon: _image('shop.png')
+                                }
+                            });
+                            locationArray = [];
+                        })
+                        // result =  response;
+                },
+                dataType: 'json'
+            }).done(function() {
+                marker_values = result;
+                // console.log(marker_values);
+                placeMarkersAround(point, marker_values);
+            });
+        }
+
+
+
+        function placeMarkersAround(point, marker_values) {
+            tjq(".world-map-section").gmap3({
+                map: {
+                    options: {
+                        center: point, //[lat, lon],//[31.6210978,-8.1033062],
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        zoom: 15,
+                        maximumAge: 0
+                    }
+                },
+                marker: {
+
+                    values: marker_values,
+                    options: {
+                        draggable: false
+                    },
+                    events: {
+                        click: function(marker, event, context) {
+                            if (infobox.getPosition() == marker.getPosition() && mapDiv.find(".infoBox").length > 0) {
+                                infobox.close();
+                            } else {
+                                map.panTo(marker.getPosition());
+                                infobox.setContent(context.data);
+                                infobox.open(map, marker);
+                                // if map is small
+                                var iWidth = 405;
+                                var iHeight = 165;
+                                if ((mapDiv.width() / 2) < iWidth) {
+                                    var offsetX = iWidth - (mapDiv.width() / 2);
+                                    map.panBy(offsetX, 0);
+                                }
+
+                                if ((mapDiv.height() / 2) < iHeight) {
+                                    var offsetY = -(iHeight - (mapDiv.height() / 2));
+                                    map.panBy(0, offsetY);
+                                }
+                                setTimeout(function() {
+                                    tjq(".infoBox .middle-block").middleblock();
+                                }, 200);
+                            }
+                        }
+                    }
+                }
+            });
+            var mapDiv = tjq(".world-map-section");
+            var map = mapDiv.gmap3("get");
+            var infobox = new InfoBox({
+                pixelOffset: new google.maps.Size(-204, -78),
+                closeBoxURL: '',
+                enableEventPropagation: true
+            });
+        }
+        getLocation();
+    });
+
+    var countries = {% get_countries %};
+    var cities_countries = {% get_cities_countries %};
+    var cities_ids = {% get_cities_ids %};
+
+    var countryElementId = "country-select";
+    var countryIdSelector = "#country-select option:selected";
+    var cityElementId = "city-select";
+    var cityIdSelector = "#city-select option:selected";
+
+    function convertToSlug(Text) {
+        return Text
+            .toLowerCase()
+            .replace(/ /g, '-')
+            .replace(/[^\w-]+/g, '');
+    }
+
+    function populatecities(countryElementId, cityElementId) {
+
+        var selectedCountryIndex = document.getElementById(countryElementId).value;
+
+        var cityElement = document.getElementById(cityElementId);
+
+        cityElement.length = 0;
+        cityElement.options[0] = new Option('Select city', '-1');
+        cityElement.selectedIndex = 0;
+
+        (jQuery).each(cities_countries, function(city_name) {
+            if (cities_countries[city_name] == selectedCountryIndex) {
+                city_id = cities_ids[city_name];
+                cityElement.options[cityElement.length] = new Option(city_name, city_id);
+            }
+        });
+
+        cityElement.onchange = function() {
+            (jQuery)('#btn-search').prop('disabled', false);
+        }
+    }
+
+    function populateCountries(countryElementId, cityElementId) {
+        // given the id of the <select> tag as function argument, it inserts <option> tags
+        var countryElement = document.getElementById(countryElementId);
+        countryElement.length = 0;
+        countryElement.options[0] = new Option('Select Country', '-1');
+        countryElement.selectedIndex = 0;
+
+        (jQuery).each(countries, function(_) {
+            country = countries[_];
+            countryElement.options[countryElement.length] = new Option(_, country);
+
+        });
+
+        // Assigned all countries. Now assign event listener for the states.
+
+        if (cityElementId) {
+            countryElement.onchange = function() {
+                populatecities(countryElementId, cityElementId);
+                (jQuery)('#btn-search').prop('disabled', true);
+            };
+        }
+    }
+    populateCountries(countryElementId, cityElementId);
+    (jQuery)('#btn-search').on('click', function(e) {
+        e.preventDefault();
+        var city = document.getElementById(cityElementId).value;
+        var country = document.getElementById(countryElementId).value;
+
+        var city_name = convertToSlug((jQuery)(cityIdSelector).text());
+        var country_name = convertToSlug((jQuery)(countryIdSelector).text());
+        var query = "?city=" + city_name + '&country=' + country_name;
+        var _url = "{% url 'search-shops' %}";
+        var redirect_url = _url + query;
+        window.location.href = redirect_url;
+
+    });
+
+    // });
+</script>
+{%endblock js%}

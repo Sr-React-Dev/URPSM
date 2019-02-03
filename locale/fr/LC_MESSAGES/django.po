@@ -1,0 +1,4652 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# -*- coding: utf-8 -*-
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: URPSM.com\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-24 21:54+0000\n"
+"PO-Revision-Date: 2017-09-24 22:40+0100\n"
+"Last-Translator: \n"
+"Language-Team: soufiane <contact@urpsm.com>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: app/account/forms.py:20
+msgid "This email address already exists."
+msgstr "L’adresse e-mail existe déjà."
+
+#: app/account/forms.py:26
+msgid "This email does not exists."
+msgstr "Email inexistant"
+
+#: app/account/forms.py:31
+msgid "Username/Email"
+msgstr "Nom d’utilisateur/E-mail"
+
+#: app/account/forms.py:33 templates/urpsm/v2/accounts/login_form_v2.html:28
+#: templates/urpsm/v2/accounts/register_form_v2.html:18
+msgid "Password"
+msgstr "Mot de passe"
+
+#: app/account/forms.py:36
+#, python-format
+msgid ""
+"Please enter a correct %(username)s and password. Note that both fields may "
+"be case-sensitive or your account has been blocked."
+msgstr ""
+"Veuillez entrer le %(username)s et mot de passe correct. Notez que les deux "
+"champs peuvent case-sensitive."
+
+#: app/account/forms.py:38 app/account/forms.py:39
+msgid "This account is inactive."
+msgstr "Ce compte est inactif."
+
+#: app/account/forms.py:46 app/account/forms.py:50
+#: templates/urpsm/v2/accounts/register_form_v2.html:32
+msgid "shop owner"
+msgstr "Propriétaire de la Boutique"
+
+#: app/account/forms.py:46 app/account/forms.py:50
+msgid "unloking server owner"
+msgstr "Propriétaire du serveur unloking"
+
+#: app/account/forms.py:51
+msgid "Select your business type"
+msgstr "Sélectionnez votre secteur d’activité "
+
+#: app/account/forms.py:56 app/public/forms.py:15
+#: templates/urpsm/accounts/index.html:24 templates/urpsm/clients/index.html:90
+#: templates/urpsm/v2/accounts/register_form_v2.html:71
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "email"
+msgstr "E-mail :"
+
+#: app/account/models.py:18 app/ureview/models.py:17
+#: templates/urpsm/shop/actionhistory.html:20
+#: templates/urpsm/v2/dash/adminhistory.html:24
+msgid "User"
+msgstr "Utilisateur"
+
+#: app/account/models.py:18 templates/urpsm/accounts/profile.html:5
+#: templates/urpsm/accounts/profile.html:8
+#: templates/urpsm/v2/base_manager_v2.html:155
+#: templates/urpsm/v2/base_manager_v2.html:157
+#: templates/urpsm/v2/base_manager_v3.html:150
+#: templates/urpsm/v2/base_manager_v3.html:152
+msgid "profile"
+msgstr "Profil"
+
+#: app/account/models.py:28
+msgid "Activation key"
+msgstr "Clé d’activation"
+
+#: app/account/models.py:29
+msgid "Unconfirmed email"
+msgstr "Email non confirmée"
+
+#: app/account/models.py:31
+msgid "New email verification key"
+msgstr "Nouvelle clé de vérification de courriel"
+
+#: app/account/models.py:35
+msgid "current ip"
+msgstr "Adresse ip"
+
+#: app/account/models.py:40
+msgid "Profile"
+msgstr "Profil"
+
+#: app/account/models.py:41
+msgid "Profiles"
+msgstr "Profil"
+
+#: app/account/models.py:48
+#: templates/urpsm/accounts/registration_complete.html:4
+#: templates/urpsm/accounts/registration_complete.html:8
+#: templates/urpsm/v2/accounts/registration_complete.html:4
+#: templates/urpsm/v2/accounts/registration_complete.html:8
+msgid "Account activation"
+msgstr "Activation du compte"
+
+#: app/account/utils.py:25
+msgid "Template Does Not Exist"
+msgstr "Le modèle n'existe pas"
+
+#: app/account/utils.py:28
+msgid "Email recipient cannot be null."
+msgstr "Destinataire d’email ne peut pas être null."
+
+#: app/account/utils.py:31
+msgid "Please, Enter a subject."
+msgstr "Merci d'indiquer un sujet."
+
+#: app/account/views.py:128
+msgid "Your email address has been changed."
+msgstr "Votre adresse email a été changé."
+
+#: app/account/views.py:131
+msgid "Invalid confirmation key."
+msgstr "Touche de confirmation non valide."
+
+#: app/antifraud/validators.py:21
+msgid "This is not a valid imei"
+msgstr "Il ne s’agit pas d’un imei valide"
+
+#: app/dash/forms.py:9 app/public/forms.py:12
+#: templates/urpsm/v2/dash/contact_admin_v2.html:60
+#: templates/urpsm/v2/dash/contact_shop_server.html:109
+msgid "subject"
+msgstr "Sujet"
+
+#: app/dash/forms.py:11 templates/urpsm/components/index.html:24
+#: templates/urpsm/v2/dash/contact_admin_v2.html:61
+#: templates/urpsm/v2/dash/contact_shop_server.html:110
+msgid "type"
+msgstr "Type"
+
+#: app/dash/forms.py:14 app/public/forms.py:20
+msgid "Write message here"
+msgstr "Ecrivez votre message ici"
+
+#: app/dash/models.py:9
+msgid "administrative"
+msgstr "Administratif(s)"
+
+#: app/dash/models.py:9
+msgid "technical"
+msgstr "Techniques"
+
+#: app/dash/models.py:9
+msgid "financial"
+msgstr "Financiers"
+
+#: app/dash/views.py:404 app/public/views.py:255
+msgid "We had received your message. Thank you"
+msgstr "Nous avions reçu votre message. Merci"
+
+#: app/dhrufusion/client.py:84 app/nakshfusion/client.py:91
+#: app/nakshfusion/gsm_client.py:91
+#, python-brace-format
+msgid ""
+"your credit is {0} you need to provision your credit as soon as possible"
+msgstr "Votre crédit est {0} que vous devez approvisionner dès que possible"
+
+#: app/endpoint/views.py:52
+msgid "The API has been deleted."
+msgstr "L’API a été supprimé."
+
+#: app/endpoint/views.py:81
+msgid "Your API is successfully updated."
+msgstr "Votre API est mis à jour avec succès."
+
+#: app/endpoint/views.py:101
+msgid "Your networks and services are successfully updated."
+msgstr "Vos réseaux et services sont mis à jour."
+
+#: app/endpoint/views.py:132
+msgid "Your API was sent successfully."
+msgstr "Votre API a été envoyé avec succès."
+
+#: app/endpoint/views.py:161
+msgid "credit must be positive"
+msgstr "Le montant du crédit doit être positif"
+
+#: app/endpoint/views.py:164
+msgid "No credit provided"
+msgstr "Aucun crédit fourni"
+
+#: app/endpoint/views.py:257
+#, python-format
+msgid "%s network is successfully added"
+msgstr "%s Réseau est ajouté avec succès"
+
+#: app/endpoint/views.py:259
+#, python-format
+msgid "error adding network %s"
+msgstr "Erreur Ajout réseau %s"
+
+#: app/endpoint/views.py:272
+#, python-format
+msgid "%s network is successfully edited"
+msgstr "%s Réseau est édité avec succès"
+
+#: app/endpoint/views.py:275
+#, python-format
+msgid "error editing network %s"
+msgstr "Erreur d’édition réseau %s"
+
+#: app/endpoint/views.py:283
+#, python-format
+msgid "%s network is successfully removed"
+msgstr "%s Réseau est supprimée avec succès"
+
+#: app/endpoint/views.py:286
+#, python-format
+msgid "error removing network %s"
+msgstr "Erreur suppression réseau %s"
+
+#: app/launch/views.py:45 templates/urpsm/ureview/thankyou.html:4
+#: templates/urpsm/v2/public/thankyou_v2.html:24
+msgid "Thank you"
+msgstr "Merci"
+
+#: app/notifications/models.py:93
+msgid "new review from client"
+msgstr "Nouvel avis d'un client"
+
+#: app/notifications/models.py:94
+msgid "new shop review"
+msgstr "Nouvelle avis de boutique"
+
+#: app/notifications/models.py:95
+msgid "client has to review"
+msgstr "Le client doit donner son avis"
+
+#: app/notifications/models.py:97
+msgid "new order"
+msgstr "Nouvelle Commande"
+
+#: app/notifications/models.py:98
+msgid "an order has been delivered"
+msgstr "Une commande a été livrée"
+
+#: app/notifications/models.py:99
+msgid "an order has exceeded delivery time"
+msgstr "Une command a dépassé le délai de livraison"
+
+#: app/notifications/models.py:100
+msgid "order cancelling refused"
+msgstr "Annulation de commande refusée"
+
+#: app/notifications/models.py:102 templates/urpsm/components/create.html:14
+msgid "new component"
+msgstr "Nouvelle composante"
+
+#: app/notifications/models.py:104
+msgid "new ticket"
+msgstr "Ajouter Nouveau Ticket"
+
+#: app/notifications/models.py:105
+msgid "admin has responded to your ticket"
+msgstr "Admin a répondu à votre ticket"
+
+#: app/notifications/models.py:106
+msgid "server has responded to you ticket"
+msgstr "Serveur a répondu à vous ticket"
+
+#: app/notifications/models.py:107
+msgid "your did not respond to ticket within 3 days, order will be canceled"
+msgstr ""
+"Vous n'avais pas répondu sur le ticket dans les 3 jours, ordre sera annulée."
+
+#: app/notifications/models.py:108
+msgid ""
+"unlocking server did not respond to your ticket within 3 days, you will be "
+"refunded."
+msgstr ""
+"Serveur de déblocage n’a pas répondu à votre billet dans les 3 jours, vous "
+"serez remboursé."
+
+#: app/notifications/models.py:110
+msgid "payment transaction accepted"
+msgstr "Opération de paiement acceptée"
+
+#: app/notifications/models.py:111
+msgid "payment transaction declined"
+msgstr "Opération de paiement refusée"
+
+#: app/notifications/models.py:113
+msgid "new brand added"
+msgstr "Nouvelle marque ajouté"
+
+#: app/notifications/models.py:114
+msgid "new model added"
+msgstr "Nouveau modèle ajouté"
+
+#: app/notifications/models.py:116
+msgid "admin notification"
+msgstr "Notification Administrateur"
+
+#: app/notifications/models.py:118
+msgid "client status has been changed"
+msgstr "État du client changé"
+
+#: app/notifications/models.py:119
+msgid "client status has been paid"
+msgstr "État du client payée"
+
+#: app/notifications/models.py:120
+msgid "proof was rejected. please re-upload"
+msgstr "La preuve a été rejetée. s’il vous plaît re-télécharger"
+
+#: app/notifications/models.py:121
+msgid "proof verified. funds added to account"
+msgstr "Preuve vérifiée. ajouté au compte de fonds"
+
+#: app/notifications/models.py:122
+msgid "Received a new message"
+msgstr "nouveau message reçu "
+
+#: app/notifications/models.py:139
+msgid "a new component"
+msgstr "Nouvelle composante"
+
+#: app/notifications/models.py:348
+msgid "Ooops! Something went wrong."
+msgstr "Ooops ! Quelque chose n’allait pas."
+
+#: app/payment/views.py:20
+msgid "Please enter amount to be transferred."
+msgstr "Entrez le montant à transférer."
+
+#: app/public/forms.py:10 templates/urpsm/v2/dash/contact_shop_server.html:113
+msgid "name"
+msgstr "Nom"
+
+#: app/public/forms.py:17
+msgid "website"
+msgstr "Site Web"
+
+#: app/public/templatetags/reviewing_tags.py:13
+msgid "Pending"
+msgstr "En attente"
+
+#: app/public/templatetags/reviewing_tags.py:14
+msgid "Need Your Call"
+msgstr "Besoin de votre appel"
+
+#: app/public/templatetags/reviewing_tags.py:15
+msgid "Ready"
+msgstr "Prêt"
+
+#: app/public/templatetags/reviewing_tags.py:16
+msgid "Can't Repaired"
+msgstr "Ne peut pas réparer"
+
+#: app/public/templatetags/reviewing_tags.py:58
+msgid "Undefined"
+msgstr "Indéfini"
+
+#: app/ureview/forms.py:14 app/ureview/forms.py:23
+msgid "Your rating"
+msgstr "Votre vote"
+
+#: app/ureview/forms.py:15 app/ureview/forms.py:24
+msgid "Your Review"
+msgstr "Votre avis"
+
+#: app/ureview/forms.py:16 app/ureview/forms.py:25
+msgid "May be you like it..."
+msgstr "Peut-être vous plaira..."
+
+#: app/ureview/models.py:23
+msgid "Content"
+msgstr "Contenu"
+
+#: app/ureview/models.py:30
+msgid "Language"
+msgstr "Langue"
+
+#: app/ureview/models.py:36
+msgid "Creation date"
+msgstr "Date de création"
+
+#: app/ureview/models.py:41
+msgid "rating"
+msgstr "Vote"
+
+#: app/ureview/models.py:54 app/ureview/models.py:66
+msgid "Anonymous"
+msgstr "Anonyme"
+
+#: app/ureview/models.py:80
+msgid "reviewed order"
+msgstr "Command évalué"
+
+#: app/ureview/models.py:81
+msgid "reviewed orders"
+msgstr "Commandes évalué"
+
+#: app/ureview/models.py:84
+#, python-brace-format
+msgid "Order #{0} by {1}"
+msgstr "Command # {0} par {1}"
+
+#: app/ureview/views.py:36
+msgid "Your are not allowed to access this ressource"
+msgstr "Vous êtes pas autorisé à accéder à cette ressource"
+
+#: app/ureview/views.py:87
+msgid "This service has already been reviewed"
+msgstr "Ce service a déjà été examiné"
+
+#: app/ureview/views.py:89
+msgid "Your review is not complete"
+msgstr "Votre avis n’est pas complète"
+
+#: mobilify/gateways.py:11
+#, python-format
+msgid "Fake call to %(number)s: \"Your token is: %(token)s\""
+msgstr "Faux appel à %(number)s: \"votre jeton est : %(token)s\""
+
+#: mobilify/gateways.py:17
+#, python-format
+msgid "Fake SMS to %(number)s: \"Your token is: %(token)s\""
+msgstr "Faux SMS à %(number)s: \"votre jeton est : %(token)s\""
+
+#: templates/admin/dash/charges.html:4 templates/urpsm/endpoint/orders.html:1
+#: templates/urpsm/endpoint/orders.html:7
+#: templates/urpsm/orders/cancel_order_page.html:1
+#: templates/urpsm/orders/cancel_order_page_new.html:1
+#: templates/urpsm/orders/index.html:1 templates/urpsm/orders/index.html:51
+#: templates/urpsm/v2/_base_manager_v2.html:292
+#: templates/urpsm/v2/dash/customOrderReply.html:4
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:43
+msgid "orders list"
+msgstr "Liste des commandes"
+
+#: templates/admin/dash/charges.html:4
+#: templates/admin/dash/clearforwithdrawl.html:4
+#: templates/admin/shop/shop_view_invoice.html:4
+#: templates/urpsm/endpoint/orders.html:1
+#: templates/urpsm/endpoint/orders.html:2
+#: templates/urpsm/orders/cancel_order_page.html:1
+#: templates/urpsm/orders/cancel_order_page.html:2
+#: templates/urpsm/orders/cancel_order_page_new.html:1
+#: templates/urpsm/orders/cancel_order_page_new.html:2
+#: templates/urpsm/orders/index.html:1 templates/urpsm/orders/index.html:2
+#: templates/urpsm/tickets/ticket_details.html:1
+#: templates/urpsm/v2/dash/adminchathistory.html:4
+#: templates/urpsm/v2/dash/contact_shop_server.html:4
+#: templates/urpsm/v2/dash/customOrderReply.html:4
+#: templates/urpsm/v2/dash/customOrderReply.html:5
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:46
+msgid "orders"
+msgstr "Commandes"
+
+#: templates/admin/dash/charges.html:14
+msgid "URPMS Charges"
+msgstr "URPMS frais"
+
+#: templates/admin/dash/clearforwithdrawl.html:4
+#: templates/admin/dash/clearforwithdrawl.html:19
+msgid "Clearance requests"
+msgstr "Demandes d’autorisation"
+
+#: templates/admin/dash/clearforwithdrawl.html:26
+#: templates/admin/shop/shop_view_invoice.html:28
+#: templates/urpsm/server/viewservercredithistory.html:19
+#: templates/urpsm/shop/actionhistory.html:16
+#: templates/urpsm/shop/invoices.html:18
+#: templates/urpsm/v2/dash/adminhistory.html:21
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:107
+msgid "Id"
+msgstr "ID"
+
+#: templates/admin/dash/clearforwithdrawl.html:27
+msgid "Server Name"
+msgstr "Nom du serveur"
+
+#: templates/admin/dash/clearforwithdrawl.html:28
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:110
+msgid "Paypal Email"
+msgstr "Email Paypal"
+
+#: templates/admin/dash/clearforwithdrawl.html:29
+#: templates/admin/shop/shop_view_invoice.html:29
+#: templates/urpsm/server/viewservercredithistory.html:23
+#: templates/urpsm/shop/actionhistory.html:17
+#: templates/urpsm/shop/invoices.html:19
+#: templates/urpsm/v2/dash/adminhistory.html:22
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:111
+msgid "Created"
+msgstr "Créé"
+
+#: templates/admin/dash/clearforwithdrawl.html:30
+#: templates/admin/shop/shop_view_invoice.html:30
+#: templates/urpsm/server/viewservercredithistory.html:20
+#: templates/urpsm/shop/invoices.html:20
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:108
+msgid "Amount"
+msgstr "Montant"
+
+#: templates/admin/dash/clearforwithdrawl.html:31
+msgid "Clear"
+msgstr "Effacer"
+
+#: templates/admin/dash/clearforwithdrawl.html:62
+msgid "Are you sure ?"
+msgstr "Êtes vous sûre ?"
+
+#: templates/admin/dash/clearforwithdrawl.html:63
+msgid ""
+"Amount will be cleared and server will be able to withdraw the said amount"
+msgstr ""
+"Montant sera autorisé et le serveur sera en mesure de retirer ladite somme"
+
+#: templates/admin/dash/contactadmin/change_form.html:9
+msgid "send & save feedback"
+msgstr "envoyer & enregistrer vos commentaires"
+
+#: templates/admin/public/contact/change_form.html:9
+msgid "Send & save feedback"
+msgstr "Envoyer & enregistrer vos commentaires"
+
+#: templates/admin/server/server/change_form.html:7
+#: templates/admin/shop/shop/change_form.html:7
+#: templates/urpsm/v2/_base_manager_v2.html:349
+#: templates/urpsm/v2/_base_manager_v2.html:356
+#: templates/urpsm/v2/base_manager_v2.html:390
+#: templates/urpsm/v2/base_manager_v2.html:392
+#: templates/urpsm/v2/base_manager_v3.html:402
+#: templates/urpsm/v2/base_manager_v3.html:404
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:32
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:3
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:4
+#: templates/urpsm/v2/notifications/client_notifications_list_v2.html:3
+#: templates/urpsm/v2/notifications/client_notifications_list_v2.html:4
+#: templates/urpsm/v2/notifications/component_notifications_list_v2.html:3
+#: templates/urpsm/v2/notifications/component_notifications_list_v2.html:4
+#: templates/urpsm/v2/notifications/invoice_notifications_list_v2.html:3
+#: templates/urpsm/v2/notifications/invoice_notifications_list_v2.html:4
+#: templates/urpsm/v2/notifications/order_notifications_list_v2.html:3
+#: templates/urpsm/v2/notifications/order_notifications_list_v2.html:4
+#: templates/urpsm/v2/notifications/payment_notifications_list_v2.html:3
+#: templates/urpsm/v2/notifications/payment_notifications_list_v2.html:4
+#: templates/urpsm/v2/notifications/phone_notifications_list_v2.html:3
+#: templates/urpsm/v2/notifications/phone_notifications_list_v2.html:4
+#: templates/urpsm/v2/notifications/review_notifications_list_v2.html:3
+#: templates/urpsm/v2/notifications/review_notifications_list_v2.html:4
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:3
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:4
+msgid "notifications"
+msgstr "Notifications"
+
+#: templates/admin/server/server/change_form.html:16
+#: templates/admin/shop/shop/change_form.html:16
+msgid "send notification"
+msgstr "Envoyer notification"
+
+#: templates/admin/server/server/change_form.html:25
+#: templates/admin/shop/shop/change_form.html:25
+msgid "notification to"
+msgstr "Notification à"
+
+#: templates/admin/server/server/change_form.html:38
+#: templates/admin/shop/shop/change_form.html:38
+#: templates/urpsm/v2/dash/adminchathistory.html:803
+#: templates/urpsm/v2/dash/chathistory.html:795
+#: templates/urpsm/v2/dash/contact_admin_v2.html:46
+#: templates/urpsm/v2/dash/contact_shop_server.html:94
+msgid "send"
+msgstr "Envoyer"
+
+#: templates/admin/server/server/change_form.html:39
+#: templates/admin/shop/shop/change_form.html:39
+#: templates/urpsm/clients/index.html:107
+#: templates/urpsm/endpoint/orders.html:59
+#: templates/urpsm/endpoint/orders.html:65
+#: templates/urpsm/orders/detail.html:34 templates/urpsm/orders/index.html:130
+#: templates/urpsm/tickets/index.html:88
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:62
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:119
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:132
+msgid "close"
+msgstr "Fermer"
+
+#: templates/admin/shop/shop_verify_invoice.html:4
+msgid "Verify Invoices"
+msgstr "Vérifier les factures"
+
+#: templates/admin/shop/shop_verify_invoice.html:4
+#: templates/urpsm/shop/actionhistory.html:1
+#: templates/urpsm/shop/invoice_upload.html:1
+#: templates/urpsm/shop/invoices.html:1
+msgid "Invoice"
+msgstr "Facture"
+
+#: templates/admin/shop/shop_view_invoice.html:4
+msgid "Invoices|URPSM"
+msgstr "Factures | URPSM"
+
+#: templates/admin/shop/shop_view_invoice.html:22
+#: templates/urpsm/shop/invoice_upload.html:2
+#: templates/urpsm/shop/invoices.html:2 templates/urpsm/shop/invoices.html:12
+msgid "Invoices"
+msgstr "Factures"
+
+#: templates/admin/shop/shop_view_invoice.html:31
+#: templates/urpsm/shop/invoices.html:21
+msgid "Method"
+msgstr "Méthode"
+
+#: templates/admin/shop/shop_view_invoice.html:32
+#: templates/urpsm/shop/invoices.html:22
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:112
+msgid "Status"
+msgstr "Le statut de ce compte utilisateur est %s"
+
+#: templates/admin/shop/shop_view_invoice.html:33
+msgid "Shop"
+msgstr "Boutique"
+
+#: templates/admin/ticket/orderticket/change_list.html:42
+#: templates/urpsm/v2/base_v2.html:111
+#: templates/urpsm/v2/public/base_v3.html:119
+msgid "Home"
+msgstr "Accueil"
+
+#: templates/admin/ticket/orderticket/change_list.html:68
+#: templates/admin/ticket/orderticket/change_list.html:121
+#, python-format
+msgid "Add %(name)s"
+msgstr "Ajouter %(name)s"
+
+#: templates/admin/ticket/orderticket/change_list.html:86
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Veuillez corriger l'erreur indiquée"
+msgstr[1] ""
+
+#: templates/admin/ticket/orderticket/change_list.html:115
+msgid "Nothing found"
+msgstr "Rien trouvé"
+
+#: templates/admin/ticket/orderticket/change_list.html:117
+msgid "Reset search and filters"
+msgstr "Réinitialiser Filtres de recherche"
+
+#: templates/admin/ticket/orderticket/change_list.html:119
+#, python-format
+msgid "%(name_plural)s are not created yet"
+msgstr "%(name_plural)s  Ne sont pas encore créés"
+
+#: templates/two_factor/_wizard_actions.html:5
+#: templates/two_factor/_wizard_actions_dashbord.html:3
+#: templates/urpsm/clients/index.html:154
+#: templates/urpsm/components/index.html:75
+#: templates/urpsm/endpoint/list.html:52
+#: templates/urpsm/endpoint/orders.html:47
+#: templates/urpsm/orders/index.html:111 templates/urpsm/server/detail.html:77
+#: templates/urpsm/server/search.html:105 templates/urpsm/shop/detail.html:77
+#: templates/urpsm/shop/search.html:99 templates/urpsm/tickets/index.html:69
+#: templates/urpsm/v2/dash/contact_admin_v2.html:95
+#: templates/urpsm/v2/dash/contact_shop_server.html:152
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:252
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:226
+msgid "Next"
+msgstr "Suivant"
+
+#: templates/two_factor/_wizard_actions.html:9
+#: templates/two_factor/_wizard_actions.html:11
+#: templates/two_factor/_wizard_actions_dashbord.html:6
+#: templates/two_factor/_wizard_actions_dashbord.html:8
+msgid "Back"
+msgstr "Retour"
+
+#: templates/two_factor/_wizard_actions_dashbord.html:10
+msgid "Cancel"
+msgstr "Annuler"
+
+#: templates/two_factor/core/backup_tokens.html:11
+#: templates/two_factor/profile/profile.html:44
+msgid "Backup Tokens"
+msgstr "Jetons de sauvegarde"
+
+#: templates/two_factor/core/backup_tokens.html:14
+msgid ""
+"Backup tokens can be used when your primary and backup\n"
+"               phone numbers aren't available. The backup tokens below can "
+"be used\n"
+"               for login verification. If you've used up all your backup "
+"tokens, you\n"
+"               can generate a new set of backup tokens. Only the backup "
+"tokens shown\n"
+"               below will be valid."
+msgstr ""
+"Jetons de sauvegarde peuvent être utilisés lorsque votre numéro de téléphone "
+"principal et secondaire ne sont pas disponibles. Les jetons de sauvegarde ci-"
+"dessous peuvent être utilisés pour la vérification de la connexion. Si vous "
+"avez utilisé tous vos jetons de la sauvegarde, vous pouvez générer un nouvel "
+"ensemble de jetons de sauvegarde. Seuls les jetons de sauvegarde indiqués ci-"
+"dessous seront valides."
+
+#: templates/two_factor/core/backup_tokens.html:26
+msgid "Print these tokens and keep them somewhere safe."
+msgstr "Imprimez ces jetons et gardez-les en sécurité."
+
+#: templates/two_factor/core/backup_tokens.html:28
+msgid "You don't have any backup codes yet."
+msgstr "Vous n’avez pas encore vos codes de sauvegarde."
+
+#: templates/two_factor/core/backup_tokens.html:33
+msgid "Back to Account Security"
+msgstr "Retour à la sécurité de compte"
+
+#: templates/two_factor/core/backup_tokens.html:34
+msgid "Generate Tokens"
+msgstr "Générer des jetons"
+
+#: templates/two_factor/core/login.html:5
+#: templates/urpsm/accounts/registration_done.html:14
+#: templates/urpsm/v2/accounts/login_form_v2.html:44
+#: templates/urpsm/v2/accounts/password_reset.html:31
+#: templates/urpsm/v2/accounts/registration_done.html:14
+msgid "Login"
+msgstr "Connexion"
+
+#: templates/two_factor/core/login.html:8
+msgid "Enter your credentials."
+msgstr "Veuillez saisir vos identifiants"
+
+#: templates/two_factor/core/login.html:11
+msgid ""
+"We are calling your phone right now, please enter the\n"
+"        digits you hear."
+msgstr ""
+"Nous demandons votre téléphone dès maintenant, s’il vous plaît entrez les "
+"chiffres que vous entendez."
+
+#: templates/two_factor/core/login.html:14
+msgid ""
+"We sent you a text message, please enter the tokens we\n"
+"        sent."
+msgstr ""
+"Nous vous avons envoyé un message texte, s’il vous plaît entrer les jetons "
+"que nous a envoyé."
+
+#: templates/two_factor/core/login.html:17
+msgid ""
+"Please enter the tokens generated by your token\n"
+"        generator."
+msgstr "Entrez les jetons générés par votre jeton Générateur."
+
+#: templates/two_factor/core/login.html:21
+msgid ""
+"Use this form for entering backup tokens for logging in.\n"
+"      These tokens have been generated for you to print and keep safe. "
+"Please\n"
+"      enter one of these backup tokens to login to your account."
+msgstr ""
+"Utilisez ce formulaire pour entrer des jetons de sauvegarde pour vous "
+"connecter. Ces jetons ont été générés pour que vous puissiez imprimer et "
+"garder en sécurité. S'il vous plaît Entrez l'une de ces jetons de sauvegarde "
+"pour vous connecter à votre compte."
+
+#: templates/two_factor/core/login.html:33
+msgid "Or, alternatively, use one of your backup phones:"
+msgstr "Ou, alternativement, utilisez l’une de vos téléphones de sauvegarde :"
+
+#: templates/two_factor/core/login.html:43
+msgid "As a last resort, you can use a backup token:"
+msgstr "En dernier recours, vous pouvez utiliser un jeton de sauvegarde :"
+
+#: templates/two_factor/core/login.html:46
+msgid "Use Backup Token"
+msgstr "Utilisez le jeton de sauvegarde"
+
+#: templates/two_factor/core/otp_required.html:11
+msgid "Permission Denied"
+msgstr "Permission Refusée"
+
+#: templates/two_factor/core/otp_required.html:14
+msgid ""
+"The page you requested, enforces users to verify using\n"
+"                  two-factor authentication for security reasons. You need "
+"to enable these\n"
+"                  security features in order to access this page."
+msgstr ""
+"La page demandée, impose aux utilisateurs de vérifier à l’aide de "
+"l’authentification à deux facteurs pour des raisons de sécurité. Vous devez "
+"activer ces fonctionnalités de sécurité afin d’accéder à cette page."
+
+#: templates/two_factor/core/otp_required.html:18
+msgid ""
+"Two-factor authentication is not enabled for your\n"
+"                  account. Enable two-factor authentication for enhanced "
+"account\n"
+"                  security."
+msgstr ""
+"Authentification à deux facteurs n’est pas activée pour votre compte. "
+"Activez l’authentification à deux facteurs pour une sécurité renforcée de "
+"compte."
+
+#: templates/two_factor/core/otp_required.html:23
+msgid "Go back"
+msgstr "Revenir en arrière"
+
+#: templates/two_factor/core/otp_required.html:24
+#: templates/two_factor/core/setup.html:12
+#: templates/two_factor/core/setup_complete.html:11
+#: templates/two_factor/profile/profile.html:71
+msgid "Enable Two-Factor Authentication"
+msgstr "Activer l’authentification à deux facteurs"
+
+#: templates/two_factor/core/phone_register.html:10
+msgid "Add Backup Phone"
+msgstr "Ajouter le téléphone de secours"
+
+#: templates/two_factor/core/phone_register.html:14
+msgid ""
+"You'll be adding a backup phone number to your\n"
+"                    account. This number will be used if your primary method "
+"of\n"
+"                    registration is not available."
+msgstr ""
+"Vous allez ajouter un numéro de téléphone de secours à votre compte. Ce "
+"numéro servira si votre principale méthode d’enregistrement n’est pas "
+"disponible."
+
+#: templates/two_factor/core/phone_register.html:18
+msgid ""
+"We've sent a token to your phone number. Please\n"
+"                    enter the token you've received."
+msgstr ""
+"Nous avons envoyé un jeton à votre numéro de téléphone. S’il vous plaît "
+"entrez le jeton que vous avez reçu."
+
+#: templates/two_factor/core/setup.html:16
+msgid ""
+"You are about to take your account security to the\n"
+"                  next level. Follow the steps in this wizard to enable two-"
+"factor\n"
+"                  authentication."
+msgstr ""
+"Vous êtes sur le point de prendre la sécurité de votre compte à un niveau "
+"supérieur. Suivez les étapes de cet Assistant pour activer "
+"l’authentification à deux facteurs."
+
+#: templates/two_factor/core/setup.html:20
+msgid ""
+"Please select which authentication method you would\n"
+"                  like to use."
+msgstr ""
+"S’il vous plaît sélectionnez méthode d’authentification vous souhaitez "
+"utiliser."
+
+#: templates/two_factor/core/setup.html:23
+msgid ""
+"To start using a token generator, please use your\n"
+"                  smartphone to scan the QR code below. For example, use "
+"Google\n"
+"                  Authenticator. Then, enter the token generated by the "
+"app.\n"
+"                  "
+msgstr ""
+"Pour commencer à utiliser un générateur de jeton, utilisez votre smartphone "
+"pour scanner le code QR ci-dessous. Par exemple, utilisez Google "
+"Authenticator. Ensuite, inscrivez le jeton généré par l’application."
+
+#: templates/two_factor/core/setup.html:29
+msgid ""
+"Please enter the phone number you wish to receive the\n"
+"                text messages on. This number will be validated in the next "
+"step.\n"
+"                "
+msgstr ""
+"Veuillez saisir le numéro de téléphone que vous souhaitez recevoir des "
+"messages texte sur. Ce nombre sera validé dans l’étape suivante."
+
+#: templates/two_factor/core/setup.html:33
+msgid ""
+"Please enter the phone number you wish to be called on.\n"
+"                This number will be validated in the next step. "
+msgstr ""
+"Veuillez saisir le numéro de téléphone que vous souhaitez être appelé. Ce "
+"nombre sera validé dans l’étape suivante."
+
+#: templates/two_factor/core/setup.html:38
+msgid ""
+"We are calling your phone right now, please enter the\n"
+"                    digits you hear."
+msgstr ""
+"Nous demandons votre téléphone dès maintenant, s’il vous plaît entrez les "
+"chiffres que vous entendez."
+
+#: templates/two_factor/core/setup.html:41
+msgid ""
+"We sent you a text message, please enter the tokens we\n"
+"                    sent."
+msgstr ""
+"Nous vous avons envoyé un message texte, s’il vous plaît entrer les jetons "
+"que nous a envoyé."
+
+#: templates/two_factor/core/setup.html:45
+msgid ""
+"We've\n"
+"                  encountered an issue with the selected authentication "
+"method. Please\n"
+"                  go back and verify that you entered your information "
+"correctly, try\n"
+"                  again, or use a different authentication method instead. "
+"If the issue\n"
+"                  persists, contact the site administrator."
+msgstr ""
+"Nous avons rencontré un problème avec la méthode d’authentification "
+"sélectionnée. S’il vous plaît revenir en arrière et vérifiez que vous avez "
+"entré vos informations correctement, essayez à nouveau ou utiliser une "
+"méthode d’authentification différente à la place. Si le problème persiste, "
+"contactez l’administrateur du site."
+
+#: templates/two_factor/core/setup.html:52
+msgid ""
+"To identify and verify your YubiKey, please insert a\n"
+"                token in the field below. Your YubiKey will be linked to "
+"your\n"
+"                account."
+msgstr ""
+"Pour identifier et vérifier votre YubiKey, veuillez insérer un jeton dans le "
+"champ ci-dessous. Votre YubiKey sera relié à votre compte."
+
+#: templates/two_factor/core/setup_complete.html:14
+msgid "Congratulations, you've successfully enabled two-factor authentication."
+msgstr ""
+"Félicitations, vous avez activé avec succès l’authentification à deux "
+"facteurs."
+
+#: templates/two_factor/core/setup_complete.html:19
+#: templates/two_factor/core/setup_complete.html:27
+msgid "Back to Profile"
+msgstr "Retour au Profile"
+
+#: templates/two_factor/core/setup_complete.html:22
+msgid ""
+"However, it might happen that you don't have access to\n"
+"                your primary token device. To enable account recovery, add a "
+"phone \n"
+"                number."
+msgstr ""
+"Toutefois, il peut arriver que vous n’avez pas accès à votre périphérique de "
+"jeton principal. Pour activer la récupération du compte, ajouter un numéro "
+"de téléphone."
+
+#: templates/two_factor/core/setup_complete.html:28
+#: templates/two_factor/profile/profile.html:42
+msgid "Add Phone Number"
+msgstr "Ajouter un numéro de téléphone"
+
+#: templates/two_factor/profile/disable.html:5
+msgid "Disable Two-factor Authentication"
+msgstr "Désactiver l’authentification à deux facteurs"
+
+#: templates/two_factor/profile/disable.html:6
+msgid ""
+"You are about to disable two-factor authentication. This\n"
+"    compromises your account security, are you sure?"
+msgstr ""
+"Vous êtes sur le point de désactiver l'authentification à deux facteurs. "
+"Cela compromet la sécurité de votre compte, est-ce que vous êtes sûr?"
+
+#: templates/two_factor/profile/disable.html:12
+msgid "Disable"
+msgstr "Désactiver"
+
+#: templates/two_factor/profile/profile.html:12
+msgid "Account Security"
+msgstr "Sécurité de compte"
+
+#: templates/two_factor/profile/profile.html:18
+msgid "Tokens will be generated by your token generator."
+msgstr "Jetons seront générés par votre générateur de jeton."
+
+#: templates/two_factor/profile/profile.html:21
+#, python-format
+msgid "Primary method: %(primary)s"
+msgstr "Méthode primaire : %(primary)s"
+
+#: templates/two_factor/profile/profile.html:24
+msgid "Tokens will be generated by your YubiKey."
+msgstr "Jetons seront générés par votre YubiKey."
+
+#: templates/two_factor/profile/profile.html:26
+msgid "Backup Phone Numbers"
+msgstr "Numéros de téléphone de secours"
+
+#: templates/two_factor/profile/profile.html:27
+msgid ""
+"If your primary method is not available, we are able to\n"
+"                        send backup tokens to the phone numbers listed below."
+msgstr ""
+"Si votre principale méthode n’est pas disponible, nous sommes en mesure "
+"d’envoyer des jetons de sauvegarde pour les numéros de téléphone répertoriés "
+"ci-dessous."
+
+#: templates/two_factor/profile/profile.html:36
+msgid "Unregister"
+msgstr "Se désinscrire"
+
+#: templates/two_factor/profile/profile.html:46
+msgid ""
+"If you don't have any device with you, you can access\n"
+"                        your account using backup tokens."
+msgstr ""
+"Si vous n’avez pas n’importe quel appareil avec vous, vous pouvez accéder à "
+"votre compte à l’aide de jetons de sauvegarde."
+
+#: templates/two_factor/profile/profile.html:48
+#, python-format
+msgid ""
+"\n"
+"                        You have only one backup token remaining.\n"
+"                      "
+msgid_plural ""
+"\n"
+"                        You have %(counter)s backup tokens remaining.\n"
+"                      "
+msgstr[0] "Vous n'avez qu’une seule sauvegarde jetons restant."
+msgstr[1] "Vous avez %(counter)s des jetons de sauvegarde restants."
+
+#: templates/two_factor/profile/profile.html:54
+msgid "Show Codes"
+msgstr "Afficher des Codes"
+
+#: templates/two_factor/profile/profile.html:56
+#: templates/two_factor/profile/profile.html:60
+msgid "Disable Two-Factor Authentication"
+msgstr "Désactiver l’authentification à deux facteurs"
+
+#: templates/two_factor/profile/profile.html:57
+msgid ""
+"However we strongly discourage you to do so, you can\n"
+"                          also disable two-factor authentication for your "
+"account."
+msgstr ""
+"Cependant nous vous déconseillons vivement vous faire, vous pouvez "
+"désactiver l’authentification à deux facteurs pour votre compte."
+
+#: templates/two_factor/profile/profile.html:64
+msgid ""
+"Two-factor authentication is not enabled for your\n"
+"                    account. Enable two-factor authentication for enhanced "
+"account\n"
+"                    security."
+msgstr ""
+"Authentification à deux facteurs n’est pas activée pour votre compte. "
+"Activez l’authentification à deux facteurs pour une sécurité renforcée de "
+"compte."
+
+#: templates/urpsm/accounts/create.html:4
+msgid "New account creation"
+msgstr "Création d’un nouveau compte"
+
+#: templates/urpsm/accounts/create.html:6
+msgid "create a your account"
+msgstr "Créez votre compte"
+
+#: templates/urpsm/accounts/create.html:96
+msgid "register"
+msgstr "S’inscrire"
+
+#: templates/urpsm/accounts/create.html:102
+#: templates/urpsm/accounts/login_form.html:58
+msgid "i forgot my password"
+msgstr "J’ai oublié mon mot de passe"
+
+#: templates/urpsm/accounts/create.html:103
+#: templates/urpsm/accounts/login_form.html:51
+#: templates/urpsm/accounts/password_reset.html:31
+msgid "login"
+msgstr "Connectez-vous"
+
+#: templates/urpsm/accounts/email_confirmation.html:4
+msgid "email verification"
+msgstr "Vérification Email"
+
+#: templates/urpsm/accounts/email_confirmation.html:7
+msgid "confirm your new email"
+msgstr "Confirme ton e-mail"
+
+#: templates/urpsm/accounts/email_confirmation.html:8
+msgid "Your email has been changed successfully."
+msgstr "Votre email a été changé avec succès."
+
+#: templates/urpsm/accounts/emails/activation_email.html:7
+#, python-format
+msgid "Thank you for registering at %(site)s."
+msgstr "Merci de vous être enregistré à %(site)s."
+
+#: templates/urpsm/accounts/emails/activation_email.html:10
+#: templates/urpsm/accounts/emails/new_email_confirmation.html:10
+msgid "Please confirm this email address by clicking on the link below:"
+msgstr ""
+"S’il vous plaît confirmer cette adresse e-mail en cliquant sur le lien ci-"
+"dessous :"
+
+#: templates/urpsm/accounts/emails/activation_email.html:14
+#: templates/urpsm/accounts/emails/new_email_confirmation.html:14
+#: templates/urpsm/orders/emails/order_cancellation_confirmation.html:11
+msgid "Thanks for using our site!"
+msgstr "Merci d’utiliser notre site !"
+
+#: templates/urpsm/accounts/emails/activation_email.html:15
+#: templates/urpsm/accounts/emails/new_email_confirmation.html:15
+#: templates/urpsm/orders/emails/order_cancellation_confirmation.html:12
+msgid "Sincerely"
+msgstr "Cordialement"
+
+#: templates/urpsm/accounts/emails/new_email_confirmation.html:7
+#, python-format
+msgid "You requested a change of your email address at %(site)s."
+msgstr ""
+"Vous avez demandé un changement de votre adresse de courriel à %(site)s."
+
+#: templates/urpsm/accounts/index.html:6
+#: templates/urpsm/accounts/new_user.html:7
+msgid "users"
+msgstr "Utilisateurs"
+
+#: templates/urpsm/accounts/index.html:14
+msgid "users list"
+msgstr "Liste d'utilisateurs"
+
+#: templates/urpsm/accounts/index.html:15
+msgid "add user"
+msgstr "Ajoutez un utilisateur"
+
+#: templates/urpsm/accounts/index.html:21 templates/urpsm/endpoint/list.html:20
+#: templates/urpsm/v2/accounts/register_form_v2.html:62
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "username"
+msgstr "Nom d'utilisateur"
+
+#: templates/urpsm/accounts/index.html:22
+#: templates/urpsm/v2/accounts/register_form_v2.html:65
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "first name"
+msgstr "Prénom"
+
+#: templates/urpsm/accounts/index.html:23
+#: templates/urpsm/v2/accounts/register_form_v2.html:68
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "last name"
+msgstr "Nom"
+
+#: templates/urpsm/accounts/index.html:25
+msgid "phone"
+msgstr "Téléphone"
+
+#: templates/urpsm/accounts/index.html:26
+msgid "group"
+msgstr "Groupe"
+
+#: templates/urpsm/accounts/index.html:27 templates/urpsm/clients/index.html:56
+#: templates/urpsm/clients/index.html:94 templates/urpsm/endpoint/list.html:21
+#: templates/urpsm/orders/detail.html:19
+#: templates/urpsm/tickets/ticket_details.html:51
+#: templates/urpsm/v2/client/review_v2.html:41
+#: templates/urpsm/v2/dash/contact_admin_v2.html:63
+#: templates/urpsm/v2/dash/contact_shop_server.html:115
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:220
+#: templates/urpsm/v2/notifications/invoice_notifications_list_v2.html:22
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:64
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:25
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:64
+msgid "status"
+msgstr "Etat"
+
+#: templates/urpsm/accounts/index.html:43
+msgid "are you sure you want to delete this user?"
+msgstr "Êtes-vous sûr de vouloir supprimer cet utilisateur ?"
+
+#: templates/urpsm/accounts/index.html:44
+msgid "are you sure you want to block this user?"
+msgstr "Êtes-vous certain de que vouloir bloquer cet utilisateur ?"
+
+#: templates/urpsm/accounts/index.html:58
+#: templates/urpsm/v2/accounts/register_form_v2.html:77
+#: templates/urpsm/v2/accounts/register_form_v2.html:89
+#: templates/urpsm/v2/dash/contact_admin_v2.html:87
+#: templates/urpsm/v2/dash/contact_shop_server.html:143
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:244
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:218
+msgid "previous"
+msgstr "Précédent"
+
+#: templates/urpsm/accounts/index.html:63
+#: templates/urpsm/clients/index.html:150
+#: templates/urpsm/components/index.html:70
+#: templates/urpsm/endpoint/list.html:48
+#: templates/urpsm/endpoint/orders.html:43
+#: templates/urpsm/orders/index.html:107 templates/urpsm/server/detail.html:71
+#: templates/urpsm/server/search.html:99 templates/urpsm/shop/detail.html:71
+#: templates/urpsm/shop/search.html:93 templates/urpsm/tickets/index.html:65
+#: templates/urpsm/v2/dash/contact_admin_v2.html:91
+#: templates/urpsm/v2/dash/contact_shop_server.html:147
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:248
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:222
+msgid "Page"
+msgstr "Page"
+
+#: templates/urpsm/accounts/index.html:63
+#: templates/urpsm/clients/index.html:150
+#: templates/urpsm/components/index.html:70
+#: templates/urpsm/endpoint/list.html:48
+#: templates/urpsm/endpoint/orders.html:43
+#: templates/urpsm/orders/index.html:107 templates/urpsm/server/detail.html:71
+#: templates/urpsm/server/search.html:99 templates/urpsm/shop/detail.html:71
+#: templates/urpsm/shop/search.html:93 templates/urpsm/tickets/index.html:65
+#: templates/urpsm/v2/dash/contact_admin_v2.html:91
+#: templates/urpsm/v2/dash/contact_shop_server.html:147
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:248
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:222
+msgid "of"
+msgstr "De"
+
+#: templates/urpsm/accounts/index.html:68
+#: templates/urpsm/v2/accounts/register_form_v2.html:51
+#: templates/urpsm/v2/accounts/register_form_v2.html:76
+#: templates/urpsm/v2/dash/contact_admin_v2.html:95
+#: templates/urpsm/v2/dash/contact_shop_server.html:152
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:252
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:226
+msgid "next"
+msgstr "suivant"
+
+#: templates/urpsm/accounts/login_form.html:4
+#: templates/urpsm/v2/accounts/login_form_v2.html:3
+msgid "User login"
+msgstr "Votre login"
+
+#: templates/urpsm/accounts/login_form.html:21
+msgid "sign in"
+msgstr "Se connecter"
+
+#: templates/urpsm/accounts/login_form.html:46
+msgid "remember me"
+msgstr "Se souvenir de moi"
+
+#: templates/urpsm/accounts/login_form.html:59
+msgid "create an account"
+msgstr "Créer un Compte"
+
+#: templates/urpsm/accounts/logout.html:4
+#: templates/urpsm/accounts/logout.html:8
+msgid "Logged out"
+msgstr "Utilisateur - Déconnecté"
+
+#: templates/urpsm/accounts/logout.html:9
+msgid "You've been logged out"
+msgstr "Vous avez été déconnecté"
+
+#: templates/urpsm/accounts/logout.html:9
+msgid "Signin"
+msgstr "Connexion"
+
+#: templates/urpsm/accounts/new_user.html:3
+msgid "add new user"
+msgstr "Ajouter un utilisateur"
+
+#: templates/urpsm/accounts/new_user.html:4
+msgid "user"
+msgstr "Utilisateur"
+
+#: templates/urpsm/accounts/new_user.html:5
+msgid "adding new user"
+msgstr "Ajouter un utilisateur"
+
+#: templates/urpsm/accounts/new_user.html:8
+#: templates/urpsm/clients/create.html:10
+#: templates/urpsm/components/create.html:8
+#: templates/urpsm/endpoint/create.html:11
+#: templates/urpsm/endpoint/endpoint_confirm_delete.html:11
+#: templates/urpsm/endpoint/networks.html:12
+msgid "add"
+msgstr "Ajouter"
+
+#: templates/urpsm/accounts/new_user.html:14
+msgid "new user"
+msgstr "Nouvel utilisateur"
+
+#: templates/urpsm/accounts/new_user.html:127
+#: templates/urpsm/accounts/profile.html:65
+#: templates/urpsm/endpoint/networks.html:57
+msgid "save"
+msgstr "Enregitrer"
+
+#: templates/urpsm/accounts/password_change.html:4
+#: templates/urpsm/accounts/password_reset_confirm.html:4
+#: templates/urpsm/v2/accounts/password_change.html:4
+#: templates/urpsm/v2/accounts/password_change.html:5
+#: templates/urpsm/v2/accounts/password_reset_confirm.html:4
+msgid "Password change for"
+msgstr "Changement de mot de passe pour"
+
+#: templates/urpsm/accounts/password_change.html:8
+#: templates/urpsm/v2/base_manager_v2.html:162
+#: templates/urpsm/v2/base_manager_v2.html:164
+#: templates/urpsm/v2/base_manager_v3.html:157
+#: templates/urpsm/v2/base_manager_v3.html:159
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:64
+msgid "change password"
+msgstr "Changer le mot de passe"
+
+#: templates/urpsm/accounts/password_change.html:13
+msgid "password change"
+msgstr "Modification du mot de passe"
+
+#: templates/urpsm/accounts/password_change.html:42
+#: templates/urpsm/v2/accounts/password_change.html:42
+msgid "Change Password"
+msgstr "Changer le mot de passe"
+
+#: templates/urpsm/accounts/password_change_done.html:4
+#: templates/urpsm/accounts/password_reset_complete.html:4
+#: templates/urpsm/v2/password_change_done.html:4
+msgid "Password change successful"
+msgstr "Changement de mot de passe réussi"
+
+#: templates/urpsm/accounts/password_change_done.html:7
+#: templates/urpsm/v2/password_change_done.html:7
+msgid "The password has been changed successfully"
+msgstr "Le mot de passe a été changé avec succès"
+
+#: templates/urpsm/accounts/password_change_done.html:11
+#: templates/urpsm/v2/accounts/password_change.html:13
+#: templates/urpsm/v2/password_change_done.html:11
+msgid "Password change"
+msgstr "Changement de mot de passe"
+
+#: templates/urpsm/accounts/password_change_done.html:12
+#: templates/urpsm/v2/password_change_done.html:12
+msgid ""
+"Password change utility page. Please enter your new password twice so we can "
+"verify you typed it in correctly"
+msgstr ""
+"Merci de saisir votre nouveau mot de passe deux fois par mesure de sécurité."
+
+#: templates/urpsm/accounts/password_reset.html:4
+#: templates/urpsm/accounts/password_reset_complete.html:11
+#: templates/urpsm/accounts/password_reset_confirm.html:41
+#: templates/urpsm/v2/accounts/password_reset.html:4
+#: templates/urpsm/v2/accounts/password_reset.html:7
+#: templates/urpsm/v2/accounts/password_reset_confirm.html:41
+msgid "Password reset"
+msgstr "Réinitialisation du mot de passe"
+
+#: templates/urpsm/accounts/password_reset.html:7
+msgid "password reset"
+msgstr "Réinitialiser le mot de passe"
+
+#: templates/urpsm/accounts/password_reset.html:19
+msgid "reset my password"
+msgstr "Réinitialiser mon mot de passe"
+
+#: templates/urpsm/accounts/password_reset.html:29
+#: templates/urpsm/v2/accounts/password_reset.html:29
+msgid ""
+"Forgotten your password? Enter your e-mail address, and we'll reset your "
+"password and e-mail the new one to you"
+msgstr ""
+"Vous avez oublié votre mot de passe ? Entrez votre adresse e-mail ci-dessous "
+"et nous vous enverrons un e-mail avec des instructions pour le réinitialiser."
+
+#: templates/urpsm/accounts/password_reset_complete.html:7
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+"Votre mot de passe a été enregistré. Vous pouvez désormais vous connecter."
+
+#: templates/urpsm/accounts/password_reset_complete.html:12
+#: templates/urpsm/accounts/password_reset_confirm.html:42
+#: templates/urpsm/v2/accounts/password_reset_confirm.html:42
+msgid ""
+"Password reset utility page. Please enter your new password twice so we can "
+"verify you typed it in correctly"
+msgstr ""
+"Merci de saisir votre nouveau mot de passe deux fois par mesure de sécurité."
+
+#: templates/urpsm/accounts/password_reset_complete.html:13
+#: templates/urpsm/accounts/registration_complete.html:14
+#: templates/urpsm/v2/accounts/registration_complete.html:14
+msgid "Sign in!"
+msgstr "Se connecter"
+
+#: templates/urpsm/accounts/password_reset_confirm.html:13
+#: templates/urpsm/v2/accounts/password_reset_confirm.html:13
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: templates/urpsm/accounts/password_reset_confirm.html:19
+#: templates/urpsm/v2/accounts/password_reset_confirm.html:19
+msgid "Confirm password"
+msgstr "Confirmez votre mot de passe"
+
+#: templates/urpsm/accounts/password_reset_confirm.html:29
+#: templates/urpsm/v2/accounts/password_reset_confirm.html:29
+msgid "Change"
+msgstr "Différence"
+
+#: templates/urpsm/accounts/password_reset_confirm.html:34
+#: templates/urpsm/v2/accounts/password_reset_confirm.html:34
+msgid "Password reset unsuccessful"
+msgstr "Echec de la réinitialisation du mot de passe"
+
+#: templates/urpsm/accounts/password_reset_confirm.html:35
+#: templates/urpsm/v2/accounts/password_reset_confirm.html:35
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+"Le lien de réinitialisation de mot de passe était invalide, peut-être parce "
+"qu'il a déjà été utilisé. Veuillez demander une nouvelle réinitialisation de "
+"mot de passe."
+
+#: templates/urpsm/accounts/password_reset_done.html:4
+#: templates/urpsm/accounts/password_reset_done.html:7
+#: templates/urpsm/v2/password_reset_done.html:4
+#: templates/urpsm/v2/password_reset_done.html:7
+msgid "Password reset successful"
+msgstr "Votre mot de passe a bien été réinitialisé"
+
+#: templates/urpsm/accounts/password_reset_done.html:8
+#: templates/urpsm/v2/password_reset_done.html:8
+msgid ""
+"We've e-mailed you the instructions to obtain a new password. You should be "
+"receiving it shortly"
+msgstr ""
+"Nous avons envoyé un e-mail avec des instructions pour réinitialiser votre "
+"mot de passe. Vous devriez le recevoir sous peu."
+
+#: templates/urpsm/accounts/profile.html:4
+msgid "user profile"
+msgstr "Profil d'utilisateur"
+
+#: templates/urpsm/accounts/profile.html:6
+msgid "edit your profile information"
+msgstr "modifier vos informations de profil"
+
+#: templates/urpsm/accounts/profile.html:16
+msgid "profile information"
+msgstr "Informations du profil"
+
+#: templates/urpsm/accounts/registration_complete.html:10
+#: templates/urpsm/v2/accounts/registration_complete.html:10
+msgid "Your account has been activated successfully."
+msgstr "Votre compte a été activé avec succès."
+
+#: templates/urpsm/accounts/registration_done.html:4
+#: templates/urpsm/v2/accounts/registration_done.html:4
+msgid "Confirm your email address"
+msgstr "Confirmer votre adresse E-mail"
+
+#: templates/urpsm/accounts/registration_done.html:8
+#: templates/urpsm/v2/accounts/registration_done.html:8
+msgid "Confirm your email"
+msgstr "Confirmez votre email !"
+
+#: templates/urpsm/accounts/registration_done.html:10
+#: templates/urpsm/v2/accounts/registration_done.html:10
+msgid ""
+"We have sent you an email for verification. Follow the link provided to "
+"finalize the signup process."
+msgstr ""
+"Nous vous avons envoyé un email pour vérification. Suivez le lien fourni "
+"pour finaliser le processus d’inscription."
+
+#: templates/urpsm/clients/create.html:8 templates/urpsm/clients/index.html:1
+#: templates/urpsm/clients/index.html:2
+#: templates/urpsm/v2/_base_manager_v2.html:242
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:12
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:115
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:34
+msgid "clients"
+msgstr "Clients"
+
+#: templates/urpsm/clients/create.html:18 templates/urpsm/clients/index.html:47
+#: templates/urpsm/v2/base_manager_v2.html:250
+#: templates/urpsm/v2/base_manager_v2.html:252
+#: templates/urpsm/v2/base_manager_v3.html:240
+#: templates/urpsm/v2/base_manager_v3.html:242
+msgid "add client"
+msgstr "Ajoutez un client"
+
+#: templates/urpsm/clients/create.html:162
+#: templates/urpsm/clients/index.html:58 templates/urpsm/clients/update.html:27
+#: templates/urpsm/endpoint/orders.html:18
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:186
+msgid "paid"
+msgstr "Payé"
+
+#: templates/urpsm/clients/create.html:177
+#: templates/urpsm/clients/update.html:177
+msgid "addons"
+msgstr "Modules complémentaires"
+
+#: templates/urpsm/clients/create.html:247
+#: templates/urpsm/clients/create.html:287
+#: templates/urpsm/clients/update.html:247
+#: templates/urpsm/clients/update.html:287
+msgid "add another item"
+msgstr "Ajouter un autre élément"
+
+#: templates/urpsm/clients/create.html:258
+#: templates/urpsm/clients/update.html:258
+msgid "images"
+msgstr "Images"
+
+#: templates/urpsm/clients/create.html:295
+#: templates/urpsm/clients/update.html:295
+#: templates/urpsm/components/create.html:95
+#: templates/urpsm/components/update.html:99
+#: templates/urpsm/endpoint/create.html:86
+#: templates/urpsm/endpoint/unlocking.html:106
+#: templates/urpsm/server/update.html:208 templates/urpsm/shop/update.html:199
+#: templates/urpsm/v2/server/update.html:160
+msgid "Save"
+msgstr "Enregitrer"
+
+#: templates/urpsm/clients/index.html:1
+msgid "list"
+msgstr "Liste"
+
+#: templates/urpsm/clients/index.html:30
+msgid "search by ref"
+msgstr "Recherche par Réf"
+
+#: templates/urpsm/clients/index.html:54 templates/urpsm/clients/ticket.html:49
+msgid "ref"
+msgstr "Référence"
+
+#: templates/urpsm/clients/index.html:55 templates/urpsm/clients/index.html:82
+#: templates/urpsm/components/index.html:23
+#: templates/urpsm/v2/notifications/client_notifications_list_v2.html:22
+msgid "model"
+msgstr "Modèle"
+
+#: templates/urpsm/clients/index.html:57 templates/urpsm/clients/index.html:97
+msgid "todo"
+msgstr "A faire"
+
+#: templates/urpsm/clients/index.html:59 templates/urpsm/clients/ticket.html:77
+#: templates/urpsm/endpoint/orders.html:17 templates/urpsm/orders/index.html:64
+#: templates/urpsm/server/deposit.html:12
+#: templates/urpsm/server/deposit.html:13 templates/urpsm/shop/deposit.html:154
+#: templates/urpsm/shop/deposit.html:156 templates/urpsm/tickets/index.html:37
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:185
+#: templates/urpsm/v2/notifications/invoice_notifications_list_v2.html:20
+msgid "amount"
+msgstr "Montant"
+
+#: templates/urpsm/clients/index.html:60
+msgid "delivery date"
+msgstr "Date de livraison"
+
+#: templates/urpsm/clients/index.html:61
+msgid "paid to"
+msgstr "Payé à"
+
+#: templates/urpsm/clients/index.html:62
+#: templates/urpsm/v2/notifications/order_notifications_list_v2.html:28
+msgid "created"
+msgstr "Créé"
+
+#: templates/urpsm/clients/index.html:76
+msgid "client ref"
+msgstr "Client Ref."
+
+#: templates/urpsm/clients/index.html:80
+#: templates/urpsm/components/index.html:22
+#: templates/urpsm/v2/components/component_detail_v2.html:26
+#: templates/urpsm/v2/notifications/client_notifications_list_v2.html:21
+msgid "brand"
+msgstr "Marque"
+
+#: templates/urpsm/clients/index.html:84
+msgid "serial"
+msgstr "Série"
+
+#: templates/urpsm/clients/index.html:86
+#: templates/urpsm/endpoint/orders.html:16
+#: templates/urpsm/orders/detail.html:17 templates/urpsm/orders/index.html:62
+#: templates/urpsm/tickets/index.html:36
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:219
+#: templates/urpsm/v2/notifications/order_notifications_list_v2.html:25
+msgid "imei"
+msgstr "IMEI"
+
+#: templates/urpsm/clients/index.html:88
+#: templates/urpsm/v2/accounts/register_form_v2.html:74
+msgid "phone number"
+msgstr "Numéro de téléphone"
+
+#: templates/urpsm/clients/index.html:92
+msgid "delivered at"
+msgstr "Livré à"
+
+#: templates/urpsm/clients/index.html:100
+#: templates/urpsm/clients/ticket.html:131
+msgid "total"
+msgstr "Total"
+
+#: templates/urpsm/clients/index.html:130
+msgid "Are you sure you want to delete this client?"
+msgstr "Êtes-vous sûr(e) de vouloir supprimer ce client ?"
+
+#: templates/urpsm/clients/index.html:132
+msgid "Are you sure this client is paid?"
+msgstr "Êtes-vous sûr que ce client est payé ?"
+
+#: templates/urpsm/clients/index.html:146
+#: templates/urpsm/components/index.html:65
+#: templates/urpsm/endpoint/list.html:44
+#: templates/urpsm/endpoint/orders.html:39
+#: templates/urpsm/orders/index.html:103 templates/urpsm/server/detail.html:66
+#: templates/urpsm/server/search.html:94 templates/urpsm/shop/detail.html:66
+#: templates/urpsm/shop/search.html:88 templates/urpsm/tickets/index.html:61
+#: templates/urpsm/v2/dash/contact_admin_v2.html:87
+#: templates/urpsm/v2/dash/contact_shop_server.html:143
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:244
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:218
+msgid "Previous"
+msgstr "Précédent"
+
+#: templates/urpsm/clients/ticket.html:76
+msgid "item"
+msgstr "Article"
+
+#: templates/urpsm/clients/ticket.html:116
+msgid "Sub total"
+msgstr "Sous-total"
+
+#: templates/urpsm/clients/ticket.html:121
+msgid "VAT"
+msgstr "TVA"
+
+#: templates/urpsm/clients/ticket.html:153
+msgid "VAT included"
+msgstr "TVA incl."
+
+#: templates/urpsm/clients/ticket.html:161
+msgid "thanks for your visit."
+msgstr "Merci de votre visite."
+
+#: templates/urpsm/components/create.html:5
+msgid "adding new component"
+msgstr "Ajout de nouveaux composants"
+
+#: templates/urpsm/components/create.html:7
+#: templates/urpsm/components/index.html:4
+#: templates/urpsm/components/index.html:6
+#: templates/urpsm/components/update.html:7
+#: templates/urpsm/v2/_base_manager_v2.html:250
+#: templates/urpsm/v2/components/component_detail_v2.html:83
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:22
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:116
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:107
+#: templates/urpsm/v2/search/component_search_result_v2.html:9
+#: templates/urpsm/v2/search/shop_search_result_box_v2.html:24
+#: templates/urpsm/v2/shop/shops_list_v2.html:61
+msgid "components"
+msgstr "Composants"
+
+#: templates/urpsm/components/index.html:3
+#: templates/urpsm/components/index.html:13
+msgid "components list"
+msgstr "Liste des composants"
+
+#: templates/urpsm/components/index.html:14
+#: templates/urpsm/v2/_base_manager_v2.html:259
+#: templates/urpsm/v2/_base_manager_v2.html:261
+#: templates/urpsm/v2/base_manager_v2.html:268
+#: templates/urpsm/v2/base_manager_v3.html:258
+msgid "add component"
+msgstr "Ajouter un composant"
+
+#: templates/urpsm/components/index.html:21
+#: templates/urpsm/v2/public/brand_models_v2.html:79
+msgid "title"
+msgstr "Titre"
+
+#: templates/urpsm/components/index.html:25
+#: templates/urpsm/components/update.html:89
+msgid "sold"
+msgstr "Vendu"
+
+#: templates/urpsm/components/index.html:26
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:221
+msgid "price"
+msgstr "Prix"
+
+#: templates/urpsm/components/index.html:49
+msgid "Are you sure you want to delete this component?"
+msgstr "Etes-vous sûr de vouloir supprimer cet composant ?"
+
+#: templates/urpsm/components/update.html:3
+#: templates/urpsm/components/update.html:14
+msgid "edit component"
+msgstr "Modifiez le composant"
+
+#: templates/urpsm/components/update.html:4
+msgid "component"
+msgstr "Composant"
+
+#: templates/urpsm/components/update.html:5
+msgid "editing component"
+msgstr "Composant editing"
+
+#: templates/urpsm/components/update.html:8
+#: templates/urpsm/server/update.html:13 templates/urpsm/shop/update.html:12
+msgid "edit"
+msgstr "Modifier"
+
+#: templates/urpsm/endpoint/create.html:4
+#: templates/urpsm/endpoint/endpoint_confirm_delete.html:4
+msgid "API Provider"
+msgstr "API fournisseur"
+
+#: templates/urpsm/endpoint/create.html:5
+#: templates/urpsm/endpoint/endpoint_confirm_delete.html:5
+#: templates/urpsm/endpoint/networks.html:6
+msgid "API"
+msgstr "API"
+
+#: templates/urpsm/endpoint/create.html:6
+#: templates/urpsm/endpoint/endpoint_confirm_delete.html:6
+msgid "Provide an API Server"
+msgstr "Fournir un serveur de l’API"
+
+#: templates/urpsm/endpoint/create.html:9
+#: templates/urpsm/endpoint/endpoint_confirm_delete.html:9
+#: templates/urpsm/endpoint/list.html:1 templates/urpsm/endpoint/list.html:2
+#: templates/urpsm/endpoint/networks.html:10
+msgid "endpoints"
+msgstr "Endpoints"
+
+#: templates/urpsm/endpoint/create.html:18
+msgid "add your provider API"
+msgstr "Ajoutez votre API fournisseur"
+
+#: templates/urpsm/endpoint/create.html:101
+msgid "Please enter your server credit"
+msgstr "S’il vous plaît entrer votre crédit de serveur"
+
+#: templates/urpsm/endpoint/create.html:109
+#: templates/urpsm/v2/dash/admin_thankyou_v2.html:7
+msgid "thank you"
+msgstr "Merci"
+
+#: templates/urpsm/endpoint/endpoint_confirm_delete.html:18
+msgid "delete your provider API"
+msgstr "Supprimer votre fournisseur API"
+
+#: templates/urpsm/endpoint/endpoint_confirm_delete.html:22
+msgid "are you sure you want to delete?"
+msgstr "Etes-vous sûr de vouloir supprimer ?"
+
+#: templates/urpsm/endpoint/endpoint_confirm_delete.html:23
+msgid "confirm"
+msgstr "Confirmer"
+
+#: templates/urpsm/endpoint/list.html:1
+msgid "endpoints list"
+msgstr "Liste des endpoints"
+
+#: templates/urpsm/endpoint/list.html:7
+#: templates/urpsm/v2/_base_manager_v2.html:301
+msgid "unlocking servers"
+msgstr "Serveur de déblocage"
+
+#: templates/urpsm/endpoint/list.html:8
+msgid "your api servers list"
+msgstr "Votre liste de serveurs d’api"
+
+#: templates/urpsm/endpoint/list.html:11
+msgid "add an API"
+msgstr "Ajouter une API"
+
+#: templates/urpsm/endpoint/list.html:19
+msgid "endpoint"
+msgstr "Endpoint"
+
+#: templates/urpsm/endpoint/list.html:22
+#: templates/urpsm/v2/search/server_search_result_box_v2.html:22
+#: templates/urpsm/v2/server/server_box_v2.html:22
+#: templates/urpsm/v2/server/server_list_v2.html:60
+#: templates/urpsm/v2/server/server_position_v2.html:95
+msgid "networks"
+msgstr "Réseaux"
+
+#: templates/urpsm/endpoint/list.html:32
+msgid "change"
+msgstr "Changer"
+
+#: templates/urpsm/endpoint/list.html:33
+msgid "delete"
+msgstr "Supprimer"
+
+#: templates/urpsm/endpoint/networks.html:5
+msgid "API Networks"
+msgstr "Réseaux API"
+
+#: templates/urpsm/endpoint/networks.html:7
+msgid "Provide an API Networks"
+msgstr "Fournir un réseau API"
+
+#: templates/urpsm/endpoint/networks.html:19
+msgid "choose your provider API networks and services"
+msgstr "Choisissez votre fournisseur API réseaux et services"
+
+#: templates/urpsm/endpoint/networks.html:40
+msgid "undo"
+msgstr "Annuler"
+
+#: templates/urpsm/endpoint/networks.html:45
+msgid "redo"
+msgstr "Rétablir"
+
+#: templates/urpsm/endpoint/networks.html:66
+msgid "list of your working services"
+msgstr "Liste de vos services active"
+
+#: templates/urpsm/endpoint/networks.html:72
+#: templates/urpsm/endpoint/orders.html:14
+#: templates/urpsm/tickets/index.html:34
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:217
+msgid "network"
+msgstr "Réseau"
+
+#: templates/urpsm/endpoint/networks.html:73
+#: templates/urpsm/endpoint/orders.html:15
+#: templates/urpsm/orders/detail.html:15 templates/urpsm/orders/index.html:61
+#: templates/urpsm/tickets/index.html:35
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:218
+msgid "service"
+msgstr "Service"
+
+#: templates/urpsm/endpoint/networks.html:139
+msgid "your networks have been successfully saved !!"
+msgstr "Vos réseaux ont été enregistrés avec succès !!"
+
+#: templates/urpsm/endpoint/networks.html:141
+msgid "Your networks have not been saved. Please try again."
+msgstr ""
+"Vos réseaux n’ont pas été enregistrées. S’il vous plaît essayer de nouveau."
+
+#: templates/urpsm/endpoint/orders.html:8
+msgid "here you find all the orders passed through your api servers."
+msgstr ""
+"Ici vous trouverez toutes les commandes passées par vos serveurs d’api."
+
+#: templates/urpsm/endpoint/orders.html:60
+#: templates/urpsm/orders/index.html:124 templates/urpsm/tickets/index.html:82
+msgid "order checking"
+msgstr "vérification de la commande"
+
+#: templates/urpsm/endpoint/unlocking.html:3
+#: templates/urpsm/endpoint/unlocking.html:17
+#: templates/urpsm/endpoint/unlocking.html:19
+#: templates/urpsm/v2/_base_manager_v2.html:284
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:39
+msgid "unlocking"
+msgstr "Déblocage"
+
+#: templates/urpsm/endpoint/unlocking.html:25
+msgid "unlocking order"
+msgstr "Commande de déverrouillage"
+
+#: templates/urpsm/notifications/last_notifications.html:17
+msgid "You've got no new notifications"
+msgstr "Vous n’avez aucune nouvelles notifications"
+
+#: templates/urpsm/orders/cancel_order_page.html:21
+#: templates/urpsm/orders/cancel_order_page_new.html:37
+#: templates/urpsm/tickets/ticket_details.html:45
+#: templates/urpsm/tickets/ticket_details.html:141
+#: templates/urpsm/v2/dash/customOrderReply.html:867
+msgid "order"
+msgstr "Demande"
+
+#: templates/urpsm/orders/cancel_order_page.html:24
+#: templates/urpsm/orders/cancel_order_page_new.html:40
+#: templates/urpsm/tickets/ticket_details.html:48
+msgid "order time"
+msgstr "Heure de commande"
+
+#: templates/urpsm/orders/cancel_order_page.html:30
+#: templates/urpsm/orders/cancel_order_page_new.html:46
+#: templates/urpsm/tickets/ticket_details.html:55
+msgid "order amount"
+msgstr "Montant de la commande"
+
+#: templates/urpsm/orders/cancel_order_page.html:35
+#: templates/urpsm/orders/cancel_order_page_new.html:51
+#: templates/urpsm/tickets/ticket_details.html:60
+msgid "service name"
+msgstr "Nom du service"
+
+#: templates/urpsm/orders/cancel_order_page.html:40
+#: templates/urpsm/orders/cancel_order_page_new.html:56
+#: templates/urpsm/tickets/ticket_details.html:65
+msgid "server name"
+msgstr "Nom du serveur"
+
+#: templates/urpsm/orders/cancel_order_page.html:45
+#: templates/urpsm/orders/cancel_order_page_new.html:61
+#: templates/urpsm/tickets/ticket_details.html:70
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:216
+msgid "shop name"
+msgstr "Nom de boutique"
+
+#: templates/urpsm/orders/cancel_order_page.html:60
+msgid "request cancellation"
+msgstr "Demande d'Annulation"
+
+#: templates/urpsm/orders/cancel_order_page.html:61
+msgid "you can ask the buyer to cancel this order"
+msgstr "Vous pouvez demander à l’acheteur d’annuler cette commande"
+
+#: templates/urpsm/orders/cancel_order_page.html:71
+#: templates/urpsm/orders/cancel_order_page.html:76
+msgid "explain why you want to cancel this order"
+msgstr "Expliquer pourquoi vous souhaitez annuler cette commande"
+
+#: templates/urpsm/orders/cancel_order_page.html:72
+msgid "Enter reason here..."
+msgstr "Entrez la raison ici..."
+
+#: templates/urpsm/orders/cancel_order_page.html:85
+msgid "small descriptiv title here"
+msgstr "Petit titre descriptif ici"
+
+#: templates/urpsm/orders/cancel_order_page.html:97
+#: templates/urpsm/orders/cancel_order_page.html:111
+msgid "small descriptive title here"
+msgstr "Petit titre descriptif ici"
+
+#: templates/urpsm/orders/cancel_order_page.html:127
+#: templates/urpsm/orders/cancel_order_page.html:145
+msgid "terms and conditions"
+msgstr "Conditions générales de vente"
+
+#: templates/urpsm/orders/cancel_order_page.html:145
+msgid "I agree to the"
+msgstr "J’accepte"
+
+#: templates/urpsm/orders/cancel_order_page.html:151
+#: templates/urpsm/tickets/ticket_response.html:67
+msgid "exit"
+msgstr "Sortie"
+
+#: templates/urpsm/orders/detail.html:8
+#: templates/urpsm/v2/client/review_v2.html:37
+msgid "reference"
+msgstr "Référérence"
+
+#: templates/urpsm/orders/detail.html:22
+msgid "code"
+msgstr "Code"
+
+#: templates/urpsm/orders/detail.html:28
+msgid "connection to the server"
+msgstr "La connexion au serveur"
+
+#: templates/urpsm/orders/detail.html:28
+msgid "error establishing API server connection"
+msgstr "Erreur d'établissement de la connexion du serveur API"
+
+#: templates/urpsm/orders/detail.html:36
+msgid "cancel order"
+msgstr "Annuler la commande"
+
+#: templates/urpsm/orders/emails/order_cancellation_confirmation.html:8
+msgid "Order with id {{ order.id }} has been cancelled."
+msgstr "Votre commande {{ order.id }} a été annulée."
+
+#: templates/urpsm/orders/index.html:20
+msgid "Success!"
+msgstr "Succès!"
+
+#: templates/urpsm/orders/index.html:37
+msgid "Search By IMEI"
+msgstr "Rechercher par IMEI"
+
+#: templates/urpsm/orders/index.html:53 templates/urpsm/tickets/index.html:26
+#: templates/urpsm/v2/_base_manager_v2.html:289
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:42
+msgid "place an order"
+msgstr "Placer une commande"
+
+#: templates/urpsm/orders/index.html:60 templates/urpsm/tickets/index.html:33
+#: templates/urpsm/v2/notifications/review_notifications_list_v2.html:18
+msgid "id"
+msgstr "ID"
+
+#: templates/urpsm/orders/index.html:63
+msgid "order date"
+msgstr "Date command"
+
+#: templates/urpsm/orders/index.html:65
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:27
+msgid "action"
+msgstr "Action"
+
+#: templates/urpsm/orders/index.html:66
+msgid "rate"
+msgstr "Evaluer"
+
+#: templates/urpsm/orders/index.html:82
+#: templates/urpsm/tickets/ticket_response.html:69
+msgid "cancel"
+msgstr "Annuler"
+
+#: templates/urpsm/orders/index.html:87
+#: templates/urpsm/v2/notifications/component_notifications_list_v2.html:28
+#: templates/urpsm/v2/notifications/payment_notifications_list_v2.html:29
+#: templates/urpsm/v2/notifications/phone_notifications_list_v2.html:27
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:27
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:38
+msgid "ticket"
+msgstr "Ticket"
+
+#: templates/urpsm/orders/index.html:194
+msgid "Invalid Order Id"
+msgstr "ID de commande non valide"
+
+#: templates/urpsm/orders/index.html:208
+msgid "successfully cancelled"
+msgstr "Annulée avec succès !"
+
+#: templates/urpsm/orders/service_down.html:1
+#: templates/urpsm/orders/service_down.html:7
+msgid "Service not available"
+msgstr "Service non disponible"
+
+#: templates/urpsm/orders/service_down.html:1
+#: templates/urpsm/orders/service_down.html:2
+msgid "Order"
+msgstr "Commande"
+
+#: templates/urpsm/orders/service_down.html:1
+#: templates/urpsm/orders/service_down.html:3
+#: templates/urpsm/orders/service_down.html:11
+msgid "Service"
+msgstr "Service"
+
+#: templates/urpsm/orders/service_down.html:11
+msgid ""
+"The selected service is currently so busy or something wrongs with the API "
+"Server, please try again later."
+msgstr ""
+"Le service sélectionné est actuellement tellement occupé ou quelque chose "
+"fait du tort avec le serveur de l’API, s’il vous plaît essayer à nouveau "
+"plus tard."
+
+#: templates/urpsm/server/addservercredits.html:1
+msgid "Add server credits"
+msgstr "Ajouter des crédits au serveur"
+
+#: templates/urpsm/server/addservercredits.html:1
+#: templates/urpsm/server/addservercredits.html:2
+#: templates/urpsm/server/deposit.html:1 templates/urpsm/server/deposit.html:2
+#: templates/urpsm/server/update.html:5 templates/urpsm/server/update.html:12
+#: templates/urpsm/server/viewservercredithistory.html:1
+#: templates/urpsm/server/viewservercredithistory.html:2
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:60
+#: templates/urpsm/v2/notifications/component_notifications_list_v2.html:20
+#: templates/urpsm/v2/notifications/payment_notifications_list_v2.html:21
+#: templates/urpsm/v2/notifications/phone_notifications_list_v2.html:19
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:19
+#: templates/urpsm/v2/server/update.html:4
+#: templates/urpsm/v2/server/update.html:7
+msgid "server"
+msgstr "Serveur"
+
+#: templates/urpsm/server/addservercredits.html:2
+#: templates/urpsm/server/deposit.html:2 templates/urpsm/server/deposit.html:3
+#: templates/urpsm/server/deposit.html:7 templates/urpsm/server/deposit.html:18
+#: templates/urpsm/shop/deposit.html:2 templates/urpsm/shop/deposit.html:3
+#: templates/urpsm/shop/deposit.html:32 templates/urpsm/shop/deposit.html:162
+#: templates/urpsm/shop/paymentmethods.html:2
+#: templates/urpsm/shop/paymentmethods.html:3
+#: templates/urpsm/v2/base_manager_v2.html:138
+#: templates/urpsm/v2/base_manager_v2.html:140
+#: templates/urpsm/v2/base_manager_v3.html:142
+#: templates/urpsm/v2/base_manager_v3.html:144
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:56
+msgid "deposit"
+msgstr "Dépôt"
+
+#: templates/urpsm/server/addservercredits.html:3
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:61
+msgid "Add credits"
+msgstr "Ajouter des crédits"
+
+#: templates/urpsm/server/addservercredits.html:7
+#: templates/urpsm/v2/base_manager_v2.html:335
+msgid "Add server credit"
+msgstr "Ajouter du crédit au serveur"
+
+#: templates/urpsm/server/addservercredits.html:28
+msgid "Add amount"
+msgstr "Ajouter un montant"
+
+#: templates/urpsm/server/addservercredits.html:30
+msgid "credit"
+msgstr "Crédit"
+
+#: templates/urpsm/server/addservercredits.html:34
+msgid "Add credit"
+msgstr "Ajout de crédit"
+
+#: templates/urpsm/server/component_detail.html:37
+#: templates/urpsm/server/detail.html:1 templates/urpsm/server/home.html:40
+#: templates/urpsm/v2/server/server_list_v2.html:3
+msgid "servers list"
+msgstr "Liste des serveurs"
+
+#: templates/urpsm/server/component_detail.html:38
+#: templates/urpsm/server/detail.html:2 templates/urpsm/server/search.html:41
+#: templates/urpsm/v2/_base_manager_v2.html:235
+#: templates/urpsm/v2/_base_manager_v2.html:308
+#: templates/urpsm/v2/search/server_search_result_v2.html:9
+#: templates/urpsm/v2/server/server_list_v2.html:12
+msgid "servers"
+msgstr "Serveurs"
+
+#: templates/urpsm/server/component_detail.html:47
+msgid "search components ..."
+msgstr "Recherche de composants..."
+
+#: templates/urpsm/server/component_detail.html:93
+#: templates/urpsm/v2/_base_manager_v2.html:363
+#: templates/urpsm/v2/base_manager_v2.html:396
+#: templates/urpsm/v2/base_manager_v2.html:398
+#: templates/urpsm/v2/base_manager_v3.html:408
+#: templates/urpsm/v2/base_manager_v3.html:410
+#: templates/urpsm/v2/public/base_v3.html:110
+msgid "contact"
+msgstr "Contacter"
+
+#: templates/urpsm/server/deposit.html:1 templates/urpsm/shop/deposit.html:1
+#: templates/urpsm/shop/paymentmethods.html:1
+msgid "make a deposit"
+msgstr "Dépôt"
+
+#: templates/urpsm/server/home.html:52 templates/urpsm/server/search.html:49
+#: templates/urpsm/v2/server/server_list_v2.html:31
+msgid "search servers ..."
+msgstr "Recherche serveurs"
+
+#: templates/urpsm/server/search.html:85 templates/urpsm/shop/search.html:79
+msgid "no products found which match your search."
+msgstr "Aucun produit trouvé qui correspondent à votre recherche."
+
+#: templates/urpsm/server/server.html:4
+msgid "Shops"
+msgstr "Boutiques"
+
+#: templates/urpsm/server/update.html:4 templates/urpsm/server/update.html:19
+#: templates/urpsm/v2/server/update.html:13
+msgid "server information"
+msgstr "Information sur le serveur"
+
+#: templates/urpsm/server/update.html:6 templates/urpsm/v2/server/update.html:5
+msgid "edit your server information"
+msgstr "Modifier vos informations"
+
+#: templates/urpsm/server/viewservercredithistory.html:1
+#: templates/urpsm/server/viewservercredithistory.html:13
+#: templates/urpsm/v2/base_manager_v2.html:340
+#: templates/urpsm/v2/base_manager_v2.html:342
+msgid "Server credit history"
+msgstr "Historique de crédit"
+
+#: templates/urpsm/server/viewservercredithistory.html:2
+msgid "History"
+msgstr "Historique"
+
+#: templates/urpsm/server/viewservercredithistory.html:3
+msgid "Credit History"
+msgstr "Historique de crédit"
+
+#: templates/urpsm/server/viewservercredithistory.html:21
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:109
+msgid "Type"
+msgstr "Type"
+
+#: templates/urpsm/server/viewservercredithistory.html:22
+msgid "Credit"
+msgstr "Crédit"
+
+#: templates/urpsm/server/viewservercredithistory.html:24
+#: templates/urpsm/v2/dash/adminhistory.html:25
+msgid "Description"
+msgstr "Sous-titre"
+
+#: templates/urpsm/shop/actionhistory.html:1
+#: templates/urpsm/shop/invoice_upload.html:1
+#: templates/urpsm/shop/invoices.html:1 templates/urpsm/shop/update.html:5
+#: templates/urpsm/shop/update.html.py:11
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:55
+msgid "shop"
+msgstr "Boutique"
+
+#: templates/urpsm/shop/actionhistory.html:10
+#: templates/urpsm/v2/dash/adminhistory.html:4
+#: templates/urpsm/v2/dash/adminhistory.html:15
+msgid "Action History"
+msgstr "Historique des actions"
+
+#: templates/urpsm/shop/actionhistory.html:18
+msgid "Group"
+msgstr "Groupe"
+
+#: templates/urpsm/shop/actionhistory.html:19
+#: templates/urpsm/shop/invoices.html:23
+#: templates/urpsm/v2/dash/adminhistory.html:23
+msgid "Action"
+msgstr "Action"
+
+#: templates/urpsm/shop/component_detail.html:37
+#: templates/urpsm/shop/detail.html:1 templates/urpsm/shop/home.html:38
+#: templates/urpsm/v2/shop/shops_list_v2.html:3
+msgid "shops list"
+msgstr "Liste boutiques"
+
+#: templates/urpsm/shop/component_detail.html:38
+#: templates/urpsm/shop/detail.html:2 templates/urpsm/shop/home.html:40
+#: templates/urpsm/shop/search.html:41
+#: templates/urpsm/v2/_base_manager_v2.html:229
+#: templates/urpsm/v2/search/shop_search_result_v2.html:9
+#: templates/urpsm/v2/shop/shops_list_v2.html:12
+msgid "shops"
+msgstr "Boutiques"
+
+#: templates/urpsm/shop/component_detail.html:47
+#: templates/urpsm/v2/search/shop_search_result_v2.html:3
+#: templates/urpsm/v2/search/shop_search_result_v2.html:14
+msgid "search shops"
+msgstr "Chercher Boutiques"
+
+#: templates/urpsm/shop/home.html:50 templates/urpsm/shop/search.html:49
+msgid "search shops ..."
+msgstr "Chercher Boutiques"
+
+#: templates/urpsm/shop/invoice_upload.html:65
+msgid "please upload you proof files !"
+msgstr "S’il vous plaît upload fichiers preuve !"
+
+#: templates/urpsm/shop/invoice_upload.html:77
+msgid "submit your proof"
+msgstr "Soumettre votre preuve"
+
+#: templates/urpsm/shop/paymentmethods.html:6
+msgid "Pay via the following details"
+msgstr "Payer via les détails suivants"
+
+#: templates/urpsm/shop/update.html:4 templates/urpsm/shop/update.html.py:18
+msgid "shop information"
+msgstr "Informations Boutique"
+
+#: templates/urpsm/shop/update.html:6
+msgid "edit your shop information"
+msgstr "Modifier vos informations"
+
+#: templates/urpsm/tickets/index.html:1 templates/urpsm/tickets/index.html:24
+#: templates/urpsm/tickets/ticket_details.html:1
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:5
+msgid "tickets list"
+msgstr "Liste des tickets"
+
+#: templates/urpsm/tickets/index.html:1 templates/urpsm/tickets/index.html:2
+#: templates/urpsm/tickets/ticket_details.html:2
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:57
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:11
+msgid "tickets"
+msgstr "Tickets"
+
+#: templates/urpsm/tickets/index.html:10
+msgid "search by imei"
+msgstr "Rechercher par IMEI"
+
+#: templates/urpsm/tickets/ticket_details.html:15
+msgid "success!"
+msgstr "Succès!"
+
+#: templates/urpsm/tickets/ticket_details.html:82
+#: templates/urpsm/v2/notifications/order_notifications_list_v2.html:27
+msgid "order status"
+msgstr "Etat commande"
+
+#: templates/urpsm/tickets/ticket_details.html:83
+msgid "chat with client"
+msgstr "Discuter avec le client"
+
+#: templates/urpsm/tickets/ticket_details.html:122
+#: templates/urpsm/tickets/ticket_details.html:133
+msgid "shop response :"
+msgstr "Réponse du magasin:"
+
+#: templates/urpsm/tickets/ticket_details.html:123
+#: templates/urpsm/tickets/ticket_details.html:125
+#: templates/urpsm/tickets/ticket_details.html:129
+#: templates/urpsm/tickets/ticket_details.html:134
+msgid "reason :"
+msgstr "Raison"
+
+#: templates/urpsm/tickets/ticket_details.html:124
+#: templates/urpsm/tickets/ticket_details.html:128
+msgid "server response :"
+msgstr "Réponse du serveur :"
+
+#: templates/urpsm/tickets/ticket_details.html:142
+msgid "from:"
+msgstr "De"
+
+#: templates/urpsm/tickets/ticket_details.html:260
+msgid "please explain and upload you preuve files !"
+msgstr "Expliquez-le et téléchargez-vous les fichiers de preuve!"
+
+#: templates/urpsm/tickets/ticket_details.html:273
+msgid "submit your preuve"
+msgstr "Présenter votre preuve"
+
+#: templates/urpsm/tickets/ticket_details.html:284
+#: templates/urpsm/v2/dash/customOrderReply.html:988
+msgid "start conversation"
+msgstr "Démarrer la conversation"
+
+#: templates/urpsm/tickets/ticket_details.html:318
+msgid "send your message!"
+msgstr "Envoyez votre message"
+
+#: templates/urpsm/tickets/ticket_details.html:325
+#: templates/urpsm/v2/dash/customOrderReply.html:1029
+msgid "upload"
+msgstr "Charger"
+
+#: templates/urpsm/tickets/ticket_details.html:327
+#: templates/urpsm/v2/dash/customOrderReply.html:1031
+msgid "reply"
+msgstr "Répondre"
+
+#: templates/urpsm/tickets/ticket_details.html:360
+#: templates/urpsm/v2/dash/customOrderReply.html:1066
+#: templates/urpsm/v2/dash/customOrderReply.html:1069
+msgid "Close order"
+msgstr "Fermer la Commande"
+
+#: templates/urpsm/tickets/ticket_details.html:363
+msgid "CLOSE ORDER"
+msgstr "Fermer la Commande"
+
+#: templates/urpsm/tickets/ticket_details.html:365
+#: templates/urpsm/v2/dash/customOrderReply.html:1071
+msgid ""
+"Mark order as completed both side agree to close the order the issue is "
+"fixed , please Note you cant get back if you confirm"
+msgstr ""
+"Marquer l'ordre tel qu'il est terminé, les deux parties acceptent de fermer "
+"l'ordre, le problème est résolu, notez que vous ne pouvez pas revenir si "
+"vous confirmez"
+
+#: templates/urpsm/tickets/ticket_details.html:368
+msgid "write reason"
+msgstr "Écrivez une raison"
+
+#: templates/urpsm/tickets/ticket_details.html:369
+#: templates/urpsm/tickets/ticket_details.html:410
+#: templates/urpsm/tickets/ticket_details.html:461
+#: templates/urpsm/v2/dash/customOrderReply.html:1075
+#: templates/urpsm/v2/dash/customOrderReply.html:1118
+#: templates/urpsm/v2/dash/customOrderReply.html:1170
+msgid "enter ..."
+msgstr "Entrer"
+
+#: templates/urpsm/tickets/ticket_details.html:376
+#: templates/urpsm/tickets/ticket_details.html:427
+#: templates/urpsm/tickets/ticket_details.html:466
+#: templates/urpsm/v2/dash/customOrderReply.html:1082
+#: templates/urpsm/v2/dash/customOrderReply.html:1135
+#: templates/urpsm/v2/dash/customOrderReply.html:1175
+msgid "i confirm !"
+msgstr "Je confirme"
+
+#: templates/urpsm/tickets/ticket_details.html:378
+#: templates/urpsm/v2/dash/customOrderReply.html:1084
+msgid "complete this order"
+msgstr "Compléter cette commande"
+
+#: templates/urpsm/tickets/ticket_details.html:401
+msgid "Admin Support"
+msgstr "Soutien administratif"
+
+#: templates/urpsm/tickets/ticket_details.html:404
+msgid "ADMINISTRATION SUPPORT"
+msgstr "SUPPORT D'ADMINISTRATION"
+
+#: templates/urpsm/tickets/ticket_details.html:406
+msgid ""
+"Our team will examine all your proof , also we may ask you fot more details "
+"to come up with the right judgement for your situation"
+msgstr ""
+"Notre équipe examinera toutes vos preuves, nous vous demanderons peut-être "
+"plus de détails pour trouver le bon jugement pour votre situation"
+
+#: templates/urpsm/tickets/ticket_details.html:409
+#: templates/urpsm/tickets/ticket_details.html:460
+msgid "write us reason why"
+msgstr "Ecrivez-nous à raison pourquoi"
+
+#: templates/urpsm/tickets/ticket_details.html:429
+#: templates/urpsm/v2/dash/customOrderReply.html:1137
+msgid "request admin support"
+msgstr "Demandent un soutien admin"
+
+#: templates/urpsm/tickets/ticket_details.html:452
+#: templates/urpsm/v2/dash/customOrderReply.html:1160
+msgid "CANCELLING ORDER"
+msgstr "Annulation de commande"
+
+#: templates/urpsm/tickets/ticket_details.html:455
+#: templates/urpsm/v2/dash/customOrderReply.html:1163
+msgid "close and refund shop"
+msgstr "Fermer et rembourser le magasin"
+
+#: templates/urpsm/tickets/ticket_details.html:457
+#: templates/urpsm/v2/dash/customOrderReply.html:1165
+msgid "you choose to cancel this order and refund the shop for it"
+msgstr "Vous choisissez d’annuler cette commande et de rembourser la boutique"
+
+#: templates/urpsm/tickets/ticket_details.html:468
+#: templates/urpsm/v2/dash/customOrderReply.html:1177
+msgid "cancel this order"
+msgstr "Annuler cette commande"
+
+#: templates/urpsm/tickets/ticket_response.html:10
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:25
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:68
+msgid "completed"
+msgstr "Terminé"
+
+#: templates/urpsm/tickets/ticket_response.html:19
+msgid "Confirm order is complete and issue is solved."
+msgstr "Confirmer la commande est complète et le problème est résolu."
+
+#: templates/urpsm/tickets/ticket_response.html:29
+msgid "admin support"
+msgstr "Soutien administratif"
+
+#: templates/urpsm/tickets/ticket_response.html:39
+msgid "Shop and Server did not agree on the issue. Admin support needed"
+msgstr ""
+"Shop et Server ne sont pas d'accord sur le problème. Support administratif "
+"nécessaire"
+
+#: templates/urpsm/tickets/ticket_response.html:48
+msgid "cancelled"
+msgstr "Annulée"
+
+#: templates/urpsm/tickets/ticket_response.html:57
+msgid " Server confirms the order is cancelled and shop will be refunded"
+msgstr ""
+"Le serveur confirme que la commande est annulée et le magasin sera remboursé"
+
+#: templates/urpsm/tickets/ticket_response.html:71
+msgid "proceed"
+msgstr "Continuer"
+
+#: templates/urpsm/ureview/review_form.html:2
+#: templates/urpsm/ureview/thankyou.html:2
+msgid "Reviews your purchase"
+msgstr "Votre avis nous intéresse "
+
+#: templates/urpsm/ureview/review_form.html:3
+#: templates/urpsm/ureview/thankyou.html:3
+msgid "Unlocking server"
+msgstr "Serveur de déblocage"
+
+#: templates/urpsm/ureview/review_form.html:4
+msgid "Please leave a review"
+msgstr "S’il vous plaît laisser un avis"
+
+#: templates/urpsm/ureview/review_form.html:6
+#: templates/urpsm/ureview/thankyou.html:6
+msgid "Server"
+msgstr "Serveur"
+
+#: templates/urpsm/ureview/review_form.html:7
+#: templates/urpsm/ureview/thankyou.html:7
+msgid "Reviews"
+msgstr "Avis"
+
+#: templates/urpsm/ureview/review_form.html:12
+msgid "Review your"
+msgstr "Votre avis"
+
+#: templates/urpsm/ureview/thankyou.html:11
+msgid "Thank you for reviewing"
+msgstr "Merci de votre évaluation."
+
+#: templates/urpsm/v2/_base_manager_v2.html:190
+#: templates/urpsm/v2/base_manager_v2.html:221
+#: templates/urpsm/v2/base_manager_v3.html:216
+msgid "menu"
+msgstr "Menu"
+
+#: templates/urpsm/v2/_base_manager_v2.html:194
+#: templates/urpsm/v2/base_manager_v2.html:225
+#: templates/urpsm/v2/base_manager_v3.html:220
+#: templates/urpsm/v2/base_v2.html:87 templates/urpsm/v2/public/base_v3.html:98
+#: templates/urpsm/v2/public/brand_models_v2.html:14
+#: templates/urpsm/v2/public/levels_v2.html:16
+#: templates/urpsm/v2/public/privacy.html:13
+#: templates/urpsm/v2/public/shop_detail_v2.html:11
+#: templates/urpsm/v2/public/terms.html:11
+#: templates/urpsm/v2/search/component_search_result_v2.html:13
+#: templates/urpsm/v2/search/server_search_result_v2.html:13
+#: templates/urpsm/v2/search/shop_search_result_v2.html:13
+msgid "home"
+msgstr "Accueil"
+
+#: templates/urpsm/v2/_base_manager_v2.html:201
+msgid "my shop"
+msgstr "Ma Boutique"
+
+#: templates/urpsm/v2/_base_manager_v2.html:207
+#: templates/urpsm/v2/_base_manager_v2.html:222
+#: templates/urpsm/v2/base_manager_v2.html:232
+#: templates/urpsm/v2/base_manager_v2.html:305
+#: templates/urpsm/v2/base_manager_v3.html:227
+#: templates/urpsm/v2/base_manager_v3.html:316
+msgid "my dashboard"
+msgstr "Mon tableau de bord"
+
+#: templates/urpsm/v2/_base_manager_v2.html:216
+msgid "my server"
+msgstr "Mon serveur"
+
+#: templates/urpsm/v2/_base_manager_v2.html:255
+#: templates/urpsm/v2/_base_manager_v2.html:257
+#: templates/urpsm/v2/components/components_list_v2.html:4
+msgid "other shops components"
+msgstr "Composants d'autres boutique"
+
+#: templates/urpsm/v2/_base_manager_v2.html:263
+#: templates/urpsm/v2/_base_manager_v2.html:265
+#: templates/urpsm/v2/base_manager_v2.html:272
+#: templates/urpsm/v2/base_manager_v3.html:262
+msgid "my shop components"
+msgstr "Mes composants"
+
+#: templates/urpsm/v2/_base_manager_v2.html:306
+#: templates/urpsm/v2/base_manager_v2.html:330
+#: templates/urpsm/v2/base_manager_v3.html:355
+msgid "api provider"
+msgstr "API fournisseur"
+
+#: templates/urpsm/v2/_base_manager_v2.html:309
+msgid "unlocking orders"
+msgstr "Command de déblocage"
+
+#: templates/urpsm/v2/_base_manager_v2.html:316
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:51
+msgid "settings"
+msgstr "Paramétres"
+
+#: templates/urpsm/v2/_base_manager_v2.html:325
+msgid "edit shop"
+msgstr "Modifier la boutique"
+
+#: templates/urpsm/v2/_base_manager_v2.html:330
+msgid "edit server"
+msgstr "Modifier Serveur"
+
+#: templates/urpsm/v2/accounts/business_v2.html:4
+msgid "user business"
+msgstr "Secteur d’activité de l'utilisateur "
+
+#: templates/urpsm/v2/accounts/business_v2.html:5
+#: templates/urpsm/v2/accounts/business_v2.html:8
+msgid "business"
+msgstr "Secteur d’activité "
+
+#: templates/urpsm/v2/accounts/business_v2.html:6
+msgid "enter your business type"
+msgstr "Sélectionnez votre secteur d’activité"
+
+#: templates/urpsm/v2/accounts/business_v2.html:16
+msgid "what is your business type?"
+msgstr "Sélectionnez votre secteur d’activité "
+
+#: templates/urpsm/v2/accounts/business_v2.html:41
+msgid "ok"
+msgstr "OK"
+
+#: templates/urpsm/v2/accounts/login_form_v2.html:21
+msgid "Username"
+msgstr "Identifiant"
+
+#: templates/urpsm/v2/accounts/login_form_v2.html:38
+msgid "Remember me"
+msgstr "Se souvenir de moi"
+
+#: templates/urpsm/v2/accounts/login_form_v2.html:40
+msgid "Forget password?"
+msgstr "Vous avez oublié votre mot de passe ?"
+
+#: templates/urpsm/v2/accounts/login_form_v2.html:48
+msgid "Facebook"
+msgstr "Facebook"
+
+#: templates/urpsm/v2/accounts/login_form_v2.html:49
+msgid "Google +"
+msgstr "Google+"
+
+#: templates/urpsm/v2/accounts/login_form_v2.html:53
+msgid "Sign up"
+msgstr "S'inscrire"
+
+#: templates/urpsm/v2/accounts/password_change.html:6
+msgid "Change your password"
+msgstr "Changer mon mot de passe"
+
+#: templates/urpsm/v2/accounts/password_change.html:8
+msgid "Change password"
+msgstr "Changer le mot de passe"
+
+#: templates/urpsm/v2/accounts/password_reset.html:19
+msgid "Reset my password"
+msgstr "Réinitialiser mon mot de passe"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:4
+msgid "User register"
+msgstr "Inscription de l'utilisateur"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:16
+msgid "General Information"
+msgstr "Informations générales:"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:17
+msgid "Personal Information"
+msgstr "Informations personnelles"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:23
+msgid "what is your business name?"
+msgstr "Le nom de votre secteur d’activité ?"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:31
+msgid "What's your business type?"
+msgstr "Type de votre secteur d’activité ?"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:33
+msgid "server owner"
+msgstr "Propriétaire du serveur"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:53
+msgid "facebook"
+msgstr "Facebook"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:54
+msgid "google +"
+msgstr "Google +"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:83
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "password"
+msgstr "Mot de passe"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:86
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "confirm password"
+msgstr "Confirmez le mot de passe"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:88
+msgid "submit"
+msgstr "Soumettre"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:93
+msgid "log in"
+msgstr "Se connecter"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "business type"
+msgstr "Type d'entreprise"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "business name"
+msgstr "Raison sociale"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "city"
+msgstr "Ville"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "country"
+msgstr "Pays"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+#: templates/urpsm/v2/components/component_detail_v2.html:84
+msgid "shop phone"
+msgstr "Téléphone boutique"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "server phone"
+msgstr "Propriétaire du serveur"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+msgid "server email"
+msgstr "Courriel du serveur"
+
+#: templates/urpsm/v2/accounts/register_form_v2.html:226
+#: templates/urpsm/v2/components/component_detail_v2.html:85
+msgid "shop email"
+msgstr "Courriel du boutique"
+
+#: templates/urpsm/v2/auth_v2.html:6
+msgid "Unlock Repair Phone Shop Manager"
+msgstr "Unlock Repair Phone Shop Manager"
+
+#: templates/urpsm/v2/base_manager_v2.html:169
+#: templates/urpsm/v2/base_manager_v2.html:171
+#: templates/urpsm/v2/base_manager_v3.html:164
+#: templates/urpsm/v2/base_manager_v3.html:166
+msgid "logout"
+msgstr "Me déconnecter"
+
+#: templates/urpsm/v2/base_manager_v2.html:237
+#: templates/urpsm/v2/base_manager_v2.html:239
+#: templates/urpsm/v2/base_manager_v2.html:310
+#: templates/urpsm/v2/base_manager_v2.html:312
+#: templates/urpsm/v2/base_manager_v3.html:232
+#: templates/urpsm/v2/base_manager_v3.html:234
+#: templates/urpsm/v2/base_manager_v3.html:321
+#: templates/urpsm/v2/base_manager_v3.html:323
+msgid "my position"
+msgstr "Ma position"
+
+#: templates/urpsm/v2/base_manager_v2.html:241
+#: templates/urpsm/v2/base_manager_v2.html:243
+#: templates/urpsm/v2/base_manager_v2.html:314
+#: templates/urpsm/v2/base_manager_v2.html:316
+#: templates/urpsm/v2/base_manager_v3.html:236
+#: templates/urpsm/v2/base_manager_v3.html:238
+#: templates/urpsm/v2/base_manager_v3.html:325
+#: templates/urpsm/v2/base_manager_v3.html:327
+msgid "my activity"
+msgstr "Mon activité"
+
+#: templates/urpsm/v2/base_manager_v2.html:246
+msgid "action history"
+msgstr "Historique des actions"
+
+#: templates/urpsm/v2/base_manager_v2.html:248
+msgid "Action history"
+msgstr "Historique des actions"
+
+#: templates/urpsm/v2/base_manager_v2.html:254
+#: templates/urpsm/v2/base_manager_v2.html:256
+#: templates/urpsm/v2/base_manager_v3.html:244
+#: templates/urpsm/v2/base_manager_v3.html:246
+msgid "clients list"
+msgstr "Liste de clients"
+
+#: templates/urpsm/v2/base_manager_v2.html:258
+#: templates/urpsm/v2/base_manager_v2.html:260
+#: templates/urpsm/v2/base_manager_v3.html:248
+#: templates/urpsm/v2/base_manager_v3.html:250
+#: templates/urpsm/v2/base_manager_v3.html:301
+#: templates/urpsm/v2/base_manager_v3.html:330
+#: templates/urpsm/v2/base_manager_v3.html:332
+msgid "new unlocking order"
+msgstr "Nouvelle Com déverrouillage"
+
+#: templates/urpsm/v2/base_manager_v2.html:262
+#: templates/urpsm/v2/base_manager_v2.html:264
+#: templates/urpsm/v2/base_manager_v3.html:252
+#: templates/urpsm/v2/base_manager_v3.html:254
+#: templates/urpsm/v2/base_manager_v3.html:334
+#: templates/urpsm/v2/base_manager_v3.html:336
+msgid "my orders list"
+msgstr "Ma liste de commandes"
+
+#: templates/urpsm/v2/base_manager_v2.html:266
+#: templates/urpsm/v2/base_manager_v3.html:256
+msgid "add new component"
+msgstr "Ajouter nouveau composant"
+
+#: templates/urpsm/v2/base_manager_v2.html:270
+#: templates/urpsm/v2/base_manager_v3.html:260
+msgid "my components list"
+msgstr "Ma liste de composants"
+
+#: templates/urpsm/v2/base_manager_v2.html:275
+#: templates/urpsm/v2/base_manager_v2.html:277
+#: templates/urpsm/v2/base_manager_v3.html:265
+#: templates/urpsm/v2/base_manager_v3.html:267
+#: templates/urpsm/v2/base_manager_v3.html:340
+#: templates/urpsm/v2/base_manager_v3.html:342
+msgid "add employee"
+msgstr "Ajouter un employé"
+
+#: templates/urpsm/v2/base_manager_v2.html:279
+#: templates/urpsm/v2/base_manager_v2.html:281
+#: templates/urpsm/v2/base_manager_v3.html:269
+#: templates/urpsm/v2/base_manager_v3.html:271
+#: templates/urpsm/v2/base_manager_v3.html:344
+#: templates/urpsm/v2/base_manager_v3.html:346
+msgid "my employees"
+msgstr "Mes employés"
+
+#: templates/urpsm/v2/base_manager_v2.html:284
+#: templates/urpsm/v2/base_manager_v2.html:286
+#: templates/urpsm/v2/base_manager_v3.html:274
+#: templates/urpsm/v2/base_manager_v3.html:276
+msgid "edit shop info"
+msgstr "Modifier informations boutique"
+
+#: templates/urpsm/v2/base_manager_v2.html:288
+#: templates/urpsm/v2/base_manager_v2.html:290
+#: templates/urpsm/v2/base_manager_v2.html:346
+#: templates/urpsm/v2/base_manager_v2.html:348
+#: templates/urpsm/v2/base_manager_v3.html:278
+#: templates/urpsm/v2/base_manager_v3.html:280
+#: templates/urpsm/v2/base_manager_v3.html:360
+#: templates/urpsm/v2/base_manager_v3.html:362
+msgid "my tickets list"
+msgstr "Mes Tickets"
+
+#: templates/urpsm/v2/base_manager_v2.html:292
+#: templates/urpsm/v2/base_manager_v2.html:294
+msgid "shop invoices"
+msgstr "Factures | Magazin"
+
+#: templates/urpsm/v2/base_manager_v2.html:320
+msgid "sales dashboard"
+msgstr "Tableau des vente"
+
+#: templates/urpsm/v2/base_manager_v2.html:324
+#: templates/urpsm/v2/base_manager_v2.html:326
+#: templates/urpsm/v2/base_manager_v3.html:349
+#: templates/urpsm/v2/base_manager_v3.html:351
+msgid "edit server info"
+msgstr "Modifier informations serveur"
+
+#: templates/urpsm/v2/base_manager_v2.html:337
+msgid "add server credits"
+msgstr "Ajouter des crédits au serveur"
+
+#: templates/urpsm/v2/base_manager_v2.html:357
+#: templates/urpsm/v2/base_manager_v3.html:288
+#: templates/urpsm/v2/base_manager_v3.html:370
+msgid "my search"
+msgstr "Ma recherche"
+
+#: templates/urpsm/v2/base_manager_v2.html:363
+#: templates/urpsm/v2/base_manager_v2.html:365
+#: templates/urpsm/v2/base_manager_v3.html:293
+#: templates/urpsm/v2/base_manager_v3.html:295
+#: templates/urpsm/v2/base_manager_v3.html:375
+#: templates/urpsm/v2/base_manager_v3.html:377
+#: templates/urpsm/v2/components/components_list_v2.html:25
+msgid "search component"
+msgstr "Recherche de composant "
+
+#: templates/urpsm/v2/base_manager_v2.html:370
+#: templates/urpsm/v2/base_manager_v2.html:372
+#: templates/urpsm/v2/base_manager_v3.html:299
+#: templates/urpsm/v2/base_manager_v3.html:381
+#: templates/urpsm/v2/base_manager_v3.html:383
+msgid "search unlocking service"
+msgstr "Recherche service déverrouillage"
+
+#: templates/urpsm/v2/base_manager_v2.html:376
+#: templates/urpsm/v2/base_manager_v2.html:378
+#: templates/urpsm/v2/base_manager_v3.html:305
+#: templates/urpsm/v2/base_manager_v3.html:307
+#: templates/urpsm/v2/base_manager_v3.html:387
+#: templates/urpsm/v2/base_manager_v3.html:389
+msgid "search shop"
+msgstr "Recherche boutique"
+
+#: templates/urpsm/v2/base_manager_v2.html:385
+#: templates/urpsm/v2/base_manager_v3.html:397
+#: templates/urpsm/v2/dash/contact_shop_server.html:103
+msgid "messages"
+msgstr "Messages"
+
+#: templates/urpsm/v2/base_v2.html:51 templates/urpsm/v2/base_v2.html.py:53
+#: templates/urpsm/v2/public/base_v3.html:60
+#: templates/urpsm/v2/public/base_v3.html:62
+msgid "ACCOUNT"
+msgstr "Compte"
+
+#: templates/urpsm/v2/base_v2.html:56 templates/urpsm/v2/base_v2.html.py:133
+#: templates/urpsm/v2/public/base_v3.html:66
+#: templates/urpsm/v2/public/base_v3.html:140
+msgid "LOGIN"
+msgstr "Connexion"
+
+#: templates/urpsm/v2/base_v2.html:57 templates/urpsm/v2/base_v2.html.py:134
+#: templates/urpsm/v2/public/base_v3.html:67
+#: templates/urpsm/v2/public/base_v3.html:141
+msgid "SIGNUP"
+msgstr "S'inscrire"
+
+#: templates/urpsm/v2/base_v2.html:66 templates/urpsm/v2/public/base_v3.html:76
+msgid "Mobile Menu Toggle"
+msgstr "Mobile Menu Toggle"
+
+#: templates/urpsm/v2/base_v2.html:90 templates/urpsm/v2/base_v2.html.py:114
+#: templates/urpsm/v2/public/base_v3.html:122
+msgid "Features"
+msgstr "Fonctionnalités"
+
+#: templates/urpsm/v2/base_v2.html:93 templates/urpsm/v2/base_v2.html.py:117
+#: templates/urpsm/v2/public/base_v3.html:125
+msgid "Services"
+msgstr "Services"
+
+#: templates/urpsm/v2/base_v2.html:96 templates/urpsm/v2/base_v2.html.py:120
+#: templates/urpsm/v2/public/base_v3.html:128
+msgid "About"
+msgstr "À propos de"
+
+#: templates/urpsm/v2/base_v2.html:99 templates/urpsm/v2/base_v2.html.py:123
+#: templates/urpsm/v2/public/base_v3.html:131
+msgid "Contact"
+msgstr "Contact"
+
+#: templates/urpsm/v2/base_v2.html:148
+#: templates/urpsm/v2/public/base_v3.html:153
+msgid "About Urpsm"
+msgstr "À propos de URPSM"
+
+#: templates/urpsm/v2/base_v2.html:149
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod "
+"tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+"quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea "
+"commodoconsequat."
+msgstr ""
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod "
+"tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+"quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea "
+"commodoconsequat."
+
+#: templates/urpsm/v2/base_v2.html:163
+#: templates/urpsm/v2/public/base_v3.html:173
+msgid "Mailing List"
+msgstr "Liste d’adresses"
+
+#: templates/urpsm/v2/base_v2.html:164
+#: templates/urpsm/v2/public/base_v3.html:174
+msgid "Sign up for our mailing list to get latest updates and offers."
+msgstr ""
+"Abonnez-vous à notre newsletter pour recevoir les dernières actualités et "
+"mises à jour de notre site."
+
+#: templates/urpsm/v2/base_v2.html:170
+msgid "We respect your privacy"
+msgstr "Nous respectons votre vie privée."
+
+#: templates/urpsm/v2/client/review_v2.html:6
+msgid "client status"
+msgstr "Statut client"
+
+#: templates/urpsm/v2/client/review_v2.html:61
+msgid "Terrible"
+msgstr "Nul"
+
+#: templates/urpsm/v2/client/review_v2.html:62
+msgid "Below average"
+msgstr "Inférieur à la moyenne"
+
+#: templates/urpsm/v2/client/review_v2.html:63
+msgid "OK"
+msgstr "OK"
+
+#: templates/urpsm/v2/client/review_v2.html:64
+msgid "Good"
+msgstr "Très bien"
+
+#: templates/urpsm/v2/client/review_v2.html:65
+msgid "Excellent"
+msgstr "Excellent"
+
+#: templates/urpsm/v2/client/review_v2.html:72
+msgid "help other customer to make the right choice"
+msgstr "Aider d’autres clients à faire le bon choix"
+
+#: templates/urpsm/v2/client/review_v2.html:74
+msgid "submit review"
+msgstr "Envoyer un Commentaire"
+
+#: templates/urpsm/v2/client/thankyou_v2.html:6
+msgid "client thank you"
+msgstr "Merci"
+
+#: templates/urpsm/v2/client/thankyou_v2.html:32
+msgid "thank you for using urpsm"
+msgstr "Merci d’utiliser urpsm"
+
+#: templates/urpsm/v2/components/component_detail_v2.html:3
+#: templates/urpsm/v2/components/component_detail_v2.html:4
+#: templates/urpsm/v2/components/component_detail_v2.html:20
+msgid "component details"
+msgstr "Détails du composant"
+
+#: templates/urpsm/v2/components/component_detail_v2.html:44
+msgid "component description"
+msgstr "Description du composant"
+
+#: templates/urpsm/v2/components/component_detail_v2.html:73
+#: templates/urpsm/v2/dash/shop_postion_v2.html:79
+#: templates/urpsm/v2/public/levels_v2.html:74
+#: templates/urpsm/v2/public/levels_v2.html:131
+#: templates/urpsm/v2/public/levels_v2.html:188
+#: templates/urpsm/v2/public/levels_v2.html:244
+#: templates/urpsm/v2/server/server_position_v2.html:93
+msgid "unlocked"
+msgstr "Deverrouillé"
+
+#: templates/urpsm/v2/components/component_detail_v2.html:75
+#: templates/urpsm/v2/dash/shop_postion_v2.html:81
+#: templates/urpsm/v2/public/levels_v2.html:66
+#: templates/urpsm/v2/public/levels_v2.html:123
+#: templates/urpsm/v2/public/levels_v2.html:180
+#: templates/urpsm/v2/public/levels_v2.html:236
+msgid "repaired"
+msgstr "Réparés"
+
+#: templates/urpsm/v2/components/component_detail_v2.html:77
+#: templates/urpsm/v2/dash/shop_postion_v2.html:83
+msgid "unrepaired"
+msgstr "Non réparé"
+
+#: templates/urpsm/v2/components/components_list_v2.html:3
+msgid "Components list"
+msgstr "Liste des composants"
+
+#: templates/urpsm/v2/components/components_list_v2.html:8
+msgid "components listing and search"
+msgstr "Liste des composants et recherche"
+
+#: templates/urpsm/v2/dash/admin_thankyou_v2.html:3
+#: templates/urpsm/v2/dash/admin_thankyou_v2.html:4
+#: templates/urpsm/v2/dash/chathistory.html:3
+#: templates/urpsm/v2/dash/chathistory.html:4
+#: templates/urpsm/v2/dash/contact_admin_v2.html:3
+#: templates/urpsm/v2/dash/contact_admin_v2.html:4
+#: templates/urpsm/v2/dash/contact_admin_v2.html:10
+msgid "contact admin"
+msgstr "Contact admin"
+
+#: templates/urpsm/v2/dash/adminchathistory.html:4
+#: templates/urpsm/v2/dash/adminchathistory.html:5
+#: templates/urpsm/v2/dash/contact_shop_server.html:4
+#: templates/urpsm/v2/dash/contact_shop_server.html:5
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:142
+msgid "Messages"
+msgstr "Messages"
+
+#: templates/urpsm/v2/dash/adminhistory.html:5
+msgid "Admin Action History"
+msgstr "Historique des actions ADMIN"
+
+#: templates/urpsm/v2/dash/base_dashboard_v2.html:3
+#: templates/urpsm/v2/dash/base_dashboard_v2.html:4
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:5
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:6
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:3
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:4
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:3
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:4
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: templates/urpsm/v2/dash/contact_admin_v2.html:55
+msgid "previous admin messages"
+msgstr "Précédent messages de l’admin"
+
+#: templates/urpsm/v2/dash/contact_admin_v2.html:62
+#: templates/urpsm/v2/dash/contact_shop_server.html:114
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:21
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:35
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:49
+#: templates/urpsm/v2/notifications/client_notifications_list_v2.html:23
+#: templates/urpsm/v2/notifications/component_notifications_list_v2.html:22
+#: templates/urpsm/v2/notifications/payment_notifications_list_v2.html:23
+#: templates/urpsm/v2/notifications/phone_notifications_list_v2.html:21
+#: templates/urpsm/v2/notifications/review_notifications_list_v2.html:20
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:21
+msgid "message"
+msgstr "Message"
+
+#: templates/urpsm/v2/dash/contact_admin_v2.html:64
+#: templates/urpsm/v2/dash/contact_shop_server.html:116
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:22
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:43
+#: templates/urpsm/v2/notifications/component_notifications_list_v2.html:23
+#: templates/urpsm/v2/notifications/payment_notifications_list_v2.html:24
+#: templates/urpsm/v2/notifications/phone_notifications_list_v2.html:22
+#: templates/urpsm/v2/notifications/review_notifications_list_v2.html:21
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:22
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:62
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:26
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:62
+msgid "date"
+msgstr "Date"
+
+#: templates/urpsm/v2/dash/contact_shop_server.html:24
+msgid "New Message"
+msgstr "Nouveau message"
+
+#: templates/urpsm/v2/dash/contact_shop_server.html:111
+msgid "Shop/Server"
+msgstr "Boutique/serveur"
+
+#: templates/urpsm/v2/dash/customOrderReply.html:1022
+msgid "send your message"
+msgstr "Envoyez votre message"
+
+#: templates/urpsm/v2/dash/customOrderReply.html:1074
+msgid "write us reason why "
+msgstr "Ecrivez-nous la raison pourquoi"
+
+#: templates/urpsm/v2/dash/customOrderReply.html:1107
+msgid "lorem title here2"
+msgstr "Titre"
+
+#: templates/urpsm/v2/dash/customOrderReply.html:1110
+msgid "small title"
+msgstr "Petit titre"
+
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:24
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:13
+msgid "new clients"
+msgstr "Nouveaux client"
+
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:63
+msgid "manage two factor authentication"
+msgstr "Authentification à deux facteurs"
+
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:79
+msgid "credit left"
+msgstr "Crédit restan"
+
+#: templates/urpsm/v2/dash/dashboard_menu_v2.html:81
+msgid "wallet"
+msgstr "Portefeuil"
+
+#: templates/urpsm/v2/dash/deposit_info_text.html:4
+#: templates/urpsm/v2/dash/deposit_info_text.html:5
+#: templates/urpsm/v2/dash/metaedit.html:4
+#: templates/urpsm/v2/dash/metaedit.html:5
+#: templates/urpsm/v2/dash/urpsm_texts.html:4
+#: templates/urpsm/v2/dash/urpsm_texts.html:5
+#: templates/urpsm/v2/dash/urpsm_texts.html:33
+msgid "Edit Site"
+msgstr "Editer site"
+
+#: templates/urpsm/v2/dash/deposit_info_text.html:58
+msgid "Edit deposit info"
+msgstr "Modifier dépôt Info"
+
+#: templates/urpsm/v2/dash/metaedit.html:61
+msgid "Seo Panel"
+msgstr "SEO Panel"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:11
+msgid "my server activities"
+msgstr "Mes activités de serveur"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:15
+msgid "shop orders"
+msgstr "Boutique Commandes"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:16
+msgid "new shop orders"
+msgstr "Nouvelle commande boutique"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:26
+msgid "orders completed today"
+msgstr "Commandes terminés aujourd'hui"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:48
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:32
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:117
+msgid "total revenues"
+msgstr "Total des recettes"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:61
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:45
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:118
+msgid "upcoming revenues"
+msgstr "Recettes à venir"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:62
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:46
+msgid "not paid yet"
+msgstr "Pas encore payé."
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:71
+msgid "current month revenues"
+msgstr "Recettes du mois en cours"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:83
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:78
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:121
+msgid "canceled"
+msgstr "Annulé"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:84
+msgid "orders cancelled today"
+msgstr "Commandes annulées aujourd'hui"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:93
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:88
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:122
+msgid "raised tickets"
+msgstr "Tickets surélevés"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:94
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:89
+msgid "tickets raised today"
+msgstr "Tickets surélevés aujourd'hui"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:210
+msgid "last 30 days orders"
+msgstr "Derniers ordres de 30 jours"
+
+#: templates/urpsm/v2/dash/server_dashboard_v2.html:222
+msgid "review"
+msgstr "Avis"
+
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:23
+msgid "Available to withdraw"
+msgstr "Disponible à retirer"
+
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:25
+msgid "Withdraw"
+msgstr "Retrait"
+
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:37
+msgid "Upcoming revenues"
+msgstr "Recettes à venir"
+
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:38
+msgid "Ask for clearance"
+msgstr "Demandes d’autorisation"
+
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:50
+msgid "Already withdrawn"
+msgstr "Déjà retiré"
+
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:60
+msgid "Upcoming payments"
+msgstr "Paiements à venir"
+
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:75
+msgid "Max amount available"
+msgstr "Montant maximum disponible"
+
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:76
+msgid "Enter amount to clear"
+msgstr "Entrez le montant à transférer."
+
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:123
+msgid "Clearance Request"
+msgstr "Demandes d’autorisation"
+
+#: templates/urpsm/v2/dash/server_sales_dashboard.html:123
+msgid "Withdrawl"
+msgstr "Retrait"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:8
+msgid "my shop activities"
+msgstr "Mes activités de boutique"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:23
+msgid "new components"
+msgstr "Nouveaux composants"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:55
+msgid "Current month revenues"
+msgstr "Recettes du mois en cours"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:63
+msgid "unlocking statistics"
+msgstr "Statistiques de déverrouillage"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:69
+msgid "completed orders today"
+msgstr "Commandes terminé aujourd'hui"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:79
+msgid "cancelled orders today"
+msgstr "Commande annulé aujourd'hui"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:104
+msgid "last thirty day stats"
+msgstr "Dernières statu de trente jours"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:119
+msgid "current revenues"
+msgstr "Recettes courantes"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:120
+msgid "compleeted"
+msgstr "Complète "
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:159
+msgid "brands"
+msgstr "Marques"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:174
+msgid "latest clients"
+msgstr "Derniers clients"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:187
+msgid "paid for"
+msgstr "Payé pour"
+
+#: templates/urpsm/v2/dash/shop_dashboard_v2.html:213
+msgid "new client"
+msgstr "Nouveau client"
+
+#: templates/urpsm/v2/dash/shop_postion_v2.html:3
+#: templates/urpsm/v2/dash/shop_postion_v2.html:4
+msgid "shop position"
+msgstr "Position de la boutique"
+
+#: templates/urpsm/v2/dash/shop_postion_v2.html:9
+msgid "my shop ranking"
+msgstr "Classement de ma boutique"
+
+#: templates/urpsm/v2/dash/shop_postion_v2.html:18
+#: templates/urpsm/v2/server/server_position_v2.html:26
+msgid "ranking by city"
+msgstr "Classement par ville"
+
+#: templates/urpsm/v2/dash/shop_postion_v2.html:33
+#: templates/urpsm/v2/server/server_position_v2.html:47
+msgid "ranking by country"
+msgstr "Classement par pays"
+
+#: templates/urpsm/v2/dash/shop_postion_v2.html:48
+#: templates/urpsm/v2/server/server_position_v2.html:68
+msgid "ranking in the world"
+msgstr "Classement dans le monde"
+
+#: templates/urpsm/v2/dash/shop_postion_v2.html:61
+msgid "first shop in my city"
+msgstr "Premier magasin dans ma ville"
+
+#: templates/urpsm/v2/dash/shop_postion_v2.html:72
+#: templates/urpsm/v2/server/server_position_v2.html:103
+msgid "last review"
+msgstr "Dernier avis"
+
+#: templates/urpsm/v2/dash/shop_postion_v2.html:97
+msgid "my shop's clients reviews"
+msgstr "Avis des clients de ma boutique"
+
+#: templates/urpsm/v2/error404_v2.html:54
+msgid "error 404"
+msgstr "Erreur 404"
+
+#: templates/urpsm/v2/error404_v2.html:54
+msgid "page not found"
+msgstr "Page introuvable"
+
+#: templates/urpsm/v2/error404_v2.html:56
+msgid "go back to home"
+msgstr "Revenir à l'accueil"
+
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:14
+msgid "urpsm admin notifications"
+msgstr "Notifications d’admin urpsm"
+
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:15
+msgid "back to notifications"
+msgstr "Retour aux notifications"
+
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:20
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:41
+msgid "from"
+msgstr "De"
+
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:23
+#: templates/urpsm/v2/notifications/component_notifications_list_v2.html:24
+#: templates/urpsm/v2/notifications/invoice_notifications_list_v2.html:24
+#: templates/urpsm/v2/notifications/order_notifications_list_v2.html:30
+#: templates/urpsm/v2/notifications/payment_notifications_list_v2.html:25
+#: templates/urpsm/v2/notifications/phone_notifications_list_v2.html:23
+#: templates/urpsm/v2/notifications/review_notifications_list_v2.html:22
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:23
+msgid "read"
+msgstr "Lu"
+
+#: templates/urpsm/v2/notifications/admin_notifications_list_v2.html:34
+msgid "info"
+msgstr "Infos"
+
+#: templates/urpsm/v2/notifications/client_notifications_list_v2.html:14
+msgid "shop clients notifications"
+msgstr "Notifications clients boutique"
+
+#: templates/urpsm/v2/notifications/client_notifications_list_v2.html:20
+msgid "client imei"
+msgstr "Imei de client"
+
+#: templates/urpsm/v2/notifications/client_notifications_list_v2.html:24
+msgid "Date"
+msgstr "Date"
+
+#: templates/urpsm/v2/notifications/client_notifications_list_v2.html:25
+msgid "Read"
+msgstr "Lire"
+
+#: templates/urpsm/v2/notifications/component_notifications_list_v2.html:13
+#: templates/urpsm/v2/notifications/payment_notifications_list_v2.html:14
+#: templates/urpsm/v2/notifications/phone_notifications_list_v2.html:12
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:12
+msgid "tickets notifications"
+msgstr "Notifications ticket"
+
+#: templates/urpsm/v2/notifications/component_notifications_list_v2.html:19
+#: templates/urpsm/v2/notifications/payment_notifications_list_v2.html:20
+#: templates/urpsm/v2/notifications/phone_notifications_list_v2.html:18
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:18
+msgid "ticket id"
+msgstr "ID du ticket"
+
+#: templates/urpsm/v2/notifications/component_notifications_list_v2.html:21
+#: templates/urpsm/v2/notifications/payment_notifications_list_v2.html:22
+#: templates/urpsm/v2/notifications/phone_notifications_list_v2.html:20
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:20
+msgid "reason"
+msgstr "Raison"
+
+#: templates/urpsm/v2/notifications/invoice_notifications_list_v2.html:13
+msgid "invoice notifications"
+msgstr "Notifications de facture"
+
+#: templates/urpsm/v2/notifications/invoice_notifications_list_v2.html:19
+msgid "Invoice #"
+msgstr " facture #"
+
+#: templates/urpsm/v2/notifications/invoice_notifications_list_v2.html:21
+msgid "method"
+msgstr "Préparation"
+
+#: templates/urpsm/v2/notifications/invoice_notifications_list_v2.html:23
+msgid "notification"
+msgstr "Notification"
+
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:3
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:4
+msgid "notifications hub"
+msgstr "Centre de notifications"
+
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:69
+#: templates/urpsm/v2/public/index_v2.html:196
+#: templates/urpsm/v2/public/index_v2.html:278
+#: templates/urpsm/v2/public/index_v3.html:210
+#: templates/urpsm/v2/public/registred_server_box_v2.html:18
+#: templates/urpsm/v2/public/registred_shop_box_v2.html:17
+#: templates/urpsm/v2/public/search_shops_result_box_v2.html:19
+#: templates/urpsm/v2/public/unlocked_phone_box_v2.html:18
+msgid "reviews"
+msgstr "Avis"
+
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:81
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:93
+msgid "administration"
+msgstr "Administration"
+
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:119
+msgid "phones"
+msgstr "Mobiles"
+
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:131
+msgid "invoice"
+msgstr "Facture"
+
+#: templates/urpsm/v2/notifications/notifications_hub_v2.html:153
+msgid "payments"
+msgstr "Paiements"
+
+#: templates/urpsm/v2/notifications/order_notifications_list_v2.html:18
+msgid "orders notifications"
+msgstr "Notifications de commandes"
+
+#: templates/urpsm/v2/notifications/order_notifications_list_v2.html:24
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:21
+msgid "order ref"
+msgstr "Ref. Commande"
+
+#: templates/urpsm/v2/notifications/order_notifications_list_v2.html:26
+msgid "messsage"
+msgstr "Messsage"
+
+#: templates/urpsm/v2/notifications/order_notifications_list_v2.html:29
+msgid "deliver time"
+msgstr "Temps de livraison "
+
+#: templates/urpsm/v2/notifications/review_notifications_list_v2.html:12
+msgid "Review notifications"
+msgstr "Notifications d'avis"
+
+#: templates/urpsm/v2/notifications/review_notifications_list_v2.html:19
+msgid "Review by"
+msgstr "Avis par"
+
+#: templates/urpsm/v2/notifications/review_notifications_list_v2.html:27
+#: templates/urpsm/v2/notifications/review_notifications_list_v2.html:30
+msgid "Review"
+msgstr "Avis"
+
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:47
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:47
+msgid "ticket info"
+msgstr "Info ticket"
+
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:48
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:77
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:22
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:48
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:74
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:88
+msgid "my reason"
+msgstr "Raison boutique "
+
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:49
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:83
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:23
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:49
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:81
+msgid "server reason"
+msgstr "Raison de serveur"
+
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:50
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:50
+msgid "my comments"
+msgstr "Mes commentaires"
+
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:51
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:51
+msgid "server comments"
+msgstr "Commentaires du serveur"
+
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:52
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:101
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:52
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:114
+msgid "my response"
+msgstr "Ma réponse"
+
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:53
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:107
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:53
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:120
+msgid "server response"
+msgstr "Réponse du serveur"
+
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:60
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:60
+msgid "tiket id"
+msgstr "ID ticket"
+
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:66
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:24
+msgid "admin decision"
+msgstr "Décision de l’admin"
+
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:89
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:102
+msgid "my comment"
+msgstr "Mes commentaires"
+
+#: templates/urpsm/v2/notifications/ticket_notifications_list_v2.html:95
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:108
+msgid "server comment"
+msgstr "Commentaire de serveur"
+
+#: templates/urpsm/v2/public/aboutus_v2.html:13
+#: templates/urpsm/v2/public/contact_v2.html:14
+#: templates/urpsm/v2/public/model_detail_v2.html:12
+#: templates/urpsm/v2/public/registred_servers_v2.html:11
+#: templates/urpsm/v2/public/registred_shops_v2.html:10
+#: templates/urpsm/v2/public/repaired_phones_v2.html:12
+#: templates/urpsm/v2/public/search_shops_v2.html:10
+#: templates/urpsm/v2/public/thankyou_v2.html:13
+#: templates/urpsm/v2/public/unlocked_phones_v2.html:22
+msgid " HOME"
+msgstr "Accueil"
+
+#: templates/urpsm/v2/public/aboutus_v2.html:14
+msgid "About us"
+msgstr "À propos de nous"
+
+#: templates/urpsm/v2/public/aboutus_v2.html:26
+msgid "About Us!"
+msgstr "À propos de nous"
+
+#: templates/urpsm/v2/public/aboutus_v2.html:36
+msgid "the blossom"
+msgstr "la fleur"
+
+#: templates/urpsm/v2/public/aboutus_v2.html:39
+msgid "official launch of URPSM."
+msgstr "Lancement officiel de URPSM."
+
+#: templates/urpsm/v2/public/aboutus_v2.html:46
+msgid "the bud"
+msgstr "Le bourgeon"
+
+#: templates/urpsm/v2/public/aboutus_v2.html:49
+msgid ""
+"starting developement of the our API, the corner stone of our application "
+"that facilitates the unlocking process through live panels such as DHRU, "
+"NakshSoft, plus to ban unlocking equivocal devices."
+msgstr ""
+"En commençant le développement de notre API, la pierre angulaire de notre "
+"application qui facilite le processus de déverrouillage à travers des "
+"panneaux en direct tels que DHRU, NakshSoft, plus pour interdire le "
+"déverouillage de périphériques équivoques."
+
+#: templates/urpsm/v2/public/aboutus_v2.html:56
+msgid "the seed"
+msgstr "La graine"
+
+#: templates/urpsm/v2/public/aboutus_v2.html:59
+msgid "first blueprint of URPSM, or what we call: our great adventure"
+msgstr ""
+"premier plan directeur de URPSM, ou ce que nous appelons : notre grande "
+"aventure"
+
+#: templates/urpsm/v2/public/aboutus_v2.html:66
+msgid "the idea"
+msgstr "L'idée"
+
+#: templates/urpsm/v2/public/aboutus_v2.html:69
+msgid ""
+"tired to work in an informel and messy field, my passion for my job inspired "
+"me to think about a web application that could bring order and disipline to "
+"the whole industry and business of mobile repairing for all my peers worlwide"
+msgstr ""
+"fatigué de travailler dans un informel et salissant, ma passion pour mon "
+"travail m’a incité à réfléchir à une application web qui pourrait ramener "
+"l’ordre et disipline à l’ensemble de l’industrie et entreprise de réparation "
+"de mobiles pour tous mes pairs dans le monde"
+
+#: templates/urpsm/v2/public/base_v3.html:64
+msgid "LOGOUT"
+msgstr "DÉCONNEXION"
+
+#: templates/urpsm/v2/public/base_v3.html:101
+#: templates/urpsm/v2/public/base_v3.html:167
+#: templates/urpsm/v2/public/levels_v2.html:17
+msgid "levels"
+msgstr "Niveaux"
+
+#: templates/urpsm/v2/public/base_v3.html:104
+#: templates/urpsm/v2/search/server_search_result_box_v2.html:21
+#: templates/urpsm/v2/server/server_box_v2.html:21
+#: templates/urpsm/v2/server/server_list_v2.html:59
+#: templates/urpsm/v2/server/server_position_v2.html:97
+msgid "services"
+msgstr "Services"
+
+#: templates/urpsm/v2/public/base_v3.html:107
+msgid "about"
+msgstr "A propos"
+
+#: templates/urpsm/v2/public/base_v3.html:154
+msgid ""
+"URPSM is without any doubt the best way to find the nearest and best mobile "
+"repairing shops ranked by professionals and customers as well."
+msgstr ""
+"URPSM est sans aucun doute la meilleure façon de trouver les meilleurs "
+"magasins de réparation mobiles classés par les professionnels et les clients."
+
+#: templates/urpsm/v2/public/base_v3.html:163
+msgid "important links"
+msgstr "Liens importants"
+
+#: templates/urpsm/v2/public/base_v3.html:165
+msgid "terms of use"
+msgstr "Termes d'utilisation"
+
+#: templates/urpsm/v2/public/base_v3.html:166
+#: templates/urpsm/v2/public/privacy.html:14
+#: templates/urpsm/v2/public/privacy.html:25
+msgid "privacy policy"
+msgstr "Politique De Confidentialité."
+
+#: templates/urpsm/v2/public/base_v3.html:168
+msgid "about us"
+msgstr "À propos de Nous"
+
+#: templates/urpsm/v2/public/base_v3.html:169
+msgid "contact us"
+msgstr "Nous contacter"
+
+#: templates/urpsm/v2/public/base_v3.html:182
+msgid "your email"
+msgstr "Votre email"
+
+#: templates/urpsm/v2/public/brand_model_box_v2.html:40
+msgid "view details"
+msgstr "Voir les détails"
+
+#: templates/urpsm/v2/public/brand_models_v2.html:41
+msgid "search now"
+msgstr "Rechercher"
+
+#: templates/urpsm/v2/public/brand_models_v2.html:73
+msgid "num of models"
+msgstr "Num de modèles"
+
+#: templates/urpsm/v2/public/brand_models_v2.html:85
+msgid "company"
+msgstr "Société"
+
+#: templates/urpsm/v2/public/brand_models_v2.html:89
+#: templates/urpsm/v2/public/index_v2.html:195
+#: templates/urpsm/v2/public/index_v3.html:209
+#: templates/urpsm/v2/public/registred_server_box_v2.html:17
+#: templates/urpsm/v2/public/registred_shop_box_v2.html:16
+#: templates/urpsm/v2/public/search_shops_result_box_v2.html:18
+#: templates/urpsm/v2/public/shop_review_box_v2.html:21
+#: templates/urpsm/v2/public/shop_review_box_v2.html:46
+#: templates/urpsm/v2/public/unlocked_phone_box_v2.html:17
+msgid "stars"
+msgstr "Etoiles"
+
+#: templates/urpsm/v2/public/brand_models_v2.html:92
+msgid "description"
+msgstr "Description"
+
+#: templates/urpsm/v2/public/contact_v2.html:15
+#: templates/urpsm/v2/public/thankyou_v2.html:14
+msgid "Contact us"
+msgstr "Nous contacter"
+
+#: templates/urpsm/v2/public/contact_v2.html:26
+msgid "send us a message"
+msgstr "Envoyez-nous un message"
+
+#: templates/urpsm/v2/public/contact_v2.html:69
+msgid "send message"
+msgstr "Envoyer message"
+
+#: templates/urpsm/v2/public/contact_v2.html:80
+msgid "we are on 24/7"
+msgstr "Nous sommes 24/7"
+
+#: templates/urpsm/v2/public/contact_v2.html:92
+msgid "send us email on"
+msgstr "Envoyer e-mails à"
+
+#: templates/urpsm/v2/public/contact_v2.html:104
+msgid "where are at"
+msgstr "Nous somme à"
+
+#: templates/urpsm/v2/public/contact_v2.html:105
+msgid "12, Hassan II Blvd, Gueliz, Marrakesh"
+msgstr "12, Hassan II Blvd, Gueliz, Marrakesh"
+
+#: templates/urpsm/v2/public/index_v2.html:33
+msgid "Select city"
+msgstr "Sélectionnez une ville"
+
+#: templates/urpsm/v2/public/index_v2.html:43
+msgid "SEARCH"
+msgstr "RECHERCHE"
+
+#: templates/urpsm/v2/public/index_v2.html:61
+#: templates/urpsm/v2/public/index_v3.html:126
+#: templates/urpsm/v2/search/shop_search_result_box_v2.html:22
+#: templates/urpsm/v2/shop/shops_list_v2.html:59
+msgid "repaired phones"
+msgstr "Téléphones réparés"
+
+#: templates/urpsm/v2/public/index_v2.html:64
+msgid "here you are with best shops around the world"
+msgstr "Voici les meilleures boutiques du monde entier"
+
+#: templates/urpsm/v2/public/index_v2.html:71
+msgid "register your shop"
+msgstr "Inscrire votre boutique"
+
+#: templates/urpsm/v2/public/index_v2.html:74
+msgid "are you shop owner? You are then welcome to join us at URPSM.com"
+msgstr ""
+"Vous êtes propriétaire d'une boutique ? nous vous invitons à nous rejoindre "
+"sur URPSM.com"
+
+#: templates/urpsm/v2/public/index_v2.html:81
+msgid "register your server"
+msgstr "Enregistrer votre serveur"
+
+#: templates/urpsm/v2/public/index_v2.html:84
+msgid ""
+"Are you Dhru, or Naqshsoft, or Genius panel user, you are welcome to join "
+"URPSM"
+msgstr ""
+"Êtes vous DHRU, ou Naqshsoft ou génie panel user, nous vous invitons à "
+"rejoindre URPSM"
+
+#: templates/urpsm/v2/public/index_v2.html:91
+msgid "unlock"
+msgstr "Débloquer"
+
+#: templates/urpsm/v2/public/index_v2.html:94
+msgid "unlock your phone online"
+msgstr "Débloquez-vous même votre téléphone en ligne"
+
+#: templates/urpsm/v2/public/index_v2.html:113
+#: templates/urpsm/v2/public/index_v3.html:95
+#: templates/urpsm/v2/public/index_v3.html:157
+#: templates/urpsm/v2/search/server_search_result_box_v2.html:20
+#: templates/urpsm/v2/search/shop_search_result_box_v2.html:21
+#: templates/urpsm/v2/server/server_box_v2.html:20
+#: templates/urpsm/v2/server/server_list_v2.html:58
+#: templates/urpsm/v2/shop/shops_list_v2.html:58
+msgid "unlocked phones"
+msgstr "Téléphones déverrouillés"
+
+#: templates/urpsm/v2/public/index_v2.html:125
+#: templates/urpsm/v2/public/repaired_phones_v2.html:13
+msgid "Repaired Phones"
+msgstr "Téléphones réparés"
+
+#: templates/urpsm/v2/public/index_v2.html:137
+#: templates/urpsm/v2/public/index_v3.html:83
+#: templates/urpsm/v2/public/index_v3.html:141
+msgid "registred servers"
+msgstr "Serveurs inscrits"
+
+#: templates/urpsm/v2/public/index_v2.html:149
+#: templates/urpsm/v2/public/registred_shops_v2.html:11
+#: templates/urpsm/v2/public/registred_shops_v2.html:53
+msgid "Registred Shops"
+msgstr "Boutiques inscrits"
+
+#: templates/urpsm/v2/public/index_v2.html:162
+#: templates/urpsm/v2/public/index_v3.html:169
+msgid "Best Reviewed Shops"
+msgstr "Meilleur boutiques revu "
+
+#: templates/urpsm/v2/public/index_v2.html:178
+#: templates/urpsm/v2/public/index_v2.html:232
+#: templates/urpsm/v2/public/index_v3.html:187
+#: templates/urpsm/v2/public/index_v3.html:244
+#: templates/urpsm/v2/public/registred_server_box_v2.html:38
+#: templates/urpsm/v2/public/registred_shop_box_v2.html:37
+#: templates/urpsm/v2/public/repaired_phone_box_v2.html:22
+#: templates/urpsm/v2/public/search_shops_result_box_v2.html:39
+#: templates/urpsm/v2/public/shop_detail_v2.html:70
+#: templates/urpsm/v2/public/unlocked_phone_box_v2.html:38
+msgid "Satisfied Clients"
+msgstr "Clients satisfaits"
+
+#: templates/urpsm/v2/public/index_v2.html:182
+#: templates/urpsm/v2/public/index_v2.html:236
+#: templates/urpsm/v2/public/index_v3.html:192
+#: templates/urpsm/v2/public/index_v3.html:249
+#: templates/urpsm/v2/public/registred_server_box_v2.html:29
+#: templates/urpsm/v2/public/registred_shop_box_v2.html:28
+#: templates/urpsm/v2/public/repaired_phone_box_v2.html:27
+#: templates/urpsm/v2/public/search_shops_result_box_v2.html:30
+#: templates/urpsm/v2/public/shop_detail_v2.html:69
+#: templates/urpsm/v2/public/unlocked_phone_box_v2.html:29
+msgid "Unlocked phones"
+msgstr "Téléphones débloqué "
+
+#: templates/urpsm/v2/public/index_v2.html:186
+#: templates/urpsm/v2/public/index_v2.html:240
+#: templates/urpsm/v2/public/index_v3.html:197
+#: templates/urpsm/v2/public/index_v3.html:254
+#: templates/urpsm/v2/public/registred_server_box_v2.html:35
+#: templates/urpsm/v2/public/registred_shop_box_v2.html:34
+#: templates/urpsm/v2/public/repaired_phone_box_v2.html:32
+#: templates/urpsm/v2/public/search_shops_result_box_v2.html:36
+#: templates/urpsm/v2/public/shop_detail_v2.html:67
+#: templates/urpsm/v2/public/unlocked_phone_box_v2.html:35
+msgid "Repaired Phones "
+msgstr "Téléphones réparés"
+
+#: templates/urpsm/v2/public/index_v2.html:190
+#: templates/urpsm/v2/public/index_v2.html:244
+#: templates/urpsm/v2/public/index_v3.html:202
+#: templates/urpsm/v2/public/index_v3.html:259
+#: templates/urpsm/v2/public/registred_server_box_v2.html:32
+#: templates/urpsm/v2/public/registred_shop_box_v2.html:31
+#: templates/urpsm/v2/public/repaired_phone_box_v2.html:37
+#: templates/urpsm/v2/public/search_shops_result_box_v2.html:33
+#: templates/urpsm/v2/public/unlocked_phone_box_v2.html:32
+msgid "Unrepaired Phones"
+msgstr "Téléphones non réparé"
+
+#: templates/urpsm/v2/public/index_v2.html:199
+#: templates/urpsm/v2/public/index_v2.html:283
+#: templates/urpsm/v2/public/index_v3.html:213
+#: templates/urpsm/v2/public/registred_server_box_v2.html:22
+#: templates/urpsm/v2/public/registred_shop_box_v2.html:21
+#: templates/urpsm/v2/public/search_shops_result_box_v2.html:23
+#: templates/urpsm/v2/public/unlocked_phone_box_v2.html:22
+msgid "SEE MORE"
+msgstr "VOIR PLUS"
+
+#: templates/urpsm/v2/public/index_v2.html:200
+#: templates/urpsm/v2/public/index_v3.html:214
+#: templates/urpsm/v2/public/registred_server_box_v2.html:23
+#: templates/urpsm/v2/public/registred_shop_box_v2.html:22
+#: templates/urpsm/v2/public/search_shops_result_box_v2.html:24
+#: templates/urpsm/v2/public/unlocked_phone_box_v2.html:23
+msgid "VIEW ON MAP"
+msgstr "VOIR SUR LA CARTE"
+
+#: templates/urpsm/v2/public/index_v2.html:215
+#: templates/urpsm/v2/public/index_v3.html:226
+#: templates/urpsm/v2/public/repaired_phones_v2.html:24
+msgid "Popular repaired Phones"
+msgstr "Téléphones Réparés Populaires"
+
+#: templates/urpsm/v2/public/index_v2.html:229
+msgid "View details"
+msgstr "Voir les détails"
+
+#: templates/urpsm/v2/public/index_v2.html:261
+msgid "Popular Shops"
+msgstr "Boutiques Populaires "
+
+#: templates/urpsm/v2/public/index_v2.html:298
+msgid "Need Help?"
+msgstr "﻿Besoin d'aide ?"
+
+#: templates/urpsm/v2/public/index_v2.html:326
+msgid "Urpsm Facebook"
+msgstr "Urpsm Facebook"
+
+#: templates/urpsm/v2/public/index_v3.html:32
+#: templates/urpsm/v2/public/registred_servers_v2.html:32
+#: templates/urpsm/v2/public/registred_shops_v2.html:31
+#: templates/urpsm/v2/public/search_shops_v2.html:31
+msgid "select city"
+msgstr "Sélectionnez une ville"
+
+#: templates/urpsm/v2/public/index_v3.html:41
+#: templates/urpsm/v2/public/registred_servers_v2.html:40
+#: templates/urpsm/v2/public/registred_shops_v2.html:39
+#: templates/urpsm/v2/public/search_shops_v2.html:39
+msgid "search"
+msgstr "Recherche"
+
+#: templates/urpsm/v2/public/index_v3.html:59
+#: templates/urpsm/v2/public/index_v3.html:111
+msgid "registred shops"
+msgstr "Boutiques inscrits"
+
+#: templates/urpsm/v2/public/index_v3.html:62
+msgid ""
+"do you have a mobile repairing shop? SIGN UP to grow your business and "
+"increase your income from here"
+msgstr ""
+"Avez-vous un magasin de réparation mobile? INSCRIVEZ-VOUS pour développer "
+"votre entreprise et augmenter vos revenus à partir d'ici"
+
+#: templates/urpsm/v2/public/index_v3.html:62
+#: templates/urpsm/v2/public/index_v3.html:86
+msgid "create account"
+msgstr "Créer un compte"
+
+#: templates/urpsm/v2/public/index_v3.html:71
+msgid "need to repair your phone?"
+msgstr "Besoin de réparer votre téléphone ?"
+
+#: templates/urpsm/v2/public/index_v3.html:74
+msgid "find a shop to repair your mobile phone using our system of ranking"
+msgstr ""
+"Trouver un magasin pour réparer votre téléphone mobile à l’aide de notre "
+"système de classement"
+
+#: templates/urpsm/v2/public/index_v3.html:86
+msgid ""
+"Are you an unlocking server owner? SIGN UP to get more customers for your API"
+msgstr ""
+"Vous êtes un propriétaire de serveur De déblocage ? Inscrivez-vous pour "
+"obtenir plus de clients pour votre API"
+
+#: templates/urpsm/v2/public/index_v3.html:98
+msgid ""
+"Many shops have used URPSM to unlock their customers mobile phones!! Why not "
+"you too?"
+msgstr ""
+"Beaucoup de magasins ont utilisé URPSM pour déverrouiller les téléphones "
+"mobiles de leurs clients !! Pourquoi pas vous aussi ?"
+
+#: templates/urpsm/v2/public/index_v3.html:221
+msgid "List More Shops"
+msgstr "Listé plus de  boutiques"
+
+#: templates/urpsm/v2/public/index_v3.html:274
+msgid "List More Phones"
+msgstr "Listé Plus De Téléphones "
+
+#: templates/urpsm/v2/public/index_v3.html:280
+msgid "Popular Servers"
+msgstr "Serveurs Les Plus Populaires"
+
+#: templates/urpsm/v2/public/index_v3.html:300
+msgid "View"
+msgstr "Voir"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:12
+msgid "HOME"
+msgstr "ACCUEIL"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:13
+msgid "Shop Detailed"
+msgstr "Informations Boutique"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:20
+msgid "Did you know?"
+msgstr "Le saviez-vous?"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:21
+msgid ""
+"urpsm is a big network of professionals in repairing and unlocking phones by "
+"box and server urpsm make this community strong and efficient ; we help shop "
+"to get more client and to be listed in map of it contry and city ; we give "
+"you rating by your clients this will create your business name in your "
+"city ; we have also rating by the world this help server owner to gurantee "
+"their position by the world"
+msgstr ""
+"urpsm est un grand réseau de professionnels en réparation et déblocage de "
+"téléphones par urpsm box et serveur ce qui rend cette communauté forte et "
+"efficace; Nous aidons les magasins a obtenir plus de clients et à figurer "
+"sur la carte de leur pays et ville ;Nous vous donnons des notes par vos "
+"clients, cela créera le nom de votre entreprise dans votre ville ; Nous "
+"avons également des notes par le monde sur les serveur pour garantir leur "
+"position par le monde"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:39
+msgid "You Have a Shop ?"
+msgstr "Vous avez une boutique ?"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:46
+msgid "start get more clients"
+msgstr "commencer a obtenir plus de clients"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:47
+msgid "increase your upcoming revenue"
+msgstr "Augmentez vos revenus à venir"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:48
+msgid "create your business name online"
+msgstr "créer le nom de votre entreprise en ligne"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:49
+msgid "give your client a better professional service"
+msgstr "donner à votre client un meilleur service professionnel"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:50
+msgid "print ticket to your clients with QR code"
+msgstr "imprimé ticket à vos clients avec QR code"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:51
+msgid "your client can follow their phone status online"
+msgstr "votre client peut suivre leur statut de téléphone en ligne"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:53
+#: templates/urpsm/v2/public/landing_page_v2.html:81
+#| msgid "Sign up"
+msgid "Sign Up Now"
+msgstr "S'inscrire"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:68
+msgid "You Have a Server ?"
+msgstr "Vous avez un serveur ?"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:75
+msgid "Owner of a DHRU or NAKSH api, this is your paradise"
+msgstr "Propriétaire d’un DHRU GSMGENIE ou NAKSHSOFT api, c’est votre paradis"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:76
+msgid "get clients from all the world"
+msgstr "obtenir des clients de tout le monde"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:77
+msgid "very simple system totally ready to use"
+msgstr "système très simple totalement prêt à l’emploi"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:78
+msgid "get rated by shops across the world"
+msgstr "pour avoir noté de magasins à travers le monde"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:79
+msgid "check prices of other server and try to give best one to your clients"
+msgstr ""
+"vérifier les prix d’autre serveur et essayer de donner un meilleur à vos "
+"clients"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:100
+#: templates/urpsm/v2/public/landing_page_v2.html:111
+msgid "Text"
+msgstr ""
+
+#: templates/urpsm/v2/public/landing_page_v2.html:101
+#: templates/urpsm/v2/public/landing_page_v2.html:112
+msgid "small description"
+msgstr "Petite description"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:125
+msgid "105,000+ Satisfied Client"
+msgstr "105 000 + Client satisfait"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:131
+msgid "Low price &amp; Top Savings"
+msgstr "Prix bas &amp; haut épargne"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:137
+msgid "Reviewed by Real costumers"
+msgstr "Revu par clients réels"
+
+#: templates/urpsm/v2/public/landing_page_v2.html:143
+msgid "Great support"
+msgstr "Grand soutien"
+
+#: templates/urpsm/v2/public/levels_v2.html:27
+msgid "you are here"
+msgstr "Vous êtes ici"
+
+#: templates/urpsm/v2/public/levels_v2.html:33
+msgid "level one"
+msgstr "Niveau Un"
+
+#: templates/urpsm/v2/public/levels_v2.html:33
+msgid "UPCOMING SELLER"
+msgstr "VENDEUR À VENIR"
+
+#: templates/urpsm/v2/public/levels_v2.html:38
+msgid "30 days active on URPSM"
+msgstr "actif sur URPSM 30 jours"
+
+#: templates/urpsm/v2/public/levels_v2.html:39
+msgid "Able to unlock a minimum of 100 mobile phones"
+msgstr "En mesure de débloquer un minimum de 100 téléphones mobiles"
+
+#: templates/urpsm/v2/public/levels_v2.html:40
+#: templates/urpsm/v2/public/levels_v2.html:97
+msgid "Have a low bad rate"
+msgstr "Avoir un faible taux de mauvais avis"
+
+#: templates/urpsm/v2/public/levels_v2.html:46
+msgid "Get 100 positive reviews from your clients"
+msgstr "Obtenez 100 avis positives de vos clients"
+
+#: templates/urpsm/v2/public/levels_v2.html:47
+msgid "Complete at least 100 repaired phones"
+msgstr "Compléter au moins 100 téléphones réparés"
+
+#: templates/urpsm/v2/public/levels_v2.html:48
+msgid "First achievement must start by unlocking servers"
+msgstr ""
+"La première réalisation doit commencer par déverrouiller des mobile apartir "
+"les serveurs"
+
+#: templates/urpsm/v2/public/levels_v2.html:56
+#: templates/urpsm/v2/public/levels_v2.html:113
+#: templates/urpsm/v2/public/levels_v2.html:170
+#: templates/urpsm/v2/public/levels_v2.html:226
+#: templates/urpsm/v2/public/levels_v2.html:294
+msgid "what you should know :"
+msgstr "Ce que vous devez savoir"
+
+#: templates/urpsm/v2/public/levels_v2.html:58
+msgid ""
+"You've Just Gotten Started On URPSM And You're Dedicated To Increasing "
+"Sales. We'll Help You Get Started"
+msgstr ""
+"Vous venez de commencer sur URPSM et vous êtes dédié à l'augmentation des "
+"ventes. Nous vous aiderons à commencer"
+
+#: templates/urpsm/v2/public/levels_v2.html:62
+#: templates/urpsm/v2/public/levels_v2.html:176
+msgid "What you should achieve !"
+msgstr "Ce que vous devriez réaliser !"
+
+#: templates/urpsm/v2/public/levels_v2.html:70
+#: templates/urpsm/v2/public/levels_v2.html:127
+#: templates/urpsm/v2/public/levels_v2.html:184
+#: templates/urpsm/v2/public/levels_v2.html:240
+msgid "satisfied clients"
+msgstr "Clients satisfaits"
+
+#: templates/urpsm/v2/public/levels_v2.html:90
+msgid "level two"
+msgstr "Niveau deux"
+
+#: templates/urpsm/v2/public/levels_v2.html:90
+msgid "meduim"
+msgstr "Meduim"
+
+#: templates/urpsm/v2/public/levels_v2.html:95
+msgid "90 days active on URPSM"
+msgstr "90 jours actifs sur URPSM"
+
+#: templates/urpsm/v2/public/levels_v2.html:96
+msgid "Completed at least 200 unlocked phones"
+msgstr "Effectué au moins 200 téléphones déverrouillés"
+
+#: templates/urpsm/v2/public/levels_v2.html:103
+msgid "Maintain a 3.5 star rating or above"
+msgstr "Maintenir une cote de 3.5 étoiles ou supérieur"
+
+#: templates/urpsm/v2/public/levels_v2.html:104
+msgid "Complete at least 200 repaired phones"
+msgstr "Compléter au moins 200 téléphones réparés"
+
+#: templates/urpsm/v2/public/levels_v2.html:105
+msgid "unlock 10 phones by server at least"
+msgstr "déverrouiller au moins les 10 téléphones par serveur"
+
+#: templates/urpsm/v2/public/levels_v2.html:115
+msgid "well you just start make good position in urpsm"
+msgstr "Eh bien vous venez de commencer faire bonne position dans urpsm"
+
+#: templates/urpsm/v2/public/levels_v2.html:119
+msgid "what you should achieve !"
+msgstr "Ce que vous devriez réaliser !"
+
+#: templates/urpsm/v2/public/levels_v2.html:147
+msgid "level three"
+msgstr "Niveau trois"
+
+#: templates/urpsm/v2/public/levels_v2.html:147
+msgid "good"
+msgstr "Bon"
+
+#: templates/urpsm/v2/public/levels_v2.html:153
+msgid "Maintain a 4 star rating or above"
+msgstr "Maintenir une cote de 4 étoiles ou plus"
+
+#: templates/urpsm/v2/public/levels_v2.html:154
+msgid "Complete at least 300 repaired phones"
+msgstr "Compléter au moins 300 téléphones réparés"
+
+#: templates/urpsm/v2/public/levels_v2.html:155
+msgid "unlock 30 phones by server at least"
+msgstr "déverrouiller 30 téléphones par serveur au moins"
+
+#: templates/urpsm/v2/public/levels_v2.html:160
+msgid "180 days active on URPSM"
+msgstr "180 jours actifs sur URPSM"
+
+#: templates/urpsm/v2/public/levels_v2.html:161
+msgid "Completed at least 300 unlocked phones"
+msgstr "Achevé au moins 300 téléphones déverrouillés"
+
+#: templates/urpsm/v2/public/levels_v2.html:162
+#: templates/urpsm/v2/public/levels_v2.html:211
+#: templates/urpsm/v2/public/levels_v2.html:272
+msgid "Have a low cancelling orders"
+msgstr "Avoir un faible taux de commandes Annuler"
+
+#: templates/urpsm/v2/public/levels_v2.html:172
+msgid "you are  doing a solid,great work keep it up"
+msgstr "vous faites un solide, bon travail continuez"
+
+#: templates/urpsm/v2/public/levels_v2.html:204
+msgid "level four"
+msgstr "Niveau quatre"
+
+#: templates/urpsm/v2/public/levels_v2.html:204
+msgid "pro"
+msgstr "Pro"
+
+#: templates/urpsm/v2/public/levels_v2.html:209
+msgid "365 days active on URPSM"
+msgstr "365 jours actifs sur URPSM"
+
+#: templates/urpsm/v2/public/levels_v2.html:210
+msgid "Completed at least 600 unlocked phones"
+msgstr "Achevé au moins 600 téléphones déverrouillés"
+
+#: templates/urpsm/v2/public/levels_v2.html:216
+msgid "Maintain a 4.3 star rating or above"
+msgstr "Maintenir un classement par étoiles 4.3 ou supérieur"
+
+#: templates/urpsm/v2/public/levels_v2.html:217
+msgid "Complete at least 600 repaired phones"
+msgstr "Compléter au moins 600 téléphones réparés"
+
+#: templates/urpsm/v2/public/levels_v2.html:218
+msgid "Unlock 80 phones by server at least"
+msgstr "Déverrouiller au moins les 80 téléphones par serveur"
+
+#: templates/urpsm/v2/public/levels_v2.html:232
+msgid ">What you should achieve !<"
+msgstr "> Ce que vous devez réaliser ! <"
+
+#: templates/urpsm/v2/public/levels_v2.html:260
+msgid "level five"
+msgstr "Niveau cinq"
+
+#: templates/urpsm/v2/public/levels_v2.html:260
+msgid "master"
+msgstr "Maître"
+
+#: templates/urpsm/v2/public/levels_v2.html:266
+msgid "731 days active on URPSM"
+msgstr "731 jours actifs sur URPSM"
+
+#: templates/urpsm/v2/public/levels_v2.html:269
+msgid "Completed at least 2500 unlocked phones"
+msgstr "Achevé au moins 2500 téléphones déverrouillés"
+
+#: templates/urpsm/v2/public/levels_v2.html:279
+msgid "Maintain a 4.7 star rating or above"
+msgstr "Maintenir une cote de 4,7 étoiles ou supérieur"
+
+#: templates/urpsm/v2/public/levels_v2.html:282
+msgid "Complete at least 2500 repaired phones"
+msgstr "Complète au moins 2500 téléphones réparé"
+
+#: templates/urpsm/v2/public/levels_v2.html:285
+msgid "unlock 300 phones by server at least."
+msgstr "déverrouiller au moins 300 téléphones par serveur."
+
+#: templates/urpsm/v2/public/levels_v2.html:296
+msgid "You are a Master king."
+msgstr "Vous êtes un maître roi"
+
+#: templates/urpsm/v2/public/model_detail_v2.html:13
+msgid "Phone info"
+msgstr "Téléphone info"
+
+#: templates/urpsm/v2/public/registred_servers_v2.html:12
+#: templates/urpsm/v2/public/registred_servers_v2.html:53
+msgid "Registred Servers"
+msgstr "Serveurs inscrits"
+
+#: templates/urpsm/v2/public/search_shops_v2.html:11
+msgid "Search Shops"
+msgstr "Rechercher des boutiques"
+
+#: templates/urpsm/v2/public/search_shops_v2.html:55
+msgid "results found for"
+msgstr "Résultats trouvés pour"
+
+#: templates/urpsm/v2/public/shop_detail_v2.html:12
+msgid "shop info"
+msgstr "Info magasin"
+
+#: templates/urpsm/v2/public/shop_detail_v2.html:68
+msgid "Not-Repaired Phones"
+msgstr "Téléphones non réparés"
+
+#: templates/urpsm/v2/public/shop_detail_v2.html:75
+msgid "About Shop"
+msgstr "À propos de la boutique"
+
+#: templates/urpsm/v2/public/shop_detail_v2.html:91
+msgid "All Reviews"
+msgstr "Touts les avis"
+
+#: templates/urpsm/v2/public/shop_map_markup.html:2
+msgid "title of the shop here"
+msgstr "Titre du magasin ici"
+
+#: templates/urpsm/v2/public/shop_map_markup.html:2
+msgid "location here !"
+msgstr "Emplacement ici !"
+
+#: templates/urpsm/v2/public/terms.html:12
+#: templates/urpsm/v2/public/terms.html:23
+msgid "terms and conditions of use"
+msgstr "Modalités et conditions d'utilisation"
+
+#: templates/urpsm/v2/public/thankyou_v2.html:25
+msgid "And email has been sent to your email address"
+msgstr "Un courriel a été envoyé à votre adresse email"
+
+#: templates/urpsm/v2/public/unlocked_phones_v2.html:23
+msgid "Unlocked Phones"
+msgstr "Téléphones débloqué"
+
+#: templates/urpsm/v2/search/component_search_result_box_v2.html:24
+#: templates/urpsm/v2/search/server_search_result_box_v2.html:29
+#: templates/urpsm/v2/search/shop_search_result_box_v2.html:32
+#: templates/urpsm/v2/server/server_box_v2.html:29
+#: templates/urpsm/v2/server/server_list_v2.html:67
+msgid "sorry no results for"
+msgstr "Désolé, aucun résultat."
+
+#: templates/urpsm/v2/search/component_search_result_v2.html:3
+#: templates/urpsm/v2/search/component_search_result_v2.html:14
+msgid "search components"
+msgstr "Recherche de composants"
+
+#: templates/urpsm/v2/search/component_search_result_v2.html:4
+msgid "Search components"
+msgstr "Recherche de composants"
+
+#: templates/urpsm/v2/search/component_search_result_v2.html:10
+msgid "list of components"
+msgstr "Liste des composantes"
+
+#: templates/urpsm/v2/search/component_search_result_v2.html:25
+msgid "search components..."
+msgstr "Recherche de composants..."
+
+#: templates/urpsm/v2/search/server_search_result_v2.html:3
+#: templates/urpsm/v2/search/server_search_result_v2.html:14
+msgid "search servers"
+msgstr "Recherche serveurs"
+
+#: templates/urpsm/v2/search/server_search_result_v2.html:4
+msgid "Search servers"
+msgstr "Recherche serveurs"
+
+#: templates/urpsm/v2/search/server_search_result_v2.html:10
+#: templates/urpsm/v2/server/server_list_v2.html:13
+msgid "list of servers"
+msgstr "Liste des serveur"
+
+#: templates/urpsm/v2/search/server_search_result_v2.html:25
+msgid "search servers..."
+msgstr "Recherche serveurs"
+
+#: templates/urpsm/v2/search/shop_search_result_v2.html:4
+msgid "Search shops"
+msgstr "Chercher Boutiques"
+
+#: templates/urpsm/v2/search/shop_search_result_v2.html:10
+#: templates/urpsm/v2/shop/shops_list_v2.html:13
+msgid "list of shops"
+msgstr "Liste boutiques"
+
+#: templates/urpsm/v2/search/shop_search_result_v2.html:25
+#: templates/urpsm/v2/shop/shops_list_v2.html:31
+msgid "search shops..."
+msgstr "Rechercher des boutiques"
+
+#: templates/urpsm/v2/server/server_list_v2.html:4
+msgid "Nearest servers"
+msgstr "Serveurs les plus proche"
+
+#: templates/urpsm/v2/server/server_position_v2.html:3
+#: templates/urpsm/v2/server/server_position_v2.html:4
+msgid "position of my server"
+msgstr "Position de mon serveur"
+
+#: templates/urpsm/v2/server/server_position_v2.html:10
+msgid "my server ranking"
+msgstr "Classement de mon serveur"
+
+#: templates/urpsm/v2/server/server_position_v2.html:80
+msgid "first server in my city"
+msgstr "Premier serveur dans ma ville"
+
+#: templates/urpsm/v2/server/server_position_v2.html:118
+msgid "my server's clients reviews"
+msgstr "Avis des clients de mon serveur"
+
+#: templates/urpsm/v2/server/update.html:3
+msgid "update server information"
+msgstr "Mettre à jour les informations du serveur"
+
+#: templates/urpsm/v2/shop/shops_list_v2.html:4
+msgid "Near shops"
+msgstr "Boutiques proche"
+
+#: templates/urpsm/v2/shop/shops_list_v2.html:69
+msgid "sorry no results found"
+msgstr "Désolé, aucun résultat trouvé"
+
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:6
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:15
+msgid "my tickets"
+msgstr "Mes Tickets"
+
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:20
+msgid "id ticket"
+msgstr "ID ticket"
+
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:66
+msgid "admin decesion"
+msgstr "Décision admin"
+
+#: templates/urpsm/v2/ticket/ticket_list_v2.html:95
+msgid "shop reason"
+msgstr "Raison boutique"
+
+#~ msgid "admin response"
+#~ msgstr "Réponse de l’admin"
+
+#~ msgid "my message"
+#~ msgstr "Mon message"
+
+#~ msgid "new users"
+#~ msgstr "Nouvel utilisateur"
+
+#~ msgid "Email confirmation"
+#~ msgstr "E-mail de confirmation"
+
+#, fuzzy
+#~| msgid "services"
+#~ msgid "service %s added"
+#~ msgstr "services"
+
+#, fuzzy
+#~| msgid "services"
+#~ msgid "service %s removed"
+#~ msgstr "services"
+
+#~ msgid "you've got a client review"
+#~ msgstr "Nouvel avis d'un client"
+
+#~ msgid "you've got a shop review"
+#~ msgstr "nouvelle avis de boutique"
+
+#~ msgid "a client has to review"
+#~ msgstr "le client doit donner son avis"
+
+#~ msgid "you've got a new client request"
+#~ msgstr "vous avez une nouvelle demande de client"
+
+#~ msgid "you've got a new order"
+#~ msgstr "vous avez une nouvelle commande "
+
+#~ msgid "an order is done"
+#~ msgstr "une commande a été livrée"
+
+#~ msgid "order {0} has been cancelled"
+#~ msgstr "votre commande {0} a été annulée."
+
+#~ msgid "you've got a new ticket"
+#~ msgstr "vous avez un nouveau ticket"
+
+#~ msgid ""
+#~ "you did not answer on this raised ticket {0} within 3 days, order {1} "
+#~ "will be canceled."
+#~ msgstr ""
+#~ "vous n’a pas répondu sur le ticket {0} dans les 3 jours, ordre {1} est "
+#~ "annulée."
+
+#~ msgid ""
+#~ "unlocking server {0} did not answer on your raised ticket {1} within 3 "
+#~ "days, you will be refunded."
+#~ msgstr ""
+#~ "le serveur de Déblocage  {0} n’a pas répondu a votre ticket {1} dans les "
+#~ "3 jours, vous serez remboursé."
+
+#~ msgid "your payment transaction is accepted"
+#~ msgstr "votre opération de paiement est acceptée"
+
+#~ msgid "your payment transaction has been declined"
+#~ msgstr "votre opération de paiement a été refusée"
+
+#~ msgid "a new brand {0} is added"
+#~ msgstr "une nouvelle marque {0} est ajouté "
+
+#~ msgid "a new model {0} {1} has been added"
+#~ msgstr "un nouveau modèle {0} {1} a été ajouté"
+
+#~ msgid "the client {0} status has been changed at {1}"
+#~ msgstr "le statut du client {0}  a été changé à {1}"
+
+#~ msgid "the client {0} has been paid to {1} at {2}"
+#~ msgstr "le client {0} a été accordée à {1} à {2}"
+
+#~ msgid "Order %s is not valid for cancellation"
+#~ msgstr "Ordre %s n’est pas valide pour l’annulation"
+
+#~ msgid "Ticketed and solved for server owner"
+#~ msgstr "Ticket fermé et résolu pour serveur"
+
+#~ msgid "Ticketed and solved for shop owner"
+#~ msgstr "Ticket fermé et résolu pour boutique"
+
+#~ msgid "Ticketed and solved for phone owner"
+#~ msgstr "Ticket fermé et résolu pour client"
+
+#~ msgid "Successfully Delivered "
+#~ msgstr "Livré avec succès"
+
+#~ msgid "Successfully Repaired "
+#~ msgstr "Réparé Avec succès"
+
+#~ msgid "setting"
+#~ msgstr "parametre"
+
+#~ msgid "Load more Popular shops"
+#~ msgstr "Charger plus de boutiques populaires"
+
+#, fuzzy
+#~| msgid "shop owner"
+#~ msgid "shop beginner"
+#~ msgstr "propriétaire de la Boutique"
+
+#~ msgid "search shops and components ..."
+#~ msgstr "recherche de boutiques et composants..."
+
+#~ msgid "Deposit"
+#~ msgstr "Dépôt"
+
+#~ msgid "Levels!"
+#~ msgstr "Niveaux"
+
+#~ msgid ""
+#~ "High quality service and great ratings will earn  you a new level status "
+#~ "and benefits."
+#~ msgstr ""
+#~ "Service de haute qualité , de grande notes vous fera gagner un nouveau "
+#~ "niveau et plus d'avantages."
+
+#~ msgid "New Shop"
+#~ msgstr "Nouvelle boutique"

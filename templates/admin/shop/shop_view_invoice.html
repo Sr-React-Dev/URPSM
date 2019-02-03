@@ -1,0 +1,76 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_list admin_urls suit_list suit_tags %}
+{% load url from suit_compat %}
+{% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'Invoices|URPSM'|capfirst %} {% endblock %} {% block heading %} {% trans 'orders'|capfirst %} {% endblock %} {% block breadcrumb %}
+
+{% endblock %}
+{% block extrahead %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+
+{% endblock %}
+{% block content %}
+
+
+
+ <div class="row-fluid">
+
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{% trans 'Invoices'|capfirst %}</h3>
+
+            </div>
+            <div class="box-body table-responsive">
+              <table class="table table-hover table-bordered">
+                <tbody><tr>
+                  <th>{% trans 'Id'|capfirst %}</th>
+                  <th>{% trans 'Created'|capfirst %}</th>
+                  <th>{% trans 'Amount'|capfirst %}</th>
+                  <th>{% trans 'Method'|capfirst %}</th>
+                  <th>{% trans 'Status'|capfirst %}</th>
+                  <th>{% trans 'Shop'|capfirst %}</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+
+                </tr>
+                {% for invoice in invoices%}
+                {% if invoice.files_shop.all.count > 0 %}
+                <tr>
+                  <td>{{invoice.id}}</td>
+                  <td>{{invoice.created}}</td>
+                  <td>{{invoice.amount}}</td>
+                  <td>{{invoice.method}}</td>
+                  <td><span class="label red-light-background">{{invoice.status}}</span></td>
+                  <td>{{invoice.shop.name}}</td>
+                  <td>{% if invoice.method == 'PAYPAL' %}{{invoice.shop.paypal_email}}{% endif %}<a href="/urpsmadminp/admin-proof-verify/{{invoice.id }}/">{% if invoice.status != 'PAID' %}Verify{% else %}View{% endif %} Proof</a></td>
+                  <td>{% if invoice.status == 'PAID' %}<button class="btn btn-danger" onClick="addCharges('{{invoice.id}}')">Add Charges</button>{% endif %}</td>
+                  <td><a href="{% url 'generate-invoice' invoice.id %}">View Invoice</a></td>
+                </tr>
+                {% endif %}
+                {%endfor%}
+
+              </tbody></table>
+            </div>
+          </div>
+          <!-- /.box -->
+      </div>
+      </div>
+{%endblock%}
+
+{% block extrajs %}
+<script type="text/javascript" charset="utf-8">
+
+    function addCharges(invoice_id){
+
+            $.dialog({
+            title: 'Add charges to this invoice',
+            content: '<form method=post><input type=hidden name=invoice value="'+invoice_id+'"><label>Charge title</label><input type="text" name="chargetext" class="form-control"><label>Charge value</label><input type=text name="chargevalue" class="form-control"><hr><button type=submit class="btn btn-primary">Submit</button></form>'
+            });
+
+        }
+
+  </script>
+{% endblock %}

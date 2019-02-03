@@ -1,0 +1,160 @@
+
+/**arabic version**/
+
+@import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+
+.arabic{
+  direction: rtl;
+  font-family: 'Droid Arabic Naskh' , serif !important;
+}
+
+.arabic h1,.arabic h2,.arabic h3,.arabic h4,.arabic h5,.arabic h6,.arabic .h1,.arabic .h2,.arabic .h3,.arabic .h4, .arabic .h5,.arabic .h6 {
+  font-family: 'Droid Arabic Naskh' , serif !important;
+}
+
+.arabic .widget-user .widget-user-desc{
+  font-family: 'Droid Arabic Naskh' , serif !important;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.arabic .nav-stacked li a {
+ direction: rtl;
+ text-align: right;
+ font-size: 20px;
+}
+
+.arabic .nav-stacked li a span{
+    text-align: right;
+    float: left !important;
+}
+.arabic .content-header h1{
+  direction: rtl;
+}
+
+.arabic .content-header .breadcrumb{
+  direction: ltr
+}
+
+.arabic .box-footer p{
+  direction: rtl;
+  font-family: 'Droid Arabic Naskh' , serif !important;
+}
+
+.arabic .info-box-content{
+  direction: rtl;
+}
+.arabic .box .box-header{
+   direction: rtl;
+}
+
+.arabic .box-widget .widget-user-header{
+  direction: rtl;
+}
+
+
+
+.arabic .order-read-info{
+  direction: rtl;
+}
+
+.arabic .mailbox-read-message{
+  direction: rtl;
+}
+
+.arabic .list-group-item{
+   text-align: right !important;
+}
+
+.arabic .list-group-item .pull-right{
+ float: left !important;
+}
+
+.arabic .text-r{
+  direction: rtl;
+}
+
+.arabic .nav-tabs-custom{
+  direction: rtl;
+}
+.arabic .administator-replay .time{
+  float: left !important
+}
+
+
+.arabic .timeline-item .time{
+  float: left !important
+}
+
+
+.arabic .foot{
+  text-align: left !important
+}
+.arabic .mailbox-attachment-info{
+  direction: ltr;
+}
+
+.arabic .box .with-border .box-title{
+  margin-right: 20px;
+}
+.arabic .alert{
+  direction: rtl;
+}
+
+.arabic .dashh{
+  direction: rtl;
+}
+.arabic .panel-stat33 .stat-icon{
+  right: inherit !important;
+  left: 10px !important
+}
+.arabic .table-responsive{
+  direction: ltr;
+}
+
+
+.arabic .treeview .pull-right{
+  float: left !important;
+}
+
+.arabic .navbar-nav{
+  padding: 0;
+}
+
+
+
+
+/* shop/position !! */
+
+.arabic .menu li{
+  text-align: right !important;
+} 
+.arabic table{
+  direction: rtl;
+}
+.arabic table th{
+  text-align: right;
+}
+
+.arabic .input-group{
+  direction: ltr;
+}
+.arabic ul.nav.nav-stacked{
+  padding-right: 0;
+}
+
+
+.arabic .sidebar-menu>li>a>.fa,.arabic .sidebar-menu>li>a>.glyphicon,.arabic .sidebar-menu>li>a>.ion{
+  margin: 0 !important;
+}
+
+.arabic .drop-lang>a img{
+  margin-top: 5px;
+}
+.arabic .drop-lang ul{
+  text-align: right !important;
+}
+.arabic .products-list .r-border-b .product-img{
+  float: right !important;
+  margin-left: 5px;
+}

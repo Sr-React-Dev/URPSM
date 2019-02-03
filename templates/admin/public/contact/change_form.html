@@ -1,0 +1,62 @@
+{% extends 'admin/change_form.html' %}
+{% load i18n %}
+
+{% block submit_buttons_bottom %}
+    {{ block.super }}
+    {%if not original.processed%}
+    <div class="submit-row extra">
+    	<hr>
+       <input type="button" id="send_email" value="{% trans 'Send & save feedback' %}" class="btn btn-high btn-primary"  />
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	var feedback = $('#id_feedback');
+		var email    = $('#id_email');
+		var subject  = $('#id_subject');
+		var message  = $('#id_message');
+		var name     = $('#id_name');
+
+		email.prop('disabled', true);
+		subject.prop('disabled', true);
+		message.prop('disabled', true);
+		name.prop('disabled', true);
+
+    	$('#send_email').on('click', function(){
+    		if (feedback.val().length > 30){
+    			$.ajax({
+    				url:'{% url "send-feedback" %}',
+    				type:'POST',
+    				data:{'feedback':feedback.val(), 'email':email.val(), 'subject':subject.val(), 'contact':{{original.pk}}, 'csrfmiddlewaretoken':'{{csrf_token}}'},
+    				success: function(e){
+    					if (e.status){
+    						$('.extra').hide();
+    						alert('Feedback email has been sent');
+    						$('#id_feedback').prop('disabled', true);
+    					}else{
+    						console.log(e);
+    						alert('error');
+    					}
+    				},
+    				error: function(e){
+    					alert('Error, retry again')
+    				}
+    			});
+    		}else{
+    			alert('Your feedback text is less than 30 characters long!!')
+    		}
+    	});
+    });
+    </script>
+    {%else%}
+    <script type="text/javascript">
+	    $(document).ready(function(){
+	    	$('#id_feedback').prop('disabled', true);
+	    	$('#id_email').prop('disabled', true);
+	    	$('#id_subject').prop('disabled', true);
+	    	$('#id_message').prop('disabled', true);
+	    	$('#id_name').prop('disabled', true);
+	    });
+    </script>
+
+    {%endif%}
+{% endblock %}

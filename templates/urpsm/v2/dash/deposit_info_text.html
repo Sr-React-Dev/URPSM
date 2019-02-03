@@ -1,0 +1,94 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_list admin_urls suit_list suit_tags %}
+{% load url from suit_compat %}
+ {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'Edit Site'|capfirst %} {% endblock %} {% block heading %} {% trans 'Edit Site'|capfirst %} {% endblock %} {% block breadcrumb %}
+<li class="active">{% trans 'Edit Site'|capfirst %}</li>
+{% endblock %}
+{% block extrahead %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+<script>
+
+    function editT(b){
+    a = $('#deposit-'+b).val();
+    a = atob(a);
+    $('#infotext').html(a);
+    $('#savebtn').off();
+    td = '<td class="toremove"><i class="icon-remove-sign" onclick="$(this).parent().parent().remove();"></i></td>';
+    $('#infotext tr').append(td);
+    $('#savebtn').on('click',function(){
+        $('.toremove').remove();
+        $('#deposit-'+b).val(btoa($('#infotext').html().replace(/(\r\n|\n|\r)/gm,"")));
+        td = '<td class="toremove"><i class="icon-remove-sign" onclick="$(this).parent().parent().remove();"></i></td>';
+        $('#infotext tr').append(td);
+
+    });
+    $('#infoaddbtn').off();
+    $('#infoaddbtn').on('click',function(){
+        $.dialog({
+            title: 'Add data',
+            content: '<label>Name</label><input class="keya" style="border-radius:4px;width:100%;" type="text"><label>Value</label><input class="valuea" type=text style="border-radius:4px;width:100%;"><br><button type="button" class="btn btn-default rateBtn">Add</button>',
+            onContentReady: function () {
+            this.$content.find(".rateBtn").on("click",function(event){
+            keya = $(".keya")[0].value;
+            valuea = $(".valuea")[0].value;
+            htm = "<tr><td><span class='label label-info'>"+keya+"</span></td><td>"+valuea+"</td></tr>";
+            $('#infotext').append(htm);
+            $('.toremove').remove();
+            td = '<td class="toremove"><i class="icon-remove-sign" onclick="$(this).parent().parent().remove();"></i></td>';
+        $('#infotext tr').append(td);
+
+
+            });
+
+            }
+            });
+
+    });
+
+
+    }
+</script>
+{% endblock %}
+{% block content %}
+<section class="content">
+    <div class="row" style="margin-left:0 !important;">
+        <h1 class="onwan"><span class="shortcut-icon"></span>{% trans 'Edit deposit info'|capfirst %}</h1>
+        <h2>Deposit Information</h2>
+        <form id='dform' method="post">
+        <ul class="inline">
+        {% for text in texts %}
+            <li>
+                <button type="button" class="btn btn-primary" onclick=editT("{{text.id}}");>{{text.title}}</button>
+                <input id="deposit-{{text.id}}" type="hidden" name="{{text.id}}" value="{{text.value}}" />
+                
+            </li>
+        {% endfor %}
+        </ul>
+<br>
+
+
+
+
+        </form>
+        <h4>
+            <div class="box-body table-responsive">
+              <table class="table table-hover table-bordered">
+                <tbody id="infotext">
+                </tbody>
+              </table>
+        </div>
+    <button id="savebtn" type="button" class="btn btn-info">Save</button>
+    <button id="infoaddbtn" type="button" class="btn btn-primary">Add Charge</button>
+
+        <hr>
+        <button onclick="$('#dform').submit();" type="button" class="btn btn-danger">Submit all changes</button>
+
+    </div>
+</section>
+{% endblock %}
+{% block extrajs %}
+
+{% endblock %}

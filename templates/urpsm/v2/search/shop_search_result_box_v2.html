@@ -1,0 +1,41 @@
+        {% load multiply from reviewing_tags %}
+        {% load el_pagination_tags %}
+        {% load i18n %}
+        {% load localize from l10n %}
+        {#% load humanize %#}
+        {% lazy_paginate 12 shops %}
+		{% for shop in shops %}
+	     <div class="col-md-3">
+	          <div class="box box-widget widget-user">
+	            <!-- Add the bg color to the header using any of the bg-* classes -->
+	            <div class="widget-user-header bg-aqua-active">
+	              <h5 class="widget-user-desc">{{shop.name}}</h5>
+	            </div>
+	            <div class="widget-user-image">
+                <a href="{% url 'shop-detail-public' shop.pk shop.slug %}" target='_blank'>
+	               <img class="img-circle" src="{{shop.logo.thumbnail.100x100}}" alt="{{shop.name}}">
+                </a>
+	            </div>
+	            <div class="box-footer no-padding">
+	              <ul class="nav nav-stacked">
+	                <li><a href="#">{% trans 'unlocked phones'|capfirst %} <span class="pull-right badge bg-red">{{ shop.get_unlocked_phones_count }}</span></a></li>
+	                <li><a href="#">{% trans 'repaired phones'|capfirst %} <span class="pull-right badge bg-red">{{ shop.get_repaired_phones_count}}</span></a></li>
+	                <li><a href="#"><div class="star-ratings-sprite"><span style="width: {{shop.average_rating|multiply:20}}%" class="star-ratings-sprite-rating"></span></div></a></li>
+	                <li><a href="#"><i class="fa fa-th"></i> {% trans 'components'|capfirst %}
+	                <span class="pull-right text-black"><span class="badge bg-blue">{{ shop.components }}</span></span></a></li>
+	              </ul>
+	            </div>
+	          </div>
+	     </div>
+        {%empty%}
+	     	<div class="col-md-3">
+          		<h3>{% trans 'sorry no results for'|capfirst %} <b>{{query}}</b></h3>
+            </div>
+        {%endfor%}
+        {% if shops %}
+        		<div class="box-footer clearfix">
+           			{% show_pages %}
+         		</div>
+    		</div>
+         {%endif%}
+    

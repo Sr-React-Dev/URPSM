@@ -1,0 +1,25 @@
+{% load i18n %}
+{% autoescape off %}
+{% load url from future %}
+<html>
+<body>
+    <h4>
+       New Notification !
+    </h4>
+    <hr>
+    <img src="https://urpsm-assets.s3.amazonaws.com/static/v2/images/logo.png" width="64px">
+    <br>
+    <p>{{ notification }}<br>
+        {% if notification_url %}
+        Click Here<a href="{{ notification_url }}">Click Here {{ notifcation_url_text}}</a>
+        {% endif %}
+        Thanks for using our site!<BR>
+        Sincerely,<BR>
+        URPSM
+    </p>
+    <br>
+    <hr>
+    <div>&copy; 2017 URPSM |<a href="www.urpsm.com">www.URPSM.com</a>| contact@urpsm.com | +1628-400-0061</div>
+    </body>
+    </html>
+{% endautoescape %}

@@ -1,0 +1,104 @@
+{% extends "urpsm/v2/auth_v2.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "New account creation" %}{% endblock %}
+{% block content %}
+    <p class="login-box-msg">{% trans 'create a your account'|capfirst %}</p>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form action="{% if next %}?next={{ next }}{% endif %}" method="post" accept-charset="utf-8">
+    {% csrf_token %}
+
+        <div class="form-group has-feedback">
+        {{ shop_form.name }}
+            {% if shop_form.name.errors %}
+                {{ shop_form.name.errors }}
+            {% endif %}
+            <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+        {{ form.username }}
+            {% if form.username.errors %}
+                {{ form.username.errors }}
+            {% endif %}
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+        {{ form.first_name }}
+            {% if form.first_name.errors %}
+                {{ form.first_name.errors }}
+            {% endif %}
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+        {{ form.last_name }}
+            {% if form.last_name.errors %}
+                {{ form.last_name.errors }}
+            {% endif %}
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+        {{ shop_form.country }}
+            {% if shop_form.country.errors %}
+                {{ shop_form.country.errors }}
+            {% endif %}
+            <span class="glyphicon glyphicon-globe form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+        {{ shop_form.city }}
+            {% if shop_form.city.errors %}
+                {{ shop_form.city.errors }}
+            {% endif %}
+            <span class="glyphicon glyphicon-map-marker form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+        {{ shop_form.shop_phone }}
+            {% if shop_form.shop_phone.errors %}
+                {{ shop_form.shop_phone.errors }}
+            {% endif %}
+            <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+        {{ form.email }}
+            {% if form.email.errors %}
+                {{ form.email.errors }}
+            {% endif %}
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+        {{ form.password1 }}
+            {% if form.password1.errors %}
+                {{ form.password1.errors }}
+            {% endif %}
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+        {{ form.password2 }}
+            {% if form.password2.errors %}
+                {{ form.password2.errors }}
+            {% endif %}
+            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+        </div>
+
+<div class="row"><div class="col-xs-4 pull-right">
+      <button type="submit" class="btn btn-primary btn-block btn-flat">{% trans 'register'|capfirst %}</button>
+    </div><!-- /.col --></div>
+    </form>
+{% endblock %}
+
+{% block content-related %}
+        <a href="{% url 'password_reset' %}">{% trans 'i forgot my password'|capfirst %}</a><br>
+        <a href="{% url 'login' %}" class="text-center">{% trans 'login'|capfirst %}</a>
+{% endblock %}

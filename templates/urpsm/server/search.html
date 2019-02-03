@@ -1,0 +1,115 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} 
+{% load thumbnail i18n %} 
+{% block title %} {{ request.user.profile.server.city }} - Servers list {% endblock %} 
+{% block extrastyle %}
+	<style>
+#custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 23px;
+}	    	
+	</style>    
+{% endblock extrastyle %}
+{% block breadcrumb %}
+
+<li><a href="{% url 'servers' %}">{% trans 'servers'|capfirst %}</a></li>
+
+{% endblock %} {% block content %}
+	<div class="row">
+        <div class="col-md-12">
+                    <form action="{% url 'search' %}" method="get">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" name="q" class="form-control input-lg" placeholder="{% trans 'search servers ...'|capfirst %}" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+                    </form>
+        </div>
+	</div>
+<br>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            {% for server in servers %}
+               <div class="col-md-2">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><a href="{% url 'server-detail' server.slug %}">{{ server.name }}</a></h3>
+                        </div>
+                        <div class="box-body no-padding" style="height: 113px;">
+                            <img style="height: 113px;" class="img-responsive" src="{{ server.logo|thumbnail_url:'large' }}" alt="{{ server.name }}">
+                        </div>
+                        <div class="box-footer no">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><i class="fa fa-th"></i>
+                                <span class="pull-right text-black"><span class="badge">{{ server.components }}</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+               </div>
+            {% empty %}
+                <div class="col-md-12">
+                    <p> <b> <i class="fa fa-search text-blue"></i> &nbsp;{% trans 'no products found which match your search.'|capfirst %}</b> </p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    {% if servers.has_previous %}
+                    <li>
+                        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ servers.previous_page_number }}" title="{% trans 'Previous' %}">{% trans 'Previous' %}</a>
+                    </li>
+                    {% endif %}
+                    {% if servers.paginator.has_next  %}
+	                    <li>
+	                        <span class="current">{% trans 'Page' %} {{ servers.number }} {% trans 'of' %} {{ servers.paginator.num_pages }}</span>
+	                    </li>
+                    	
+                    {% endif %}
+                    {% if servers.has_next %}
+                    <li>
+                        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ servers.next_page_number }}" title="{% trans 'Next' %}">{% trans 'Next' %}</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

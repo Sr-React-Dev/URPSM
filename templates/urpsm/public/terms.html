@@ -1,0 +1,215 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Unlock Repair Phone Shop Manager</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="{% static "img/urpsm-c.png" %}">
+    <!-- Rocket extras -->
+    <link href="{% static "css/home/animate.css" %}" rel="stylesheet">
+    <link href="{% static "css/home/prettyPhoto.css" %}" rel="stylesheet">
+    <link href="{% static "css/home/style.css" %}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="{% static "js/ie8-responsive-file-warning.js" %}"></script>
+    <![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!-- Start Rocket -->
+    <!-- ********************* -->
+
+    <!-- Parallax Background
+    ================================================== -->
+    <!-- image is set in the CSS as a background image -->
+    <div id="parallax"></div>
+    <!-- End Parallax Background
+    ================================================== -->
+
+    <!-- Start Header
+    ================================================== -->
+    <header id="header" class="navbar navbar-inverse navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Start Navigation -->
+            <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'dash' %}">Dashboard</a>
+                    </li>                        
+                    {% endif %}
+                    <li>
+                        <a href="{% url "privacy" %}">Privacy</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- ==================================================
+    End Header -->
+
+    <!-- Start Hero Section
+    ================================================== -->
+    <section id="hero" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-7">
+                    <div class="lp-element animate" data-animate="fadeInDown">
+                        <center><img src="{% static "img/urpsm-c.png" %}" alt="" height="232">
+                            <h3>Unlock Repair Phone Shop Manager </h3>
+                        <p>
+                            {% if request.user.is_authenticated %}
+                            <a href="{% url 'dash' %}" class="btn btn-primary btn-lg" role="button"><i class="fa fa-tachometer"></i> Dashboard</a>
+                            {% else %}
+                            <a href="{% url 'login' %}" class="btn btn-primary btn-lg" role="button">Login</a>
+                            <a href="{% url 'create_account' %}" class="btn btn-danger btn-lg" role="button">Create an account</a>
+                            {% endif %}
+                        </p>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==================================================
+    End Hero -->
+
+<section id="about" class="section" style="background-color:#FFF; border-top: 1px solid rgba(0, 0, 0, .1);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 sol-sm-12">
+                    <div class="overview animate" data-animate="flipInX">
+                        <h1> <strong>Terms of use</strong>
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="content-block animate" data-animate="fadeInRight">
+                        <h2>Welcome to URPSM!</h2>
+                        <hr />
+                        <p>
+Thanks for using our products and services (“URPSM”). The Services are provided by URPSM Inc. located at 12 RUE HASSAN II GUELIZ , MARRAKECH CA 40000, MOROCCO.
+By using our Services, you are agreeing to these terms. Please read them carefully.
+Our Services are diverse, so sometimes additional terms or product requirements (including age requirements) may apply.
+Additional terms will be available with the relevant Services,and those additional terms become part of your agreement with us if you use those Services.
+                        </p>
+
+                      <h2>Using our Services</h2>
+    <hr>
+<p>-You must follow any policies made available to you within the Services.
+    -Don’t misuse our Services. For example, don’t interfere with our Services or try to access them using a method other than the interface and the instructions that we provide.
+    -You may use our Services only as permitted by law, including applicable export and re-export control laws and regulations.
+    -We may suspend or stop providing our Services to you if you do not comply with our terms or policies or if we are investigating suspected misconduct. 
+    -Using our Services does not give you ownership of any intellectual property rights in our Services or the content you access.
+    -Don’t remove, obscure, or alter any legal notices displayed in or along with our Services.
+    -In connection with your use of the Services, we may send you service announcements, administrative messages, and other information. 
+    -You may opt out of some of those communications.</p>
+
+                      <h2>Your URPSM Account</h2><hr>
+
+<p>-You may need a URPSM Account in order to use some of our Services. You may create your own URPSM Account, or your URPSM Account may be assigned to you by an administrator, such as your employer
+    -If you are using a URPSM Account assigned to you by an administrator, different or additional terms may apply and your administrator may be able to access or disable your account. 
+    -To protect your Google Account, keep your password confidential. You are responsible for the activity that happens on or through your URPSM Account. Try not to reuse your URPSM Account password on third-party applications.</p>
+
+              <h2>Privacy and Copyright Protection</h2><hr>
+
+<p>URPSM’s privacy policies explain how we treat your personal data and protect your privacy when you use our Services. By using our Services, you agree that URPSM can use such data in accordance with our privacy policies. </p>
+
+                      <h2>Your Content in our Services</h2><hr>
+
+<p>Some of our Services allow you to upload, submit, store, send or receive content. You retain ownership of any intellectual property rights that you hold in that content. 
+    In short, what belongs to you stays yours. 
+    When you upload, submit, store, send or receive content to or through our Services, you give URPSM (and those we work with) a worldwide license to use, host, store, reproduce, modify, create derivative works (such as those resulting from translations, adaptations or other changes we make so that your content works better with our Services), communicate, publish, publicly perform, publicly display and distribute such content. The rights you grant in this license are for the limited purpose of operating, promoting, and improving our Services, and to develop new ones.
+    This license continues even if you stop using our Services </p>
+              
+                      <h2>About our Services</h2><hr>
+<p>
+    We are constantly changing and improving our Services. We may add or remove functionalities or features, and we may suspend or stop a Service altogether. 
+    You can stop using our Services at any time, although we’ll be sorry to see you go. URPSM may also stop providing Services to you, or add or create new limits to our Services at any time. </p>
+
+              <h2>Our Warranties and Disclaimers</h2><hr>
+
+<p>-We provide our Services using a commercially reasonable level of skill and care and we hope that you will enjoy using them. But there are certain things that we don’t promise about our Services. 
+    -OTHER THAN AS EXPRESSLY SET OUT IN THESE TERMS OR ADDITIONAL TERMS, NEITHER URPSM NOR ITS SUPPLIERS OR DISTRIBUTORS MAKE ANY SPECIFIC PROMISES ABOUT THE SERVICES. FOR EXAMPLE, WE DON’T MAKE ANY COMMITMENTS ABOUT THE CONTENT WITHIN THE SERVICES, THE SPECIFIC FUNCTIONS OF THE SERVICES, OR THEIR RELIABILITY, AVAILABILITY, OR ABILITY TO MEET YOUR NEEDS. WE PROVIDE THE SERVICES “AS IS”. </p>
+
+              <h2>About these Terms</h2><hr>
+<p>
+    -We may modify these terms or any additional terms that apply to a Service to, for example, reflect changes to the law or changes to our Services. You should look at the terms regularly</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+<section id="footer" class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="copyright pull-left">
+                    Copyright &copy; {% now "Y" %} URPSM
+                </span>
+
+                <ul class="links list-inline pull">
+                    <li>
+                        <a href="{% url 'terms' %}">Terms</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'privacy' %}">Privacy</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="{% static "js/home/waypoints.min.js" %}"></script>
+<script src="{% static "js/home/jquery.scrollto.min.js" %}"></script>
+<script src="{% static "js/home/jquery.localscroll.min.js" %}"></script>
+<script src="{% static "js/home/jquery.prettyPhoto.js" %}"></script>
+<script src="{% static "js/home/scripts.js" %}"></script>
+
+<!-- ********************* -->
+<!-- Start Rocket -->
+
+</body>
+</html>    

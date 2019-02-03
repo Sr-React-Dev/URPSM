@@ -1,0 +1,54 @@
+{% extends "urpsm/v2/auth_v2.html" %}
+{% load i18n %}
+{% block title %}{% trans "User login" %}{% endblock %}
+{% block content %}
+{% if form.non_field_errors %}
+    <ul class='parsley-error-list'>
+        {% for error in form.non_field_errors %}
+            <li>{% trans error %}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+  
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+          <form id="form-signin" class="form-signin" action="{% if next %}?next={{ next }}{% endif %}" method="post" accept-charset="utf-8">{% csrf_token %}
+              <section>
+                <div class="input-group">
+                  <input type="text" class="form-control rtl-input" name="username" placeholder="{% trans 'Username'%}">
+                  <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                </div>
+                {#% if form.username.errors %#}
+                  {{ form.username.errors }}
+                {#% endif %#}
+                <div class="input-group">
+                  <input type="password" class="form-control rtl-input" name="password" placeholder="{% trans 'Password'%}">
+                  <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                </div>
+                {#% if form.password.errors %#}
+                  {{ form.password.errors }}
+                {#% endif %#}
+              </section>
+              <section class="controls">
+                <div class="checkbox check-transparent rtl-float-right">
+                  <input type="checkbox" value="1" id="remember" checked>
+                  <label for="remember" class="fontarabic">{% trans 'Remember me'%}</label>
+                </div>
+                <a href="{% url 'password_reset' %}" class="pull-right rtl-float-left fontarabic">{% trans 'Forget password?'%}</a>
+              </section>
+
+              <section class="new-acc">
+                <button class="btn btn-greensea fontarabic arabwhite">{% trans 'Login' %}</button>
+              </section>
+
+              <section class="new-acc2">
+                <a class="btn btn-greensea faceb" href="{% url 'social:begin' 'facebook' %}?next=/{{LANGUAGE_CODE}}/accounts/" ><i class="fa fa-facebook urp"></i>{% trans 'Facebook' %}</a>
+                <a class="btn btn-greensea glps"  href="{% url 'social:begin' 'google-oauth2' %}?next=/{{LANGUAGE_CODE}}/accounts/" ><i class="fa fa-google-plus urp"></i>{% trans 'Google +' %}</a>
+              </section>
+            </form>
+          </div>
+          <a href="{% url 'create_account' %}" class="log-in droitnash">{% trans 'Sign up' %}<i class="fa fa-arrow-right fa-5x"></i></a>
+{% endblock content %}

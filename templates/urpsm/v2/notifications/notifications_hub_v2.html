@@ -1,0 +1,166 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load static from staticfiles %}{% load i18n%}
+{% block title %} {% trans 'notifications hub'|capfirst %} {% endblock %}
+{% block heading %} {% trans 'notifications hub'|capfirst %} {% endblock %}
+{% block extrastyle %}
+{% endblock %}
+{% block extrajs %}
+<script>
+function readm(typ){
+
+$.post('{% url 'markread-bytype' %}',
+    {
+        type: typ
+    },
+    function(data, status){
+    alert(data);
+    });
+
+}
+</script>
+{% endblock %}
+{% block content %}
+<section class="content">
+
+<div class="row">
+  <div class="col-xs-12">
+          <section class="color-8">
+        {% if request.user.profile.shop%}
+        <a href="{% url 'client-notification' %}">
+        <p class="perspective col-xs-12 col-md-4">
+          <button class="btn btn-8 btn-8a">
+            <div class="inner">
+              <h3><i class="fa fa-users"></i></h3>
+              <p>{% trans 'clients'|capfirst %}</p>
+            </div>
+            <span class="badge bg-green">{{clients}}</span>
+          </button>
+        </p>
+        </a>
+        {%endif%}
+        <a href="{% url 'order-notification' %}">
+        <p class="perspective col-xs-12 col-md-4">
+          <button class="btn btn-8 btn-8a">
+            <div class="inner">
+              <h3><i class="fa fa-check"></i></h3>
+              <p>{% trans 'orders'|capfirst %}</p>
+            </div>
+            <span class="badge bg-green">{{orders}}</span>
+          </button>
+        </p>
+        </a>
+        <a href="{% url 'ticket-notification' %}">
+        <p class="perspective col-xs-12 col-md-4">
+          <button class="btn btn-8 btn-8a">
+            <div class="inner">
+              <h3><i class="fa fa-ticket"></i></h3>
+              <p>{% trans 'tickets'|capfirst %}</p>
+            </div>
+            <span class="badge bg-green">{{tickets}}</span>
+          </button>
+        </p>
+        </a>
+
+        <a href="{% url 'review-notification' %}">
+        <p class="perspective col-xs-12 col-md-4">
+          <button class="btn btn-8 btn-8c">
+            <div class="inner">
+              <h3><i class="fa fa-comments"></i></h3>
+              <p>{% trans 'reviews'|capfirst %}</p>
+            </div>
+            <span class="badge bg-green">{{reviews}}</span>
+          </button>
+        </p>
+        </a>
+        {% if request.user.profile.shop %}
+        <a href="{% url 'admin-notification' %}">
+        <p class="perspective col-xs-12 col-md-4">
+          <button class="btn btn-8 btn-8c">
+            <div class="inner">
+              <h3><i class="fa fa-building"></i></h3>
+              <p>{% trans 'administration'|capfirst %}</p>
+            </div>
+            <span class="badge bg-green">{{shops}}</span>
+          </button>
+        </p>
+        </a>
+        {% elif request.user.profile.server%}
+        <a href="{% url 'admin-notification' %}">
+        <p class="perspective col-xs-12 col-md-4">
+          <button class="btn btn-8 btn-8b">
+            <div class="inner">
+              <h3><i class="fa fa-server"></i></h3>
+              <p>{% trans 'administration'|capfirst %}</p>
+            </div>
+            <span class="badge bg-green">{{servers}}</span>
+          </button>
+        </p>
+        </a>
+        {%endif%}
+
+        {% if request.user.profile.shop %}
+        <a href="{% url 'component-notification' %}">
+        <p class="perspective col-xs-12 col-md-4">
+          <button class="btn btn-8 btn-8d">
+            <div class="inner">
+              <h3><i class="fa fa-cubes"></i></h3>
+              <p>{% trans 'components'|capfirst %}</p>
+            </div>
+            <span class="badge bg-green">{{components}}</span>
+          </button>
+        </p>
+        </a>
+
+        <a href="{% url 'phone-notification' %}">
+        <p class="perspective col-xs-12 col-md-4">
+          <button class="btn btn-8 btn-8b">
+            <div class="inner">
+              <h3><i class="fa fa-mobile"></i></h3>
+              <p>{% trans 'phones'|capfirst %}</p>
+            </div>
+            <span class="badge bg-green">{{phones}}</span>
+          </button>
+        </p>
+        </a>
+
+        <a href="{% url 'invoice-notification' %}">
+            <p class="perspective col-xs-12 col-md-4">
+          <button class="btn btn-8 btn-8b">
+            <div class="inner">
+              <h3><i class="fa-file-text"></i></h3>
+              <p>{% trans 'invoice'|capfirst %}</p>
+            </div>
+            <span class="badge bg-green">{{invoice}}</span>
+          </button>
+        </a>
+        {% endif %}
+        <a id="readmessages" onclick="readm('R');" href="">
+            <p class="perspective col-xs-12 col-md-4">
+          <button class="btn btn-8 btn-8b">
+            <div class="inner">
+              <h3><i class="fa-file-text"></i></h3>
+              <p>{% trans 'Messages'|capfirst %}</p>
+            </div>
+            <span class="badge bg-green">{{messages}}</span>
+          </button>
+        </a>
+        {% if request.user.profile.server %}
+        <a href="{% url 'payment-notification' %}">
+        <p class="perspective col-xs-12 col-md-4">
+          <button class="btn btn-8 btn-8b">
+            <div class="inner">
+              <h3><i class="fa fa-money"></i></h3>
+              <p>{% trans 'payments'|capfirst %}</p>
+            </div>
+            <span class="badge bg-green">{{payments}}</span>
+          </button>
+        </p>
+        </a>
+        {%endif%}
+
+      </section>
+      </div>
+      </div>
+ </section>
+        {%endblock%}
+

@@ -1,0 +1,173 @@
+{%comment%}
+      {% if user.profile.shop %}
+      <li>
+        <a href="{% url 'shop-detail' user.profile.shop.pk user.profile.shop.slug %}">
+          <i class="fa fa-shopping-cart"></i>
+          <span>{% trans 'my shop'|capfirst %}</span>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'dash'  %}">
+          <i class="fa fa-dashboard"></i>
+          <span>{% trans 'my dashboard'|capfirst %}</span>
+        </a>
+      </li>
+
+      {%endif%}
+      {% if user.profile.server %}
+      <li>
+        <a href="{#% url 'server-detail' user.profile.server.pk user.profile.server.slug %#}">
+          <i class="fa fa-server"></i>
+          <span>{% trans 'my server'|capfirst %}</span>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'server-dash'  %}">
+          <i class="fa fa-dashboard"></i>
+          <span>{% trans 'my dashboard'|capfirst %}</span>
+        </a>
+      </li>
+      {%endif%}
+      <li>
+        <a href="{% url 'shop' %}">
+          <i class="fa fa-building"></i>
+          <span>{% trans 'shops'|capfirst %}</span>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'servers' %}">
+          <i class="fa fa-building"></i>
+          <span>{% trans 'servers'|capfirst %}</span>
+        </a>
+      </li>
+      {% if user.profile.shop %}
+      <li>
+        <a href="{% url 'clients' %}">
+          <i class="fa fa-phone-square"></i>
+          <span>{% trans 'clients'|capfirst %}</span>
+        </a>
+      </li>
+      {% endif %}
+      {% if user.profile.shop %}
+      <li class="treeview">
+        <a href="{% url 'components' %}">
+          <i class="fa fa-th"></i>
+          <span>{% trans 'components'|capfirst %}</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+              <a href="{% url 'components-list' %}" title="{% trans 'other shops components'|capfirst %}">
+                <i class="fa fa-circle-o"></i>
+                {% trans 'other shops components'|capfirst %}
+              </a>
+              <a href="{% url 'component-create' %}" title="{% trans 'add component'|capfirst %}">
+                <i class="fa fa-circle-o"></i>
+                {% trans 'add component'|capfirst %}
+              </a>
+              <a href="{% url 'components' %}" title="{% trans 'my shop components'|capfirst %}">
+                <i class="fa fa-circle-o"></i>
+                {% trans 'my shop components'|capfirst %}
+              </a>
+            </li>
+          </ul>
+      </li>
+      {% endif %}
+
+
+      {% if  request.user|has_group:'Administrator' %}
+        <li>
+          <a href="{% url 'users' %}">
+            <i class="fa fa-group"></i>
+            <span>Users</span>
+          </a>
+        </li>
+        {% if user.profile.shop %}
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-unlock"></i>
+            <span>{% trans 'unlocking'|capfirst %}</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="{% url 'unlocking' %}" title="Place an order">{% trans 'place an order'|capfirst %}</a>
+            </li>
+            <li>
+              <a href="{% url 'orders' %}" title="Place an order">{% trans 'orders list'|capfirst %}</a>
+            </li>
+          </ul>
+        </li>
+        {%endif%}
+      {% if user.profile.server %}
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-server"></i>
+            <span>{% trans 'unlocking servers'|capfirst %}</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="{% url 'endpoint-create' %}" title="api provider">{% trans 'api provider'|capfirst %}</a>
+            </li>
+            <li><a href="{% url 'endpoints' %}" title="endpoints">{% trans 'servers'|capfirst %}</a></li>
+            <li><a href="{% url 'endpoint-orders' %}" title="endpoints">{% trans 'unlocking orders'|capfirst %}</a></li>
+          </ul>
+        </li>
+      {% endif %}
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-gear"></i>
+            <span>{% trans 'settings'|capfirst %}</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+
+          <ul class="treeview-menu">
+            <li>
+            {% if user.profile.shop %}
+              <a href="{% url 'shop-edit' %}" title="Edit Shop">
+                <i class="fa fa-circle-o"></i>
+                {% trans 'edit shop'|capfirst %}
+              </a>
+              {%elif user.profile.server %}
+              <a href="{% url 'server-edit' %}" title="Edit Server">
+                <i class="fa fa-circle-o"></i>
+                {% trans 'edit server'|capfirst %}
+              </a>
+            {%endif%}
+            </li>
+          </ul>
+        </li>
+      {% endif %}
+      {%comment%}
+      <li>
+        <a href="https://blog.urpsm.com/">
+          <i class="fa fa-pencil"></i>
+          <span>Blog</span>
+        </a>
+      </li>
+      {%endcomment%}
+      <li>
+        <a href="">
+          <i class="fa fa-bell"></i>
+          <span>{% trans 'notifications'|capfirst %}</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="{% url 'notifications' %}">
+              <i class="fa fa-bell"></i>
+              <span>{% trans 'notifications'|capfirst %}</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}#contact">
+              <i class="fa fa-envelope"></i>
+              <span>{% trans 'contact'|capfirst %}</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      {%endcomment%}

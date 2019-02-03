@@ -1,0 +1,84 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_list admin_urls suit_list suit_tags %}
+{% load url from suit_compat %}
+ {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'Clearance requests'|capfirst %} {% endblock %} {% block heading %} {% trans 'orders'|capfirst %} {% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+
+ <div class="row-fluid">
+
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{% trans 'Clearance requests'|capfirst %}</h3>
+
+            </div>
+            <div class="box-body">
+                <div class="box-body table-responsive">
+              <table class="table table-hover table-bordered">
+                <tbody><tr>
+                  <th>{% trans 'Id'|capfirst %}</th>
+                  <th>{% trans 'Server Name' %}</th>
+                  <th>{% trans 'Paypal Email' %}</th>
+                  <th>{% trans 'Created'|capfirst %}</th>
+                  <th>{% trans 'Amount'|capfirst %}</th>
+                  <th>{% trans 'Clear'|capfirst %}</th>
+
+                </tr>
+                {% for charge in charges%}
+                <tr>
+                  <td>{{charge.id}}</td>
+                  <td>{{ charge.server.name }}</td>
+                  <td>{{charge.server.paypal_email}}</td>
+                  <td>{{charge.created}}</td>
+                  <td>{{charge.value}}</td>
+                  <td>{% if charge.active == True %}<button class="btn btn-danger" onClick="clearCharges('{{charge.id}}')">Clear Amount</button>{% endif %}</td>
+                </tr>
+                {%endfor%}
+
+              </tbody></table>
+            </div>
+            </div>
+          </div>
+          <!-- /.box -->
+      </div>
+      </div>
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" charset="utf-8">
+
+
+
+    function clearCharges(id){
+
+            $.confirm({
+            title: "{% trans 'Are you sure ?'|capfirst %}",
+            content: "{% trans 'Amount will be cleared and server will be able to withdraw the said amount'|capfirst %}",
+            buttons: {
+                confirm: function () {
+                     $.post(window.location.href,
+    {
+        clear: id
+    },
+    function(data, status){
+        $.alert(data);
+        location.reload();
+    });
+                    },
+                cancel: function () {
+                      $.alert('Canceled!');
+                        }
+                }
+            });
+
+        }
+
+  </script>
+{% endblock %}

@@ -1,0 +1,249 @@
+{% extends "urpsm/v2/auth_v2.html" %}
+{% load i18n %}
+{% load location_tags %}
+{% block title %}{% trans "User register" %}{% endblock %}
+{% block content %}
+    <ul class='parsley-error-list'></ul>
+  
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+  <form class="form-signin" id="msform" onsubmit="return false;">
+  			{% csrf_token %}
+			<ul id="progressbar">
+			<li class="active">{% trans 'General Information' %}</li>
+			<li>{% trans 'Personal Information' %}</li>
+			<li>{% trans 'Password' %}</li>
+			</ul>
+
+            	<fieldset>
+            		<div class="input-group width-100-p">
+	                  <input type="text" class="form-control arabdir" name="name" placeholder="*{% trans 'what is your business name?'|capfirst %}">
+	                </div>
+
+            		<div class="form-group">
+            		{%if preselect_busisness%}
+            		{{business_form.business_type}}
+					{%else%}
+					  <select class="form-control placeholder newone arabdir" name="business_type" id="type" required>
+					  	<option value="" hidden>{% trans "What's your business type?" %}</option>
+					    <option value="shop">{% trans 'shop owner'|capfirst %}</option>
+					    <option value="server">{% trans 'server owner'|capfirst %}</option>
+					  </select>
+					{%endif%}
+					</div>
+
+
+					<div class="form-group">
+					  <select class="form-control placeholder newone arabdir" name="country" id="country" required>
+					  	
+					  </select>
+					</div>
+
+	                <div class="form-group">
+					  <select class="form-control placeholder newone arabdir" name="city" id="city" required>
+					  	
+					  </select>
+					</div>
+
+	               <input type="button" name="next" class="next btn btn-greensea fontarabic2" value="{% trans 'next'|capfirst %}" />
+	               <section class="new-acc3">
+	               <a class="btn btn-greensea faceb" href="{% url 'social:begin' 'facebook' %}?state=shop" ><i class="fa fa-facebook urp"></i>{% trans 'facebook'|capfirst %}</a>
+                	<a class="btn btn-greensea glps"  href="{% url 'social:begin' 'google-oauth2' %}" ><i class="fa fa-google-plus urp"></i>{% trans 'google +'|capfirst %}</a>
+              		  
+              		</section>               
+	          	</fieldset>
+
+
+	           <fieldset>
+	                <div class="input-group width-100-p">
+	                  <input type="text" class="form-control arabdir" name="username" placeholder="{% trans 'username'|capfirst %}" required>
+	                </div>
+	                <div class="input-group width-100-p">
+	                  <input type="text" class="form-control arabdir" name="first_name" placeholder="{% trans 'first name'|capfirst %}" required>
+	                </div>
+	                <div class="input-group width-100-p">
+	                  <input type="text" class="form-control arabdir" name="last_name" placeholder="{% trans 'last name'|capfirst %}" required>
+	                </div>
+	                <div class="input-group width-100-p">
+	                  <input type="email" class="form-control arabdir" name="email" placeholder="{% trans 'email'|capfirst %}" required>
+	                </div>
+	                <div class="input-group width-100-p">
+	                  <input type="tel" class="form-control arabdir" name="phone" placeholder="{% trans 'phone number'|capfirst %}" required>
+	                </div>
+					<input type="button" name="next" class="next btn btn-greensea fontarabic2" value="{% trans 'next'|capfirst %}" />
+					<input type="button" name="previous" class="previous btn btn-greensea fontarabic2" value="{% trans 'previous'|capfirst %}" />   
+	          </fieldset>
+
+
+	           <fieldset>
+	                <div class="input-group width-100-p">
+	                  <input type="password" class="form-control arabdir" name="password1" placeholder="{% trans 'password'|capfirst %}" required>
+	                </div>
+	                <div class="input-group width-100-p">
+	                  <input type="password" class="form-control arabdir" name="password2" placeholder="{% trans 'confirm password'|capfirst %}" required>
+	                </div>
+					<input type="submit" name="submit" class="submit btn btn-greensea fontarabic2" value="{% trans 'submit'|capfirst %}" />
+					<input type="button" name="previous" class="previous btn btn-greensea fontarabic2" value="{% trans 'previous'|capfirst %}" />
+				</fieldset>
+            </form>
+          </div>
+       <a href="{% url 'login' %}" class="log-in droitnash">{% trans 'log in'|title %}<i class="fa fa-arrow-right fa-5x"></i></a>
+        </div>
+    </div>
+    </div>
+          
+          
+{% endblock content %}
+{% block extra_js %}
+<script>
+$(function() {
+
+//jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".next").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	next_fs = $(this).parent().next();
+	
+	//activate next step on progressbar using the index of next_fs
+	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+	
+	//show the next fieldset
+	next_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = (now * 50)+"%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'transform': 'scale('+scale+')'});
+			next_fs.css({'left': left, 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+$(".previous").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	previous_fs = $(this).parent().prev();
+	
+	//de-activate current step on progressbar
+	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+	
+	//show the previous fieldset
+	previous_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale previous_fs from 80% to 100%
+			scale = 0.8 + (1 - now) * 0.2;
+			//2. take current_fs to the right(50%) - from 0%
+			left = ((1-now) * 50)+"%";
+			//3. increase opacity of previous_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'left': left});
+			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+		});
+	});
+	var countries = {% get_countries %};
+    var cities_countries = {% get_cities_countries %};
+    var cities_ids = {% get_cities_ids %};
+
+    var countryElementId = "country";
+    var cityElementId = "city";
+
+    function populatecities( countryElementId, cityElementId ){
+    
+        var selectedCountryIndex = document.getElementById( countryElementId ).value;
+
+        var cityElement = document.getElementById( cityElementId );
+        
+        cityElement.length=0;  
+        cityElement.options[0] = new Option('Select city','-1');
+        cityElement.selectedIndex = 0;
+
+        $.each(cities_countries, function(city_name){
+            if (cities_countries[city_name] == selectedCountryIndex){
+                city_id = cities_ids[city_name];
+                cityElement.options[cityElement.length] = new Option(city_name,city_id);
+            }
+        });
+    }
+
+    function populateCountries(countryElementId, cityElementId){
+        // given the id of the <select> tag as function argument, it inserts <option> tags
+        var countryElement = document.getElementById(countryElementId);
+        countryElement.length=0;
+        countryElement.options[0] = new Option('Select Country','-1');
+        countryElement.selectedIndex = 0;
+
+        $.each(countries, function(_){
+            country = countries[_]
+            countryElement.options[countryElement.length] = new Option(_,country);
+
+        });
+
+        // Assigned all countries. Now assign event listener for the states.
+
+        if( cityElementId ){
+            countryElement.onchange = function(){
+                populatecities( countryElementId, cityElementId );
+            };
+        }
+    }
+
+    populateCountries(countryElementId,cityElementId);
+    var fields = {'username':"{% trans 'username'|capfirst %}", 'password1':"{% trans 'password'|capfirst %}",'first_name':"{% trans 'first name'|capfirst %}",'last_name':"{% trans 'last name'|capfirst %}",'password2':"{% trans 'confirm password'|capfirst %}",'business_type':"{% trans 'business type'|capfirst %}",'email':"{% trans 'email'|capfirst %}", 'name':"{% trans 'business name'|capfirst %}",'city':"{% trans 'city'|capfirst %}",  'country':"{% trans 'country'|capfirst %}", 'shop_phone':"{% trans 'shop phone'|capfirst %}", 'server_phone':"{% trans 'server phone'|capfirst %}" , 'server_email':"{% trans 'server email'|capfirst %}", 'shop_email':"{% trans 'shop email'|capfirst %}"};
+	$(".submit").click(function(){
+		$('ul.parsley-error-list').empty();
+		var data = $('#msform').serialize();
+		var url  = window.location.href;
+		$.ajax({url:url, type:'post',data:data, success:function(response){
+			console.log(response);
+			if (!response.status){
+				for (var field in response.error){
+					for (var error in response.error[field]){
+						console.log(error);
+						var error_message = '<li><strong>' + fields[field] + ' ' +  response.error[field][error]['code']+ '</strong>: '+  response.error[field][error]['message']+ '</li>';
+						$('ul.parsley-error-list').append(error_message);
+					}
+				}
+			}else{
+				window.location = "{% url 'email_confirmation' %}";
+			}
+		}});
+	})
+
+});
+</script>
+{% endblock extra_js %}

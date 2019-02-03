@@ -1,0 +1,41 @@
+                                    {% load reviewing_tags %}
+                                    {% load el_pagination_tags %}
+                                    {% load i18n %}
+                                    {% load localize from l10n %}
+                                    {#% load humanize %#}
+                                    {% lazy_paginate 10 reviews %}
+                                    {%for review in reviews %}
+                                      <div class="mar-top-bot direct-chat-msg {%ifequal review.language 'ar' %} right {%endifequal%}">
+                                        <div class="direct-chat-info clearfix font-15">
+                                          <span class="direct-chat-name pull-{%ifequal review.language 'ar' %}right{%else%}left{%endifequal%}">
+                                            <a href="#">
+                                              {% for i in 5|times %}
+                                              {% if i < review.rating %}
+                                              <i class="fa fa-star text-yellow"></i>
+                                              {%else%}
+                                              <i class="fa fa-star-o text-yellow"></i>
+                                              {% endif %}
+                                              {% endfor %}
+                                              
+                                            </a>
+                                          </span>
+                                          <span class="pull-{%ifequal review.language 'ar' %}left{%else%}right{%endifequal%}">
+                                            <span class="label red-light-background"> {{review.client__brand__name}}</span>
+                                            <span class="label blue-light-background"> {{review.client__model__name}}</span>
+                                            <span class="label blueviolet-light-background"> {{review.client__imei}}</span>
+                                          </span>
+                                        </div>
+                                        <!-- /.direct-chat-info -->
+                                        <img class="direct-chat-img" src="{{review.client__model__picture.crop.32x32}}" alt="{{review.model.name}}"><!-- /.direct-chat-img -->
+                                        <div class="direct-chat-text">
+                                          {{review.content}}
+                                        </div>
+                                        <!-- /.direct-chat-text -->
+                                      </div>
+                                      <hr>
+                                    {%endfor%}
+                                    {#% show_more "Load more shops" "Wait please&hellip;" %#}
+                                    <div class="box-footer clearfix">
+                                      {% show_pages %}
+                                    </div>
+                                    <!-- Message to the right -->

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+{% load i18n%}
+<html>
+<head>
+    <title>{% trans 'client thank you'|capfirst %} | Unlock Repair Phone Shop Manager</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link href="{% static 'v2/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'v2/css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'v2/css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'v2/css/bootstrap-checkbox.css' %}" rel="stylesheet" >
+    <link href="{% static 'v2/css/minoral.css' %}" rel="stylesheet">
+    <link href="{% static 'v2/css/signup.css' %}" rel="stylesheet">
+     <link rel="shortcut icon" href="{% static 'v2/images/logo-big.png' %}">
+
+
+    <!-- start rtl vesion-->
+    <link href='https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css' rel='stylesheet' type='text/css'/>
+    <link href="{% static 'v2/css/rtl.css' %}" rel="stylesheet">
+    <!-- end rtl vesion-->
+
+  </head>
+  <body class="brownish-scheme">
+    <div id="wrap">
+      <div class="row">         
+        <div id="content" class="col-md-12 full-page login">
+          <div class="welcome">
+            <img src="{% static 'v2/images/logo-big.png' %}" class="logo opa-200">
+			<h1>{% trans 'thank you for using urpsm'|title %}</h1>
+            
+        </div>
+    </div>
+    </div>
+    <script src="{% static 'v2/js/jquery.js' %}"></script>
+    <script src="{% static 'v2/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'v2/js/plugins/jquery.nicescroll.min.js' %}"></script>
+    <script src="{% static 'v2/js/plugins/jquery.blockUI.js' %}"></script>
+    <script src="{% static 'v2/js/minoral.min.js' %}"></script>
+    <script src="{% static 'v2/js/jquery.easing.min.js' %}" type="text/javascript"></script>
+
+    <script>
+    $(function(){
+      
+      $('.welcome').addClass('animated bounceIn');
+
+    })
+      
+    </script>
+    
+    
+
+
+<script>
+	
+$(document).ready(function(e) {
+	setTimeout(function(){ window.location = "{%url 'home' %}" }, 5000);
+});	
+
+</script>
+
+
+</body>
+</html>

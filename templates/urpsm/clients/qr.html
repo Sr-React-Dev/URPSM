@@ -1,0 +1,21 @@
+{% extends "urpsm/v2/auth_v2.html" %} {% block title %}Client Status{% endblock %} {% block content %}
+<div class="text-center">
+	<img class="img img-responsive" src="{{ client.model.picture.crop.200x400 }}" alt="{{ client.ref }}">
+	<br>
+    <span class="badge {% ifequal client.status "r" %} bg-green {% else %} bg-red {% endifequal %}" style="font-size:45px; padding:15px; border-radius: 50%;">
+    	<i class="glyphicon glyphicon-phone"></i>
+	</span>
+</div>
+<h4 class="text-center"> <b>{{ client.ref }}</b></h4>
+<h4 class="text-center"> <b>{{ client.get_status_display }}</b></h4> {% if client.status_description %}
+<hr>
+<p>
+    {{ client.status_description|safe }}
+</p>
+{% endif %}
+<hr>
+<p>
+    <span><b>{{ client.shop.name }}</b></span>
+    <span class="pull-right"><i class="fa fa-phone"></i> &nbsp;{{ client.shop.shop_phone }}<br><i class="fa fa-envelope"></i> &nbsp;{{ client.shop.shop_email}}</span>
+</p>
+{% endblock %}

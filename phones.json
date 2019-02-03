@@ -1,0 +1,62 @@
+[
+{
+          "fields": {
+                    "updated": "2015-06-20T16:18:17.632Z",
+                    "created": "2015-06-20T16:18:17.632Z",
+                    "name": "Nokia",
+                    "slug": "nokia"
+          },
+          "model": "phone.brand",
+          "pk": 1
+},
+{
+          "fields": {
+                    "updated": "2015-06-20T16:32:55.787Z",
+                    "created": "2015-06-20T16:32:55.787Z",
+                    "name": "Sumsung",
+                    "slug": "sumsung"
+          },
+          "model": "phone.brand",
+          "pk": 2
+},
+{
+          "fields": {
+                    "brand": 1,
+                    "created": "2015-06-20T16:29:28.628Z",
+                    "updated": "2015-06-20T16:29:28.628Z",
+                    "name": "nokia 1",
+                    "slug": "nokia-1"
+          },
+          "model": "phone.model",
+          "pk": 1
+},
+{
+          "fields": {
+                    "brand": 2,
+                    "created": "2015-06-20T16:33:16.896Z",
+                    "updated": "2015-06-20T16:33:16.896Z",
+                    "name": "Sumsung 1",
+                    "slug": "sumsung-1"
+          },
+          "model": "phone.model",
+          "pk": 2
+},
+{
+          "fields": {
+                    "picture": "phone/2015/06/Screenshot_from_2015-05-07_184348.png",
+                    "brand": 1,
+                    "model": 1
+          },
+          "model": "phone.picture",
+          "pk": 1
+},
+{
+          "fields": {
+                    "picture": "phone/2015/06/1.jpg",
+                    "brand": 2,
+                    "model": 2
+          },
+          "model": "phone.picture",
+          "pk": 2
+}
+]

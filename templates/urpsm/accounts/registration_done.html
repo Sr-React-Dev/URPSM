@@ -1,0 +1,15 @@
+{% extends 'urpsm/v2/auth_v2.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Confirm your email address" %}{% endblock %}
+
+{% block content %}
+<p class="login-box-msg">
+{% trans 'Confirm your email' %}
+</p>
+<p>{% blocktrans %}We have sent you an email for verification. Follow the link provided to finalize the signup process.{% endblocktrans %}</p>
+{% endblock %}
+
+{% block content-related %}
+<a href="{% url 'login' %}">{% trans "Login" %}</a>
+{% endblock %}

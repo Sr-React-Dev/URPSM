@@ -1,0 +1,7 @@
+{% load i18n %}
+							<a>{{ current }}</a>
+                            <ul class="menu mini">                                
+								{% for language in languages %}
+								<li><a href="{{language.1}}" title="{{ language.0|title }}" {%if '/ar/' in language.1 %} class="font-arab" {%endif%}>{{ language.0|title }}</a></li>
+    							{% endfor %}
+                            </ul>

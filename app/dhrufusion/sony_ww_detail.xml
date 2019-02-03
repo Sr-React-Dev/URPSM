@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dhrufusion version="2.3.1">
+  <id>2300</id>
+  <success>
+    <result>
+      <message>service details</message>
+      <list>
+        <username>esoufien4</username>
+        <servicename>sony / sony ericsson worldwide unlock
+        code</servicename>
+        <retailname />
+        <creditadmin>22.00</creditadmin>
+        <credit>220</credit>
+        <discountadmin />
+        <discount />
+        <cartdiscount>0</cartdiscount>
+        <retailcredit>220</retailcredit>
+        <seourl>
+        imei/41/255/sony--sony-ericsson-worldwide-unlock-code</seourl>
+        <seourl>
+        product-and-services/parent/1006/fe131d7f5a6b38b23cc967316c13dae2/sony--sony-ericsson-worldwide-unlock-code.html</seourl>
+        <id>255</id>
+        <manualverification>0</manualverification>
+        <affiliatecomission />
+        <sort>0</sort>
+        <time>1-12 days</time>
+        <isalpha>0</isalpha>
+        <review>0</review>
+        <autoreply>0</autoreply>
+        <seotitle />
+        <seodescription />
+        <status />
+        <ebaycode />
+        <api />
+        <seokeywords />
+        <store>0</store>
+        <resellerdisctype>0</resellerdisctype>
+        <resellerdisc />
+        <resellersprice>220</resellersprice>
+        <keyselling />
+        <smsnotification>0</smsnotification>
+        <notificationemail>0</notificationemail>
+        <subscribecredit />
+        <subscribedays />
+        <subscribe>0</subscribe>
+        <verification>0</verification>
+        <usercancancel>1</usercancancel>
+        <iconlink />
+        <downloadlink />
+        <faqid />
+        <retail>0</retail>
+        <imagelink />
+        <imagehotdeal />
+        <purchasecost />
+        <stock />
+        <stockallow>0</stockallow>
+        <retailinfo />
+        <assignedmodel />
+        <assignedprovider />
+        <imeicustomlen>0</imeicustomlen>
+        <imeicustom>0</imeicustom>
+        <imeicustomname />
+        <imeicustominfo />
+        <imeibulk>1</imeibulk>
+        <groupid>41</groupid>
+        <group>41</group>
+        <customhtml />
+        <happyhoursstart />
+        <happyhoursend />
+        <happyhoursrepetation />
+        <happyhoursweekdays />
+        <promotiondis />
+        <verifiable>0</verifiable>
+        <info />
+        <hot />
+        <features />
+        <taxed>0</taxed>
+        <showonhome>0</showonhome>
+        <templateid>0</templateid>
+        <templateid>0</templateid>
+        <subscriptionorderlimit>0</subscriptionorderlimit>
+        <listing>
+fusion1
+</listing>
+        <reqredfield>
+          <model>0</model>
+          <provider>0</provider>
+          <mep>0</mep>
+          <pin>0</pin>
+          <kbh>0</kbh>
+          <prd>0</prd>
+          <sn>0</sn>
+          <secro>0</secro>
+          <isalpha>0</isalpha>
+          <type>0</type>
+          <reference>0</reference>
+          <locks>0</locks>
+          <imeisingle>1</imeisingle>
+          <imeibulk>1</imeibulk>
+          <imeicustom>0</imeicustom>
+          <imeicustomlen>0</imeicustomlen>
+          <imeicustomname />
+          <imeicustominfo />
+        </reqredfield>
+        <notificationmail />
+      </list>
+    </result>
+  </success>
+</dhrufusion>

@@ -1,0 +1,36 @@
+                                    {% load el_pagination_tags %}
+                                    {% load i18n %}
+                                    {% load localize from l10n %}
+                                    {#% load humanize %#}
+                                    {% lazy_paginate 10 servers %}
+                                    {%for server in servers %}
+                                      <div class="col-md-3 ">
+                                      <div class="box box-widget widget-user-2">
+                                        <div class="widget-user-header bg-bluesky">
+                                          <div class="widget-user-image">
+                                            <a href="{#% url 'server-detail' server.pk server.slug %#}" target='_blank' class="flo-l">
+                                              <img class="img-circle" src="{{server.logo.thumbnail.100x100}}" alt="{{server.name}}">
+                                          </a>
+                                          </div>
+                                          <h5 class="widget-user-desc marg-bot">{{server.name}}</h5>
+                                          <h5 class="widget-user-desc marg-top"><div class="star-ratings-sprite no-margin"><span style="width:{{server.average_rating|multiply:20}}%" class="star-ratings-sprite-rating"></span></div></h5>
+                                        </div>
+                                        <div class="box-footer no-padding">
+                                          <ul class="nav nav-stacked">
+                                            <li><a href="#">{% trans 'unlocked phones'|capfirst %} <span class="pull-right badge bg-red">{{ server.get_unlocked_phones_count }}</span></a></li>
+                                            <li><a href="#">{% trans 'services'|capfirst %} <span class="pull-right badge bg-red">{{ server.get_services_count }}</span></a></li>
+                                            <li><a href="#">{% trans 'networks'|capfirst %} <span class="pull-right badge bg-red">{{ server.get_network_count }}</span></a></li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    {%empty%}
+                                    <div class="col-md-3">
+                                          <h3>{% trans 'sorry no results for'|capfirst %}</h3>
+                                      </div>
+                                    {%endfor%}
+                                    {#% show_more "Load more servers" "Wait please&hellip;" %#}
+                                    <div class="box-footer clearfix">
+                                      {% show_pages %}
+                                    </div>
+                                    <!-- Message to the right -->

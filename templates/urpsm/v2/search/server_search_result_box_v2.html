@@ -1,0 +1,38 @@
+        {% load multiply from reviewing_tags %}
+        {% load el_pagination_tags %}
+        {% load i18n %}
+        {% load localize from l10n %}
+        {% lazy_paginate 12 endpoints %}
+         {% for endpoint in endpoints %}
+         <div class="col-md-3 ">
+          <div class="box box-widget widget-user-2">
+            <div class="widget-user-header bg-bluesky">
+              <div class="widget-user-image">
+              <h5 class="widget-user-desc marg-bot">{{endpoint.server.name}}</h5>
+                <a href="{#% url 'server-detail' endpoint.server.pk endpoint.server.slug %#}" target='_blank'>
+                    <img class="img-circle" src="{{endpoint.server.logo.thumbnail.100x100}}" alt="{{endpoint.server.name}}">
+                  </a>
+              </div>
+              <h5 class="widget-user-desc marg-top"><div class="star-ratings-sprite no-margin"><span style="width:{{endpoint.server.average_rating|multiply:20}}%" class="star-ratings-sprite-rating"></span></div></h5>
+            </div>
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">{% trans 'unlocked phones'|capfirst %} <span class="pull-right badge bg-red">{{ endpoint.server.get_unlocked_phones_count }}</span></a></li>
+                <li><a href="#">{% trans 'services'|capfirst %} <span class="pull-right badge bg-red">{{ endpoint.server.get_services_count }}</span></a></li>
+                <li><a href="#">{% trans 'networks'|capfirst %} <span class="pull-right badge bg-red">{{ endpoint.server.get_network_count }}</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {%empty%}
+            <div class="col-md-3">
+                <h3>{% trans 'sorry no results for'|capfirst %} <b>{{query}}</b></h3>
+            </div>
+        {%endfor%}
+        {% if endpoints %}
+                <div class="box-footer clearfix">
+                    {% show_pages %}
+                </div>
+            </div>
+         {%endif%}
+    

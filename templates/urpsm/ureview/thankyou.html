@@ -1,0 +1,13 @@
+{% extends 'urpsm/v2/base_manager_v2.html' %}{%load i18n%}
+{% block title %} {% trans 'Reviews your purchase' %} {% endblock %}
+{% block heading %} {% trans 'Unlocking server' %} {% endblock %}
+{% block subheading %} {% trans 'Thank you' %}{% endblock %}
+{% block breadcrumb %}
+<li><a href="{% url 'servers' %}" title="Sever">{% trans 'Server' %}</a></li>
+<li class="active">{% trans 'Reviews' %}</li>
+{% endblock %}
+{% block content %}
+<!-- <div class="box"> -->
+<h2>{% trans 'Thank you for reviewing' %}</h2>
+<!-- </div> -->
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% load i18n %}
+
+
+<section class="new-qr-log">
+	<button type="submit" class="btn btn-greensea fontarabic arabwhite">{% trans "Next" %}</button>
+
+	{% if wizard.steps.prev %}
+  		<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" 
+  			class="btn btn-greensea fontarabic arabwhite">{% trans "Back" %}</button>
+  	{% else %}
+  		<button disabled name="" type="button" class="btn btn-greensea arabwhite btn-disabled">{% trans "Back" %}</button>
+	{% endif %}
+</section>
+<section class="controls">
+                <div class="checkbox check-transparent rtl-float-right">
+                  <input type="checkbox" value="1" id="remember" checked="">
+                  <label for="remember" class="fontarabic">Remember me</label>
+                </div>
+                <a href="/en/accounts/password/reset/" class="pull-right rtl-float-left fontarabic">Forget password?</a>
+</section>
+
+<!-- social network login (static) -->
+<section class="new-acc3">
+  <a class="btn btn-greensea faceb" href="{% url 'social:begin' 'facebook' %}?next=/{{LANGUAGE_CODE}}/accounts/"><i class="fa fa-facebook urp"></i>Facebook</a>
+  <a class="btn btn-greensea glps" href="{% url 'social:begin' 'google-oauth2' %}?next=/{{LANGUAGE_CODE}}/accounts/"><i class="fa fa-google-plus urp"></i>Google +</a>
+</section>

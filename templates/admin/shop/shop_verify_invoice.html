@@ -1,0 +1,240 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_list admin_urls suit_list suit_tags %}
+{% load url from suit_compat %}
+{% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'Verify Invoices'|capfirst %} {% endblock %} {% block heading %} {% trans 'Invoice'|capfirst %} {% endblock %} {% block breadcrumb %}
+
+{% endblock %}
+{% block extrahead %}
+<style>
+a:hover,
+a:active,
+a:focus {
+    outline: none;
+    text-decoration: none;
+    color: #72afd2
+}
+.timeline {
+    position: relative;
+    margin: 0 0 30px 0;
+    padding: 0;
+    list-style: none
+}
+.timeline>li {
+    position: relative;
+    margin-bottom: 5px
+}
+.timeline>li:after {
+    clear: both
+}
+.timeline>li>.timeline-item {
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    margin-top: 0px;
+    background: #fff;
+    color: #444;
+    padding: 0;
+    position: relative
+}
+.timeline>li>.timeline-item>.time {
+    color: #999;
+    float: right;
+    padding: 10px;
+    font-size: 12px
+}
+.timeline>li>.timeline-item>.timeline-header {
+    margin: 0;
+    color: #555;
+    border-bottom: 1px solid #dddddd;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.1
+}
+.timeline>li>.timeline-item>.timeline-header>a {
+    font-weight: 600
+}
+.btn {
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid transparent
+}
+.btn:active {
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125)
+}
+.btn:focus {
+    outline: none
+}
+.btn-success {
+    background-color: #00a65a;
+    border-color: #008d4c
+}
+.btn-success:hover,
+.btn-success:active {
+    background-color: #008d4c
+}
+.btn-danger {
+    background-color: #dd4b39;
+    border-color: #d73925
+}
+.btn-danger:hover,
+.btn-danger:active {
+    background-color: #d73925
+}
+.alert {
+    border-radius: 3px
+}
+.alert-success {
+    border-color: #008d4c
+}
+.mailbox-attachments li {
+    float: left;
+    width: 200px;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    margin-right: 10px
+}
+.mailbox-attachment-name {
+    font-weight: bold;
+    color: #666
+}
+.mailbox-attachment-icon,
+.mailbox-attachment-info {
+    display: block
+}
+.mailbox-attachment-info {
+    padding: 10px;
+    background: #f4f4f4
+}
+.mailbox-attachment-icon {
+    text-align: center;
+    font-size: 65px;
+    color: #666;
+    padding: 20px 10px
+}
+.alert-success {
+    color: #fff !important
+}
+.alert-success {
+    background-color: #00a65a !important
+}
+.mailbox-attachments {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+
+.timeline-inverse>li>.timeline-item {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.uploadedfiles .mailbox-attachment-icon{
+    background: white !important;
+}
+.uploadedfiles .mailbox-attachment-info{
+    background: #d3dae4 !important;
+}
+
+
+
+
+
+
+
+.mailbox-attachments li{
+  width: 100% !important;
+  margin-right: inherit !important;
+}
+
+.mailbox-attachment-name{
+  display: flex;
+}
+
+
+
+</style>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<script>
+    function subForm(action){
+    document.getElementById('formAction').value=action;
+    document.getElementById('form1').submit();
+    }
+
+</script>
+{% endblock %}{% block content %}
+ <div class="row-fluid">
+    {% if success_msg %}
+    <div class="alert alert-success">
+        {{ success_msg }}
+    </div>
+    {% endif %}
+     <div class="alert alert-info">
+         SECURITY CODE: {{ invoice.sec_code }}
+     </div>
+    <ul class="timeline timeline-inverse">
+        <li>
+            <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i>{{ invoice.created }}</span>
+
+                <h2 class="timeline-header"><a href="#">Invoice {{ invoice.id }} for amount <strong> {{invoice.amount}} </strong></a></h2>
+
+
+                <ul class="uploadedfiles mailbox-attachments clearfix" style="padding: 10px;">
+                    <div class="row" style="margin: 0;">
+                        {% for shop_file in invoice.files_shop.all %}
+                        <div class="col-md-4 col-sm-6" style="padding:0px 3px;">
+                            <li>
+                                                    <span class="mailbox-attachment-icon">
+                                                        <i class="fa
+                                                            {% if shop_file.file_extension_name == 'pdf' %}
+                                                                fa-file-pdf-o
+                                                            {% elif shop_file.file_extension_name == 'txt' %}
+                                                                fa fa-file-text-o
+                                                            {% elif shop_file.file_extension_name == 'xls' %}
+                                                                fa fa-file-excel-o
+                                                            {% elif shop_file.file_extension_name == 'doc' or shop_file.file_extension_name == 'docx' %}
+                                                                fa-file-word-o
+                                                            {% elif shop_file.file_extension_name == 'jpg' or shop_file.file_extension_name == 'jpeg' or shop_file.file_extension_name == 'png' %}
+                                                                fa-file-image-o
+                                                            {% else %}
+                                                                fa fa-file-o
+                                                            {% endif %}">
+                                                        </i>
+                                                    </span>
+                                <div class="mailbox-attachment-info">
+                                    <a target="_blank" href="{{ shop_file.uploaded_file.url }}"
+                                       class="mailbox-attachment-name"><i
+                                            class="fa fa-paperclip"></i>
+                                        {{ shop_file.actual_file_name }}
+                                    </a>
+                                </div>
+                            </li>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </ul>
+            </div>
+        </li>
+
+        {% if invoice.status != 'PAID' %}
+        <form action="" method="post" enctype="multipart/form-data" id="form1">
+            {% csrf_token %}
+            <input type="hidden" id="formAction" name="action" value="">
+            <div class="btn-group pull-left">
+                <button type="button" class="btn btn-sm btn-danger" onclick="subForm('REUPLOAD');">Ask Shop to Reupload Proof</button>
+                <button type="button" class="btn btn-sm btn-success procceed" onclick="subForm('MARKPAID');">Mark as Paid</button>
+            </div>
+
+        </form>
+        {% endif %}
+    </ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,194 @@
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src=" {% static "js/inconsolata.js" %}"></script>
+
+    <style>
+.ticket { font-family: inconsolata, sans-serif; }
+span.shop{
+    /*border:4px solid #333;*/
+    padding: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+    font-size: 28px;
+}
+
+@media screen
+{
+    .ticket .detail { width: 100%; }
+    .ticket .detail th, .ticket .detail td { font-size: 0.7em; }
+    .ticket th.small, .ticket td.small { font-size: 0.7em}
+}
+
+@media print
+{
+    .ticket { width: 100%;}
+    .ticket th, .ticket td { font-size: 12px; font-weight: bold}
+    .ticket .detail{ width: 100%; border:0; padding:0}
+    .ticket .detail th, .ticket .detail td { font-size: 10px; }
+    .ticket th.small, .ticket td.small { font-size: 10px}
+}
+</style>
+
+</head>
+<body>
+    <table class="ticket" width="300" border="0">
+        <tr>
+            <th align="center">
+                <br/>
+                <span class="shop">{{ obj.shop.name }}</span>
+                <br/>
+                <br/>
+                {{ obj.shop.shop_email }}
+                <br/>
+                {{ obj.shop.shop_phone }}
+                <br/>
+                <br/>
+                Ref: {{ obj.ref }}
+                <br/>
+            </th>
+        </tr>
+
+        <tr>
+            <td align="center">{% now 'Y-m-d h:m:s' %}</td>
+        </tr>
+
+        <tr>
+            <th align="center">&nbsp;</th>
+        </tr>
+
+        <tr>
+            <th align="center">
+                <div id="qrcode"></div>
+            </th>
+        </tr>
+
+        <tr>
+            <th align="center">&nbsp;</th>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="detail" border="0" cellpadding="0" cellspacing="3">
+                    <tr>
+                        <th>Item</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap;">
+                            <hr style="width: 100%; border: 1px solid black; color: black"/>
+                        </td>
+                        <td style="white-space: nowrap;">
+                            <hr style="width: 100%; border: 1px solid black; color: black"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="center">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td>
+                <table style="width: 100%; border:0; padding:0" border="0" cellpadding="0" cellspacing="3">
+                    <tr>
+                        <th align="right">{{ obj.brand }} {{ obj.model }}:</th>
+                        <td style="text-align: right">${{ obj.amount }}</td>
+                    </tr>
+                    {% for addon in obj.addons_phone.all %}
+                    <tr>
+                        <th align="right">{{ addon.name }}:</th>
+                        <td style="text-align: right">+ ${{ addon.price }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                        <th></th>
+                        <th>
+                            <hr style="width: 100%; border: 1px solid black; color: black"/>
+                        </th>
+                    <tr>
+                        <th align="right">Subtotal:</th>
+                        <td style="text-align: right;">${{ obj.subtotal }}</td>
+                    </tr>
+
+                    <tr>
+                        <th align="right">VAT:</th>
+                        <td style="text-align: right">+ ${{ obj.vat }}</td>
+                    </tr>
+
+                    <tr>
+                        <th></th>
+                        <th>
+                            <hr style="width: 100%; border: 1px solid black; color: black"/>
+                        </th>
+                        <tr>
+                            <th align="right">Total:</th>
+                            <td style="text-align: right; ">${{ obj.total }}</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                    </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table class="ticket" width="300" border="0">
+            <tr>
+                <th align="center">&nbsp;</th>
+            </tr>
+
+            <tr>
+                <th align="center">&nbsp;</th>
+            </tr>
+
+            <tr>
+                <th align="right" class="small">*VAT included</th>
+            </tr>
+
+            <tr>
+                <th align="center">&nbsp;</th>
+            </tr>
+
+            <tr>
+                <th align="center">Thanks for your visit.</th>
+            </tr>
+
+            <tr>
+                <th align="center">&nbsp;</th>
+            </tr>
+
+            <tr>
+                <th align="center" class="small">
+                    {{ obj.shop.address }}
+                    <br/>
+                    {{ obj.shop.city}}
+                    <br/>
+                    {{ obj.shop.country.name}}
+                </th>
+            </tr>
+        </table>
+        <script src=" {% static "js/jquery.min.js" %}"></script>
+        <script src=" {% static "js/qrcode.min.js" %}"></script>
+        <script>
+    jQuery(document).ready(function($) {
+        var qrcode = new QRCode("qrcode", {
+            text: "https://www.uspsm.com/",
+            width: 128,
+            height: 128,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+        // window.print();
+    });
+</script>
+</body>
+    </html>

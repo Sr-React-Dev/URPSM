@@ -1,0 +1,45 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+ <section class="content-header">
+    <h1>
+      {% block heading %}{% endblock %}
+      <small>{% block subheading %}{% endblock %}</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li>
+        <a href="{% url 'dash' %}">
+          <i class="fa fa-dashboard"></i>
+          Home
+        </a>
+      </li>
+      {% block breadcrumb %}{% endblock %}
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">{% block content %} {% endblock %}
+      {% if banners %}
+      <!-- Advert section -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-default">
+            <div class="box-body">
+
+
+
+    <div id="owl-demo">
+      {% for banner in banners %}
+        <div class="item"><a href="{{ banner.link }}" target="_blank"><img src="{{ banner.banner|thumbnail_url:'advert' }}" alt="{{ banner.link }}"></a></div>
+      {% endfor %}
+    </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+  </section>
+  <!-- /.content -->

@@ -1,0 +1,67 @@
+
+.rtl .droitnash{
+	font-family: 'Droid Arabic Naskh', serif !important;
+}
+
+.rtl .rtl-input{
+	text-align: right !important;
+	font-family: 'Droid Arabic Naskh', serif;
+    font-weight: normal; 
+    font-style: normal; 
+    font-size: 20px;
+    color: black !important;
+}
+
+.rtl .rtl-float-left{
+	float: left !important;
+}
+
+.rtl .rtl-float-right{
+	float: right !important;
+}
+.rtl .fontarabic{
+    font-family: 'Droid Arabic Naskh', serif !important;
+    font-weight: 800 !important;
+    font-style: normal;
+    font-size: 16px !important;
+    color: #796D5E !important;
+}
+.rtl .fontarabic2{
+    font-family: 'Droid Arabic Naskh', serif !important;
+    font-weight: 800 !important;
+    font-style: normal;
+    font-size: 16px !important;
+    color: white !important;
+}
+.rtl .arabwhite{
+	color: white !important;
+    font-size: 18px !important;
+    font-weight: 100 !important;
+}
+
+.rtl .arabdir{
+	direction: rtl !important;
+	font-family: 'Droid Arabic Naskh', serif !important;
+    font-weight: 800 !important;
+}
+
+.rtl #progressbar li:after{
+	left: 50% !important;
+}
+
+.rtl #progressbar li{
+	float: right !important;
+	font-family: 'Droid Arabic Naskh', serif !important;
+	font-weight: 700 !important;
+}
+
+.rtl #content .parsley-error-list{
+    direction: rtl;
+    font-size: 14px !important;
+    font-family: 'Droid Arabic Naskh', serif !important;
+    font-weight: 900 !important;
+    text-align: right !important;
+}
+.rtl #content .parsley-error-list li strong{
+    color: #e73e41;
+}

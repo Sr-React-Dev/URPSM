@@ -1,0 +1,78 @@
+{%extends 'urpsm/v2/public/base_v3.html' %}
+	{% load static from staticfiles %}
+    {%load el_pagination_tags text_tags humanize %}
+    {%load l10n %}
+	{% load i18n %}
+{% block metatitle %}About Us | Cheap Cell Phone Repair Shop | URPSM{% endblock %}
+{% block description %}Are you searching for a cheap cell phone repair shop in Marrakesh and Morocco country? URPSM is providing mobile repair services and unlock server services. Contact us.{% endblock %}
+
+	{% block main_page %}
+	 <div class="page-title-container urpsm-h">
+        <div class="container">
+            <ul class="breadcrumbs pull-right">
+                <li class="impo"><a href="#">{% trans ' HOME' %}</a></li>
+                <li class="active impo">{% trans 'About us' %}</li>
+            </ul>
+        </div>
+    </div>
+
+    <section id="content">
+        <div class="container">
+            <div class="main">
+                <div class="col-md-9 no-float no-padding center-block"> 
+                    <div class="intro text-center">
+                        <div class="text-center full-box"><img class="img-responsive" src="{% static 'v2/images/hq.png' %}"></div>
+                        <p></p>
+                        <h2>{% trans 'About Us!' %}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <ul class="timeline">
+            <!-- Item 1 -->
+            <li>
+                <div class="direction-r">
+                    <div class="flag-wrapper">
+                        <span class="flag">{% trans 'the blossom'|title %}</span>
+                        <span class="time-wrapper"><span class="time">{{ "2017-01-10"|convert_to_date|naturalday|localize}}</span></span>
+                    </div>
+                    <div class="desc">{% trans 'official launch of URPSM.'|capfirst %}</div>
+                </div>
+            </li>
+            <!-- Item 2 -->
+            <li>
+                <div class="direction-l">
+                    <div class="flag-wrapper">
+                        <span class="flag">{% trans 'the bud'|title %}</span>
+                        <span class="time-wrapper"><span class="time">{{ "2016-02-01"|convert_to_date|naturalday|localize}}</span></span>
+                    </div>
+                    <div class="desc">{% trans 'starting developement of the our API, the corner stone of our application that facilitates the unlocking process through live panels such as DHRU, NakshSoft, plus to ban unlocking equivocal devices.'|capfirst %}</div>
+                </div>
+            </li>
+            <!-- Item 3 -->
+            <li>
+                <div class="direction-r">
+                    <div class="flag-wrapper">
+                        <span class="flag">{% trans 'the seed'|title %}</span>
+                        <span class="time-wrapper"><span class="time">{{ "2015-03-17"|convert_to_date|naturalday|localize}}</span></span>
+                    </div>
+                    <div class="desc">{% trans 'first blueprint of URPSM, or what we call: our great adventure'|capfirst %}</div>
+                </div>
+            </li>
+          <!-- Item 4 -->
+            <li>
+                <div class="direction-l">
+                    <div class="flag-wrapper">
+                        <span class="flag">{% trans 'the idea'|title %}</span>
+                        <span class="time-wrapper"><span class="time">{{ "2014-03-21"|convert_to_date|naturalday|localize}}</span></span>
+                    </div>
+                    <div class="desc">{% trans 'tired to work in an informel and messy field, my passion for my job inspired me to think about a web application that could bring order and disipline to the whole industry and business of mobile repairing for all my peers worlwide'|capfirst %}</div>
+                </div>
+            </li>
+        </ul>
+    </section>
+    {% endblock main_page %}
+
+    {% block js %}
+<script type="text/javascript" src="{% static 'v2/js/jquery.noconflict.js' %}"></script>
+    {% endblock js %}

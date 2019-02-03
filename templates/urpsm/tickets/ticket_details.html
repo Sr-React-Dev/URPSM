@@ -1,0 +1,548 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'tickets list'|capfirst %} {% endblock %} {% block heading %} {% trans 'orders'|capfirst %} {% endblock %} {% block breadcrumb %}
+<li class="active">{% trans 'tickets'|capfirst %}</li>
+{% endblock %} {% block content %}
+{% load order_extras %}
+
+
+
+<div class="row">
+
+    {% if success_message %}
+    <div class="alert alert-success alert-dismissible margneed">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4>
+            <i class="icon fa fa-check"></i>
+            {% trans 'success!'|capfirst %} <span class="it-alert">{{ success_message }}</span>
+        </h4>
+    </div>
+    {% endif %}
+    {% if error_message %}
+    <div class="alert alert-danger alert-dismissible margneed">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4>
+            <i class="icon fa fa-check"></i>
+            Error! <span class="it-alert">{{ error_message }}</span>
+        </h4>
+    </div>
+    {% endif %}
+
+    <div class="col-md-3 " id="sidebarfixed">
+        <div class="box box-primary">
+            <div class="box-body box-profile">
+                <img class="shop-user-img img-responsive img-circle"
+                     src="{% if order.shop.logo %} {{ ticket.server_order.shop.logo.url }} {% else %} {% static 'img/shop.png' %} {% endif %}"
+                     alt="User profile picture">
+
+                <p class="text-muted text-center">{{ ticket.server_order.shop.user_shop.user.firstname|title }}</p>
+
+                <p class="text-muted">
+                    {{ ticket.server_order.shop.description }}
+                </p>
+                <hr class="Snew">
+                <ul class="list-group list-group-unbordered">
+
+                    <li class="list-group-item">
+                        <b>{% trans 'order'|capfirst %}</b><a class="pull-right">{{ ticket.server_order.ref }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>{% trans 'order time'|capfirst %} </b> <a class="pull-right">{{ ticket.server_order.delivery_time }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>{% trans 'status'|capfirst %}</b><span
+                            class="pull-right {{ticket.server_order.status|status_color_class}}" {{ticket.server_order.status|status_color}}>{{ ticket.server_order.status }}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>{% trans 'order amount'|capfirst %} </b> <a class="pull-right">{{ ticket.server_order.amount }} USD</a>
+                    </li>
+                </ul>
+                <hr class="">
+                <div class="description-block sif">
+                    <h5 class="description-header">{% trans 'service name'|capfirst %}</h5>
+                    <a class="description-text">{{ ticket.server_order.service|title }}</a>
+                </div>
+                <hr class="">
+                <div class="description-block sif">
+                    <h5 class="description-header">{% trans 'server name'|capfirst %}</h5>
+                    <a class="description-text">{{ ticket.server_order.server.name|title }}</a>
+                </div>
+                <hr class="">
+                <div class="description-block sif">
+                    <h5 class="description-header">{% trans 'shop name'|capfirst %}</h5>
+                    <a class="description-text">{{ ticket.server_order.shop.name|title }}</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-9 " id="contentbar">
+
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs shadcol">
+                <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">{% trans 'order status'|capfirst %}</a></li>
+                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">{% trans 'chat with client'|capfirst %}</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_1">
+
+
+                    {% if request.user.profile.shop == ticket.server_order.shop and not ticket.shop_response or request.user.profile.server == ticket.server_order.server and not ticket.server_response %}
+                        {% include 'urpsm/tickets/ticket_response.html' %}
+                    {% elif request.user.is_superuser or request.user.is_staff %}
+                        {% if not ticket.admin_response %}
+                            {% include 'urpsm/tickets/ticket_response.html' %}
+                        {% endif %}
+                    {% else %}
+                        {% if ticket.status == 'COMPLETED' %}
+                        <div class="seperateurpsm final-stat stat-compleet">
+                    <a class="btn btn-app btn-app-final">
+                     <i class="fa fa-check"></i> End status - Completed
+                    </a>
+                  </div>
+                     {% elif ticket.status == 'CANCELLED' %}
+
+                   <div class="seperateurpsm final-stat stat-canceled">
+                    <a class="btn btn-app btn-app-final">
+                     <i class="fa fa-close"></i> End status - Cancelled
+                    </a>
+                  </div>
+                    {% elif ticket.status == 'ADMIN_SUPPORT' %}
+
+                  <div class="seperateurpsm final-stat stat-adminsup">
+                    <a class="btn btn-app btn-app-final">
+                     <i class="fa fa-support"></i> End status - Admin Support
+                    </a>
+                  </div>
+                    {% endif %}
+
+                    {% endif %}
+
+
+                    {% if request.user.is_superuser or request.user.is_staff %}
+                        <b>{% trans 'shop response :'|capfirst %} {{ ticket.shop_response }}</b>
+                        <p>{% trans 'reason :'|capfirst %} {{ ticket.shop_reason }}</p>
+                        <b>{% trans 'server response :'|capfirst %} {{ ticket.server_response }}</b>
+                        <p>{% trans 'reason :'|capfirst %} {{ ticket.server_reason }}</p>
+                    {% elif ticket.server_response %}
+                    <div class="alert alert-info">
+                         <b>{% trans 'server response :'|capfirst %} {{ ticket.server_response }}</b>
+                        <p>{% trans 'reason :'|capfirst %} {{ ticket.server_reason }}</p>
+                    </div>
+                    {% elif ticket.shop_response %}
+                    <div class="alert alert-info">
+                        <b>{% trans 'shop response :'|capfirst %} {{ ticket.shop_response }}</b>
+                        <p>{% trans 'reason :'|capfirst %} {{ ticket.shop_reason }}</p>
+                    </div>
+                    {% endif %}
+
+                    <div class="seperateurpsm"></div>
+
+                    <div class="mailbox-read-info message-order">
+                        <h3>{% trans 'order'|capfirst %} <b>{{ ticket.server_order.ref }} </b></h3>
+                        <h5>{% trans 'from:'|capfirst %} {{ ticket.server_order.shop.user_shop.all.0.user.email }}
+                            <span class="mailbox-read-time pull-right">
+                                <div class="timeline-footer">
+                                    <a class="btn btn-primary btn-xs">{{ ticket.server_order.status }}</a>
+                                </div>
+                            </span>
+                        </h5>
+                    </div>
+
+                    <ul class="timeline timeline-inverse" style="margin-bottom:0;">
+                        {% if ticket.shop_comments %}
+                        <li>
+                            <div class="timeline-item">
+                                <span class="time"><i class="fa fa-clock-o"></i> {{ ticket.shop_comments_time }}</span>
+
+                                <h3 class="timeline-header"><a href="#">{{ ticket.server_order.shop.name|title }}</a></h3>
+
+                                <div class="timeline-body">
+                                    {{ ticket.shop_comments }}
+                                </div>
+
+                                <ul class="uploadedfiles mailbox-attachments clearfix" style="padding: 10px;">
+                                    <div class="row" style="margin: 0;">
+                                    {% for shop_file in ticket.shop_files.all %}
+                                        <div class="col-md-4 col-sm-6" style="padding:0px 3px;">
+                                            <li>
+                                                <span class="mailbox-attachment-icon"><i class="fa
+                                                    {% if shop_file.file_extension_name == 'pdf' %}
+                                                        fa-file-pdf-o
+                                                    {% elif shop_file.file_extension_name == 'txt' %}
+                                                        fa fa-file-text-o
+                                                    {% elif shop_file.file_extension_name == 'xls' %}
+                                                        fa fa-file-excel-o
+                                                    {% elif shop_file.file_extension_name == 'doc' or shop_file.file_extension_name == 'docx' %}
+                                                        fa-file-word-o
+                                                    {% elif shop_file.file_extension_name == 'jpg' or shop_file.file_extension_name == 'jpeg' or shop_file.file_extension_name == 'png' %}
+                                                        fa-file-image-o
+                                                    {% else %}
+                                                        fa fa-file-o
+                                                    {% endif %}
+
+                                                      "></i>
+                                                </span>
+                                                <div class="mailbox-attachment-info">
+                                                    <a target="_blank" href="{{ shop_file.uploaded_file.url }}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
+                                                        {{ shop_file.actual_file_name }}</a>
+                                            <span class="mailbox-attachment-size">
+                                              1,245 KB
+                                              <a href="{{ shop_file.uploaded_file.url }}" class="btn btn-default btn-xs pull-right"><i
+                                                      class="fa fa-cloud-download"></i></a>
+                                            </span>
+                                                </div>
+                                            </li>
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                </ul>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if ticket.server_comments %}
+                        <li>
+                            <div class="timeline-item">
+                                <span class="time"><i class="fa fa-clock-o"></i> {{ ticket.server_comments_time }}</span>
+
+                                <h3 class="timeline-header"><a href="#">{{ ticket.server_order.server.name|title }}</a></h3>
+
+                                <div class="timeline-body">
+                                    {{ ticket.server_comments }}
+                                </div>
+
+                                <ul class="uploadedfiles mailbox-attachments clearfix" style="padding: 10px;">
+                                    <div class="row" style="margin: 0;">
+                                        {% for server_file in ticket.server_files.all %}
+                                            <div class="col-md-4 col-sm-6" style="padding:0px 3px;">
+                                                <li>
+                                                    <span class="mailbox-attachment-icon">
+                                                        <i class="fa
+                                                            {% if server_file.file_extension_name == 'pdf' %}
+                                                                fa-file-pdf-o
+                                                            {% elif server_file.file_extension_name == 'txt' %}
+                                                                fa fa-file-text-o
+                                                            {% elif server_file.file_extension_name == 'xls' %}
+                                                                fa fa-file-excel-o
+                                                            {% elif server_file.file_extension_name == 'doc' or server_file.file_extension_name == 'docx' %}
+                                                                fa-file-word-o
+                                                            {% elif server_file.file_extension_name == 'jpg' or server_file.file_extension_name == 'jpeg' or server_file.file_extension_name == 'png' %}
+                                                                fa-file-image-o
+                                                            {% else %}
+                                                                fa fa-file-o
+                                                            {% endif %}">
+                                                        </i>
+                                                    </span>
+                                                    <div class="mailbox-attachment-info">
+                                                        <a target="_blank" href="{{ server_file.uploaded_file.url }}" class="mailbox-attachment-name"><i
+                                                                class="fa fa-paperclip"></i>
+                                                            {{ server_file.actual_file_name }}
+                                                        </a>
+                                                        <span class="mailbox-attachment-size">
+                                                          1,245 KB
+                                                          <a href="{{ server_file.uploaded_file.url }}"
+                                                             class="btn btn-default btn-xs pull-right"><i
+                                                                  class="fa fa-cloud-download"></i></a>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </ul>
+                            </div>
+                        </li>
+                        {% endif %}
+                        <form action="" method="post" enctype="multipart/form-data">
+                        {% if not ticket.server_comments and request.user.profile.server == ticket.server_order.server %}
+                            {% csrf_token %}
+                            <div class="box-footer" style="padding-bottom: 0;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label>{% trans 'please explain and upload you preuve files !'|capfirst %}</label>
+                                        <textarea class="form-control" rows="3" required name="server_comments"
+                                                  placeholder="Enter explination here..."></textarea>
+                                    <input type="file" name="server_files" id="filer_input" multiple="multiple">
+                                    <input type="hidden" name="action" value="server_comments"/>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                    </ul>
+                    {% if not ticket.server_comments and request.user.profile.server == ticket.server_order.server %}
+                        <div class="box-footer">
+                            <div class="btn-group pull-right">
+                                <button type="submit" class="btn btn-sm btn-success ">{% trans 'submit your preuve'|capfirst %}</button>
+                            </div>
+                        </div>
+                    {% endif %}
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                {% if ticket.status == 'INITIATED' %}
+                <div class="tab-pane" id="tab_2">
+                    <div class="seperateurpsm final-stat">
+                        <a class="btn btn-app btn-app-final">
+                            <i class="fa fa-comments"></i> {% trans 'start conversation'|capfirst %}
+                        </a>
+                    </div>
+
+                    <ul class="timeline timeline-inverse" style="margin-bottom:0;" id="chat-section">
+                        {% for message in ticket_messages %}
+                            <li>
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fa fa-clock-o"></i> {{ message.created_at|date:'N d Y, h:i A' }}</span>
+
+                                    <h3 class="timeline-header"><a href="#"> {% if message.sender.first_name %} {{ message.sender.first_name|title }} {% else %} N.A. {% endif %}</a></h3>
+
+                                    <div class="timeline-body">
+                                        {% if message.message_text %}
+                                            {{ message.message_text }}
+                                        {% endif %}
+                                        {% if message.message_files %}
+                                            {% for message_file in message.message_files.all %}
+                                                {% if message_file.uploaded_file %}
+                                                    <a target="_blank" href="{{ message_file.uploaded_file.url }}"> File >{% if message_file.actual_file_name %}{{ message_file.actual_file_name }}{% endif %}</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                    <ul>
+                        <div class="box-footer" style="padding-bottom: 0;">
+                            <form id="fileUploadForm" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label>{% trans 'send your message!'|capfirst %}</label>
+                                    <textarea id="message-text" name="message" class="form-control" rows="3"
+                                              placeholder="Enter message " required></textarea>
+
+                                    <div class="pull-right" style="margin: 10px 0;">
+                                        <div class="Uploadbtn">
+                                            <input type="file" class="input-upload" id="message-file"
+                                                   name="messageFile"/><span>{% trans 'upload'|capfirst %}</span>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-default " id="message-reply-btn">{% trans 'reply'|capfirst %}</button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </ul>
+                </div>
+                {% endif %}
+
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+
+        </div>
+
+    </div>
+
+</div>
+<!-- /.row -->
+
+
+<!-- Modal 1-->
+
+<div class="modal modal-success successstyle fade" id="myModal1" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">{% trans 'Close order'|capfirst %}</h4>
+                </div>
+                <div class="modal-body">
+                    <label style="color:black">{% trans 'CLOSE ORDER'|capfirst %}</label>
+
+                    <p style="color:black">{% trans 'Mark order as completed both side agree to close the order the issue is fixed , please Note you cant get back if you confirm'|capfirst %}</p>
+
+                    <div class="form-group has-success">
+                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {% trans 'write reason'|capfirst %}</label>
+                        <textarea required type="text" class="form-control" id="inputError" placeholder="{% trans 'enter ...'|capfirst %} "
+                                  name="reason"
+                                  rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding: 5px 10px;">
+                    <div class="checkbox pull-left" style="margin: 5px 10px 0 0;">
+                        <label><input type="checkbox" required>{% trans 'i confirm !'|capfirst %}</label>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-sm">{% trans 'complete this order'|capfirst %}</button>
+                    <input type="hidden" name="response" value="COMPLETED"/>
+                    <input type="hidden" name="action" value="ticket_response"/>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </form>
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<!-- Modal 2-->
+
+<div class="modal modal-danger warningstyle fade" id="myModal2" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">{% trans 'Admin Support'|capfirst %}</h4>
+                </div>
+                <div class="modal-body">
+                    <label style="color:black">{% trans 'ADMINISTRATION SUPPORT'|capfirst %}</label>
+
+                    <p style="color:black">{% trans 'Our team will examine all your proof , also we may ask you fot more details to come up with the right judgement for your situation'|capfirst %}</p>
+
+                    <div class="form-group has-warning">
+                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {% trans 'write us reason why'|capfirst %}</label>
+                        <textarea required type="text" class="form-control" id="inputError" placeholder="{% trans 'enter ...'|capfirst %}"
+                                  name="reason"
+                                  rows="3"></textarea>
+
+                        <div class="form-group" style="margin-top:5px;">
+                            <select class="form-control" required name="admin_support_reason">
+                                <option>option 1</option>
+                                <option>option 2</option>
+                                <option>option 3</option>
+                                <option>option 4</option>
+                                <option>option 5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding: 5px 10px;">
+                    <div class="checkbox pull-left" style="margin: 5px 10px 0 0;">
+                        <label><input type="checkbox" required>{% trans 'i confirm !'|capfirst %}</label>
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-sm">{% trans 'request admin support'|capfirst %}</button>
+                    <input type="hidden" name="response" value="ADMIN_SUPPORT"/>
+                    <input type="hidden" name="action" value="ticket_response"/>
+                </div>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<!-- Modal 3-->
+
+<div class="modal modal-danger dangerstyle fade" id="myModal3" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">{% trans 'CANCELLING ORDER'|capfirst %}</h4>
+                </div>
+                <div class="modal-body">
+                    <label style="color:black">{% trans 'close and refund shop'|capfirst %}</label>
+
+                    <p style="color:black">{% trans 'you choose to cancel this order and refund the shop for it'|capfirst %}</p>
+
+                    <div class="form-group has-error">
+                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {% trans 'write us reason why'|capfirst %}</label>
+                        <textarea required type="text" class="form-control" id="inputError" placeholder="{% trans 'enter ...'|capfirst %}" name="reason" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding: 5px 10px;">
+                    <div class="checkbox pull-left" style="margin: 5px 10px 0 0;">
+                        <label><input type="checkbox" required>{% trans 'i confirm !'|capfirst %}</label>
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-sm">{% trans 'cancel this order'|capfirst %}</button>
+                    <input type="hidden" name="response" value="CANCELLED"/>
+                    <input type="hidden" name="action" value="ticket_response"/>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </form>
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function () {
+
+
+
+    $(".procceed").click(function () {
+        if ($('#optionsRadios1').is(':checked')) {
+            $(".procceed").attr("data-target", "#myModal1");
+        }
+
+        if ($('#optionsRadios2').is(':checked')) {
+            $(".procceed").attr("data-target", "#myModal2");
+        }
+
+        if ($('#optionsRadios3').is(':checked')) {
+            $(".procceed").attr("data-target", "#myModal3");
+        }
+    });
+
+
+    $("#message-reply-btn").click(function (e) {
+        console.log("check");
+        /*$("#message-reply-btn").attr('disabled', true);*/
+        var form_data = new FormData();
+        var file_data = $('#message-file').prop('files')[0];
+        form_data.append('message_file', file_data);
+        form_data.append('message', $("#message-text").val());
+        console.log(form_data);
+        $.ajax({
+            type: 'POST',
+            url: '{% url "create_message" ticket.id %}',
+            async: true,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            data: form_data,
+            success: function (jsonData) {
+                console.log(jsonData);
+                if (jsonData.error) {
+                    alert(jsonData.error_message);
+//                    $("#message-reply-btn").attr('disabled', false);
+                }
+                else {
+                var chat_box = '<li><div class="timeline-item"> <span class="time"><i class="fa fa-clock-o"></i> '+ jsonData.created_at +'</span> ' +
+                '<h3 class="timeline-header"><a href="#">'+jsonData.sender_name+'</a></h3> ' +
+                '<div class="timeline-body">';
+                if(jsonData.message_text){
+                   chat_box += jsonData.message_text;
+                }
+                if(jsonData.file_url){
+                    chat_box += '<a target="_blank" href="' + jsonData.file_url + '"> ' + jsonData.file_name + '</a>';
+                }
+                chat_box += '</div></div></li>';
+                console.log(chat_box);
+                $("#chat-section ").append(chat_box);
+                $("#message-text").val("");
+                }
+            }
+        });
+        e.preventDefault();
+    });
+});
+</script>
+{% endblock %}

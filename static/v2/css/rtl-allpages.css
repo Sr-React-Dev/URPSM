@@ -1,0 +1,335 @@
+@import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+
+/** all **/
+.rtl{
+   font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+
+/*header*/
+.rtl .container .topnav{
+    float: left;
+}
+.rtl .main-navigation .container .logo{
+    text-align: right !important;
+    float: right;
+    margin: 0 !important;
+    margin-right: 150px !important;
+}
+.rtl .main-navigation .container .social-icons{
+    float: left !important;
+}
+.rtl .main-navigation .container #main-menu .menu{
+    float: right !important;
+    margin-left: 0 !important;
+    margin-right: 150px;
+}
+.rtl .urpsm-h ul {
+    float: left !important;
+}
+.rtl .container .menu-big li {
+    direction: rtl;
+    float: right !important;
+    font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+
+.rtl ul.circle{
+  text-align: right;
+}
+.rtl ul.circle li:before{
+  margin-right: inherit;
+  margin-left: 10px;
+  float: right;
+}
+
+.rtl .sess .post-meta .entry-action > * i{
+  float: right;
+  margin-right: inherit;
+  margin-left: 10px;
+}
+
+/*body*/
+.rtl .mainy {
+    float: right !important;
+}
+.rtl .sidebar{
+    position: static;
+}
+.rtl .urpsmma{
+    direction: rtl;
+}
+.rtl .urpsm-al{
+  direction: ltr;
+}
+.rtl .urpsmma .details{
+    direction: rtl;
+    text-align: right !important;
+    padding-right: 20px;
+}
+.rtl .urpsmma .details .feedback{
+  direction: ltr;
+}
+.rtl #main .desc{
+  direction: rtl;
+}
+.rtl #main .cruise-itinerary{
+    text-align: right;  
+}
+.rtl #main .comments-container .borderdb{
+   text-align: right !important;
+    direction: rtl;
+    font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+.rtl #oooo{
+     font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+.rtl .desc .features ul {
+  direction: rtl;
+  text-align: right !important;
+}
+.rtl .desc .features ul li .greb{
+    border-right: none !important;
+    /*border-left: 1px solid #f5f5f5;*/
+    margin-right: 0 !important;
+    margin-left: 20px !important;
+    font-family: 'Droid Arabic Naskh', tahoma !important;
+    font-weight: 500;
+    font-size: 12px !important;
+}
+.rtl .desc .features ul li .greb i{
+    margin-left: 5px !important;
+}
+
+
+
+
+
+/* homepage */
+
+.rtl .headrtl{
+  text-align: right;
+  font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+.rtl .bblock .flippety{
+  direction: rtl;
+  font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+.rtl .bblock .flippety h1 i{
+  margin-left: 5px;
+}
+
+.rtl .bblock .flop h2{
+    font-family: 'Droid Arabic Naskh', tahoma !important;
+    padding: 0 10px;
+}
+
+.rtl .newbbox{
+  direction: rtl;
+}
+.rtl .newbbox .listo-phone{
+  float: right !important;
+}
+
+.rtl .newbbox .details .box-title{
+  text-align: right !important;
+  font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+.rtl .newbbox .details .statics-tooltip{
+    left: 15px;
+    right: initial !important;
+}
+
+.rtl .newbbox .details .feedback{
+    font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+.rtl .newbbox .details .action{
+    font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+
+.rtl .secondslid .bicboc h4{
+  text-align: right;
+  font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+.rtl .secondslid .bicboc .box-title{
+  text-align: right;
+}
+.rtl .secondslid .bicboc .box-title a{
+  font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+.rtl .secondslid .bicboc .statics-tooltip2{
+  right: 19px !important;
+}
+
+.rtl .thirdslid .box-title{
+  font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+.rtl .thirdslid .urpsm-button-seemore{
+  font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+
+.rtl .search-box-wrapper form input[type=text]{
+   direction: rtl;
+   font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+.rtl .search-box-wrapper form button{
+   direction: rtl;
+   font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+
+
+
+
+.rtl .mainy .intro .each-rating{
+      text-align: right;
+}
+
+.rtl .mainy .intro .each-rating label:nth-child(1){
+      text-align: right;
+}
+
+.rtl .mainy .intro .each-rating label:nth-child(2){
+      float: left;
+}
+
+.rtl .mainy .intro .each-rating .five-stars-container{
+  float: left;
+}
+
+.rtl .mainy .intro .lastdesc{
+  float: right;
+}
+
+
+
+
+
+
+
+/*navbar*/
+.rtl .contact-inf{
+    text-align: right !important;
+     font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+.rtl .contact-details {
+     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+/*
+.rtl .contact-details i{
+     float: right !important;
+     margin-left: 5px !important;
+}
+*/
+
+
+
+
+/*footer*/
+.rtl .about-urpsm{
+    float: right !important;
+    direction: rtl;
+     font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+.rtl .mail-urpsm{
+    float: left !important;
+    direction: rtl;
+     font-family: 'Droid Arabic Naskh', tahoma !important;
+}
+
+.rtl .foottr .social-icons {
+    /*float: right !important;*/
+}
+.rtl .borderdb{
+  text-align: right !important;
+}
+.rtl .big-caption{
+  text-align: right;
+}
+
+@media screen and (min-width: 991px) {
+  .rtl .float-desktop-right{
+    float: right !important;
+  }
+  .rtl .float-desktop-left{
+    float: left !important;
+  }
+}
+
+/** contact **/
+
+.rtl .contact-form label{
+  text-align: right;
+}
+
+/* privacy */
+
+.rtl .intro.block{
+  /*text-align: right;*/
+}
+.rtl #header .mobile-menu > ul.menu > li{
+  text-align: right;
+}
+.rtl .testimonial.style1 .description {
+  text-align: right;
+}
+.rtl ul.triangle li:before{
+  content: "\f053" !important;
+  float: right !important;
+  margin-right: 0;
+  margin-left: 5px;
+}
+.rtl #footer .discover li{
+  text-align: right;
+}
+.rtl #footer .discover li a{
+  margin-right: 5px;
+}
+.rtl h2.urpsm-over{
+  text-align: right;
+}
+.rtl .blog-infinite .post .excerpt-container p{
+  text-align: right;
+}
+
+.rtl .pricing-table ul.check-square li{
+  text-align: right;
+}
+.rtl .pricing-table ul.check-square li:before{
+  float: right;
+  line-height: 15px;
+  margin: 10px;
+}
+.rtl .search-results-title{
+  direction: rtl;
+  text-align: right;
+}
+
+.rtl .overlay-statics{
+  direction: rtl;
+  text-align: right;
+}
+.rtl .overlay-statics li{
+  text-align: right !important;
+}
+.rtl .overlay-statics li span{
+  float: left !important;
+}
+
+
+.rtl .overlay-statics li i{
+  padding-right: 0 !important;
+  padding-left: 5px;
+}
+.rtl .phonestf{
+  text-align: center !important;
+}

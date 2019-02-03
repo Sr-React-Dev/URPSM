@@ -1,0 +1,53 @@
+{% load reviewing_tags %}
+{% load el_pagination_tags %}
+{% load i18n %}
+{% load localize from l10n %}
+{#% load humanize %#}
+{% lazy_paginate 8 phones %}
+{%for phone in phones %}
+
+    <div class='col-sm-6 col-md-3 padcol'>
+        <article class="image-box cruise listing-style1 valpadd">
+            <h4>{{phone.brand.name}}</h4>
+            <figure class="clearfix">
+                <a href="{# url 'model' phone.brand.slug phone.slug #}" class="model-image">
+                    {% with 'icons/shop/default.png' as placeholder %}
+                        <img class="middle-item img-responsive radius-50" alt="{{phone.name}}" src="{{phone.picture.crop.120x120|default:placeholder}}">
+                    {%endwith%}
+                </a>
+                <div class="infos-urpsm-phone">
+                    <div class="box-title"><div class="height-26">{{phone.name}}</div>
+                        <div class="statics-tooltip2 newtoolpos">
+                            <li class="statics-icons">
+                                <a title="{% trans 'Satisfied Clients' %} {{phone.satisfied_clients_count}}" href="javascript:void(0)" data-toggle="tooltip">
+                                    <i class="set-1-small"></i>
+                                </a>
+                            </li>
+                            <li class="statics-icons">
+                                <a title="{% trans 'Unlocked phones' %} {{ phone.unlocked_items }}" href="javascript:void(0)" data-toggle="tooltip">
+                                    <i class="set-2-small"></i>
+                                </a>
+                            </li>
+                            <li class="statics-icons">
+                                <a title="{% trans 'Repaired Phones ' %} {{ phone.repaired_items }}" href="javascript:void(0)" data-toggle="tooltip">
+                                    <i class="set-4-small"></i>
+                                </a>
+                            </li>
+                            <li class="statics-icons">
+                                <a title="{% trans 'Unrepaired Phones' %} {{ phone.repairing_request|subtract:phone.repaired_items }}" href="javascript:void(0)" data-toggle="tooltip">
+                                    <i class="set-3-small"></i>
+                                </a>
+                            </li>
+                        </div>
+                        <a class="button btn-small sea-blue full-width">ـــــ</a>
+                        {%comment%}
+                                                        <a href="https://www.urpsm.com{% url 'model' phone.brand.slug phone.slug %}" class="button btn-small sea-blue full-width">{% trans 'View details' %}</a>
+                                                        {%endcomment%}
+                    </div>
+                </div>
+            </figure>
+        </article>
+    </div>
+{%endfor%}
+{% show_more "Load more shops" "Wait please&hellip;" %}
+                                    

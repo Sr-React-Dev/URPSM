@@ -1,0 +1,217 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'orders list'|capfirst %} {% endblock %} {% block heading %} {% trans 'orders'|capfirst %} {% endblock %} {% block breadcrumb %}
+<li class="active">{% trans 'orders'|capfirst %}</li>
+{% endblock %}
+{% block extrahead %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.1/css/star-rating.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.1/js/star-rating.min.js"></script>
+{% endblock %}
+{% block content %}
+{% load order_extras %}
+<section class="content">
+    <div class="row">
+
+        {% if success_message %}
+        <div class="alert alert-success alert-dismissible margneed">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4>
+                <i class="icon fa fa-check"></i>
+                {% trans 'Success!'%} <span class="it-alert">{{ success_message }}</span>
+            </h4>
+        </div>
+        {% endif %}
+        {% if error_message %}
+        <div class="alert alert-danger alert-dismissible margneed">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4>
+                <i class="icon fa fa-check"></i>
+                Error! <span class="it-alert">{{ error_message }}</span>
+            </h4>
+        </div>
+        {% endif %}
+
+        <div class="col-md-4 col-xs-12">
+            <form class="form-inline" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control input-sm" placeholder="{% trans 'Search By IMEI' %}" name="q">
+                    <div class="input-group-btn">
+                        <button class="btn btn-success btn-flat btn-sm" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <br>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">{% trans 'orders list'|capfirst %}</h3>
+        <div class="box-tools">
+            <a href="{% url 'unlocking' %}" class="btn btn-primary btn-flat btn-sm pull-right"><i class="fa fa-plus-circle"></i> &nbsp;{% trans 'place an order'|capfirst %}</a>
+        </div>
+    </div>
+    <div class="box-body table-responsive">
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>{% trans 'id'|capfirst %}</th>
+                    <th>{% trans 'service'|capfirst %}</th>
+                    <th>{% trans 'imei'|capfirst %}</th>
+                    <th>{% trans 'order date'|capfirst %}</th>
+                    <th>{% trans 'amount'|capfirst %}</th>
+                    <th>{% trans 'action'|capfirst %}</th>
+                    <th>{% trans 'rate'|capfirst %}</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>
+                        <a class="order" href='{% url "order-detail" order.id %}' data-toggle="modal" data-target="#order_modal">{{ order.ref }}</a>
+                    </td>
+                    <td><a class="order" href='{% url "order-detail" order.id %}' data-toggle="modal" data-target="#order_modal">{{ order.get_service|shorten_service_name }}</a></td>
+                    <td> {{ order.imei }}</td>
+                    <td> {{ order.created }}</td>
+                    <td><div class="label label-primary">${{ order.amount }}</div></td>
+                    <td>
+                        {% if order|is_order_valid_for_cancellation %}
+                            <a class="order" href='{% url "cancel-order" order.id %}'>{% trans 'cancel'|capfirst %}</a>
+                        {% endif %}
+                        {% if order.order_tickets.all|length > 0 %}
+                            {% for ticket in order.order_tickets.all %}
+                                {% if forloop.last %}
+                                    <a class="order" href='/tickets/{{ticket.id}}/detail/'>{% trans 'ticket'|capfirst %}</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    <td>{% if order|is_order_not_rated %}<span class="btn btn-default rateBtn" onclick="rateOrder('{{ order.id }}');">Rate</span>{% else %}{{ order|get_order_rating }}<i class="glyphicon glyphicon-star"></i> {% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+        {% if is_paginated %}
+        <ul class="pagination pagination-sm no-margin pull-right">
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.previous_page_number }}" title="{% trans 'Previous' %}">{% trans 'Previous' %}</a>
+            </li>
+            {% endif %}
+            <li>
+                <span class="current">{% trans 'Page' %} {{ page_obj.number }} {% trans 'of' %} {{ page_obj.paginator.num_pages }}</span>
+            </li>
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.next_page_number }}" title="{% trans 'Next' %}">{% trans 'Next' %}</a>
+            </li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <!-- Modal -->
+        <div class="modal fade" id="order_modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">{% trans 'order checking'|capfirst %}</h4>
+                    </div>
+                    <div class="modal-body"><div class="te"><img src="{% static "img/prettyPhoto/dark_rounded/loader.gif" %}" alt=""></div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'close'|capfirst %}</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+</div>
+</section>
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" charset="utf-8">
+function rateOrderSubmit(order_id,rating,cont){
+
+        $.post("review",
+    {
+        orderid: order_id,
+        orderrating: rating,
+        content: cont
+    },
+    function(data, status){
+        alert(data);
+        document.location.reload();
+    });
+    }
+
+    function rateOrder(order_id){
+
+            $.dialog({
+            title: 'Rate this order',
+            content: '<input class="rate-id" type="text"><label>Comment</label><textarea class="ratecontent" style="border-radius:4px;width:100%;"></textarea><br><button type="button" class="btn btn-default rateBtn">Rate</button>',
+            onContentReady: function () {
+            this.$content.find(".rate-id").rating({'showCaption':false});
+            this.$content.find(".rateBtn").on("click",function(event){
+            value = $(".rate-id")[0].value;
+            cont = $(".ratecontent")[0].value;
+            rateOrderSubmit(order_id,value,cont);
+
+            });
+
+            }
+            });
+
+        }
+
+
+
+
+    (function($){
+
+        $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+
+
+
+        $('#order_modal').on('click', "#cancel-order-btn", function(e){
+
+            var orderId = $(this).data('id');
+            if(orderId == ""){
+                alert("{% trans 'Invalid Order Id'|capfirst %}");
+                return false;
+            }
+            $.ajax({
+                url: '/orders/cancel-order/',
+                type: 'GET',
+                dataType: 'json',
+                data: {id: orderId},
+                success: function(data){
+                    if(data['error']){
+                        alert(data['error_message']);
+                        return false;
+                    }
+                    else{
+                        alert("{% trans 'successfully cancelled'|capfirst %}");
+                        location.reload();
+                    }
+                }
+            })
+        });
+
+    })(jQuery)
+</script>
+{% endblock %}

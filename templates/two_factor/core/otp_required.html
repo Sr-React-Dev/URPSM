@@ -1,0 +1,32 @@
+{% extends "two_factor/_base_focus.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">{% block title %}{% trans "Permission Denied" %}{% endblock %}</h3>
+          </div>
+          <div class="box-body">
+            <p>{% blocktrans %}The page you requested, enforces users to verify using
+                  two-factor authentication for security reasons. You need to enable these
+                  security features in order to access this page.{% endblocktrans %}</p>
+
+            <p>{% blocktrans %}Two-factor authentication is not enabled for your
+                  account. Enable two-factor authentication for enhanced account
+                  security.{% endblocktrans %}</p>
+          </div>
+          <div class="box-footer">
+            <a href="javascript:history.go(-1)" class="btn btn-primary pull-right">{% trans "Go back" %}</a>
+            <a href="{% url 'two_factor:setup' %}" class="btn btn-success pull-right marg-right">{% trans "Enable Two-Factor Authentication" %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+{% endblock %}

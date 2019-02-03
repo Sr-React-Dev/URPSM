@@ -1,0 +1,83 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load static from staticfiles %}{% load i18n%}{% load multiply from reviewing_tags%}
+{% block title %} {% trans 'Components list'|capfirst %}{% endblock %}
+{% block heading %} {% trans 'other shops components'|capfirst %} {% endblock %}
+{%block content%}
+<section class="content-header">
+  <h1>
+    {% trans 'components listing and search'|capfirst %}
+  </h1>
+{%comment%}
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> {% trans 'home'|capfirst %}</a></li>
+    <li class="active">{% trans 'other shops components'|capfirst %}</li> </ol>
+{%endcomment%}
+ 
+</section>
+
+  <!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <form action="{% url 'components-search' %}" method="get">
+        <div id="custom-search-input">
+            <div class="input-group col-md-12">
+                <input type="text" name="q" class="form-control input-lg" placeholder="{% trans 'search component'|capfirst %} ...">
+                <span class="input-group-btn">
+                    <button class="btn btn-info btn-lg" type="submit">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+  {%for component in components %}
+     <div class="col-md-3 col-sm-6 ">
+        <div class="box box-widget">
+            <div class="box-header with-border">
+              <div class="component-block" style="text-align:center"><a href="{% url 'component-detail' component.pk component.slug %}">{{component.shop}}</a></div>
+            </div>
+            <div class="box-body" style="padding:0;text-align:-webkit-center;">
+              <img class="img-responsive pad" src="{{component.image.thumbnail.150x150}}" style="height:150px;">
+            </div>
+            <div class="box-footer">
+              <p class=" well well-sm no-shadow" style="margin: 0;">
+                <i class="fa fa-th"></i>
+                <span>{{component.title}}</span>
+              </p>
+            </div>
+          </div>
+     </div> 
+  {%endfor%}
+  </div>
+  {% if is_paginated%}
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="pagination pull-right">
+        {% if page_obj.has_previous %}
+          <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+          {% if page_obj.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+          <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+      </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock content %} 

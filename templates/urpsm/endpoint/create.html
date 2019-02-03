@@ -1,0 +1,127 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "API Provider" %}{% endblock %}
+{% block heading %} {% trans 'API' %} {% endblock %}
+{% block subheading %} {% trans 'Provide an API Server' %}{% endblock %}
+{% block breadcrumb %}
+<li>
+    <a href="{% url 'endpoints' %}" title="clients">{% trans 'endpoints'|capfirst %}</a>
+</li>
+<li class="active">{% trans 'add'|capfirst %}</li>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">{% trans 'add your provider API'|capfirst %}</h3>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p class="alert alert-info">{{ message }}</p>
+
+        {% endfor %}
+    {% endif %}
+
+{% if form.non_field_errors %}
+    <ul class='errorlist'>
+        {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+    <form action="{% if next %}?next={{ next }}{% endif %}" method="post" accept-charset="utf-8">
+    {% csrf_token %}
+        <div class="box-body">
+
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-group has-feedback">
+                {{ form.url }}
+                    {% if form.url.errors %}
+                        {{ form.url.errors }}
+                    {% endif %}
+                    <span class="glyphicon glyphicon-link form-control-feedback"></span>
+                    <small class="text-muted">eg: http://supportunlock.com/</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-feedback">
+                {{ form.provider }}
+                    {% if form.provider.errors %}
+                        {{ form.provider.errors }}
+                    {% endif %}
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-group has-feedback">
+                {{ form.username }}
+                    {% if form.username.errors %}
+                        {{ form.username.errors }}
+                    {% endif %}
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-feedback">
+                {{ form.key }}
+                    {% if form.key.errors %}
+                        {{ form.key.errors }}
+                    {% endif %}
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>                
+            </div>                
+        </div>                
+    </div>
+
+      <div class="box-footer">
+          <button type="submit" class="btn btn-primary btn-flat">{% trans 'Save'|capfirst %}</button>
+      </div>
+    
+    </form>
+</div>
+
+</section>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    function again(e){
+        alert(e.error);
+        get_credit();
+    }
+    function get_credit() {
+
+        var credit = prompt("{% trans 'Please enter your server credit'|capfirst %}", "");
+        if (credit != null) {
+            $.ajax({
+                url: "{% url 'endpoint-server-credit' %}",
+                type: 'POST',
+                data: {'credit':credit},
+                success: function(response){
+                    if (response.status){
+                        alert('{% trans "thank you"|capfirst %}');
+                    }else{
+                        again(response);
+                    }
+                },
+                error: function(response){again(response);}
+            });
+
+        }
+    }
+    var current_url = window.location.href;
+    if (current_url.search('credit') > 0){
+        get_credit();
+    }
+
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends "urpsm/v2/dash/base_dashboard_v2.html" %}
+{% load static from staticfiles %}{% load i18n%}
+{% block title %} {% trans 'Dashboard'|capfirst %} {% endblock %}
+{% block heading %} {% trans 'Dashboard'|capfirst %} {% endblock %}
+{%block extrahead %}
+{% endblock %}
+{% block content %}
+<section class="content">
+    <div class="row">
+        <h1 class="onwan"><span class="shortcut-icon"></span>Sales Dashboard</h1>
+
+        <div class="col-xs-6" style="margin-left: 30px;">
+
+            <div class="row dashboardrows">
+                <!-- /.col -->
+                <!-- /.col -->
+                {% if msg %}
+                <div class="alert alert-success">{{ msg }}</div>
+                {% endif %}
+                <div class="col-sm-6 col-xs-6">
+                    <div class="panel-stat33 bg-color3">
+                        <h2 class="m-top-none" id="orderCount">{{ available_withdraw }}<sup class="font-19">$</sup></h2>
+                        <h5>{% trans 'Available to withdraw'|capfirst %}</h5>
+                        <button onclick="$('#withdrawBox').show();$('#clearanceBox').hide();" class="btn"
+                                style="color:#f9fcfd;background-color:rgb(245, 187, 73);border-radius: 0px;">{% trans 'Withdraw'|capfirst %}
+                        </button>
+
+
+                        <div class="stat-icon">
+                            <i class="fa fa-dollar fa-3x"></i>
+                        </div>
+                    </div>
+                </div><!-- /.col -->
+                <div class="col-sm-6 col-xs-6">
+                    <div class="panel-stat33 bg-color4">
+                        <h2 class="m-top-none" id="visitorCount">{{ amount_completed }}<sup class="font-19">$</sup></h2>
+                        <h5>{% trans 'Upcoming revenues'|capfirst %}</h5>
+                        <button onclick="$('#withdrawBox').hide();$('#clearanceBox').show();" class="btn" style="color:#f9fcfd;background-color: rgb(32, 195, 135);border-radius: 0px;">{% trans 'Ask for clearance'|capfirst %}
+                        </button>
+                        <div class="stat-icon">
+                            <i class="fa fa-dollar fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row dashboardrows"><!-- /.col -->
+                <div class="col-sm-6 col-xs-6">
+                    <div class="panel-stat33 bg-color5">
+                        <h2 class="m-top-none" id="visitorCount">{{ already_withdrawn }}<sup class="font-19">$</sup></h2>
+                        <h5>{% trans 'Already withdrawn'|capfirst %}</h5>
+                        <!-- <i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">lorem text</span> -->
+                        <div class="stat-icon">
+                            <i class="fa fa-dollar fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-6">
+                    <div class="panel-stat33 bg-color1">
+                        <h2 class="m-top-none" id="visitorCount">{{ upcoming_payments }}<sup class="font-19">$</sup></h2>
+                        <h5>{% trans 'Upcoming payments'|capfirst %}</h5>
+                        <i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">{{ upcoming_payments_num }} Pending orders</span>
+                        <div class="stat-icon">
+                            <i class="fa fa-dollar fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="col-xs-4" style="display:none;background-color: #5d9cd4;color: white;border-radius:10px;padding: 30px;" id="clearanceBox">
+                    <h4>Clear amount for withdrawl</h4>
+                    <form method="post">
+                        <br>
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="askclearance">
+                        <h5>{% trans 'Max amount available' %}: {{amount_completed}}<sup class="font-14">$</sup></h5>
+                        <label>{% trans 'Enter amount to clear'%}</label>
+                        <input type="text" name="amount" class="form-control">
+                        <br>
+                        <button type="submit" class="btn" style="color:#f9fcfd;background-color:#fc8675;border-radius: 0px;">Ask for
+                            clearance
+                        </button>
+                    </form>
+                </div>
+
+                <div class="col-xs-4" style="display:none;background-color: #5d9cd4;color: white;border-radius:10px;padding: 30px;" id="withdrawBox">
+                    <h4>Withdraw amount</h4>
+                    <form method="post">
+                        <br>
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="withdraw">
+                        <h5>Withdraw {{available_withdraw}}<sup class="font-14">$</sup></h5>
+                        <label>Paypal email</label>
+                        <input type="text" name="paypal-email" class="form-control">
+                        <br>
+                        <button type="submit" class="btn" style="color:#f9fcfd;background-color:#fc8675;border-radius: 0px;">Withdraw
+                        </button>
+                        </form>
+                </div>
+
+            </div>
+
+
+        <div class="row" style="padding:15px;">
+            <h1 class="onwan"><span class="shortcut-icon"></span>History</h1>
+            <table class="table table-hover table-bordered">
+                <tbody><tr>
+                  <th>{% trans 'Id'|capfirst %}</th>
+                  <th>{% trans 'Amount'|capfirst %}</th>
+                  <th>{% trans 'Type'|capfirst %}</th>
+                  <th>{% trans 'Paypal Email'|capfirst %}</th>
+                  <th>{% trans 'Created' %}</th>
+                  <th>{% trans 'Status'|capfirst %}</th>
+
+                </tr>
+                {% for charge in charges%}
+
+                    {% if charge.type == "available_withdraw" and charge.active == True %}
+                <!-- f -->
+                    {% else %}
+                <tr>
+                  <td>{{charge.id}}</td>
+                  <td>{{charge.value}}</td>
+                  <td>{% if charge.type == "askedfor_clearance" %}{% trans 'Clearance Request' %}{% else %}{% trans 'Withdrawl' %}{% endif %}</td>
+                  <td>{% if charge.type == "available_withdraw" %}{{charge.desc}}{%endif%}</td>
+                  <td>{{charge.created}}</td>
+                  <td>{% if charge.type == "askedfor_clearance" and charge.active == True %}<span class="label red-light-background">PENDING</span> {%else%}<span class="label green-light-background">CLEARED</span>{%endif%}</td>
+                </tr>
+                {% endif %}
+                {%endfor%}
+
+              </tbody></table>
+        </div>
+            </div>
+
+    </div>
+</section>
+{% endblock %}

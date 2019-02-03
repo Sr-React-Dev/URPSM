@@ -1,0 +1,20 @@
+{% load i18n %}
+{% autoescape off %}
+{% load url from future %}
+<html>
+<body>
+    <p>
+        {% blocktrans with site.name as site %}You requested a change of your email address at {{ site }}.{% endblocktrans %}
+    </p>
+    <p>
+        {% trans "Please confirm this email address by clicking on the link below:" %}<br>
+        <a href="{{ site.domain }}{% url 'change_email' confirmation_key %}">{{ site.domain }}{% url 'change_email' confirmation_key %}</a>
+    </p>
+    <p>
+        {% trans "Thanks for using our site!" %}<br />
+        {% trans "Sincerely" %},<br />
+        {{ site_name }}
+    </p>
+    </body>
+    </html>
+{% endautoescape %}

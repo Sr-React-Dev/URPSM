@@ -1,0 +1,302 @@
+{%extends 'urpsm/v2/public/base_v3.html' %}
+	{% load static from staticfiles %}
+    {%load el_pagination_tags %}
+	{% load i18n %}
+    {% load location_tags %}
+	{% block main_page %}
+	 <div class="page-title-container urpsm-h">
+        <div class="container">
+            <ul class="breadcrumbs pull-right">
+                <li class="impo"><a href="#">{% trans ' HOME' %}</a></li>
+                <li class="active impo">{% trans 'Search Shops' %}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="world-map-section" id="fullmaphome"></div><!--map of shops-->
+    <div class="search-box-wrapper">
+        <div class="container">
+        <form action="" method="post">{%csrf_token%}
+            <div class="main-search-box">
+                <div class="row">
+                    <div class="form-group col-sm-6 col-md-4 col-md-offset-3">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="selector listing-margin-search-right">
+                                    <select id="country-select"></select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="selector listing-margin-search-left">
+                                    <select id="city-select">
+                                        <option value="-1">{% trans 'select city'|capfirst %}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6 col-md-2">
+                        <button type="submit" class="full-width icon-check listing-margin-search brand-s" id="btn-search">
+                            {% trans 'search'|title %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+
+
+   <section id="content">
+        <div class="container">
+            <div class="row">
+                <div id="main" class="col-md-12">
+                    
+                <h4 class="search-results-title"><i class="soap-icon-search"></i>
+                  <b>{{result_count}}</b>&nbsp;{% trans 'results found for' %}&nbsp;{{city|capfirst}}{%if country%}-{% endif %}&nbsp;{{country|capfirst}}</h4>
+                    <div class="phones-listi">
+                        <div class="row image-box hotel -shoplisting listing-style1">
+                        {% include page_template %}
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+	{% endblock main_page %}
+	{% block js %}
+    <script type="text/javascript" src="{% static 'v2/el-pagination/js/el-pagination.js' %}"></script>
+            <script type="text/javascript">
+           try{
+            $.endlessPaginate();
+          }catch(e){}
+    </script>
+    <script type="text/javascript" src="{% static 'v2/js/jquery.noconflict.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDfAwtL4h52jMA93AuQaB90HASh01iV1Zw&language=fr"></script>
+    <script type="text/javascript" src="{% static 'v2/js/gmap3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/gmap3.infobox.js' %}"></script>
+<script type="text/javascript">
+    (jQuery)('#btn-search').prop('disabled', true);
+    {% if lat %}var lat = {{lat}};{% else %}var lat = 0;{% endif %}
+    {% if lon %}var lon = {{lon}};{% else %}var lon = 0;{% endif %}
+    var marker_values;
+    (jQuery)('document').ready( function(){
+        // global  lat,lon;
+
+        function getLocation() {
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            };
+            function error(err){console.log(err);};
+            function success(pos) {
+                    var crd = pos.coords;
+                    lat = parseFloat(crd.latitude);
+                    lon = parseFloat(crd.longitude);
+                    get_near_shops([lat, lon]);             
+            };
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success,error,options); 
+                
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+                // return [31.6210978,-8.1033062];
+            }
+         }
+        var markerHtml = '<div class="marker-holder"><div class="image-box borderdd"><figure class="middle-block"><img src="{0}" alt="" class="middle-item"></figure><div class="details"><h4 class="title shop-t">{1}</h4><div class="table-wrapper"><i class="soap-icon-departure newcolor"></i>{2}</div></div></div></div>';
+        
+        function _image(path){
+            path = 'https://urpsm-assets.s3.amazonaws.com/media/' + path;
+            var image = {
+                url: path,
+                scaledSize : new google.maps.Size(50, 50),
+                optimized: false
+            };
+            return image
+        }
+
+
+        function format_markup(logo, name, address, city, country){
+            return '<div class="marker-holder"><div class="image-box borderdd"><figure class="middle-block"><img src="https://urpsm-assets.s3.amazonaws.com/media/'+logo+'" alt="" class="middle-item"></figure><div class="details"><h4 class="title shop-t">'+name+'</h4><div class="table-wrapper"><i class="soap-icon-departure newcolor"></i>'+address+ ', '+ city +', '+ country +'</div></div></div></div>';
+        }
+
+        function get_near_shops(point){
+            var result = [];
+            var locationString = "";
+            var locationArray = [];
+            
+            (jQuery).ajax({
+              url: "{% url 'near-shops'  %}",
+              data: 'latLng='+point[0]+','+point[1],
+              success: function(response){
+                // console.log(response);
+                (jQuery).each(response, function(_){
+                    shop = response[_];
+                    logo = shop['logo'];
+                    locationString = shop['location'];
+                    if (locationString) {
+                        locationArray = locationString.split(",");
+                    }else{
+                        locationArray = [];
+                    }
+                    result.push({"address":shop['address'],"latLng":locationArray,"data":format_markup(shop['logo'], shop["name"],shop["address"], shop['city__name'], shop['country__name']), 'options':{icon: _image('shop.png')}});
+                    locationArray = [];
+                })
+                // result =  response;
+              },
+              dataType: 'json'
+            }).done(function(){
+                marker_values = result;
+                console.log(marker_values);
+                placeMarkersAround(point, marker_values);
+             });
+        }
+
+
+     
+        function placeMarkersAround(point, marker_values){
+            tjq(".world-map-section").gmap3({
+                map:{
+                    options: {
+                        center:point,//[lat, lon],//[31.6210978,-8.1033062],
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        zoom:15,
+                        maximumAge: 0
+                    }
+                },
+                marker:{
+                    // values: [
+                    //     {address:"Daoudiate, Marrakech, Maroc", data: markerHtml, options:{icon: image}},
+                    //     {latLng:point, data: markerHtml, options:{icon: image}},
+                    //     {address:"Beni Mellal, Maroc", data: markerHtml, options:{icon: image}},
+                    //     {address:"agadir, Maroc", data: markerHtml, options:{icon: image}}
+                    // ],
+                    values: marker_values,
+                    options: {
+                        draggable: false
+                    },
+                    events: {
+                        click: function(marker, event, context) {
+                            if (infobox.getPosition() == marker.getPosition() && mapDiv.find(".infoBox").length > 0) {
+                                infobox.close();
+                            } else {
+                                map.panTo(marker.getPosition());
+                                infobox.setContent(context.data);
+                                infobox.open(map,marker);
+                                // if map is small
+                                var iWidth = 405;
+                                var iHeight = 165;
+                                if((mapDiv.width() / 2) < iWidth ) {
+                                    var offsetX = iWidth - (mapDiv.width() / 2);
+                                    map.panBy(offsetX, 0);
+                                }
+
+                                if((mapDiv.height() / 2) < iHeight ) {
+                                    var offsetY = -(iHeight - (mapDiv.height() / 2));
+                                    map.panBy(0, offsetY);
+                                }
+                                setTimeout(function() {
+                                    tjq(".infoBox .middle-block").middleblock();
+                                }, 200);
+                            }
+                        }
+                    }
+                }
+            });
+            var mapDiv = tjq(".world-map-section");
+            var map = mapDiv.gmap3("get");
+            var infobox = new InfoBox({
+                pixelOffset: new google.maps.Size(-204, -78),
+                closeBoxURL: '',
+                enableEventPropagation: true
+            });
+        }
+        getLocation();
+    });     
+
+    var countries = {% get_countries %};
+    var cities_countries = {% get_cities_countries %};
+    var cities_ids = {% get_cities_ids %};
+
+    var countryElementId = "country-select";
+    var countryIdSelector = "#country-select option:selected";
+    var cityElementId = "city-select";
+    var cityIdSelector = "#city-select option:selected";
+    function convertToSlug(Text)
+    {
+        return Text
+            .toLowerCase()
+            .replace(/ /g,'-')
+            .replace(/[^\w-]+/g,'')
+            ;
+    }
+
+    function populatecities( countryElementId, cityElementId ){
+    
+        var selectedCountryIndex = document.getElementById( countryElementId ).value;
+
+        var cityElement = document.getElementById( cityElementId );
+        
+        cityElement.length=0;  
+        cityElement.options[0] = new Option('Select city','-1');
+        cityElement.selectedIndex = 0;
+
+        (jQuery).each(cities_countries, function(city_name){
+            if (cities_countries[city_name] == selectedCountryIndex){
+                city_id = cities_ids[city_name];
+                cityElement.options[cityElement.length] = new Option(city_name,city_id);
+            }
+        });
+        
+        cityElement.onchange = function(){
+            (jQuery)('#btn-search').prop('disabled', false);
+        }
+    }
+
+    function populateCountries(countryElementId, cityElementId){
+        // given the id of the <select> tag as function argument, it inserts <option> tags
+        var countryElement = document.getElementById(countryElementId);
+        countryElement.length=0;
+        countryElement.options[0] = new Option('Select Country','-1');
+        countryElement.selectedIndex = 0;
+
+        (jQuery).each(countries, function(_){
+            country = countries[_];
+            countryElement.options[countryElement.length] = new Option(_,country);
+
+        });
+
+        // Assigned all countries. Now assign event listener for the states.
+
+        if( cityElementId ){
+            countryElement.onchange = function(){
+                populatecities( countryElementId, cityElementId );
+                (jQuery)('#btn-search').prop('disabled', true);
+            };
+        }
+    }
+    populateCountries(countryElementId,cityElementId);
+    (jQuery)('#btn-search').on('click', function(e){
+        e.preventDefault();
+        var city    = document.getElementById(cityElementId).value;
+        var country = document.getElementById(countryElementId).value;
+
+        var city_name     = convertToSlug((jQuery)(cityIdSelector).text());
+        var country_name  = convertToSlug((jQuery)(countryIdSelector).text());
+        var query =  "?city=" + city_name + '&country=' + country_name;
+        var _url  = "{% url 'search-shops' %}";
+        var redirect_url = _url + query;
+        window.location.href = redirect_url;
+                   
+       });
+
+    // });
+
+
+    </script>
+
+    {% endblock js %}

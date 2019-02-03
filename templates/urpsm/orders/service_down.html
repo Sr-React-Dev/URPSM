@@ -1,0 +1,15 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} {% load i18n staticfiles thumbnail%} {% block title %} {% trans 'Service not available'|capfirst %} {% endblock %} {% block heading %} {% trans 'Order'|capfirst %} {% endblock %} {% block subheading %} {% trans 'Service'|capfirst %}{% endblock %} {% block breadcrumb %}
+<li><a href="{% url 'shop' %}" title="Deposit">{% trans 'Order'|capfirst %}</a></li>
+<li class="active">{% trans 'Service'|capfirst %}</li>
+{% endblock %} {% block content %}
+<div class="box">
+    <div class="box-header">
+        <div class="box-title">{% trans 'Service not available'|capfirst %}</div>
+    </div>
+    <div class="box-body">
+        <div class="alert alert-danger">
+            <strong>{% trans 'Service'|capfirst %}</strong> {% trans 'The selected service is currently so busy or something wrongs with the API Server, please try again later.'|capfirst %}
+        </div>
+    </div>
+</div>
+{% endblock %}

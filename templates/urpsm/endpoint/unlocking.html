@@ -1,0 +1,250 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load i18n thumbnail staticfiles account_tags %}
+{% block title %} {% trans 'unlocking'|capfirst %} {% endblock %}
+{% block extrahead %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".searchselect").select2();
+});
+
+</script>
+
+{% endblock %}
+{% block heading %} {% trans 'unlocking'|capfirst %} {% endblock %}
+{% block breadcrumb %}
+<li class="active">{% trans 'unlocking'|capfirst %}</li>
+{% endblock %}
+{% block content %}
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">{% trans 'unlocking order'|capfirst %}</h3>
+        </div>
+        <div class="box-body">
+            {% if success_msg %}
+            <div class="alert alert-success">{{ success_msg }}</div>
+            {% endif %}
+            {% if error_msg %}
+            <div class="alert alert-danger">{{ error_msg }}</div>
+            {% endif %}
+            <div class="form-group">
+                <label for="Network">Network</label>
+
+                <select class="form-control searchselect" id="id_network" name="network">
+                    <option value="" selected="selected">SELECT A NETWORK</option>
+                    {% for obj in returnObj %}
+                    <optgroup label="{{ obj.0 }}">
+                        {% for network in obj.1 %}
+                        <option value="{{ network.1 }}" endpoint="{{network.0}}">{{ network.2 }}</option>
+                        {% endfor %}
+                    </optgroup>
+                    {% endfor %}
+                </select>
+
+            </div>
+        </div>
+
+        <form action="" method="post" accept-charset="utf-8" id="unlockForm">
+            {% csrf_token %}
+            <div class="box-body">
+                <input type="hidden" id="id_endpoint" name="endpoint" value="{{ endpointid }}">
+
+
+                <div class="form-group">
+                    <label for="{{form.service.label}}">{{ form.service.label }}</label>
+
+                    {{ form.service }}
+                    {% if form.service.errors %}
+                    {{ form.service.errors }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{form.imei.label}}">{{ form.imei.label }}</label>
+
+                    {{ form.imei }}
+                    {% if form.imei.errors %}
+                    {{ form.imei.errors }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="{{form.brand.label}}">{{ form.brand.label }}</label>
+
+                    {{ form.brand }}
+                    {% if form.brand.errors %}
+                    {{ form.brand.errors }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="{{form.model.label}}">{{ form.model.label }}</label>
+
+                    {{ form.model }}
+                    {% if form.model.errors %}
+                    {{ form.model.errors }}
+                    {% endif %}
+                </div>
+                <!-- <div class="error-page">
+                            <h2 class="headline text-yellow"> <i class="fa fa-unlock"></i></h2>
+                            <div class="error-content">
+                              <h3><i class="fa fa-warning text-yellow"></i> Unlocking server.</h3>
+                              <p>
+                                We are working hard to bring this feature on the next version of URPSM, so stay tunned.
+                              </p>
+
+                              <p>
+                                  For more information you can reach us at <a href="mailto:contact@urpsm.com?subject=feedback">contact@urpsm.com</a>
+                              </p>
+                            </div>
+                          </div> -->
+                <div id="service_detail"></div>
+            </div>
+            <div class="box-footer">
+                <input class="btn btn-primary" type="button" id="formSubmitBtn" value="{% trans 'Save' %}"/>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block extrajs %}
+<script src="{{ STATIC_URL }}js/blockui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+
+// unlocking
+
+
+(function($){
+
+  $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+
+
+  $('#id_service, #id_imei, #id_brand, #id_model').parent().hide();
+
+        $.ajax({
+       url: '/get_services/',
+       type: 'POST',
+       dataType: 'json',
+       success: function(data){
+        console.log(data);
+       }
+     });
+
+  if ( $('#network').val() != "undefined" && $('#id_network').val() != "") {
+      var $network = $('#id_network').val();
+        $.ajax({
+       url: '/get_services/',
+       type: 'POST',
+       dataType: 'json',
+       data: {network: $network},
+       success: function(data){
+        var services = $.parseJSON(data.services);
+        var options = '';
+        for(var service in services)
+        {
+        if(service==="network")continue;
+          options += '<option value="'+ service + '">' + services[service] +'</option>';
+        }
+        $('#id_service').parent().show();
+        $(".searchselect").select2('destroy');
+        $('#id_service').replaceWith('<select class="form-control searchselect" id="id_service" name="service">'+ options +'</select>');
+        $('#id_imei').parent().show();
+        $('#id_brand').parent().show();
+        $('#id_model').parent().show();
+       }
+     });
+  }
+  
+  $('#id_network').on('change', function(event){
+    var $network = $('#id_network').val();
+    var $endpoint = $('#id_network option:selected').attr('endpoint');
+$('#id_endpoint').val($endpoint);
+
+    $.ajax({
+       url: '/get_services/',
+       type: 'POST',
+       dataType: 'json',
+       data: {network: $network,endpoint: $endpoint},
+       success: function(data){
+        var services = $.parseJSON(data.services);
+        var options = '';
+        for(var service in services)
+        {
+          if(service==="network")continue;
+          options += '<option value="'+ service + '">' + services[service] +'</option>';
+        }
+        $('#id_service').parent().show();
+        $(".searchselect").select2('destroy');
+        $('#id_service').replaceWith('<select class="form-control searchselect" id="id_service" name="service">'+ options +'</select>');
+        $('#id_imei').parent().show();
+        $('#id_brand').parent().show();
+        $('#id_model').parent().show();
+         $(".searchselect").select2();
+
+        get_service_detail($('#id_endpoint').val(), $('#id_service').val());
+
+
+       }
+     })
+      
+  });
+
+
+  if ($('#id_service').val() != 'undefined' && $('#id_service').val() != "") {
+      var $endpoint = $('#id_endpoint').val();
+      get_service_detail($endpoint, $('#id_service').val());
+  }
+
+
+  $('form').delegate("#id_service",'change', function(event){
+      var $endpoint = $('#id_endpoint').val();
+      get_service_detail($endpoint, $(this).val());
+  });
+
+  function get_service_detail(endpoint_id, service_id)
+  {
+    $.ajax({
+      url: '/get_service_detail/',
+      type: 'POST',
+      dataType: 'json',
+      data: {service: service_id, endpoint: endpoint_id},
+      success: function(data){
+        if (data) {
+          var html = '<p><h3> Credit : $'+ data['credit'] + ' USD</h3> </p>';
+              if(data['time']){
+                html += '<p><h3> Time : '+ data['time'] + '</h3></p>';
+
+
+                $('#formSubmitBtn').click(function(event){
+        $.confirm({
+            title: 'Are you sure ?',
+            content: 'You are placing an order which is going to cost '+data['credit']+' and take '+data['time'],
+            buttons: {
+                confirm: function () {
+                      $('#unlockForm').submit();
+                    },
+                cancel: function () {
+                      $.alert('Canceled!');
+                        }
+                }
+            });
+
+        });
+              }
+
+          $('#service_detail').addClass('alert alert-info').html(html);
+        }
+      },
+    });
+
+    
+  }
+
+})(jQuery)    
+
+</script>
+{% endblock %}

@@ -1,0 +1,485 @@
+<!DOCTYPE html>{% load thumbnail staticfiles account_tags i18n%}{% load dash_languages_dropdown from languages_tags %}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %} {% endblock %}| Unlock Repair Phone Shop Manager</title>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+  <!-- Bootstrap 3.3.4 -->
+  <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
+  <!-- Font Awesome Icons -->
+{%comment%}
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="{% static "v2/css/style_mng.css" %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'v2/css/sty.css' %}" rel="stylesheet" type="text/css" />
+{%endcomment%}
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <!-- Ionicons -->
+  <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <!-- Theme style -->
+  <link href="{% static "css/all-skins.min.css" %}" rel="stylesheet" type="text/css" />
+  <link href="{% static "js/plugins/owl-carousel/owl.carousel.css" %}" rel="stylesheet" type="text/css" />
+  <link href="{% static "js/plugins/owl-carousel/owl.theme.css" %}" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="{% static "img/urpsm-c.png" %}">
+  <!-- ./wrapper -->
+  <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+<link href="{% static 'css/style2.css' %}" rel="stylesheet" type="text/css" />
+
+<link href="{% static 'css/sty.css' %}" rel="stylesheet" type="text/css" />
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P2GFLRJ');</script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet" />
+
+{% ifequal request.LANGUAGE_CODE  'ar' %}
+  <link href="{% static 'v2/css/dashArabic.css' %}" rel="stylesheet" type="text/css" />
+{%endifequal%}
+
+
+{%comment%}
+
+<!-- Styles -->
+<link href="{% static 'lastup/css/jquery.filer.css' %}" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" crossorigin="anonymous"></script>
+<script src="{% static 'lastup/js/jquery.filer.min.js' %}" type="text/javascript"></script>
+{%endcomment%}
+
+  {% block extrahead %}{% endblock %}
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->{% block extrastyle %}{% endblock %}</head>
+<body class="skin-blue-light fixed sidebar-mini {% ifequal request.LANGUAGE_CODE  'ar' %}arabic{%endifequal%}">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2GFLRJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- Site wrapper -->
+  <div class="wrapper">
+
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="{% url 'dash' %}" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <!-- <span class="logo-mini">{{ request.user.profile.shop.name }}</span>
+      -->
+      <!-- logo for regular state and mobile devices -->
+      {% if user.profile.shop%}
+      <span class="logo-lg"> <b>{{ request.user.profile.shop.name }}</b>
+      {% elif user.profile.server %}
+      <span class="logo-lg"> <b>{{ request.user.profile.server.name }}</b>
+      {%endif%}
+      </span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      {%comment%}
+      <li class="dropdown drop-lang">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          {% ifequal request.LANGUAGE_CODE  'ar' %}
+            <img src='{% static "flags/sa.gif" %}'>
+          {% else %}
+            <img src='{% static "flags/us.gif" %}'>
+          {%endifequal%}
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#change-anguage-code-here" class="lang-c"><img src='{% static "flags/us.gif" %}'> English</a></li>
+          <li><a href="#change-anguage-code-here" class="lang-c"><img src='{% static "flags/sa.gif" %}'> Arabic</a></li>
+        </ul>
+      </li>
+      {%endcomment%}
+
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+
+
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="notifications">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning" id="notifs-count"></span>
+            </a>
+            <ul class="dropdown-menu" id="notifs-list">
+
+
+            </ul>
+          </li>
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown notifications-menu">
+
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-gears"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+
+                  <li>
+                    {%if user.profile.shop%}
+                    <a href="{% url 'shop' %}"> <i class="fa fa-building"></i>
+                      Shop
+                    </a>
+                    {% elif user.profile.server%}
+                    <a href="{% url 'servers' %}"> <i class="fa fa-building"></i>
+                      Shop
+                    </a>
+                    {%endif%}
+                  </li>
+                  {# {% if  request.user|has_group:'Administrator' %} #}
+                   <li>
+                      <a href="{% url 'deposit' %}" title="{% trans 'deposit'|capfirst %}">
+                        <i class="fa fa-dollar"></i>
+                        {% trans 'deposit'|capfirst %}
+                      </a>
+                    </li>
+                  {# {% endif %} #}
+
+                  <li>
+                    <a href="{% url 'profile' %}" title="{% trans 'profile'|capfirst %}">
+                      <i class="fa fa-user"></i>
+                      {% trans 'profile'|capfirst %}
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="{% url 'password_change' %}" title="{% trans 'change password'|capfirst %}">
+                      <i class="fa fa-lock"></i>
+                      {% trans 'change password'|capfirst %}
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="{% url 'logout' %}" title="{% trans 'logout'|capfirst %}">
+                      <i class="fa fa-sign-out text-red"></i>
+                      {% trans 'logout'|capfirst %}
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- =============================================== -->
+
+  <!-- Left side column. contains the sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="image">
+          <img src="{{ request.user.profile.shop.logo.crop.36x36 }}" class="img-circle" alt="" />
+        </div>
+        {%comment%}
+        <div class="pull-left info">
+          Welcome&nbsp;<b>{{ request.user.username|capfirst }}</b>
+          {% if user.profile.shop %}
+          <p><i class="fa fa-money"></i> &nbsp;<b>${{ request.user.profile.shop.balance }}</b></p>
+          {% elif user.profile.server %}
+          <p><i class="fa fa-money"></i> &nbsp;<b>${{ request.user.profile.server.balance }}</b></p>
+          {%endif%}
+        </div>
+        {%endcomment%}
+      </div>
+      <!-- search form -->
+      <!--       form action="#" method="get" class="sidebar-form">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search..."/>
+        <span class="input-group-btn">
+          <button type='submit' name='search' id='search-btn' class="btn btn-flat">
+            <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    </form -->
+    <!-- /.search form -->
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+
+    <ul class="sidebar-menu">
+      <li class="header">{% trans 'menu'|capfirst %}</li>
+      <li>
+        <a href="{% url 'home' %}">
+          <i class="fa fa-home"></i>
+          <span>{% trans 'home'|capfirst %}</span>
+        </a>
+      </li>
+      {% if user.profile.shop %}
+      <li class="treeview">
+        <a href="{% url 'components' %}">
+          <i class="fa fa-building"></i>
+          <span>{% trans 'my dashboard'|capfirst %}</span>
+          <i class="fa fa-angle-left {{PULL_DIRECTION}}"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+              <a href="{% url 'shop-position' %}" title="{% trans 'my position'|capfirst %}">
+                <i class="fa fa-map-marker"></i>
+                {% trans 'my position'|capfirst %}
+              </a>
+              <a href="{% url 'dash' %}" title="{% trans 'my activity'|capfirst %}">
+                <i class="fa fa-exchange"></i>
+                {% trans 'my activity'|capfirst %}
+              </a>
+              <a href="{% url 'client-create' %}" title="{% trans 'add client'|capfirst %}">
+                <i class="fa fa-user"></i>
+                {% trans 'add client'|capfirst %}
+              </a>
+              <a href="{% url 'clients' %}" title="{% trans 'clients list'|capfirst %}">
+                <i class="fa fa-users"></i>
+                {% trans 'clients list'|capfirst %}
+              </a>
+              <a href="{% url 'unlocking' %}" title="{% trans 'new unlocking order'|capfirst %}">
+                <i class="fa fa-unlock-alt"></i>
+                {% ifequal request.LANGUAGE_CODE 'fr' %}Nouvelle commande{%else%}{% trans 'new unlocking order'|capfirst %}{%endifequal%}
+              </a>
+              <a href="{% url 'orders' %}" title="{% trans 'my orders list'|capfirst %}">
+                <i class="fa fa-list-ul"></i>
+                {% trans 'my orders list'|capfirst %}
+              </a>
+              <a href="{% url 'component-create' %}" title="{% trans 'add new component'|capfirst %}">
+                <i class="fa fa-th-large"></i>
+                {% trans 'add component'|capfirst %}
+              </a>
+              <a href="{% url 'components' %}" title="{% trans 'my components list'|capfirst %}">
+                <i class="fa fa-building"></i>
+                {% trans 'my shop components'|capfirst %}
+              </a>
+              {% if request.user|has_group:'Administrator' %}
+              <a href="{% url 'user-add' %}" title="{% trans 'add employee'|capfirst %}">
+                <i class="fa fa-user"></i>
+                {% trans 'add employee'|capfirst %}
+              </a>
+              <a href="{% url 'users' %}" title="{% trans 'my employees'|capfirst %}">
+                <i class="fa fa-users"></i>
+                {% trans 'my employees'|capfirst %}
+              </a>
+              {% endif %}
+              <a href="{% url 'shop-edit' %}" title="{% trans 'edit shop info'|capfirst %}">
+                <i class="fa fa-edit"></i>
+                {% ifequal request.LANGUAGE_CODE 'fr' %}Editer la boutique{%else%}{% trans 'edit shop info'|capfirst %}{%endifequal%}
+              </a>
+              <a href="{% url 'order-tickets' %}" title="{% trans 'my tickets list'|capfirst %}">
+                <i class="fa fa-ticket"></i>
+                {% trans 'my tickets list'|capfirst %}
+              </a>
+            </li>
+          </ul>
+      </li>
+      <li class="treeview">
+        <a>
+          <i class="fa fa-search"></i>
+          <span>{% trans 'my search'|capfirst %}</span>
+          <i class="fa fa-angle-left {{PULL_DIRECTION}}"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+              <a href="{% url 'components-list' %}" title="{% trans 'search component'|capfirst %}">
+                <i class="fa fa-search-plus"></i>
+                {% trans 'search component'|capfirst %}
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'servers' %}" title="{% trans 'search unlocking service'|capfirst %}">
+                <i class="fa fa-unlock"></i>
+                {% ifequal request.LANGUAGE_CODE 'fr' %}Nouvelle commande{%else%}{% trans 'new unlocking order'|capfirst %}{%endifequal%}
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'shop' %}" title="{% trans 'search shop'|capfirst %}">
+                <i class="fa fa-building-o"></i>
+                {% trans 'search shop'|capfirst %}
+              </a>
+            </li>
+        </ul>
+      {% endif %}
+      {%if user.profile.server %}
+      <li class="treeview">
+        <a href="{% url 'components' %}">
+          <i class="fa fa-server"></i>
+          <span>{% trans 'my dashboard'|capfirst %}</span>
+          <i class="fa fa-angle-left {{PULL_DIRECTION}}"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+              <a href="{% url 'server-position' %}" title="{% trans 'my position'|capfirst %}">
+                <i class="fa fa-map-marker"></i>
+                {% trans 'my position'|capfirst %}
+              </a>
+              <a href="{% url 'server-dash' %}" title="{% trans 'my activity'|capfirst %}">
+                <i class="fa fa-exchange"></i>
+                {% trans 'my activity'|capfirst %}
+              </a>
+
+              <a href="{% url 'unlocking' %}" title="{% trans 'new unlocking order'|capfirst %}">
+                <i class="fa fa-unlock-alt"></i>
+                {% ifequal request.LANGUAGE_CODE 'fr' %}Nouvelle commande{%else%}{% trans 'new unlocking order'|capfirst %}{%endifequal%}
+              </a>
+              <a href="{% url 'orders' %}" title="{% trans 'my orders list'|capfirst %}">
+                <i class="fa fa-list-ul"></i>
+                {% trans 'my orders list'|capfirst %}
+              </a>
+
+              {% if request.user|has_group:'Administrator'%}
+              <a href="{% url 'user-add' %}" title="{% trans 'add employee'|capfirst %}">
+                <i class="fa fa-user-circle"></i>
+                {% trans 'add employee'|capfirst %}
+              </a>
+              <a href="{% url 'users' %}" title="{% trans 'my employees'|capfirst %}">
+                <i class="fa fa-users"></i>
+                {% trans 'my employees'|capfirst %}
+              </a>
+
+              <a href="{% url 'server-edit' %}" title="{% trans 'edit server info'|capfirst %}">
+                <i class="fa fa-edit"></i>
+                {% ifequal request.LANGUAGE_CODE 'fr' %}Editer le serveur{%else%}{% trans 'edit server info'|capfirst %}{%endifequal%}
+              </a>
+               <a href="{% url 'endpoints-list' %}" {%ifequal request.LANGUAGE_CODE 'ar' %}title="خادم فك تشفير الهواتف"{%endifequal%}>
+                <i class="fa fa-server"></i>
+                {% trans 'api provider'|capfirst %}
+               </a>
+
+
+              {% endif %}
+              <a href="{% url 'order-tickets' %}" title="{% trans 'my tickets list'|capfirst %}">
+                <i class="fa fa-ticket"></i>
+                {% trans 'my tickets list'|capfirst %}
+              </a>
+            </li>
+          </ul>
+      </li>
+      <li class="treeview">
+        <a>
+          <i class="fa fa-search"></i>
+          <span>{% trans 'my search'|capfirst %}</span>
+          <i class="fa fa-angle-left {{PULL_DIRECTION}}"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+              <a href="{% url 'components-list' %}" title="{% trans 'search component'|capfirst %}">
+                <i class="fa fa-search-plus"></i>
+                {% trans 'search component'|capfirst %}
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'servers' %}" title="{% trans 'search unlocking service'|capfirst %}">
+                <i class="fa fa-unlock"></i>
+                {% ifequal request.LANGUAGE_CODE 'fr' %}Recheche des services{%else%}{% trans 'search unlocking service'|capfirst %}{%endifequal%}
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'shop' %}" title="{% trans 'search shop'|capfirst %}">
+                <i class="fa fa-building-o"></i>
+                {% trans 'search shop'|capfirst %}
+              </a>
+            </li>
+        </ul>
+      {%endif%}
+        <li class="treeview">
+        <a>
+          <i class="fa fa-comments-o"></i>
+          <span>{% trans 'messages'|capfirst %}</span>
+          <i class="fa fa-angle-left {{PULL_DIRECTION}}"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+              <a href="{% url 'notifications-hub' %}" title="{% trans 'notifications'|capfirst %}">
+                <i class="fa fa-comments"></i>
+                {% trans 'notifications'|capfirst %}
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'contact-admin' %}" title="{% trans 'contact'|capfirst %}">
+                <i class="fa fa-tty"></i>
+                {% trans 'contact'|capfirst %}
+              </a>
+            </li>
+        </ul>
+
+
+
+      </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>
+
+<!-- =============================================== -->
+
+<!-- Content Wrapper. Contains page content
+{% block dashboard_menu %}
+ {% include "urpsm/v2/dash/dashboard_menu_v2.html" %}
+ {% endblock %}
+-->
+{% block content %}{% endblock content %}
+
+<!-- /.content-wrapper -->
+
+<footer class="main-footer">
+  <div class="{{PULL_DIRECTION}} hidden-xs">
+    <a href="https://www.urpsm.com/" title="URPSM">v 1.0</a>
+  </div>
+  <strong>Copyright &copy; {% now "Y" %} <a href="/">URPSM</a>.</strong>
+  All rights reserved.
+</footer>
+
+</div>
+
+<!-- Bootstrap 3.3.2 JS -->
+<script src="{% static "js/bootstrap.min.js" %}" type="text/javascript"></script>
+<!-- SlimScroll -->
+<script src="{% static "js/plugins/slimScroll/jquery.slimscroll.min.js" %}" type="text/javascript"></script>
+<!-- FastClick -->
+<script src="{% static "js/plugins/fastclick/fastclick.min.js" %}"></script>
+<script src="{% static "js/plugins/owl-carousel/owl.carousel.min.js" %}"></script>
+<script type="text/javascript">
+
+
+    $(document).ready(function() {
+
+      $("#owl-demo").owlCarousel({
+
+          autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+          items : 4,
+          itemsDesktop : [1199,3],
+          itemsDesktopSmall : [979,3],
+          stopOnHover: true,
+          lazyLoad: true
+
+      });
+
+    });
+
+
+
+</script>
+<script type="text/javascript" src="{% static 'v2/js/notif.js' %}"></script>
+<script type="text/javascript">$(document).on("ready", function(){window.LANGUAGE_CODE_JS = "{{LANGUAGE_CODE}}";init_notif();});</script>
+<!-- Dashboard App -->
+<script src="{% static "js/app.js" %}" type="text/javascript"></script>
+{% block extrajs %}{% endblock %}
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P2GFLRJ');</script>
+{% block extrafooter %}{% endblock %}
+{% include 'session_security/all.html' %}
+
+</body>
+</html>

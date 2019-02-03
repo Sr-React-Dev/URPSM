@@ -1,0 +1,38 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} {% load i18n staticfiles thumbnail%} {% block title %} {% trans 'Add server credits'|capfirst %} {% endblock %} {% block heading %} {% trans 'server'|capfirst %} {% endblock %} {% block subheading %} Add server credits{% endblock %} {% block breadcrumb %}
+<li><a href="{% url 'server' %}" title="{% trans 'deposit'|capfirst %}">{% trans 'server'|capfirst %}</a></li>
+<li class="active">{% trans 'Add credits'|capfirst %}</li>
+{% endblock %} {% block content %}
+<div class="box">
+    <div class="box-header">
+        <div class="box-title"><i class="fa fa fa-money text-blue"></i> &nbsp;{% trans 'Add server credit'|capfirst %}</div>
+    </div>
+    <div class="alert alert-info" style="margin:15px;">
+        {% if success_msg %}
+        {{ success_msg }}<BR>
+        {% endif %}
+        Current Balance <strong>{{ credit }}.</strong>
+    </div>
+
+    <div class="alert alert-success" style="margin:15px;">
+        <h4>Dear nakshsoft server owner please remember that the credit you add to your account
+            must be the same one you add to your nakshsoft panel to avoid orders mistematch</h4>
+    </div>
+
+
+
+
+    <form action="" method="post" accept-charset="utf-8" onSubmit="confirm('Are you sure you want to add credits?');">
+        {% csrf_token %}
+        <div class="box-body">
+            <div class="form-group">
+                <label for="credit"> {% trans 'Add amount'|capfirst %}</label>
+                <input type="number" name="credit" class="form-control" value="" min="20" max="" step=""
+                       required="required" title="{% trans 'credit'|capfirst %}">
+            </div>
+        </div>
+        <div class="box-footer">
+            <input class="btn btn-primary" type="submit"  value="{% trans 'Add credit' %}"/>
+        </div>
+    </form>
+</div>
+{% endblock %}

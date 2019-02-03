@@ -1,0 +1,87 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load static from staticfiles %}{% load i18n%}
+{% block title %} {% trans 'notifications'|capfirst %} {% endblock %}
+{% block heading %} {% trans 'notifications'|capfirst %} {% endblock %}
+{% block content %}
+<section class="content">
+
+<div class="row">
+
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{% trans 'invoice notifications'|capfirst %}</h3>
+               <a type="button" href="{%url 'notifications-hub' %}" class="btn btn-primary {{PULL_DIRECTION}}">Back to notifications</a>
+            </div>
+            <div class="box-body table-responsive">
+              <table class="table table-hover table-bordered">
+                <tbody><tr>
+                  <th>{% trans 'Invoice #'|capfirst %}</th>
+                  <th>{% trans 'amount'|capfirst %}</th>
+                  <th>{% trans 'method'|capfirst %}</th>
+                  <th>{% trans 'status'|capfirst %}</th>
+                  <th>{% trans 'notification'|capfirst %}</th>
+                  <th>{% trans 'read'|capfirst %}</th>
+                </tr>
+                {% for notification in notifications%}
+                <tr>
+                  <td>{{notification.invoice.id}}</td>
+                  <td>{{notification.invoice.amount}}</td>
+                  <td>{{notification.invoice.method}}</td>
+                  <td><span class="label red-light-background">{{notification.invoice.status}}</span></td>
+                  <td>{% ifequal notification.notification_type 'F' %}proof verified. funds added to account{% else %}proof was rejected. please re-upload{% endifequal %}</td>
+                  <td id="unread-{{notification.id}}" onclick="markread('{{notification.id}}')" class="{% if notification.is_read %}ico-readed{% else %}ico-unreaded{% endif %}">
+                     <span class="fa fa-envelope{% if this %}-open{% endif %}-o"></span>
+                  </td>
+
+                </tr>
+                {%endfor%}
+                
+              </tbody></table>
+            </div>
+            {% if is_paginated%}
+            <div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+              {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">«</a></li>
+              {% endif %}
+              {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">»</a></li>
+              {% endif %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+          <!-- /.box -->
+      </div>
+      </div>
+  </section>
+
+{%endblock%}
+
+
+{% block extrajs %}
+<script>
+function markread(id){
+
+$.post('{% url 'markread' %}',
+    {
+        notif_id: id
+    },
+    function(data, status){
+
+    $('#unread-'+id).removeClass('ico-unreaded').addClass('ico-readed');
+
+    });
+
+}
+</script>
+
+{% endblock %}

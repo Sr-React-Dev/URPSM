@@ -1,0 +1,11 @@
+{% extends "urpsm/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Logged out" %}{% endblock %}
+
+{% block content %}
+<div class="notice">
+	<h3>{% trans "Logged out" %}</h3>
+	<p>{% trans "You've been logged out" %}. (<a href="{% url 'signin' %}">{% trans 'Signin' %}</a>)</p>
+</div>
+{% endblock %}

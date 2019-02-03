@@ -1,0 +1,74 @@
+{% load i18n thumbnail staticfiles account_tags %}
+<form method="POST">
+<div class="row">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="ticket_response">
+    {% if request.user.profile.shop %}
+    <div class="col-md-4">
+        <div class="box box-success border-add-new" id="collorsuccess">
+            <div class="box-header with-border">
+                <h3 class="box-title">{% trans 'completed'|capfirst %}</h3>
+
+                <div class="box-tools pull-right">
+                    <input type="radio" name="response" id="optionsRadios1" value="COMPLETED">
+                </div>
+                <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                {% trans 'Confirm order is complete and issue is solved.'|capfirst %}
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="col-md-4">
+        <div class="box box-success border-add-new" id="collorafr">
+            <div class="box-header with-border">
+                <h3 class="box-title">{% trans 'admin support'|capfirst %}</h3>
+
+                <div class="box-tools pull-right">
+                    <input type="radio" name="response" id="optionsRadios2"
+                           value="ADMIN_SUPPORT">
+                </div>
+                <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                {% trans 'Shop and Server did not agree on the issue. Admin support needed'|capfirst %}
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+    {% if request.user.profile.server %}
+    <div class="col-md-4">
+        <div class="box box-success border-add-new" id="collordanger">
+            <div class="box-header with-border">
+                <h3 class="box-title">{% trans 'cancelled'|capfirst %}</h3>
+
+                <div class="box-tools pull-right">
+                    <input type="radio" name="response" id="optionsRadios3" value="CANCELLED">
+                </div>
+                <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                {% trans ' Server confirms the order is cancelled and shop will be refunded'|capfirst %}
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+    {% endif %}
+</div>
+</form>
+
+<div class="box-footer">
+    <button type="button" class="btn btn-sm btn-default hide">{% trans 'exit'|capfirst %}</button>
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-sm btn-danger hide">{% trans 'cancel'|capfirst %}</button>
+        <button type="submit" class="btn btn-sm btn-success procceed" data-toggle="modal"
+                data-target="#myModal">{% trans 'proceed'|capfirst %}
+        </button>
+    </div>
+</div>

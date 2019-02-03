@@ -1,0 +1,296 @@
+{%extends 'urpsm/v2/public/base_v3.html' %}
+	{% load static from staticfiles %}
+    
+    {% load reviewing_tags %}
+	{% load i18n %}
+    {% load localize from l10n %}
+	{% block main_page %}
+	 <div class="page-title-container urpsm-h">
+            <div class="container">
+                <ul class="breadcrumbs pull-right">
+                    <li class="impo"><a href="#">{% trans 'home'|title %}</a></li>
+                    <li class="active impo">{% trans 'shop info'|capfirst %}</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+  <section id="content">
+        <div class="container">
+            <div class="row">
+                <div id="main" class="col-md-12">
+                        <div id="urpsm-features" class="tab-container">
+                            <div class="tab-content">
+                                <div class="tab-pane fade urpsmfade" id="cruise-description">
+                                    <div class="main-rating table-wrapper full-width hidden-table-sms intro urpsmma">
+                                        <article class="image-box box cruise listing-style1 photo table-cell col-sm-3">
+                                            <figure class="urpsm-al">
+                                                <a title="" href="#"><img style="width:120px; height:120px;" alt="{{shop.name}}" src="{{shop.logo.thumbnail.100x100}}" class="wido-urpsm"> 
+                                                	{% if 0 <= shop.average_rating < 2%}
+                                                        <a href="{#% url 'levels' %#}" target='_blank'><img class="levelbudge" src="{% static 'v2/images/1.png' %}" /></a>
+                                                    
+                                                    {% elif 2 <= shop.average_rating < 4 %}
+                                                        <a href="{#% url 'levels' %#}" target='_blank'><img class="levelbudge" src="{% static 'v2/images/2.png' %}" /></a>
+                                                    
+                                                    {% elif 4 <= shop.average_rating < 6 %}
+                                                        <a href="{#% url 'levels' %#}" target='_blank'><img class="levelbudge" src="{% static 'v2/images/3.png' %}" /></a>
+                                                    
+                                                    {% elif 6 <= shop.average_rating < 8 %}
+                                                        <a href="{#% url 'levels' %#}" target='_blank'><img class="levelbudge" src="{% static 'v2/images/4.png' %}" /></a>
+                                                    
+                                                    {% elif 8 <= shop.average_rating %}
+                                                        <a href="{#% url 'levels' %#}" target='_blank'><img class="levelbudge" src="{% static 'v2/images/5.png' %}" /></a>
+                                                    {%endif%}
+                                                </a>
+
+                                            </figure>
+                                            <div class="details">
+                                                <h4 class="box-title">{{shop.name}}
+                                                    <small><i class="soap-icon-departure"></i> {{shop.city}}, {{shop.country}}</small></h4>
+                                                <div class="feedback">
+                                                <div class="overall-rating paddno">
+                                                <div class="star-rating clearfix margno">
+                                                    <div class="five-stars-container con-v2"><div class="five-stars" style="width: {% localize off %}{% if not shop.average_rating %}0{% endif%}{{shop.average_rating|multiply:20}}%;{% endlocalize %}"></div></div>
+                                                </div>
+                                            </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        <div class="table-cell col-sm-9">
+                                            <div class="world-map-section"></div>
+                                        </div>
+                                    </div>
+                                    <div class="intro table-wrapper full-width hidden-table-sms desc">
+                                        <div class="col-sm-3 col-lg-3 features table-cell">
+                                            <ul>
+                                                <li><label class="greb px2"><i class="set-1-small"></i> {% trans 'Repaired Phones ' %} </label>{{ shop.get_repaired_phones_count}}</li>
+                                                <li><label class="greb px2"><i class="set-3-small"></i> {% trans 'Not-Repaired Phones' %} </label>{{ shop.get_not_repaired_phones_count }}</li>
+                                                <li><label class="greb px2"><i class="set-2-small"></i> {% trans 'Unlocked phones' %} </label>{{ shop.get_unlocked_phones_count }}</li>
+                                                <li><label class="greb px2"><i class="set-4-small"></i> {% trans 'Satisfied Clients' %} </label>{{ shop.get_satisfied_clients_count }}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-9 col-lg-9 table-cell cruise-itinerary">
+                                            <div class="travelo-box">
+                                                <h4 class="box-title greb" >{% trans 'About Shop' %}</h4>
+                                                {{shop.description|striptags}}
+                                                <label>Phone</label>
+                                                <p>{{shop.shop_phone}}</p>
+                                                <label>Email</label>
+                                                <p>{{shop.shop_email}}</p>
+                                                <label>Address</label>
+                                                <p>{{shop.address}}</p>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+        
+                            <div class="comments-container block">
+                                <h2 class="borderdb">{% trans 'All Reviews' %} ({{shop.review_shop.count}})</h2>
+
+                                 <ul class="comment-list travelo-box review-padd-0">
+                                    <div id="reviews-ajax">
+                                        {% include page_template %}
+                                    </div>
+                                </ul>
+
+                            </div>
+                            {%comment%}
+                            <a class="button uppercase full-width btn-large" id="oooo">load more Reviews</a>
+                            {%endcomment%}
+                    </div>
+                    </div>
+                        
+                        </div>
+                    </div>
+                
+            </div>
+        </section>
+
+
+	{% endblock main_page %}
+	{% block js %}
+    <script type="text/javascript" src="{% static 'v2/js/jquery.noconflict.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDfAwtL4h52jMA93AuQaB90HASh01iV1Zw&language=fr"></script>
+    <script type="text/javascript" src="{% static 'v2/js/gmap3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/js/gmap3.infobox.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/el-pagination/js/el-pagination.js' %}"></script>
+    <script type="text/javascript">
+            try{
+            jQuery.endlessPaginate();
+          }catch(e){}
+    </script>
+    <script type="text/javascript">
+    try{
+        var markerHtml = '<div class="marker-holder"><div class="image-box borderdd"><figure class="middle-block"><img src="{{shop.logo.thumbnail.100x100}}" alt="{{shop.name}}" class="middle-item"></figure><div class="details"><h4 class="title shop-t">{{shop.name}}</h4><div class="table-wrapper"><i class="soap-icon-departure newcolor"></i>{{shop.address}}</div></div></div></div>';
+
+          var image = {
+            url: 'https://urpsm-assets.s3.amazonaws.com/media/shop.png',
+            scaledSize : new google.maps.Size(50, 50),
+            optimized: false
+          };
+
+        tjq(".world-map-section").gmap3({
+            map:{
+                options: {
+                    center:[{{shop.location}}],
+                    zoom: 18
+                }
+            },
+            marker:{
+                values: [{address:"{{shop.address}} {{shop.city}}, {{shop.country}}", data: markerHtml, options:{icon: image}}
+                ],
+                options: {
+                    draggable: false
+                },
+                events: {
+                    click: function(marker, event, context) {
+                        if (infobox.getPosition() == marker.getPosition() && mapDiv.find(".infoBox").length > 0) {
+                            infobox.close();
+                        } else {
+                            map.panTo(marker.getPosition());
+                            infobox.setContent(context.data);
+                            infobox.open(map,marker);
+                            // if map is small
+                            var iWidth = 405;
+                            var iHeight = 165;
+                            if((mapDiv.width() / 2) < iWidth ) {
+                                var offsetX = iWidth - (mapDiv.width() / 2);
+                                map.panBy(offsetX, 0);
+                            }
+
+                            if((mapDiv.height() / 2) < iHeight ) {
+                                var offsetY = -(iHeight - (mapDiv.height() / 2));
+                                map.panBy(0, offsetY);
+                            }
+                            setTimeout(function() {
+                                tjq(".infoBox .middle-block").middleblock();
+                            }, 200);
+                        }
+                    }
+                }
+            }
+        });
+        var mapDiv = tjq(".world-map-section");
+        var map = mapDiv.gmap3("get");
+        var infobox = new InfoBox({
+        pixelOffset: new google.maps.Size(-204, -78),
+            closeBoxURL: '',
+            enableEventPropagation: true
+        });
+    }catch(e){}
+        
+    </script>
+    <script>
+// call the ajax function on load
+jQuery("document").ready(function() {
+    setTimeout(function() {
+        jQuery("#oooo").trigger('click');
+    },10);
+});
+
+jQuery(function() {
+  jQuery('#oooo').click(function() {
+    jQuery.ajax({
+        url: "{#% url 'shop-reviews' %#}",
+        dataType: 'json',
+        data: {id : "2", shop:{{shop.pk}}},
+        type:'POST',
+        success: function(data) {
+        		console.log(data);
+        		// jQuery.each(data, function())
+                  //get last id of the review from the html code !          
+                if(jQuery(".last-id-val").last().attr('id') ){
+                    var last_id_value =  parseInt( jQuery(".last-id-val").last().attr('id') ) + 1;
+                }else{
+                    var last_id_value = 0;
+                }
+
+            var reviewshtml = '';
+
+            var id_num = last_id_value;
+            var id_num_limit = last_id_value + 3;
+
+            for (var i = id_num; i <id_num_limit ; i++) {
+                // var review = data[i].review[0];
+                //if is in arabic add classes
+
+
+                if( last_id_value % 2 == 0){  var oddeven = 'review-doo ';  } else { var oddeven = 'review-daa ';}
+                if (review.lang == 'ar') {
+                    var thecommentrevar = 'the-comment-rev-ar';
+                    var avatarrevar = 'avatar-rev-ar';
+                    var revrevar = 'revrev-ar';
+                    var fontarab = 'font-arab';
+                }else{
+                    var thecommentrevar = '';
+                    var avatarrevar = '';
+                    var revrevar = '';
+                    var fontarab = '';
+                }
+                reviewshtml += '<li class="comment depth-1 '+oddeven+' last-id-val" id="'+ last_id_value++ +'"> \
+                                <div class="the-comment '+thecommentrevar+'"> \
+                                    <div class="avatar '+avatarrevar+'"> \
+                                        <img src="'+review.avatar+'" width="72" height="72"> \
+                                    </div> \
+                                    <div class="comment-box"> \
+                                        <div class="comment-author"> \
+                                             <div class="revrev '+revrevar+'"><div class="five-stars-container pull-right" data-placement="bottom" data-toggle="tooltip" title="" data-original-title="4 stars"> \
+                                                <div class="five-stars" style="width: '+review.stars+'%;"></div> \
+                                            </div></div> \
+                                            <h4 class="box-title"><a href="#" class="boldy">'+review.author+'</a><small>'+review.date+'</small></h4> \
+                                        </div> \
+                                        <div class="comment-text '+fontarab+'"> \
+                                            <p>'+review.message+'</p> \
+                                        </div> \
+                                    </div> \
+                                </div>';
+                if (typeof(review.replies) == "undefined") {
+                    reviewshtml +='</li>';
+                }else{
+                    if (review.replies.lang == 'ar') {
+                        var avatarshoparabic = 'avatar-shop-arabic';
+                        var reviewincludesar = 'review-includes-ar';
+                        var replayreviewar = 'replay-review-ar';
+                    }else{
+                        var avatarshoparabic = '';
+                        var reviewincludesar = '';
+                        var replayreviewar = '';
+                    }
+
+                    reviewshtml +='<ul class="children"> \
+                                        <li class="comment depth-2"> \
+                                            <div class="the-comment"> \
+                                                <div class="avatar-shop '+avatarshoparabic+'"> \
+                                                    <img src="'+review.replies.avatar+'" width="50" height="50" alt=""> \
+                                                </div> \
+                                                <div class="comment-box"> \
+                                                    <div class="comment-author"> \
+                                                      <div class="review-includes '+reviewincludesar+'"> \
+                                                         <div class="five-stars-container pull-right" data-placement="bottom" data-toggle="tooltip" title="" data-original-title="4 stars"> \
+                                                        <div class="five-stars" style="width: '+review.replies.stars+'%;"></div> \
+                                                       </div>\
+                                                    </div>\
+                                                </div> \
+                                                    <div class="comment-text replay-review '+replayreviewar+'"> \
+                                                        <p>'+review.replies.message+'</p> \
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                        </li>\
+                                    </ul>\
+                                </li>';
+                }
+            }
+            document.getElementById('reviews-ajax').innerHTML += reviewshtml;
+
+        }
+
+    });
+  });  
+});
+ </script>
+
+    {% endblock js %}

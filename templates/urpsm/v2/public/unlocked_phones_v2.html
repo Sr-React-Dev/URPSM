@@ -1,0 +1,80 @@
+{%extends 'urpsm/v2/base_v2.html' %}
+	{% load static from staticfiles %}
+    {%load el_pagination_tags %}
+	{% load i18n %}
+	{% block extracss %}
+		<link rel="stylesheet" type="text/css" href="{% static 'v2/components/flexslider/flexslider.css' %}" media="screen" />
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'/>
+		<link href='https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css' rel='stylesheet' type='text/css'/>
+        <!-- arabic font-->
+    	<link href="{% static 'v2/css/rtl-allpages.css' %}" rel='stylesheet' type='text/css'/>
+	{% endblock extracss %}
+	{% block extraheadjs %}
+	{%comment%}
+    <script src="https://maps.googleapis.com/maps/api/js' %}"></script>
+	{%endcomment%}
+	{% endblock extraheadjs %}
+	{% block main_page %}
+	 <div class="page-title-container urpsm-h">
+            <div class="container">
+                <ul class="breadcrumbs pull-right">
+                    <li class="impo"><a href="#">{% trans ' HOME' %}</a></li>
+                    <li class="active impo">{% trans 'Unlocked Phones' %}</li>
+                </ul>
+            </div>
+        </div>
+        
+
+
+       <section id="content">
+            <div class="container">
+                <div class="row">
+                    <div id="main" class="col-md-9">
+                        
+                    
+
+
+                    <!-- 2 different ads size on top -->
+                    <div id="puub2"><!-- tablet ad size -->
+                        <img src="images/adv2.jpg" class="advr-width-margned">
+                    </div>
+                    <div id="puub3"><!-- phone ad size -->
+                        <img src="images/mobilead.png" class="advr-width">
+                    </div>
+
+
+                            <div class="phones-listi">
+                                <div class="row image-box hotel -shoplisting listing-style1">
+                                {% include page_template %}
+                                </div>
+                            </div>
+                            
+                                    
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+	{% endblock main_page %}
+	{% block js %}
+    <!-- load revolution slider scripts -->
+    <script type="text/javascript" src="{% static 'v2/components/revolution_slider/js/jquery.themepunch.plugins.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'v2/components/revolution_slider/js/jquery.themepunch.revolution.min.js' %}"></script>
+    <!-- load BXSlider scripts -->
+    <script type="text/javascript" src="{% static 'v2/components/jquery.bxslider/jquery.bxslider.min.js' %}"></script>
+    <!-- Fit Video -->
+    <script type="text/javascript" src="{% static 'v2/js/jquery.fitvids.min.js' %}"></script>
+    <!-- load FlexSlider scripts -->
+    <script type="text/javascript" src="{% static 'v2/components/flexslider/jquery.flexslider-min.js' %}"></script>
+    <!-- Google Map Api -->
+    <script type='text/javascript' src="https://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+    {% comment %}
+    {% endcomment %}
+    <script type="text/javascript" src="{% static 'v2/el-pagination/js/el-pagination.js' %}"></script>
+    <script type="text/javascript">
+            try{
+            $.endlessPaginate();
+          }catch(e){}
+    </script>
+    {% endblock js %}

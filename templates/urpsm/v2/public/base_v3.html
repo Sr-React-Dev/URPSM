@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{%block title%}URPSM{%endblock title%}</title>
+    <meta charset="utf-8">
+            {% load reviewing_tags %}
+    {% if request %}
+    {{ request.path|url_to_meta }}
+    {% else %}
+    <meta name="keywords" content="{%block keywords%}{%endblock keywords%}" >
+    <meta name="description" content="{%block description%}URPSM{%endblock description%}">
+    <meta name="title" content="{%block metatitle%}URPSM{%endblock metatitle%}">
+
+    <meta name="author" content="{%block author%}URPSM{%endblock author%}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://urpsm-assets.s3.amazonaws.com/media/favicon.png" type="image/x-icon">
+    <link rel="icon" href="https://urpsm-assets.s3.amazonaws.com/media/favicon.png" type="image/x-icon">
+    {% endif %}
+    <!-- Start Imports-->
+    {% load static from staticfiles %}{% load i18n %}{% load languages_tags %}
+    <!--END Imports-->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'v2/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'v2/css/font-awesome.min.css' %}">
+
+    <!--Urpsm Desktop backage style-->
+    <link id="main-style" rel="stylesheet" href="{% static 'v2/css/style.css' %}">
+    <!-- Urpsm Desktop backage style -->
+    <link rel="stylesheet" href="{% static 'v2/css/responsive.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+    {% ifequal request.LANGUAGE_CODE  'ar' %}
+      <link href="{% static 'v2/css/rtl-allpages.css' %}" rel="stylesheet" type="text/css" />
+    {%endifequal%}
+
+    {% block extracss %}<style>
+        .radius-50{
+            border-radius: 50%;
+        }
+    </style>{% endblock extracss %}
+    {% block extraheadjs %}{% endblock extraheadjs %}
+
+<!-- Google plus widget. -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P2GFLRJ');</script>
+</head>
+<body class="{% ifequal request.LANGUAGE_CODE  'ar' %}rtl{%endifequal%}">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2GFLRJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<div id="page-wrapper">
+		<header id="header" class="navbar-static-top style7 urpsm-desktop">
+
+            <div class="container">
+                <div class="topnav">
+                    <ul class="quick-menu pull-right clearfix font-arab">
+                                                <li><a href="http://blog.urpsm.com">Blog</a></li>
+                    	{% if user.is_authenticated %}
+                        {% if user.profile.shop%}
+                        <li><a href="{% url 'shop-position' %}">{% trans "ACCOUNT" %}</a></li>
+                        {% elif user.profile.server%}
+                        <li><a href="{% url 'server-position' %}">{% trans "ACCOUNT" %}</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'logout' %}">{% trans "LOGOUT"%}</a></li>
+                        {%else%}
+                        <li><a href="{% url 'two_factor:login' %}">{% trans "LOGIN"%}</a></li>
+                        <li><a href="{% url 'create_account' %}">{% trans "SIGNUP" %}</a></li>
+                        {% endif %}
+                        <li class="ribbon">
+                            {% languages_dropdown_desktop request.path %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#urpsm-on-mobile" data-toggle="collapse" class="mobile-menu-toggle">
+                {% trans "Mobile Menu Toggle" %}
+            </a>
+            <div class="main-navigation">
+                <div class="container">
+                    <h1 class="logo navbar-brand">
+                        <a href="{% url 'home' %}" title="urpsm">
+                            <img src="{% static 'v2/images/logo.png' %}" alt="urpsm" />
+                        </a>
+                    </h1>
+                    {%comment%}
+                    <ul class="social-icons style2 clearfix pull-right visible-lg">
+                        <li class="twitter"><a title="twitter" href="https://www.twitter.com/@urpsm2" data-toggle="tooltip" target="_blank"><i class="soap-icon-twitter"></i></a></li>
+                        <li class="facebook"><a title="facebook" href="https://www.facebook.com/URPSM1" data-toggle="tooltip" target="_blank"><i class="soap-icon-facebook"></i></a></li>
+                        <li class="linkedin"><a title="linkedin" href="https://www.linkedin.com/in/urpsm" data-toggle="tooltip" target="_blank"><i class="soap-icon-linkedin"></i></a></li>
+                        <li class="vimeo"><a title="vimeo" href="#" data-toggle="tooltip" target="_blank"><i class="soap-icon-vimeo"></i></a></li>
+                    </ul>
+                    {%endcomment%}
+
+                    <nav id="main-menu" role="navigation">
+                        <ul class="menu menu-big">
+                            <li>
+                                <a href="{% url 'home' %}">{% trans 'home'|capfirst %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'levels' %}">{% trans 'levels'|capfirst %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'services' %}">{% trans 'services'|capfirst %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'about-us' %}">{% trans 'about'|capfirst %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'contact-us' %}">{% trans 'contact'|capfirst %}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <nav id="urpsm-on-mobile" class="mobile-menu collapse">
+                <ul id="mobile-primary-menu" class="menu">                  
+                    <li>
+                        <a href="{% url 'home' %}">{% trans 'Home' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'levels' %}">{% trans 'Features' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'services' %}">{% trans 'Services' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about-us' %}">{% trans 'About' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contact-us' %}">{% trans 'Contact' %}</a>
+                    </li>
+                </ul>
+                
+                <ul class="mobile-topnav container">
+                    <li class="ribbon language menu-color-skin">
+                        {% languages_dropdown_mobile request.path %}
+                    </li>
+                        {% if not user.is_authenticated %}
+                        <li><a href="{% url 'login' %}">{% trans 'LOGIN' %}</a></li>
+                        <li><a href="{% url 'create_account' %}">{% trans 'SIGNUP' %}</a></li>
+                        {% endif %}
+                </ul>        
+            </nav>
+        </header>
+        {% block main_page %}
+        {% endblock main_page %}
+        <footer id="footer" class="foottr">
+            <div class="footer-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4 about-urpsm">
+                            <h2>{% trans 'About Urpsm' %}</h2>
+                            <p class="ddurpsm">{% trans 'URPSM is without any doubt the best way to find the nearest and best mobile repairing shops ranked by professionals and customers as well.' %} </p>
+                            <address class="contact-details contact-foot">
+                                <!-- <span class="contact-phone"><i class="soap-icon-phone"></i> +212 808 808 888</span> -->
+                                <!-- <br> -->
+                                <span class="contact-phone"><i class="soap-icon-message"></i> contact@urpsm.com</span><br>
+                                <span class="contact-phone"><i class="fa fa-trash"></i>&copy; 2016- {% now 'Y' %} URPSM</span>
+                            </address>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4 mail-urpsm">
+                            <h2>{% trans 'important links'|capfirst %}</h2>
+                            <ul class="discover triangle row">
+                                <li class="col-xs-12"><a href="{% url 'terms' %}">{% trans 'terms of use'|capfirst %}</a></li>
+                                <li class="col-xs-12"><a href="{% url 'privacy' %}">{% trans 'privacy policy'|capfirst %}</a></li>
+                                <li class="col-xs-12"><a href="{% url 'levels' %}">{% trans 'levels'|capfirst %}</a></li>
+                                <li class="col-xs-12"><a href="{% url 'about-us' %}">{% trans 'about us'|capfirst %}</a></li>
+                                <!--<li><a href="{% url 'contact-us' %}">{% trans 'contact us'|capfirst %}</a></li>-->
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4 mail-urpsm">
+                            <h2>{% trans 'Mailing List' %}</h2>
+                            <p class="ddurpsm">{% trans 'Sign up for our mailing list to get latest updates and offers.' %}</p>
+                            <ul class="social-icons clearfix bot-f">
+                                <li class="twitter"><a title="twitter" href="https://www.twitter.com/@urpsm2" data-toggle="tooltip" target="_blank">
+                                    <img src="{% static 'v2/images/icon/twitter-icon.png' %}">
+                                </a></li>
+                                <li class="googleplus"><a title="googleplus" href="https://plus.google.com/118416619788509995526" data-toggle="tooltip" target="_blank">
+                                    <img src="{% static 'v2/images/icon/google-icon.png' %}">
+                                </a></li>
+                                <li class="facebook"><a title="facebook" href="https://www.facebook.com/URPSM1" data-toggle="tooltip" target="_blank">
+                                    <img src="{% static 'v2/images/icon/facebook-icon.png' %}">
+                                </a></li>
+                                <li class="linkedin"><a title="linkedin" href="https://www.linkedin.com/in/urpsm" data-toggle="tooltip" target="_blank">
+                                    <img src="{% static 'v2/images/icon/linkedin-icon.png' %}">
+                                </a></li>
+                            </ul>
+                            <div class="icon-check urpsm-slam">
+                                <input type="text" class="input-text full-width" placeholder="{% trans 'your email'|capfirst %}">
+                            </div>
+                        </div>
+
+    				</div>
+                </div>
+            </div>
+            <div class="bottom colored-e">
+                <div class="container foot-c">
+                    <div class="footer-payment">
+                        <a href="javascript:void(0);" title="payments">
+                            <img src="{% static 'v2/images/icon/mastercard-icon.png' %}">
+                        </a>
+                        <a href="javascript:void(0);" title="payments">
+                            <img src="{% static 'v2/images/icon/visa-icon.png' %}">
+                        </a>
+                        <a href="javascript:void(0);" title="payments">
+                            <img src="{% static 'v2/images/icon/paypal-icon.png' %}">
+                        </a>
+                        <a href="javascript:void(0);" title="payments">
+                            <img src="{% static 'v2/images/icon/bitcoin-icon.png' %}">
+                        </a>
+                        <a href="javascript:void(0);" title="payments">
+                            <img src="{% static 'v2/images/icon/westernunion-icon.png' %}">
+                        </a>
+                        <a href="javascript:void(0);" title="payments">
+                            <img src="{% static 'v2/images/icon/moneygram-icon.png' %}">
+                        </a>
+                        <!--<div class="right-icos">-->
+                            <!--<a href="javascript:void(0);">-->
+                                <!--<img src="{{ MEDIA_URL}}icons/payment/comodo.png">-->
+                            <!--</a>-->
+                            <!--<a href="http://www.dmca.com/Protection/Status.aspx?ID=f33035b5-07b1-4f4f-8fd6-a3f764e906b3" title="DMCA.com Protection Status" class="dmca-badge"> -->
+                                <!--<img src="//images.dmca.com/Badges/dmca_protected_sml_120l.png?ID=f33035b5-07b1-4f4f-8fd6-a3f764e906b3" alt="DMCA.com Protection Status">-->
+                            <!--</a> -->
+                            <!--<script src="//images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+
+
+<table id="slideleft" style=" overflow:auto; position:fixed; top:25%;">
+   <tr class="slideLeftItem" style="position:fixed;left:-87px;z-index:1000;height:100%;">
+
+    <!--<td style="width:5px; background:black;" class="sse"></td>-->
+    <td style="float:right" class="sse">
+        <img src="https://urpsm-assets.s3.amazonaws.com/media/socialm.png">
+    </td>
+
+
+      <td class="contentBox" style="padding: 5px;text-align: center;border:solid 1px #003333; width:85px;padding:5px;position:relative;border-radius:5px;background-color:white;">
+         <!-- widgets -->
+
+        <iframe src="https://www.facebook.com/plugins/follow.php?href=https%3A%2F%2Fwww.facebook.com%2FURPSM1&width=100&height=65&layout=box_count&size=small&show_faces=false&appId=1411785625767598" width="65" height="40" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+
+        <!-- Place this tag where you want the widget to render. -->
+        <div class="g-follow" data-annotation="vertical-bubble" data-height="15" data-href="//plus.google.com/u/0/118416619788509995526" data-rel="author"></div>
+        <!-- Place this render call where appropriate. -->
+        <script type="text/javascript">gapi.follow.go();</script>
+
+
+        <a href="http://twitcount.com/btn" class="twitcount-button" data-count="vertical" data-size="small" data-text="" data-url="" data-via="" data-related="" data-hashtags="">TwitCount</a> 
+        <script type="text/javascript" src="https://static1.twitcount.com/js/button.js"></script>
+
+        <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+        <script type="IN/FollowCompany" data-id="1482510086963" data-counter="top"></script>
+
+
+      </td>
+   </tr>
+</table>
+
+
+
+
+<script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+{% block js %}
+{% endblock js %}
+<script type="text/javascript" src="{% static 'v2/js/tools.min.js' %}"></script>
+
+<script type="text/javascript">
+jQuery("#slideleft tr").hover(
+function(b){
+    var a=jQuery(this);
+    jQuery("#slideleft tr").not(a).hide();
+    //a.css({"z-index":"9999","left":0});
+    a.animate({"left":0});
+    a.stop().animate({left:0})},function(b){
+        var a=jQuery(this);
+        a.css({"z-index":"1000"});
+        //a.stop().animate({left:-a.outerWidth()});
+        a.stop().animate({left:-87});
+    jQuery("#slideleft tr").show()});
+</script>
+<!-- django conflit -_- remove -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+{%if request.user.profile.shop or request.user.profile.server%}
+{% include 'session_security/all.html' %}
+{% endif %}
+</body>
+</html>
+

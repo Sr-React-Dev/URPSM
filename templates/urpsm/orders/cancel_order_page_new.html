@@ -1,0 +1,234 @@
+{% extends "urpsm/v2/base_manager_v3.html" %} {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'orders list'|capfirst %} {% endblock %} {% block heading %} {% trans 'orders'|capfirst %} {% endblock %} {% block breadcrumb %}
+<li class="active">{% trans 'orders'|capfirst %}</li>
+{% endblock %} {% block content %}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+<!--
+<div class="callout callout-info lead">
+    <h4>Reminder!</h4>
+    <p>To use this main header instead of the regular one, you must add the <code>layout-top-nav</code> class to the body tag.</p>
+  </div>
+-->
+
+  <div class="u-action-steps">
+    <ul id="breadcrumb">
+      <li><a href="#"><span class="icon icon-home"> </span></a></li>
+      <li class=""><a href="#"><span class="icon icon-beaker"> </span> Request <div class="divbreak"></div>Cancel</a></li>
+      <li class=""><a href="#"><span class="icon icon-double-angle-right"></span> Cancellation<div class="divbreak"></div> Process</a></li>
+      <li class=""><a href="#"><span class="icon icon-arrow-down"> </span> Refund<div class="divbreak"></div> Money</a></li>
+    </ul>
+  </div>
+  <div class="action-steps-relative"></div>
+
+  <!-- Main content -->
+  <section class="content">
+
+      <div class="row">
+        <div class="col-md-3" id="sidebarfixed">
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="shop-user-img img-responsive img-circle" src="{% if order.shop.logo %} {{ order.shop.logo.thumbnail.200x200 }} {% else %} {% static 'img/shop.png' %} {% endif %}" alt="User profile picture">
+              <p class="text-muted text-center">{{ order.shop.user_shop.user.firstname }}</p>
+
+              <hr class="Snew">
+              <ul class="list-group list-group-unbordered">
+
+              <li class="list-group-item">
+                        <b>{% trans 'order'|capfirst %}</b><a class="pull-right">{{ order.ref }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>{% trans 'order time'|capfirst %} </b> <a class="pull-right">{{ order.delivery_time }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Status</b><span class="btn btn-xs pull-right" style="background-color:{{statuscolor}};padding:5px;color:white;">{{ order.status }}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>{% trans 'order amount'|capfirst %} </b> <a class="pull-right">{{ order.amount }} USD</a>
+                    </li>
+              </ul>
+              <hr class="">
+                <div class="description-block sif">
+                    <h5 class="description-header">{% trans 'service name'|capfirst %}</h5>
+                    <a class="description-text">{{ order.service }}</a>
+                </div>
+                <hr class="">
+                <div class="description-block sif">
+                    <h5 class="description-header">{% trans 'server name'|capfirst %}</h5>
+                    <a class="description-text">{{ order.server.name }}</a>
+                </div>
+                <hr class="">
+                <div class="description-block sif">
+                    <h5 class="description-header">{% trans 'shop name'|capfirst %}</h5>
+                    <a class="description-text">{{ order.shop.name }}</a>
+                </div>
+
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-9" id="contentbar">
+          <div class="box box-primary">
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="order-read-info">
+                <h3>Request Cancellation</h3>
+    <h4>We encourage our users to communicate and resolve disputes using the Resolution Center.</h4>
+              </div>
+              <div class="mailbox-read-message">
+<form action='{% url "cancel-order" order.id %}' method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                  <div class="form-group">
+                    <label>Explain why you want to cancel this order</label>
+                    <textarea class="form-control" rows="3" name="shop_comments" placeholder="Enter reason here..."></textarea>
+                      <input type="file" name="shop_files" id="filer_input" multiple="multiple">
+                  </div>
+              <label style="font-size: 18px;">Canceling this order may affect you in the following ways :</label>
+
+              <div class="row" style="margin-top:15px;">
+                  <div class="col-md-2">
+                    <a class="btn btn-app">
+                      <i class="fa fa-server"></i>
+                    </a>
+                  </div>
+                  <div class="col-md-10">
+                    <label class="ico-desc">Loss of revenue</label>
+                    <p>Cancelling this order means you'll lose 2% of your order amount.</p>
+                  </div>
+                  <div style="clear:both"></div>
+
+                  <div class="col-md-2">
+                    <a class="btn btn-app">
+                      <i class="fa fa-line-chart"></i>
+                    </a>
+                  </div>
+                  <div class="col-md-10">
+                    <label class="ico-desc">Weaken order completion rate</label>
+                    <p>Cancelling this order might hurt your business.</p>
+                  </div>
+
+                  <div style="clear:both"></div>
+
+
+                  <div class="col-md-2">
+                    <a class="btn btn-app">
+                      <i class="fa fa-history"></i>
+                    </a>
+                  </div>
+                  <div class="col-md-10">
+                    <label class="ico-desc">Listing placement could change</label>
+                    <p>Cancelling this order will affect your ranking level on urpsm.</p>
+                  </div>
+
+
+
+              </div>
+
+
+              <div class="form-group">
+                    <label>Terms and conditions</label>
+                    <textarea class="form-control" rows="10" spellcheck="false">
+TERM OF USE
+
+ACCEPTANCE OF TERMS
+These terms of use govern your use of www.urpsm.com; by using our website, you accept these terms of use in full. If you disagree with these terms of use or any part of these terms of use, then please do not use our website.
+These Terms and Conditions apply to all users of www.urpsm.com, they cover all aspects of URPSM including use of the blog website, and the services. If you subscribe to www.urpsm.com, paid services, we will ask you to expressly agree to these terms of use during sign-up.
+The terms ‘www.urpsm.com’, ‘URPSM’, ‘us’ or ‘we’ refers to the owner of the website. The term ‘you’ or ‘user’ refers to the user or viewer of our website. The owner of the website can also be emailed at contact@urpsm.com
+By using our website and agreeing to these terms of use, in accordance with the terms of our Privacy Policy.
+SERVICES
+Description.
+ We, Unlock Repair Phone Shop Manager, (URPSM) provides a web based task management tool and privacy related products and services (“Services”) for you or someone that you have designated to be the subject of the Services and for whom you will be held strictly responsible (the “Named Party”). The Services are described on the individual webpages or blog for each service, which can be accessed at www.urpsm.com. We may, at our discretion, periodically change the description or content of our Services in order to reflect changes to the Service offerings and features, including, without limitation, to reflect enhanced capabilities, changes in the service terms, changes in regulatory requirements, and/or any other modification intended to improve the efficacy of the Services or better address a perceived need among our customers.
+Orders.
+ The online submission page, invoice, and/or engagement letter (the “Order”) will specify the Services that you are licensing or purchasing. By submitting the form, you are submitting an offer to obtain the right to use the Services pursuant to the Terms set forth herein. You must be the person, or an authorized representative of the person or entity, for whom you have requested that we perform Services (the “Named Party”), or you must otherwise indicate and verify with us that the person or entity for whom we will perform our Services has consented to your purchase of and our provision of the Services on his/her/its behalf. If the Named Party is a minor, in order to purchase Services, you represent and warrant that you are the parent or legal guardian of the minor for whom Services are purchased.
+BILLING AND REFUND POLICIES
+A shop owner can cancel an Unlocking API service order if he did not receive his product in the concluded time limit. A Shop owner has the plain right to receive a refund of the amount of his order minus 2% of the amount. If the shop owner judges the code given by the server owner as wrong, the server owner must resend a correct code. The shop owner must send a video recording showing the testing of the code on the phone to unlock to prove that the code is wrong. The video should show the result of the display of the command *#06# which is the IMEI of the phone, all this in high quality recording. The Unlocking server API is also urged to present a proof that the provided code is fully functioning and/or why the shop owner failed to unlock his device. If the shop owner don’t receive his correct code, the administration must intervene to find a middle solution cancel the order and refund the shop owner. If any review from a client contains an insult or bashing, the shop owner and server owner have the plain
+right asking the administration to delete the inappropriate content by reporting abuse. Note that the following is applicable; URPSM fees are 5% of each transaction.
+- In the case of a refund, the shop owner can ask refund withing 24h start from order delivery time
+- In the case of a refund, URPSM keeps 2% of the previous described fees
+- If the shop owner incidentally sends a wrong IMEI to the server API, no refund is to compensate.
+- If the service provider didn't answer to a cancellation process withing 3 days , the shop owner will be refunded ans service provider can't ask any return
+- If both side didn't find a solution they can ask admin-support to judge ( this case need evidence from both side).
+                    </textarea>
+                  </div>
+              </div>
+
+              <!-- /.mailbox-read-message -->
+            </div>
+            <!-- /.box-footer -->
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="pull-right">
+                    <button type="button" class="btn btn-default"><i class="fa fa-close"></i> Exit</button>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-ticket"></i> Request Cancellation</input>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /. box -->
+        </div>
+
+
+
+
+      </div>
+      <!-- /.row -->
+
+
+  </section>
+  <!-- /.content -->
+
+
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" charset="utf-8">
+
+    (function ($) {
+
+        $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+
+        /*$('#order_modal').on('click', "#cancel-order-btn", function (e) {
+
+            var orderId = $(this).data('id');
+            if (orderId == "") {
+                alert("Invalid Order Id");
+                return false;
+            }
+            $.ajax({
+                url: '/orders/cancel-order/',
+                type: 'GET',
+                dataType: 'json',
+                data: {id: orderId},
+                success: function (data) {
+                    if (data['error']) {
+                        alert(data['error_message']);
+                        return false;
+                    }
+                    else {
+                        alert("successfully Cancelled");
+                        location.reload();
+                    }
+                }
+            })
+        });*/
+
+    })(jQuery)
+</script>
+{% endblock %}

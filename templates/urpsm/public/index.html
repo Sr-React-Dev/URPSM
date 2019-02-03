@@ -1,0 +1,386 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Unlock Repair Phone Shop Manager</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="{% static "img/urpsm-c.png" %}">
+    <!-- Rocket extras -->
+    <link href="{% static "css/home/animate.css" %}" rel="stylesheet">
+    <link href="{% static "css/home/prettyPhoto.css" %}" rel="stylesheet">
+    <link href="{% static "css/home/style.css" %}" rel="stylesheet">
+
+    <!-- video stylesheet -->
+      <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet">
+
+  <!-- support IE8 -->
+  <script src="https://vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="{% static "js/ie8-responsive-file-warning.js" %}"></script>
+    <![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!-- Start Rocket -->
+    <!-- ********************* -->
+
+    <!-- Parallax Background
+    ================================================== -->
+    <!-- image is set in the CSS as a background image -->
+    <div id="parallax"></div>
+    <!-- End Parallax Background
+    ================================================== -->
+
+    <!-- Start Header
+    ================================================== -->
+    <header id="header" class="navbar navbar-inverse navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Start Navigation -->
+            <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#hero">Home</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'dash' %}">Dashboard</a>
+                    </li>                        
+                    {% endif %}
+                    <li>
+                        <a href="#features">Features</a>
+                    </li>                    
+
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="http://blog.urpsm.com/">Blog</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- ==================================================
+    End Header -->
+
+    <!-- Start Hero Section
+    ================================================== -->
+    <section id="hero" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-7">
+                    <div class="lp-element animate" data-animate="fadeInDown">
+                        <img src="{% static "img/urpsm-c.png" %}" alt="" height="236">
+                        <br>
+                        <p class="pull-right">
+                            {% if request.user.is_authenticated %}
+                            <a href="{% url 'dash' %}" class="btn btn-primary btn-lg" role="button"><i class="fa fa-tachometer"></i> Dashboard</a>
+                            {% else %}
+                            <a href="{% url 'login' %}" class="btn btn-primary btn-lg" role="button">Login</a>
+                            <a href="{% url 'create_account' %}" class="btn btn-danger btn-lg" role="button">Create an account</a>
+                            {% endif %}
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==================================================
+    End Hero -->
+    <!-- Start Image Block
+    ================================================== -->
+    <section id="about" class="section" style="background-color:#FFF; border-top: 1px solid rgba(0, 0, 0, .1);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 sol-sm-12">
+                    <div class="overview animate" data-animate="flipInX">
+                        <h1> <strong>Perfect</strong>
+                            phone store management
+                        </h1>
+                        <p class="lead">
+                            URPSM is basically an application which is dedicated to various phone repairing shops and agencies.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+<video id="my-video" class="video-js" controls preload="auto" style="width:100%; height:332px; margin-bottom:15px;"
+  poster="{% static "img/urpsm-c.png" %}" data-setup="{}">
+    <source src="{% static "promo/urpsm.mp4" %}" type='video/mp4'>
+    <source src="{% static "promo/urpsm.webm" %}" type='video/webm'>
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+  </video>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="content-block animate" data-animate="fadeInRight">
+                        <h2>Easy to use</h2>
+                        <p class="lead">
+                            This user friendly application shall let you organize your job in an efficient and easy way avoiding hassles. 
+                        </p>
+                        <hr />
+                        <p>
+                            This shall also allow you to add <em>clients</em> by their individual <em>IMEI</em> numbers along with their names as well. You can also print <em>ticket</em> and the ticket will contain a <em>QR Code</em> which shall notify you regarding the phone’s status whether it is ready or not or in case the technician need your attention. 
+                            This has also got a very descriptive <em>dashboard</em> and backend with <em>SEO, analytics</em> of all your <em>income</em> along with an unlocking section which is to be unlocked by the users. 
+                            Thus, <em>URPSM</em> is all about a one stop solution for organizing your phone repairing tasks and strategies. This provides a user friendly experience, much required for the smooth flow of an application.
+                            .
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================
+    End Image Blcok -->
+    <!-- Start Features
+    ================================================== -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Title -->
+                    <div class="overview animate" data-animate="flipInX">
+                        <h1> <strong>Unlock Repair Phone Shop Manager</strong></h1>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-block animate" data-animate="fadeInRight">
+                        <span class="fa fa-users"></span>
+                        <h3>Client Area</h3>
+                        <p>
+                           Our service in this particular space is all about adding up clients by using IMEI number along with other services such as printing tickets, adding add-ons and editing stats.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-block animate" data-animate="flipInY">
+                        <span class="fa fa-shopping-cart"></span>
+                        <h3>Shop Area</h3>
+                        <p>
+                            This space is exclusively meant for you that shall track all shops in and around your states with their appropriate individual geolocation for your convenience.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-block animate" data-animate="fadeInLeft">
+                        <span class="fa fa-cubes"></span>
+                        <h3>Components Area</h3>
+                        <p>
+                            You can simply utilize this space for selling components such as phone camera, digitizer, old phone motherboard, buzzers, charge connectors. Components Area also contains components which you might require for your phone’s client. So, this shall basically be a one stop solution for you.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-block animate" data-animate="flipInX">
+                        <span class="fa fa-user"></span>
+                        <h3>User’s Area</h3>
+                        <p>
+                            In our User’s Area, you can create account for your workers at your shop and control him accordingly. We have our User categorization, which is mainly of 3 types consisting Admin- Technician- Worker.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-block animate" data-animate="flipInX">
+                        <span class="fa fa-unlock"></span>
+                        <h3>Unlocking Area</h3>
+                        <p>
+                            Visit our Unlocking Area for unlocking phones by operators using API; Application Programming Interface which provides a lot of choice of operators resulting into a successful unlocking of phones in the most effective and beneficial way.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-block animate" data-animate="flipInX">
+                        <span class="fa fa-tachometer"></span>
+                        <h3>Dashboard</h3>
+                        <p>
+                            Our Dashboard mechanism is quite user friendly, which enables its users to access the application quite easily without getting exposed to any sorts of complicacy.
+                        </p>
+                    </div>
+                </div>                                
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================
+    End Features -->
+
+
+
+    <!-- Start Gallery Block
+    ================================================== -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 sol-sm-12">
+                    <div class="overview animate" data-animate="flipInY">
+                        <h1>
+                            <strong>Contact us</strong>
+                        </h1>
+                        <p class="lead">
+                            How can we help you?
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 sol-sm-12">
+                    <form action="/#contact" method="post" role="form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                {{ form.name.errors }}
+                            {% endif %}
+
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                {{ form.email.errors }}
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.message }}
+                            {% if form.message.errors %}
+                                {{ form.message.errors }}
+                            {% endif %}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary pull-right">Send Message</button>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12  sol-sm-12">
+                    <div class="text-center">
+                        <ul class="social-icons list-inline">
+                            <li>
+                                <a href="URPSM2"> <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"> <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://plus.google.com/u/0/118416619788509995526">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!--//social-icons--> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================
+    End Gallery Blcok -->
+
+    <!-- Start Newsletter Block
+    ================================================== -->
+    <!--<section id="newsletter" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="overview animate" data-animate="fadeInDown">
+                    <h1>
+                        <strong>Subscribe Newsletter</strong>
+                    </h1>
+                    <p class="lead">
+                        Join thousands of awesome people, there's only one thing to do. Subscribe !
+                    </p>
+                </div>
+                <form role="form" class="animate" data-animate="fadeInUp">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-lg" placeholder="Enter email">
+                        <span class="input-group-btn">
+                            <button class="btn btn-lg btn-default" type="button">Subscribe Me</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+<!-- ==================================================
+    End Newsletter Blcok -->
+
+<section id="footer" class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="copyright pull-left">
+                    Copyright &copy; {% now "Y" %} URPSM
+                </span>
+
+                <ul class="links list-inline pull">
+                    <li>
+                        <a href="{% url 'terms' %}">Terms</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'privacy' %}">Privacy</a>
+                    </li>                    
+                    <li>
+                        <a href="http://blog.urpsm.com/">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/home/waypoints.min.js" %}"></script>
+    <script src="{% static "js/home/jquery.scrollto.min.js" %}"></script>
+    <script src="{% static "js/home/jquery.localscroll.min.js" %}"></script>
+    <script src="{% static "js/home/jquery.prettyPhoto.js" %}"></script>
+    <!-- videojs -->
+    <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+    <script src="{% static "js/home/scripts.js" %}"></script>
+
+<!-- ********************* -->
+<!-- Start Rocket -->
+
+</body>
+</html>

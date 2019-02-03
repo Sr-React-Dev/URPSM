@@ -1,0 +1,120 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load i18n staticfiles%}
+{% block title %} Add new component {% endblock %}
+{% block heading %} Component {% endblock %}
+{% block subheading %} {% trans 'adding new component'|capfirst %}{% endblock %}
+{% block breadcrumb %}
+<li><a href="{% url 'components' %}" title="components">{% trans 'components'|capfirst %}</a></li>
+<li class="active">{% trans 'add'|capfirst %}</li>
+{% endblock %}
+{% block content %}
+<section class="content">
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">{% trans 'new component'|capfirst %}</h3>
+    </div>
+
+    <form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="box-body">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.title.label }}"> {{ form.title.label }}</label>
+                            {{ form.title }}
+                                    {% if form.title.errors %}
+                                        {{ form.title.errors }}
+                                    {% endif %}
+                        
+                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.image.label }}"> {{ form.image.label }}</label>
+                        {{ form.image }}
+                                {% if form.image.errors %}
+                                    {{ form.image.errors }}
+                                {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="{{ form.brand.label }}"> {{ form.brand.label }}</label>
+                        {{ form.brand }}
+                                {% if form.brand.errors %}
+                                    {{ form.brand.errors }}
+                                {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                    <label for="{{ form.model.label }}"> {{ form.model.label }}</label>
+                        {{ form.model }}
+                                {% if form.model.errors %}
+                                    {{ form.model.errors }}
+                                {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="{{ form.type.label }}"> {{ form.type.label }}</label>
+                        {{ form.type }}
+                                {% if form.type.errors %}
+                                    {{ form.type.errors }}
+                                {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+            <label for="{{ form.description.label }}"> {{ form.description.label }}</label>
+                {{ form.description }}
+                        {% if form.description.errors %}
+                            {{ form.description.errors }}
+                        {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.price.label }}"> {{ form.price.label }}</label>
+                <div class="row">
+                    <div class="col-md-1">
+                        {{ form.currency }}
+                    </div>
+                    <div class="col-md-9">
+                        <div class="input-group">
+                        {{ form.price }}</div>
+                        {% if form.price.errors %}
+                            {{ form.price.errors }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div class="box-footer">
+<input class="btn btn-primary" type="submit" value="{% trans 'Save' %}" />
+    </div>
+    </form>
+</div>
+</section>
+{% endblock %}
+
+{% block extrajs %}
+<script src="{% static "suit-redactor/redactor/redactor.min.js" %}" type="text/javascript"></script>
+<script src="{% static "django_select2/js/select2.min.js" %}" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('#id_model, #id_brand, #id_type').select2({'width': '100%'});
+        $('#id_description').redactor({
+                lang: 'en',
+                buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', '|',
+                            'unorderedlist', 'orderedlist', 'outdent', 'indent',
+                            'alignment', 'horizontalrule', 'underline'],
+        });
+    });
+</script>
+{% endblock %}
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static "suit-redactor/redactor/redactor.css" %}">
+<link href="{% static "django_select2/css/select2.min.css" %}" rel="stylesheet" type="text/css" />
+{% endblock %}

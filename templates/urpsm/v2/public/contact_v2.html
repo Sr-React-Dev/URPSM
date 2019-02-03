@@ -1,0 +1,116 @@
+{%extends 'urpsm/v2/public/base_v3.html' %}
+	{% load static from staticfiles %}
+    
+    {% load reviewing_tags %}
+	{% load i18n %}
+    {% load localize from l10n %}
+{% block metatitle %}Contact Us | Mobile Repairing Services Marrakesh |URPSM{% endblock %}
+{% block description %}Contact Mobile Phone Repair Services in Marrakesh, Morocco.Get phone numbers, address, maps for best Mobile Phone Repair Services. Send us a message today{% endblock %}
+
+	{% block main_page %}
+	 <div class="page-title-container urpsm-h">
+        <div class="container">
+            <ul class="breadcrumbs pull-right">
+                <li class="impo"><a href="#">{% trans ' HOME' %}</a></li>
+                <li class="active impo">{% trans 'Contact us' %}</li>
+            </ul>
+        </div>
+    </div>
+        <section id="content" class="white-bg">
+            <div class="container">
+                <div id="main">
+                    <div class="col-md-9 no-float no-padding center-block">
+                        <div class="intro text-center block">
+                            <div class="text-center full-box"><img class="img-responsive" src="{% static 'v2/images/hq.png' %}"></div>
+                            <p></p>
+                            <h2>{% trans 'send us a message'|capfirst %}</h2>
+                        </div>
+                         <form class="contact-form" action="" method="post">
+                         {%csrf_token%}
+                            <div class="row form-group">
+                                <div class="col-xs-6">
+                                    <label>{% trans form.name.label|title %}</label>
+                                    {{ form.name }}
+                                    {% if form.name.errors %}
+                                        {{ form.name.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>{% trans form.email.label|title %}</label>
+                                    {{ form.email }}
+                                    {% if form.email.errors %}
+                                        {{ form.email.errors }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-xs-6">
+                                    <label>{% trans form.subject.label|title %}</label>
+                                    {{ form.subject }}
+                                    {% if form.subject.errors %}
+                                        {{ form.subject.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>{% trans form.website.label|title %}</label>
+                                    {{ form.website }}
+                                    {% if form.website.errors %}
+                                        {{ form.website.errors }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>{% trans form.message.label|title %}</label>
+                                    {{ form.message }}
+                                    {% if form.message.errors %}
+                                        {{ form.message.errors }}
+                                    {% endif %}
+                            </div>
+                            <button type="submit" class="btn-large full-width">{% trans 'send message'|capfirst %}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="section section-reduce-padd contact-details">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="icon-box style10 phone">
+                                <i class="soap-icon-phone"></i>
+                                <small>{% trans 'we are on 24/7'|capfirst %}</small>
+                                <h4 class="box-title">+1628-400-0061</h4>
+                                <br>
+                                {%comment%}
+                                <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                {%endcomment%}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="icon-box style10 email">
+                                <i class="soap-icon-message"></i>
+                                <small>{% trans 'send us email on'|capfirst %}</small>
+                                <h4 class="box-title">contact@urpsm.com</h4>
+                                <br>
+                                {%comment%}
+                                <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                {%endcomment%}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="icon-box style10 address">
+                                <i class="soap-icon-address"></i>
+                                <small>{% trans 'where are at'|capfirst %}</small>
+                                <h4 class="box-title">{% trans '12, Hassan II Blvd, Gueliz, Marrakesh'|capfirst %}</h4>
+                                {%comment%}
+                                <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                {%endcomment%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+	{% endblock main_page %}
+{% block js %}
+<script type="text/javascript" src="{% static 'v2/js/jquery.noconflict.js' %}"></script>
+{% endblock js %}

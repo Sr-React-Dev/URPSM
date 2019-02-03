@@ -1,0 +1,94 @@
+{% extends "urpsm/v2/base_manager_v2.html" %} 
+{% load static from staticfiles %}{% load i18n%}{% load reviewing_tags%}
+{% block title %} {% trans 'component details'|capfirst %} {% endblock %}
+{% block heading %} {% trans 'component details'|capfirst %} {% endblock %}
+{% block content %} 
+
+<section class="invoice" style="margin:0;">
+
+      <!-- title row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-th"></i> {{component.title}}
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="lead" style="    margin-top: 10px;">{% trans 'component details'|capfirst %}</p>
+
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+              <tr>
+                <th style="width:30%">{% trans 'brand'|capfirst %}:</th>
+                <td><span class="label" style="background: #6bafbd;"> {{component.brand}}</span></td>
+
+                <th>Model:</th>
+                <td>
+                  <span class="label" style="background: #fc8675;">{{component.model}}</span>
+                </td>
+
+              </tr>
+              <tr>
+                <th>Type:</th>
+                <td><span class="label" style="background: #7c6dfb;"> {{component.type}}</span></td>
+
+                <th>Price:</th>
+                <td>{{component.currency}}{{component.price}}</td>
+              </tr>
+            </tbody></table>
+          </div>
+          <p class="lead">{% trans 'component description'|capfirst %}:</p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;    height: 200px;">
+            {{component.description}}
+          </p>
+        </div>
+        <!-- /.col -->
+        <!-- accepted payments column -->
+        <div class="col-md-6">
+
+         <div style="text-align: center;">
+            <img src="{{component.image.thumbnail.200x200}}" style="height: 200px;">
+          </div>
+          <div class="box box-widget widget-user-2" style="border: 1px solid #e3e3e3;">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header" style="background: whitesmoke !important;">
+              <div class="widget-user-image">
+                <img class="img-circle" src="{{component.shop.logo.thumbnail.100x100}}" style="height:65px;">
+              </div>
+              <h3 class="widget-user-username">{{component.shop}}</h3>
+              <h5 class="widget-user-desc"><a href="#">
+                        {% for i in 5|times %}
+                          {% if i <= component.shop.average_rating %}
+                          <i class="fa fa-star text-yellow"></i>
+                          {%else%}
+                          <i class="fa fa-star-o text-yellow"></i>
+                          {% endif %}
+                        {% endfor %}
+                      </a></h5>
+                <div class="btn-group pull-right" style="margin-top: -45px;">
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" data-original-title="{% trans 'unlocked'|capfirst %} : {{component.shop.get_unlocked_phones_count}}" >
+                    <i class="fa fa-unlock" style="font-size: 20px;"></i></button>
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="{% trans 'repaired'|capfirst %} : {{component.shop.get_repaired_phones_count}}">
+                    <i class="fa fa-wrench" style="font-size: 20px;"></i></button>
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="{% trans 'unrepaired'|capfirst %} : {{component.shop.get_unrepaired_phones_count}}">
+                    <i class="fa fa-warning" style="font-size: 20px;"></i></button>
+                </div>
+            </div>
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">{% trans 'components'|capfirst %} <span class="pull-right"></span>{{component.shop}}</a></li>
+                <li><a href="#">{% trans 'shop phone'|capfirst %} <span class="pull-right">{{component.shop.shop_phone}}</span></a></li>
+                <li><a href="#">{% trans 'shop email'|capfirst %} <span class="pull-right">{{component.shop.shop_email}}</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+    </section>
+</section>
+{%endblock %}

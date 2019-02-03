@@ -1,0 +1,166 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_list admin_urls suit_list suit_tags %}
+{% load url from suit_compat %}
+ {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'Messages'|capfirst %} {% endblock %} {% block heading %} {% trans 'orders'|capfirst %} {% endblock %} {% block breadcrumb %}
+<li class="active">{% trans 'Messages'|capfirst %}</li>
+{% endblock %}
+
+{% block extrahead %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".searchselect").select2();
+});
+
+</script>
+
+{% endblock %}
+{% block content %}
+<div class="row" style="margin:10px 0;">
+    <div slass="col-xs-12" style="margin-left:10px;margin-right:10px">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">{% trans 'New Message'|capfirst %} </h3>
+            </div>
+
+            <div class="box-body">
+                <form role="form" method="post">
+                    {% csrf_token %}
+                    <div class="col-md-12">
+                        <div class="span4">
+
+                            <div class="btn-group" data-toggle="buttons-radio">
+    <label for="leftradio" class="btn btn-primary" onclick="$('#shopselectform').show();$('#serverselectform').hide();">Shop</label>
+    <input type="radio" name="to" value="shop" id="leftradio" style="display:none;" checked />
+    <label for="rightradio" style="border-radius:0px 4px 4px 0px;" class="btn btn-primary" onclick="$('#shopselectform').hide();$('#serverselectform').show();">Server</label>
+    <input type="radio" name="to" value="server" id="rightradio" style="display:none;" />
+</div><br>
+
+
+                            <div class="form-group" id="shopselectform">
+                                <label for="id_shopselect">Shop:</label>
+
+                                <select class="form-control searchselect" id="id_shopselect" name="shop">
+                                    <option value="" selected="selected">SELECT A SHOP</option>
+                                        {% for shop in allshops %}
+                                        <option value="{{ shop.id }}">{{ shop.name }}</option>
+                                        {% endfor %}
+                                </select>
+
+                            </div>
+                            <div class="form-group" id="serverselectform" style="display:none;">
+                                <label for="id_serverselect">Server:</label>
+
+                                <select class="form-control searchselect" id="id_serverselect" name="server">
+                                    <option value="" selected="selected">SELECT A SERVER</option>
+                                        {% for server in allservers %}
+                                        <option value="{{ server.id }}">{{ server.name }}</option>
+                                        {% endfor %}
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+
+                                <label>Subject</label>
+                                <input class="form-control" id="id_subject" name="subject" placeholder="subject"
+                                       type="text">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Type</label>
+                                <select class="form-control" id="id_type" name="type" placeholder="type">
+                                    <option value="" selected="selected">--</option>
+                                    <option value="ADMINISTRATIVE">ADMINISTRATIVE</option>
+                                    <option value="TECHNICAL">TECHNICAL</option>
+                                    <option value="FINANCIAL">FINANCIAL</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea class="form-control" cols="40" id="id_message" name="message"
+                                          placeholder="Write message here" rows="9"></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="box-footer">
+                <input type="submit" class="btn btn-primary pull-right" value="{% trans 'send'|capfirst %}"/>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">{% trans 'messages'|capfirst %}</h3>
+            </div>
+            <div class="box-body table-responsive">
+                <table class="table table-hover table-bordered">
+                    <tbody>
+                    <tr>
+                        <th>{% trans 'subject'|capfirst %}</th>
+                        <th>{% trans 'type'|capfirst %}</th>
+                        <th>{% trans 'Shop/Server'|capfirst %}</th>
+
+                        <th>{% trans 'name'|capfirst %}</th>
+                        <th>{% trans 'message'|capfirst %}</th>
+                        <th>{% trans 'status'|capfirst %}</th>
+                        <th>{% trans 'date'|capfirst %}</th>
+                    </tr>
+                    {% for message in cmessages %}
+                    <tr>
+                        <td><a href="{% url 'message-thread' message.id %}">{{message.subject}}</a></td>
+                        <td><span class="label" style="background: #fc8675;">{{message.type}}</span></td>
+                        <td>{% if message.shop %}<span class="label" style="background: #98f442;">Shop</span>{% endif %}
+                            {% if message.server %}<span class="label" style="background: #4dbde2;">Server</span>{% endif %}</td>
+                        <td>{% if message.shop %}{{ message.shop.name }}{% endif %}{% if message.server %}{{ message.server.name }}{% endif %}</td>
+                        <td>{{message.first_message.message}}</td>
+                        <td><span class="label" style="background: #fc8675;">{{message.status}}</span></td>
+                        <td>{{message.created_at}}</td>
+                    </tr>
+                    <!-- ****************** modal ********************-->
+                    <!-- ****************** end modal ********************-->
+                    {%endfor%}
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer clearfix">
+                {% if is_paginated %}
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    {% if page_obj.has_previous %}
+                    <li>
+                        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.previous_page_number }}"
+                           title="{% trans 'Previous' %}">{% trans 'previous'|capfirst %}</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <span class="current">{% trans 'Page' %} {{ page_obj.number }} {% trans 'of' %} {{ page_obj.paginator.num_pages }}</span>
+                    </li>
+                    {% if page_obj.has_next %}
+                    <li>
+                        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.next_page_number }}"
+                           title="{% trans 'Next' %}">{% trans 'next'|capfirst %}</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+
+<!-- ****************** end model ********************-->
+{% endblock content %}
+

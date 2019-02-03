@@ -1,0 +1,271 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load static from staticfiles %}{% load i18n%}{% load multiply from reviewing_tags%}
+{% load order_extras %}
+
+{% block title %} {% trans 'tickets list'|capfirst %}{% endblock %}
+{% block heading %} {% trans 'my tickets'|capfirst %} {% endblock %}
+{% block content%}
+<section class="content">
+
+<div class="row">
+  <h1 class="onwan">{% trans 'tickets'|capfirst %}</h1>
+    <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{% trans 'my tickets'|capfirst %}</h3>
+            </div>
+            <div class="box-body table-responsive">
+              <table class="table table-hover table-bordered tichekts-table">
+                <tbody><tr>
+                  <th>{% trans 'id ticket'|capfirst %}</th>
+                  <th>{% trans 'order ref'|capfirst %}</th>
+                  <th>{% trans 'my reason'|capfirst %}</th>
+                  <th>{% trans 'server reason'|capfirst %}</th>
+                  <th>{% trans 'admin decision'|capfirst %}</th>
+                  <th>{% trans 'status'|capfirst %}</th>
+                  <th>{% trans 'date'|capfirst %}</th>
+                  <th>{% trans 'action'|capfirst %}</th>
+                </tr>
+                {% for ticket in tickets %}
+                <tr data-toggle="modal" data-target="#modal-{{ticket.id}}">  
+                  <td>#ID-{{ticket.id}}</td>
+                  <td>#ref-{{ticket.server_order.ref}}</td>
+                  <td class="truncate-text">{{ticket.shop_reason}}</td>
+                  <td class="truncate-text">{{ticket.server_reason}}</td>
+                  <td>{{ticket.admin_response}}</td>
+                  <td><span class="label" style="background-color:{{ticket.status|ticket_status_color}};padding:5px;border-radius:5px;color:white;">{{ticket.status}}</span></td>
+                  <td>{{ticket.created_at}}</td>
+                  <td><a class="order" href='{% url "ticket_detail" ticket.id %}'>{% trans 'ticket'|capfirst %}</a></td>                </tr>
+                <div class="modal fade" id="modal-{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="modal-{{ticket.id}}Label">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <!-- Custom Tabs -->
+                            <div class="nav-tabs-custom">
+                              <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_1_{{ticket.id}}" data-toggle="tab">{% trans 'ticket info'|capfirst %}</a></li>
+                                <li><a href="#tab_2_{{ticket.id}}" data-toggle="tab">{% trans 'my reason'|capfirst %}</a></li>
+                                <li><a href="#tab_3_{{ticket.id}}" data-toggle="tab">{% trans 'server reason'|capfirst %}</a></li>
+                                <li><a href="#tab_4_{{ticket.id}}" data-toggle="tab">{% trans 'my comments'|capfirst %}</a></li>
+                                <li><a href="#tab_5_{{ticket.id}}" data-toggle="tab">{% trans 'server comments'|capfirst %}</a></li>
+                                <li><a href="#tab_6_{{ticket.id}}" data-toggle="tab">{% trans 'my response'|capfirst %}</a></li>
+                                <li><a href="#tab_7_{{ticket.id}}" data-toggle="tab">{% trans 'server response'|capfirst %}</a></li>
+                                <li class="pull-right"><a data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a></li>
+                              </ul>
+                              <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1_{{ticket.id}}">
+
+                              <dl class="dl-horizontal">
+                                <dt>{% trans 'tiket id'|capfirst %}: </dt>
+                                <dd>#ID{{ticket.id}}.</dd>
+                                <dt>{% trans 'date'|capfirst %}: </dt>
+                                <dd>{{ticket.created_at}}</dd>
+                                <dt>{% trans 'status'|capfirst %}: </dt>
+                                <dd><span class="label red-light-background">{{ticket.status}}</span></dd>
+                                <dt>{% trans 'admin decesion'|capfirst %}: </dt>
+                                <dd>{{ticket.admin_response}}
+                                </dd>
+                              </dl>
+                                </div>
+                                <!-- /.tab-pane -->
+                                {% if request.user.profile.shop%}
+                                <div class="tab-pane" id="tab_2_{{ticket.id}}">
+                                  {% trans 'my reason'|capfirst %} :
+                                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                                    {{ticket.shop_reason}}
+                                  </p>
+                                </div>
+
+                                <div class="tab-pane" id="tab_3_{{ticket.id}}">
+                                  {% trans 'server reason'|capfirst %} :
+                                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                                    {{ticket.server_reason}}
+                                  </p>
+                                </div>
+                                {%elif request.user.profile.server%}
+                                <div class="tab-pane" id="tab_2_{{ticket.id}}">
+                                  {% trans 'my reason'|capfirst %} :
+                                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                                    {{ticket.server_reason}}
+                                  </p>
+                                </div>
+
+                                <div class="tab-pane" id="tab_3_{{ticket.id}}">
+                                  {% trans 'shop reason'|capfirst %} :
+                                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                                    {{ticket.server_reason}}
+                                  </p>
+                                </div>
+                                {%endif%}
+                                <div class="tab-pane" id="tab_4_{{ticket.id}}">
+                                  {% trans 'my comment'|capfirst %} :
+                                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                                    {{ticket.shop_comments}}
+                                  </p>
+                                </div>
+                                <div class="tab-pane" id="tab_5_{{ticket.id}}">
+                                  {% trans 'server comment'|capfirst %} :
+                                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                                     {{ticket.server_comments}}
+                                  </p>
+                                </div>
+                                <div class="tab-pane" id="tab_6_{{ticket.id}}">
+                                  {% trans 'my response'|capfirst %} :
+                                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                                     {{ticket.shop_response}}
+                                  </p>
+                                </div>
+                                <div class="tab-pane" id="tab_7_{{ticket.id}}">
+                                  {% trans 'server response'|capfirst %} :
+                                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                                    {{ticket.server_response}}
+                                  </p>
+                                </div>
+                              </div>
+                              <!-- /.tab-content -->
+                            </div>
+                            <!-- nav-tabs-custom -->
+                          </div>
+                        </div>
+                        <div class="modal-footer padd-5">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{% trans 'close'|capfirst %}</button>
+                          <!-- <button type="button" class="btn btn-primary">Button Here</button> -->
+                        </div>
+                    </div>
+
+                  </div>
+                </div>
+                {%endfor%}
+              </tbody></table>
+            </div>
+            <div class="box-footer clearfix">
+              {% if is_paginated%}
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="pagination pull-right">
+                    {% if page_obj.has_previous %}
+                      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                      <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in paginator.page_range %}
+                      {% if page_obj.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                      {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                      <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                  </ul>
+                  </div>
+                </div>
+                {% endif %}
+            </div>
+          </div>
+          <!-- /.box -->
+    </div>
+</div>
+
+
+{%comment%}
+<!-- ****************** model ********************-->
+<div class="modal fade" id="modal-{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="modal-{{ticket.id}}Label">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Custom Tabs -->
+            <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_1" data-toggle="tab">{% trans 'ticket info'|capfirst %}</a></li>
+                <li><a href="#tab_2" data-toggle="tab">{% trans 'my reason'|capfirst %}</a></li>
+                <li><a href="#tab_3" data-toggle="tab">{% trans 'server reason'|capfirst %}</a></li>
+                <li><a href="#tab_4" data-toggle="tab">{% trans 'my comments'|capfirst %}</a></li>
+                <li><a href="#tab_5" data-toggle="tab">{% trans 'server comments'|capfirst %}</a></li>
+                <li><a href="#tab_6" data-toggle="tab">{% trans 'my response'|capfirst %}</a></li>
+                <li><a href="#tab_7" data-toggle="tab">{% trans 'server response'|capfirst %}</a></li>
+                <li class="pull-right"><a data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="tab_1">
+
+              <dl class="dl-horizontal">
+                <dt>{% trans 'tiket id'|capfirst %}: </dt>
+                <dd>#id54525225.</dd>
+                <dt>{% trans 'date'|capfirst %}: </dt>
+                <dd>20-10-2015</dd>
+                <dt>{% trans 'status'|capfirst %}: </dt>
+                <dd><span class="label red-light-background">Closed</span></dd>
+                <dt>{% trans 'admin decesion'|capfirst %}: </dt>
+                <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
+                  sit amet risus.
+                </dd>
+              </dl>
+
+
+
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tab_2">
+                  My reason :
+                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
+                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                  </p>
+                </div>
+                <div class="tab-pane" id="tab_3">
+                  {% trans 'server reason'|capfirst %} :
+                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
+                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                  </p>
+                </div>
+                <div class="tab-pane" id="tab_4">
+                  {% trans 'my comment'|capfirst %} :
+                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
+                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                  </p>
+                </div>
+                <div class="tab-pane" id="tab_5">
+                  {% trans 'server comment'|capfirst %} :
+                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
+                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                  </p>
+                </div>
+                <div class="tab-pane" id="tab_6">
+                  {% trans 'my response'|capfirst %} :
+                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
+                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                  </p>
+                </div>
+                <div class="tab-pane" id="tab_7">
+                  {% trans 'server response'|capfirst %} :
+                  <p class="text-muted well well-sm no-shadow marg-10-0">
+                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
+                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                  </p>
+                </div>
+              </div>
+              <!-- /.tab-content -->
+            </div>
+            <!-- nav-tabs-custom -->
+          </div>
+        </div>
+        <div class="modal-footer padd-5">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{% trans 'close'|capfirst %}</button>
+          <button type="button" class="btn btn-primary">{% trans 'Button Here'|capfirst %}</button>
+        </div>
+    </div>
+
+  </div>
+</div>
+{%endcomment%}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "urpsm/v2/base_manager_v2.html" %}
+{% load static from staticfiles %}{% load i18n%}{% load multiply from reviewing_tags%}
+{% block title %} {% trans 'search components'|capfirst %} {% endblock %}
+{% block heading %} {% trans 'Search components'|capfirst %} {% endblock %}
+{% block content %} 
+
+<section class="content-header">
+  <h1>
+    {% trans 'components'|capfirst %}
+    <small>{% trans 'list of components'|capfirst %}</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> {% trans 'home'|capfirst %}</a></li>
+    <li class="active">{% trans 'search components'|capfirst %}</li>
+  </ol>
+</section>
+
+  <!-- Main content -->
+<section class="content">
+  <div class="row">
+        <div class="col-md-12">
+          <form action="{% url 'components-search' %}" method="get">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" name="q" class="form-control input-lg" placeholder="{% trans 'search components...'|capfirst %}" value="{{query}}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+          </form>
+        </div>
+  </div>
+  <br>
+  <div class="row">
+     	{%include page_template %}
+  </div>
+   </section>
+{% endblock %}

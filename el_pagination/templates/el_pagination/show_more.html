@@ -1,0 +1,8 @@
+{% load i18n %}
+{% if querystring %}
+    <div class="endless_container more_results more_listings">
+        <a class="endless_more{% if class_name %} {{ class_name }}{% endif %} uppercase full-width button btn-large" href="{{ path }}{{ querystring }}"
+            rel="{{ querystring_key }}">{% if label %}{% trans label %}{% else %}{% trans "more" %}{% endif %}</a>
+        <div class="endless_loading" style="display: none;">{% trans loading|safe %}</div>
+    </div>
+{% endif %}

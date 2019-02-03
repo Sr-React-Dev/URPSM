@@ -1,0 +1,49 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_list admin_urls suit_list suit_tags %}
+{% load url from suit_compat %}
+ {% load i18n thumbnail staticfiles account_tags %} {% block title %} {% trans 'orders list'|capfirst %} {% endblock %} {% block heading %} {% trans 'orders'|capfirst %} {% endblock %}
+
+{% block content %}
+
+
+ <div class="row-fluid">
+
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{% trans 'URPMS Charges'|capfirst %}</h3>
+
+            </div>
+            <div class="box-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <label>Shop order cancellation charges</label>
+                    <input type="text" name="order_cancellation_charges" class="form-control" value="{{ current_order_cancellation_charges }}">
+                    <label>Change for:</label>
+                    <label class="radio-inline"><input type="radio" name="order_cancellation_charges_forall" value="false" checked>For all shops execpt where custom charges are set</label>
+                    <label class="radio-inline"><input type="radio" name="order_cancellation_charges_forall" value="true">For all shops and reset custom charges for shops</label>
+                    <hr>
+                    <label>Shop order completion charges</label>
+                    <input type="text" name="order_shop_completion_charges" class="form-control" value="{{ order_shop_completion_charges }}">
+                    <label>Change for:</label>
+                    <label class="radio-inline"><input type="radio" name="order_shop_completion_charges_forall" value="false" checked>For all shops execpt where custom charges are set</label>
+                    <label class="radio-inline"><input type="radio" name="order_shop_completion_charges_forall" value="true">For all shops and reset custom charges for shops</label>
+
+
+                    <hr>
+                    <label>Server order completion charges</label>
+                    <input type="text" name="order_completion_charges" class="form-control" value="{{ current_order_completion_charges }}">
+
+                    <label>Change for:</label>
+                    <label class="radio-inline"><input type="radio" name="order_completion_charges_forall" value="false" checked>For all servers execpt where custom charges are set</label>
+                    <label class="radio-inline"><input type="radio" name="order_completion_charges_forall" value="true">For all servers and reset custom charges for shops</label>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+          </div>
+          <!-- /.box -->
+      </div>
+      </div>
+{% endblock %}
