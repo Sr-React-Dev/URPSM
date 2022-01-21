@@ -48,7 +48,7 @@ gunicorn==19.6
 httplib2==0.9.2
 idna==2.0
 ipaddress==1.0.14
-ipython==3.2.1
+ipython==7.16.3
 Jinja2==2.7.3
 jsonfield==1.0.3
 kombu==3.0.26
