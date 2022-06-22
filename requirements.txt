@@ -55,7 +55,7 @@ kombu==3.0.26
 MarkupSafe==0.23
 ndg-httpsclient==0.4.0
 nltk==3.2.1
-numpy==1.11.2
+numpy==1.22.0
 oauthlib==1.1.2
 pdb==0.1
 phonenumbers==7.7.5
